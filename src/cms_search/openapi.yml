@@ -1,0 +1,54 @@
+openapi: '3.0.0'
+
+
+info:
+  title: CMS_Search
+  version: '2.0.0'
+
+
+paths:
+
+  /typeahead:
+    get:
+      description: >-
+        Return typeahead search.
+      responses:
+        200:
+          description: A list of search results.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    content:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          _display:
+                            type: string
+                          uri:
+                            type: string
+                    label:
+                      type: string
+      parameters:
+      - name: q
+        in: query
+        description: Free-text query
+        required: false
+        schema:
+          type: string
+
+  /openapi:
+    get:
+      description: >-
+        Get the OpenAPI spec for this service.
+      responses:
+        200:
+          description: OpenAPI spec.
+          content:
+            application/json:
+              schema:
+                $ref: "http://json-schema.org/draft-04/schema#"
