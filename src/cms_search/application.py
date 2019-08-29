@@ -49,6 +49,12 @@ class Application(web.Application):
         typeahead_route_no_slash = self.router.add_get(path + 'typeahead', handlers.search.typeahead)
         typeahead_route = self.router.add_get(path + 'typeahead' + '/', handlers.search.typeahead)
 
+        article_route_no_slash = self.router.add_get(path + 'search/article', handlers.search.search_articles)
+        article_route = self.router.add_get(path + 'search/article' + '/', handlers.search.search_articles)
+
+        publication_route_no_slash = self.router.add_get(path + 'search/publication', handlers.search.search_publications)
+        publication_route = self.router.add_get(path + 'search/publication' + '/', handlers.search.search_publications)
+
         # CORS
         if 'allow_cors' in self._config['web'] and self._config['web']['allow_cors']:
             cors = aiohttp_cors.setup(self, defaults={
@@ -58,6 +64,11 @@ class Application(web.Application):
             })
             cors.add(typeahead_route)
             cors.add(typeahead_route_no_slash)
+            cors.add(publication_route)
+            cors.add(publication_route_no_slash)
+            cors.add(article_route)
+            cors.add(article_route_no_slash)
+
             cors.add(openapi_route)
 
     @property

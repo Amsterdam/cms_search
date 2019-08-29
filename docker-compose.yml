@@ -1,0 +1,11 @@
+version: '3.0'
+services:
+  cms_search:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - $PWD/data:/app/data
+    environment:
+      command: cms_search --config example.config.yml
+
