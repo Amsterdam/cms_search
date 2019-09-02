@@ -32,17 +32,16 @@ definitions:
         type: number
       min_query_length:
         type: integer
-      max_results_per_endpoint:
+      max_results:
         type: integer
       results_type:
         type: string
-      total_max_results:
-        type: integer
+      es_host:
+        type: string
     required:
     - default_read_timeout
     - connect_timeout
     - min_query_length
-    - max_results_per_endpoint
     additionalProperties: false
 
   search_endpoints:

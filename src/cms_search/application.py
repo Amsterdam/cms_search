@@ -55,6 +55,9 @@ class Application(web.Application):
         publication_route_no_slash = self.router.add_get(path + 'search/publication', handlers.search.search_publications)
         publication_route = self.router.add_get(path + 'search/publication' + '/', handlers.search.search_publications)
 
+        special_route_no_slash = self.router.add_get(path + 'search/special', handlers.search.search_specials)
+        special_route = self.router.add_get(path + 'search/special' + '/', handlers.search.search_specials)
+
         # CORS
         if 'allow_cors' in self._config['web'] and self._config['web']['allow_cors']:
             cors = aiohttp_cors.setup(self, defaults={
@@ -68,6 +71,8 @@ class Application(web.Application):
             cors.add(publication_route_no_slash)
             cors.add(article_route)
             cors.add(article_route_no_slash)
+            cors.add(special_route)
+            cors.add(special_route_no_slash)
 
             cors.add(openapi_route)
 
@@ -84,15 +89,16 @@ class Application(web.Application):
         # read default conf
         global_conf = self.config['global_search_config']
         connect_timeout = global_conf['connect_timeout']
+        es_host = self.es_host = global_conf['es_host']
 
         # grab all configured endpoints
         for search_conf in self.config['search_endpoints']:
             search_clz = getattr(handlers.search, search_conf['type'])
             read_timeout = search_conf.get('read_timeout', global_conf['default_read_timeout'])
-            max_results = search_conf.get('max_results', global_conf['max_results_per_endpoint'])
+            max_results = search_conf.get('max_results', global_conf['max_results'])
             cms_url = search_conf['cms_url']
             index = search_conf['index']
             path = search_conf['path']
-            endpoints[path] = search_clz(self, connect_timeout, max_results, cms_url, index, read_timeout)
+            endpoints[path] = search_clz(self, es_host, connect_timeout, max_results, cms_url, index, read_timeout)
 
         return endpoints

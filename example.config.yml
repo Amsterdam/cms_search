@@ -7,7 +7,8 @@ global_search_config:
   default_read_timeout: 0.5
   connect_timeout: 0.1
   min_query_length: 3
-  max_results_per_endpoint: 12
+  max_results: 12
+  es_host: localhost
 
 search_endpoints:
 - type: ElasticSearchTypeAhead
