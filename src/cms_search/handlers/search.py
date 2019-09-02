@@ -68,15 +68,15 @@ async def search(request, types:list, result_type: int):
             page_size = SEARCH_PAGE_SIZE
         else:
             offset = 0
-            page_size = request.app.config['global_search_config']['max_results']
+            page_size = request.app.config['search_config']['max_results']
 
-        min_query_length = request.app.config['global_search_config']['min_query_length']
+        min_query_length = request.app.config['search_config']['min_query_length']
         # only perform search for queries longer than min_query_length
         if result_type == TYPEAHEAD_RESULT and len(q) < min_query_length:
             return web.json_response([])
         results = []
-        endpoint =  request.app['search_endpoints']['typeahead']
-        result = await endpoint.search(request, q, types, result_type, offset, page_size)
+        search = request.app['search']
+        result = await search.search(request, q, types, result_type, offset, page_size)
         if isinstance(result, list):
             results.extend(result)
         elif isinstance(result, dict):
@@ -248,7 +248,7 @@ class ElasticSearchTypeAhead(ElasticSearchEndpoint):
                     for hit in hits:
                         source = hit['_source']
                         title = source['title'][0] if 'title' in source else None
-                        body = source['body'][0] if 'body' in source else None
+                        body = source['processed'][0] if 'processed' in source else None
                         intro = source['field_intro'][0] if 'field_intro' in source else None
                         display = source['field_short_title'][0] if 'field_short_title' in source else title
                         element = {

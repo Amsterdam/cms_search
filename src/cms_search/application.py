@@ -7,6 +7,7 @@ import aiohttp_cors
 import config_loader
 import yaml
 
+from cms_search.handlers.search import ElasticSearchTypeAhead
 from . import handlers
 
 logger = logging.getLogger(__name__)
@@ -41,7 +42,7 @@ class Application(web.Application):
             self['openapi'] = yaml.load(s, Loader=yaml.FullLoader)
 
         # set search endpoints on app
-        self['search_endpoints'] = self._search_endpoints()
+        self['search'] = self._search()
 
         # add routes
         self.router.add_get('/metrics', handlers.metrics.get)
@@ -80,25 +81,16 @@ class Application(web.Application):
     def config(self) -> dict:
         return self._config
 
-    def _search_endpoints(self):
+    def _search(self):
         # language=rst
-        """ Get the search endpoints from the configuration.
+        """ Get the search from the configuration.
         """
+        conf = self.config['search_config']
+        connect_timeout = conf['connect_timeout']
+        es_host = self.es_host = conf['es_host']
+        read_timeout = conf['default_read_timeout']
+        max_results = conf['max_results']
+        cms_url = conf['cms_url']
+        index = conf['index']
 
-        endpoints = dict()
-        # read default conf
-        global_conf = self.config['global_search_config']
-        connect_timeout = global_conf['connect_timeout']
-        es_host = self.es_host = global_conf['es_host']
-
-        # grab all configured endpoints
-        for search_conf in self.config['search_endpoints']:
-            search_clz = getattr(handlers.search, search_conf['type'])
-            read_timeout = search_conf.get('read_timeout', global_conf['default_read_timeout'])
-            max_results = search_conf.get('max_results', global_conf['max_results'])
-            cms_url = search_conf['cms_url']
-            index = search_conf['index']
-            path = search_conf['path']
-            endpoints[path] = search_clz(self, es_host, connect_timeout, max_results, cms_url, index, read_timeout)
-
-        return endpoints
+        return ElasticSearchTypeAhead(self, es_host, connect_timeout, max_results, cms_url, index, read_timeout)

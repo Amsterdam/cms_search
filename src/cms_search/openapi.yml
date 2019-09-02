@@ -37,9 +37,110 @@ paths:
       - name: q
         in: query
         description: Free-text query
+        required: true
+        schema:
+          type: string
+
+  /search/article:
+    get:
+      description: >-
+        Return article search.
+      responses:
+        200:
+          description: A object with list of article search results.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _links:
+                    type: object
+                  count: integer
+                  results:
+                    type: array
+                    items:
+                      type: object
+      parameters:
+      - name: q
+        in: query
+        description: Free-text query
         required: false
         schema:
           type: string
+      - name: page
+        in: query
+        description: Page number
+        required: false
+        schema:
+          type: integer
+
+  /search/publication:
+    get:
+      description: >-
+        Return publication search.
+      responses:
+        200:
+          description: A object with list of publication search results.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _links:
+                    type: object
+                  count: integer
+                  results:
+                    type: array
+                    items:
+                      type: object
+      parameters:
+      - name: q
+        in: query
+        description: Free-text query
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number
+        required: false
+        schema:
+          type: integer
+
+  /search/special:
+    get:
+      description: >-
+        Return special search.
+      responses:
+        200:
+          description: A object with list of special search results.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _links:
+                    type: object
+                  count: integer
+                  results:
+                    type: array
+                    items:
+                      type: object
+      parameters:
+      - name: q
+        in: query
+        description: Free-text query
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number
+        required: false
+        schema:
+          type: integer
+
+
 
   /openapi:
     get:

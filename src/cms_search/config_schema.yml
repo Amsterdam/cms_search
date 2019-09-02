@@ -5,10 +5,8 @@ type: object
 properties:
   logging:
     $ref: '#/definitions/logging.dictconfig'
-  global_search_config:
-    $ref: '#/definitions/global_search_config'
-  search_endpoints:
-    $ref: '#/definitions/search_endpoints'
+  search_config:
+    $ref: '#/definitions/search_config'
   web:
     $ref: '#/definitions/web'
   cors:
@@ -16,14 +14,13 @@ properties:
 
 required:
 - logging
-- global_search_config
-- search_endpoints
+- search_config
 - web
 
 
 definitions:
 
-  global_search_config:
+  search_config:
     type: object
     properties:
       default_read_timeout:
@@ -38,33 +35,17 @@ definitions:
         type: string
       es_host:
         type: string
+      cms_url:
+        type: string
+      index:
+        type: string
     required:
     - default_read_timeout
     - connect_timeout
     - min_query_length
+    - cms_url
+    - index
     additionalProperties: false
-
-  search_endpoints:
-    type: array
-    items:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - ElasticSearchTypeAhead
-        index:
-          type: string
-        cms_url:
-          type: string
-        read_timeout:
-          type: number
-        max_results:
-          type: integer
-      required:
-      - type
-      - cms_url
-      - index
 
   web:
     additionalProperties: false
