@@ -24,7 +24,7 @@ node {
 
     stage("Test") {
         tryStep "test", {
-            sh "docker build -f Dockerfile -t cms_search:test ."
+            sh ".jenkins-test/test.sh"
         }
     }
 
