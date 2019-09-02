@@ -1,11 +1,23 @@
 version: '3.0'
 services:
+
+  elasticsearch:
+    image: amsterdam/elasticsearch6
+    command:  elasticsearch -Ehttp.host=0.0.0.0 -Etransport.host=127.0.0.1
+    volumes:
+      - "~/.ssh/datapunt.key:/root/.ssh/datapunt.key"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+
   cms_search:
-    build: .
+    build: src
     ports:
       - "8080:8080"
     volumes:
       - $PWD/data:/app/data
     environment:
-      command: cms_search --config example.config.yml
+      - DATAPUNT_API_URL=${DATAPUNT_API_URL:-https://api.data.amsterdam.nl/}
+      - PYTHONPATH=.
+    command: python cms_search/main.py --config config.yml
 

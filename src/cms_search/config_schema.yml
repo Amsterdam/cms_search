@@ -33,8 +33,10 @@ definitions:
         type: integer
       results_type:
         type: string
-      es_host:
+      elastic_host:
         type: string
+      elastic_port:
+        type: integer
       cms_url:
         type: string
       index:
@@ -43,6 +45,8 @@ definitions:
     - default_read_timeout
     - connect_timeout
     - min_query_length
+    - elastic_port
+    - elastic_host
     - cms_url
     - index
     additionalProperties: false

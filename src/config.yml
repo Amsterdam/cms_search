@@ -8,7 +8,8 @@ search_config:
   connect_timeout: 0.1
   min_query_length: 3
   max_results: 12
-  es_host: localhost
+  elastic_host: localhost
+  elastic_port: 9200
   cms_url: https://acc.cms.data.amsterdam.nl
   index: elasticsearch_index_cms_articles_index
 

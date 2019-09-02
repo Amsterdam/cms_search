@@ -1,4 +1,6 @@
 import logging.config
+from os import getenv
+
 from pkg_resources import resource_filename, resource_stream
 import urllib.parse
 
@@ -53,7 +55,8 @@ class Application(web.Application):
         article_route_no_slash = self.router.add_get(path + 'search/article', handlers.search.search_articles)
         article_route = self.router.add_get(path + 'search/article' + '/', handlers.search.search_articles)
 
-        publication_route_no_slash = self.router.add_get(path + 'search/publication', handlers.search.search_publications)
+        publication_route_no_slash = self.router.add_get(path + 'search/publication',
+                                                         handlers.search.search_publications)
         publication_route = self.router.add_get(path + 'search/publication' + '/', handlers.search.search_publications)
 
         special_route_no_slash = self.router.add_get(path + 'search/special', handlers.search.search_specials)
@@ -87,10 +90,12 @@ class Application(web.Application):
         """
         conf = self.config['search_config']
         connect_timeout = conf['connect_timeout']
-        es_host = self.es_host = conf['es_host']
+        elastic_host = getenv('ELASTIC_HOST', conf['elastic_host'])
+        elastic_port = getenv('ELASTIC_PORT', conf['elastic_port'])
         read_timeout = conf['default_read_timeout']
         max_results = conf['max_results']
-        cms_url = conf['cms_url']
+        cms_url = getenv('CMS_URL', conf['cms_url'])
         index = conf['index']
 
-        return ElasticSearchTypeAhead(self, es_host, connect_timeout, max_results, cms_url, index, read_timeout)
+        return ElasticSearchTypeAhead(self, elastic_host, elastic_port, connect_timeout, max_results, cms_url, index,
+                                      read_timeout)

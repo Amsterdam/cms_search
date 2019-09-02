@@ -47,6 +47,7 @@ async def search_articles(request):
 async def search_publications(request):
     return await search(request, ["publication"], SEARCH_RESULT)
 
+
 async def search_specials(request):
     return await search(request, ["special"], SEARCH_RESULT)
 
@@ -55,7 +56,7 @@ async def typeahead(request):
     return await search(request, ["publication", "article"], TYPEAHEAD_RESULT)
 
 
-async def search(request, types:list, result_type: int):
+async def search(request, types: list, result_type: int):
     # language=rst
     """Run search.
     """
@@ -75,8 +76,8 @@ async def search(request, types:list, result_type: int):
         if result_type == TYPEAHEAD_RESULT and len(q) < min_query_length:
             return web.json_response([])
         results = []
-        search = request.app['search']
-        result = await search.search(request, q, types, result_type, offset, page_size)
+        search1 = request.app['search']
+        result = await search1.search(request, q, types, result_type, offset, page_size)
         if isinstance(result, list):
             results.extend(result)
         elif isinstance(result, dict):
@@ -86,9 +87,10 @@ async def search(request, types:list, result_type: int):
 
 class ElasticSearchEndpoint:
 
-    def __init__(self, app: aiohttp.web.Application, es_host:str, connect_timeout: int,
-                 max_results: int, cms_url: str, index:str, read_timeout: T.Optional[float]):
-        self.es_host = es_host
+    def __init__(self, app: aiohttp.web.Application, elastic_host: str, elastic_port: int, connect_timeout: int,
+                 max_results: int, cms_url: str, index: str, read_timeout: T.Optional[float]):
+        self.elastic_host = elastic_host
+        self.elastic_port = elastic_port
         self.connect_timeout = connect_timeout
         self.max_results = max_results
         self.cms_url = cms_url
@@ -102,17 +104,19 @@ class ElasticSearchEndpoint:
 
     async def initialize(self, app):
         self.session = Elasticsearch(
-            host= self.es_host,
-            sniff_timeout = self.read_timeout  # default 0.1
+            host=self.elastic_host,
+            port=self.elastic_port,
+            sniff_timeout=self.read_timeout  # default 0.1
         )
 
     async def deinitialize(self, app):
         await self.session.close()
 
-    async def search(self, q: str, authorization_header: T.Optional[str]) -> T.List[dict]:
+    async def search(self, request, q: str, types: list, result_type: int, offset: int, page_size: int) -> \
+            T.Union[T.List[dict], T.Dict]:
         raise NotImplementedError()
 
-    def es_query(self, q:str, types:list, from1=0, size=15):
+    def es_query(self, q: str, types: list, from1=0, size=15) -> str:
 
         should = ''
         q_list = q.split()
@@ -187,7 +191,8 @@ class ElasticSearchEndpoint:
 
 class ElasticSearchTypeAhead(ElasticSearchEndpoint):
 
-    async def search(self, request, q: str, types: list, result_type: int, offset: int, page_size: int) -> T.List[dict]:
+    async def search(self, request, q: str, types: list, result_type: int, offset: int, page_size: int) -> \
+            T.Union[T.List[dict], T.Dict]:
 
         # Default localhost 9200. Index is last part of path
         drupal_selector = '/jsonapi/node/'
