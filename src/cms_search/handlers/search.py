@@ -1,3 +1,4 @@
+from datetime import datetime
 import logging
 import json
 import typing as T
@@ -120,6 +121,7 @@ class ElasticSearchEndpoint:
 
         should = ''
         q_list = q.split()
+
         if q:
             for i in range(len(q_list)):
                 # for every term in the list do term query, only for the last a prefix
@@ -158,8 +160,10 @@ class ElasticSearchEndpoint:
                 }}{continuation_comma}
                 """
             minimum_should_match = ', "minimum_should_match" : 1'
+            sort = '"_score"'
         else:
             minimum_should_match = ''
+            sort = '{ "changed": { "order": "desc" }}'
 
         return f"""
         {{
@@ -177,7 +181,7 @@ class ElasticSearchEndpoint:
           }},
           "from": {from1},
           "size": {size},
-          "sort": [],
+          "sort": [{sort}],
           "aggs": {{
             "count_by_type": {{
               "terms": {{
@@ -265,6 +269,8 @@ class ElasticSearchTypeAhead(ElasticSearchEndpoint):
                             },
                             "type": source['type'][0],
                             "nid": source['nid'][0],
+                            "changed": str(datetime.fromtimestamp(source['changed'][0])),
+                            "created": str(datetime.fromtimestamp(source['created'][0]))
                         }
                         if title:
                             element['title'] = title
