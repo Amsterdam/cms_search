@@ -1,6 +1,6 @@
 # Elasticsearch functionality for Drupal CMS
 
-This project makes the Elastic Search dat for the Drupal CMS that is indexed by the Drupal plugin for Elastic Search
+This project makes the Elastic Search for the Drupal CMS that is indexed by the Drupal plugin for Elastic Search
 available as typeahead or search.
 
 # Local test
@@ -15,10 +15,10 @@ the Elastic Search from acceptance to localhost with :
 
     ssh -L 9200:es01.acc.data.amsterdam.nl:9200 user@dc01.acc.data.amsterdam.nl
 
-Currently the Elastic Search index for Drupal is not in a backup and cannot yest be restored with update-el.sh. 
+Currently the Elastic Search index for Drupal is not in a backup and cannot yet be restored with update-el.sh. 
 
 
-Then run this with :
+To run this locally do the following:
 
     cd src
     PYTHONPATH=. python cms_search/main.py --config example.config.yml
@@ -26,8 +26,17 @@ Then run this with :
 
 Try out a couple of searches with :
 
-    http://localhost:8080/typeahead/?q=ijburg
+    http://localhost:8080/cms_search/typeahead/?q=ijburg
 
-    http://localhost:8080/search/article/?q=wallen
+    http://localhost:8080/cms_search/search/article/?q=wallen
 
-    http://localhost:8080/search/special
+    http://localhost:8080/cms_search/search/publication
+
+    http://localhost:8080/cms_search/search/special
+
+Tests :
+
+To run tests we can do :
+
+    cd src
+    .jenkins-test/test.sh
