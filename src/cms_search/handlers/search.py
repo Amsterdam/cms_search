@@ -223,8 +223,8 @@ class ElasticSearchTypeAhead(ElasticSearchEndpoint):
                     for hit in hits:
                         buckets[hit['_source']['type'][0]].append({
                             '_display': hit['_source']['field_short_title'][0],
-                            'uri': f"{self.cms_url}{drupal_selector}{hit['_source']['type'][0]}/\
-                            {hit['_source']['uuid'][0]}",
+                            'uri':\
+                            f"{self.cms_url}{drupal_selector}{hit['_source']['type'][0]}/{hit['_source']['uuid'][0]}",
                         })
                     label_map = {
                         'publication': "Publications",
@@ -263,8 +263,7 @@ class ElasticSearchTypeAhead(ElasticSearchEndpoint):
                         element = {
                             "_links": {
                                 "self": {
-                                    "href": f"{self.cms_url}{drupal_selector}{source['type'][0]}/\
-                                    {source['uuid'][0]}",
+                                    "href": f"{self.cms_url}{drupal_selector}{source['type'][0]}/{source['uuid'][0]}",
                                 }
                             },
                             "type": source['type'][0],
