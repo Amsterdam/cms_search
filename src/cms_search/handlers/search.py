@@ -66,8 +66,9 @@ async def search(request, types: list, result_type: int):
         if result_type == SEARCH_RESULT:
             page = request.query.get('page', '1')
             page = int(page) if page.isdigit() else 1
-            offset = (page - 1) * SEARCH_PAGE_SIZE
-            page_size = SEARCH_PAGE_SIZE
+            page_size = request.query.get('page_size', str(SEARCH_PAGE_SIZE))
+            page_size = int(page_size) if page_size.isdigit() else SEARCH_PAGE_SIZE
+            offset = (page - 1) * page_size
         else:
             offset = 0
             page_size = request.app.config['search_config']['max_results']
@@ -117,7 +118,7 @@ class ElasticSearchEndpoint:
             T.Union[T.List[dict], T.Dict]:
         raise NotImplementedError()
 
-    def es_query(self, q: str, types: list, from1=0, size=15) -> str:
+    def es_query(self, q: str, types: list, from1=0, size1=15) -> str:
 
         should = ''
         q_list = q.split()
@@ -180,7 +181,7 @@ class ElasticSearchEndpoint:
             }}
           }},
           "from": {from1},
-          "size": {size},
+          "size": {size1},
           "sort": [{sort}],
           "aggs": {{
             "count_by_type": {{
@@ -204,7 +205,7 @@ class ElasticSearchTypeAhead(ElasticSearchEndpoint):
         body = self.es_query(q, types, offset, page_size)
         for retry in range(2):  # Retry once
             try:
-                response = await self.session.search(index=self.index, body=body, size=self.max_results)
+                response = await self.session.search(index=self.index, body=body)
                 break
             except Exception as e:
                 if retry == 0:
