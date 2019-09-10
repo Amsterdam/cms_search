@@ -228,8 +228,8 @@ class ElasticSearchTypeAhead(ElasticSearchEndpoint):
                             f"{self.cms_url}{drupal_selector}{hit['_source']['type'][0]}/{hit['_source']['uuid'][0]}",
                         })
                     label_map = {
-                        'publication': "Publications",
-                        'article': 'Articles'
+                        'publication': "Publicaties",
+                        'article': 'Artikelen'
                     }
                     result_list = [{
                         "label": label_map[key],
