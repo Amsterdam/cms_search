@@ -52,7 +52,7 @@ async def test_typeahead_body(aiohttp_client, server):
     resp = await client.get('/cms_search/typeahead/?q=polycentrische+stedeling')
     assert resp.status == 200
     json = await resp.json()
-    assert json[0]['label'] == "Articles"
+    assert json[0]['label'] == "Artikelen"
     assert json[0]['content'][0]['uri'] == \
            "https://acc.cms.data.amsterdam.nl/jsonapi/node/article/8295b209-8c6d-4ab6-b0c3-d24cc5d14dff"
 
@@ -62,7 +62,7 @@ async def test_typeahead_title(aiohttp_client, server):
     resp = await client.get('/cms_search/typeahead/?q=2016+metropool+cijfer')
     assert resp.status == 200
     json = await resp.json()
-    assert json[0]['label'] == "Publications"
+    assert json[0]['label'] == "Publicaties"
     assert json[0]['content'][0]['uri'] == \
            "https://acc.cms.data.amsterdam.nl/jsonapi/node/publication/e22c5d37-59e4-4a1f-b82d-613de6821ed3"
 
