@@ -222,10 +222,13 @@ class ElasticSearchTypeAhead(ElasticSearchEndpoint):
                 if result_type == TYPEAHEAD_RESULT:
                     buckets = defaultdict(list)
                     for hit in hits:
-                        buckets[hit['_source']['type'][0]].append({
-                            '_display': hit['_source']['field_short_title'][0],
+                        source = hit['_source']
+                        display = source['field_short_title'][0] if 'field_short_title' in source \
+                            else source['title'][0]
+                        buckets[source['type'][0]].append({
+                            '_display': display,
                             'uri':\
-                            f"{self.cms_url}{drupal_selector}{hit['_source']['type'][0]}/{hit['_source']['uuid'][0]}",
+                            f"{self.cms_url}{drupal_selector}{source['type'][0]}/{hit['_source']['uuid'][0]}",
                         })
                     label_map = {
                         'publication': "Publicaties",
