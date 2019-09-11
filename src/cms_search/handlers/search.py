@@ -258,7 +258,6 @@ class ElasticSearchTypeAhead(ElasticSearchEndpoint):
                     for hit in hits:
                         source = hit['_source']
                         title = source['title'][0] if 'title' in source else None
-                        body = source['processed'][0] if 'processed' in source else None
                         intro = source['field_intro'][0] if 'field_intro' in source else None
                         display = source['field_short_title'][0] if 'field_short_title' in source else title
                         slug = source['field_slug'][0] if 'field_slug' in source else None
@@ -276,8 +275,6 @@ class ElasticSearchTypeAhead(ElasticSearchEndpoint):
                         }
                         if title:
                             element['title'] = title
-                        if body:
-                            element['body'] = body
                         if intro:
                             element['intro'] = intro
                         if display:
