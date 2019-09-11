@@ -262,6 +262,7 @@ class ElasticSearchTypeAhead(ElasticSearchEndpoint):
                         intro = source['field_intro'][0] if 'field_intro' in source else None
                         display = source['field_short_title'][0] if 'field_short_title' in source else title
                         slug = source['field_slug'][0] if 'field_slug' in source else None
+                        teaser_url = source['teaser_url'][0] if 'teaser_url' in source else None
                         element = {
                             "_links": {
                                 "self": {
@@ -283,6 +284,8 @@ class ElasticSearchTypeAhead(ElasticSearchEndpoint):
                             element['_display'] = display
                         if slug:
                             element['slug'] = slug
+                        if teaser_url:
+                            element['teaser_url'] = teaser_url
 
                         result_list.append(element)
                     return {
