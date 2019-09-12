@@ -164,7 +164,10 @@ class ElasticSearchEndpoint:
             sort = '"_score"'
         else:
             minimum_should_match = ''
-            sort = '{ "changed": { "order": "desc" }}'
+            if "article" in types:
+                sort = '{ "field_publication_date": { "order": "desc" }}'
+            else:
+                sort = '{ "changed": { "order": "desc" }}'
 
         return f"""
         {{
@@ -265,16 +268,22 @@ class ElasticSearchTypeAhead(ElasticSearchEndpoint):
                         display = source['field_short_title'][0] if 'field_short_title' in source else title
                         slug = source['field_slug'][0] if 'field_slug' in source else None
                         teaser_url = source['teaser_url'][0] if 'teaser_url' in source else None
+                        field_teaser = source['field_teaser'][0] if 'field_teaser' in source else None
+                        field_special_type = source['field_special_type'][0] if 'field_special_type' in source else None
+                        field_publication_date = source['field_publication_date'][
+                            0] if 'field_publication_date' in source else None
+                        uuid = source['uuid'][0]
                         element = {
                             "_links": {
                                 "self": {
-                                    "href": f"{self.cms_url}{drupal_selector}{source['type'][0]}/{source['uuid'][0]}",
+                                    "href": f"{self.cms_url}{drupal_selector}{source['type' ][0]}/{uuid}",
                                 }
                             },
                             "type": source['type'][0],
                             "nid": source['nid'][0],
                             "changed": str(datetime.fromtimestamp(source['changed'][0])),
-                            "created": str(datetime.fromtimestamp(source['created'][0]))
+                            "created": str(datetime.fromtimestamp(source['created'][0])),
+                            "uuid": uuid
                         }
                         if title:
                             element['title'] = title
@@ -286,6 +295,12 @@ class ElasticSearchTypeAhead(ElasticSearchEndpoint):
                             element['slug'] = slug
                         if teaser_url:
                             element['teaser_url'] = teaser_url
+                        if field_teaser:
+                            element['field_teaser'] = field_teaser
+                        if field_special_type:
+                            element['field_special_type'] = field_special_type
+                        if field_publication_date:
+                            element['field_publication_date'] = str(datetime.fromtimestamp(field_publication_date))
 
                         result_list.append(element)
                     return {
