@@ -273,6 +273,9 @@ class ElasticSearchTypeAhead(ElasticSearchEndpoint):
                         field_publication_date = source['field_publication_date'][
                             0] if 'field_publication_date' in source else None
                         uuid = source['uuid'][0]
+                        field_publication_day = source['field_publication_day'][0] if 'field_publication_day' in source else None
+                        field_publication_month = source['field_publication_month'][0] if 'field_publication_month' in source else None
+                        field_publication_year = source['field_publication_year'][0] if 'field_publication_year' in source else None
                         element = {
                             "_links": {
                                 "self": {
@@ -301,6 +304,12 @@ class ElasticSearchTypeAhead(ElasticSearchEndpoint):
                             element['field_special_type'] = field_special_type
                         if field_publication_date:
                             element['field_publication_date'] = str(datetime.fromtimestamp(field_publication_date))
+                        if field_publication_day:
+                            element['field_publication_day'] = str(field_publication_day)
+                        if field_publication_month:
+                            element['field_publication_month'] = str(field_publication_month)
+                        if field_publication_year:
+                            element['field_publication_year'] = str(field_publication_year)
 
                         result_list.append(element)
                     return {
