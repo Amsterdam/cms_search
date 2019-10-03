@@ -23,13 +23,13 @@ To run this locally do the following:
 
 Try out a couple of searches with :
 
-    http://localhost:8080/cms_search/typeahead/?q=ijburg
+    http://localhost:8000/cms_search/typeahead/?q=ijburg
 
-    http://localhost:8080/cms_search/search/article/?q=wallen
+    http://localhost:8000/cms_search/search/article/?q=wallen
 
-    http://localhost:8080/cms_search/search/publication
+    http://localhost:8000/cms_search/search/publication
 
-    http://localhost:8080/cms_search/search/special
+    http://localhost:8000/cms_search/search/special
 
 Tests :
 
