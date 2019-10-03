@@ -118,6 +118,14 @@ class ElasticSearchEndpoint:
             T.Union[T.List[dict], T.Dict]:
         raise NotImplementedError()
 
+    def get_sort_rules(self):
+        return f"""
+        "_score"
+        , {{"field_publication_date": {{"order": "desc"}}}}
+        , {{"field_publication_year": {{"order": "desc"}}}}
+        , {{"field_publication_month": {{"order": "desc"}}}}
+        """
+
     def es_query(self, q: str, types: list, from1=0, size1=15) -> str:
 
         should = ''
@@ -161,13 +169,16 @@ class ElasticSearchEndpoint:
                 }}{continuation_comma}
                 """
             minimum_should_match = ', "minimum_should_match" : 1'
-            sort = '"_score"'
+            sort = self.get_sort_rules()
         else:
             minimum_should_match = ''
             if "article" in types:
                 sort = '{ "field_publication_date": { "order": "desc" }}'
             else:
-                sort = '{ "changed": { "order": "desc" }}'
+                if "publication" in types:
+                     sort = '{ "field_publication_year": { "order": "desc" }}, { "field_publication_month": { "order": "desc" }}'
+                else:
+                    sort = '{ "changed": { "order": "desc" }}'
 
         return f"""
         {{
