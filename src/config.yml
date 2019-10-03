@@ -1,6 +1,6 @@
 web:
-  port: ${PORT:-8000}
-  baseurl: ${BASEURL:-http://localhost:8000/cms_search}
+  port: ${PORT:-8080}
+  baseurl: ${BASEURL:-http://localhost:8080/cms_search}
   allow_cors: true
 
 search_config:
