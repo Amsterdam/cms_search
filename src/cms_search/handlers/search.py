@@ -172,13 +172,10 @@ class ElasticSearchEndpoint:
             sort = self.get_sort_rules()
         else:
             minimum_should_match = ''
-            if "article" in types:
-                sort = '{ "field_publication_date": { "order": "desc" }}'
+            if "publication" in types:
+                sort = '{ "field_publication_year": { "order": "desc" }}, { "field_publication_month": { "order": "desc" }}'
             else:
-                if "publication" in types:
-                     sort = '{ "field_publication_year": { "order": "desc" }}, { "field_publication_month": { "order": "desc" }}'
-                else:
-                    sort = '{ "changed": { "order": "desc" }}'
+                sort = '{ "field_publication_date": { "order": "desc" }}'
 
         return f"""
         {{
