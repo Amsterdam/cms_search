@@ -3,10 +3,9 @@
 
 # except a few
 !src
-!tests
-!setup.py
-!setup.cfg
 !README.md
 !LICENSE
-!Makefile
+!.env.*
+!package*.json
 !**/*.yml
+!tsconfig.json
