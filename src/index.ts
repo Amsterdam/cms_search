@@ -1,41 +1,22 @@
 require('dotenv').config()
 
 import express from 'express'
-import graphqlHTTP from 'express-graphql'
 import expressPlayground from 'graphql-playground-middleware-express'
-import { buildSchema } from 'graphql'
 import cors from 'cors'
-import dataSearchResolvers from './data-search/resolvers'
-import dataSearchSchema from './data-search/schema'
+import ApiElasticSearchClient from './es'
+import GraphQLMiddleware from './graphql'
 
 const app = express()
 
+const PORT = 8000
+
 app.use(cors())
 
-const schema = buildSchema(`
-  input DataSearchInput {
-    limit: Int
-    types: [String!]
-  }
-  type Query {
-    dataSearch(q: String!, input: DataSearchInput!): DataSearchResult
-  }
-  ${dataSearchSchema}
-`)
+app.use('/graphql', GraphQLMiddleware)
 
-const resolvers = {
-  ...dataSearchResolvers,
-}
-
-app.use(
-  '/graphql',
-  graphqlHTTP({
-    schema,
-    rootValue: resolvers,
-  }),
-)
+app.get('/search', ApiElasticSearchClient)
 
 app.get('/playground', expressPlayground({ endpoint: '/graphql' }))
 
-app.listen(4000)
-console.log('Running a GraphQL API server at localhost:4000')
+app.listen(PORT)
+console.log(`Running a GraphQL API server at localhost:${PORT}`)

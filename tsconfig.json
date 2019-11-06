@@ -25,6 +25,9 @@
     "emitDecoratorMetadata": true,
     "strict": true
   },
+  "files": [
+    "custom.d.ts"
+  ],
   "exclude": ["node_modules", "lib"],
   "include": ["src", "**/*.ts"]
 }
