@@ -22,12 +22,6 @@ node {
         checkout scm
     }
 
-    stage("Test") {
-        tryStep "test", {
-            sh "src/.jenkins-test/test.sh"
-        }
-    }
-
     stage("Build image") {
         tryStep "build", {
             docker.withRegistry('https://repo.data.amsterdam.nl','docker-registry') {
