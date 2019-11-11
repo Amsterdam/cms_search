@@ -24,12 +24,9 @@ const cmsResolver = async ({ q, input }: QueryCmsSearchArgs): Promise<SearchResu
   limit = limit || defaultSize
   types = types || defaultTypes
 
-  const results: Array<object> = await ElasticSearchClient(cmsSchema(q, limit, types))
-    .then(r => r['hits']['hits'])
-    .catch(e => {
-      console.error(e)
-      return []
-    })
+  const results: Array<object> = await ElasticSearchClient(cmsSchema(q, limit, types)).then(
+    r => r['hits']['hits'],
+  )
 
   const formattedResults: Array<Result> = results.map(({ _source }: any) => {
     const {
