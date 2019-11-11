@@ -14,6 +14,9 @@ app.use(cors())
 
 app.use('/graphql', GraphQLMiddleware)
 
+// Health check
+app.use('/metrics', (req, res) => res.send('Working!'))
+
 app.get('/search', ApiElasticSearchClient)
 
 app.get('/playground', expressPlayground({ endpoint: '/graphql' }))
