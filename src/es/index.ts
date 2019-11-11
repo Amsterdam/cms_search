@@ -1,19 +1,10 @@
-import ElasticSearch from 'elasticsearch'
+import { Client } from '@elastic/elasticsearch'
 import cmsSchema from './es.schema'
 import config from '../config'
 
-const client = new ElasticSearch.Client({
-  hosts: [process.env.ELASTIC_HOST],
+const client = new Client({
+  node: `${process.env.ELASTIC_HOST}:9200`,
 })
-
-client.ping(
-  {
-    requestTimeout: 30000,
-  },
-  (error: any) => {
-    error ? console.error('ElasticSearch cluster is down!') : console.log('ElasticSearch is ok')
-  },
-)
 
 export function ElasticSearchClient(body: object) {
   // perform the actual search passing in the index, the search query and the type
@@ -23,7 +14,7 @@ export function ElasticSearchClient(body: object) {
 export default (req: any, res: any) => {
   ElasticSearchClient(cmsSchema(req.query.q || ''))
     .then(r => {
-      res.send(r['hits']['hits'])
+      res.send(r.body.hits.hits)
     })
     .catch(e => {
       console.error(e)

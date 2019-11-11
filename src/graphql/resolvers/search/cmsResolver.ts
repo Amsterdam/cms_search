@@ -25,7 +25,7 @@ const cmsResolver = async ({ q, input }: QueryCmsSearchArgs): Promise<SearchResu
   types = types || defaultTypes
 
   const results: Array<object> = await ElasticSearchClient(cmsSchema(q, limit, types)).then(
-    r => r['hits']['hits'],
+    r => r.body.hits.hits,
   )
 
   const formattedResults: Array<Result> = results.map(({ _source }: any) => {
