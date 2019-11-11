@@ -1,3 +1,6 @@
+export const PORT = 8080
+export const URL_PREFIX = '/cms_search'
+
 export const CMS_LABELS = {
   article: 'Artikelen',
   publication: 'Publicaties',
