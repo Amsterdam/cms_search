@@ -1,0 +1,22 @@
+require('dotenv').config()
+
+import express from 'express'
+import expressPlayground from 'graphql-playground-middleware-express'
+import cors from 'cors'
+import ApiElasticSearchClient from './es'
+import GraphQLMiddleware from './graphql'
+
+const app = express()
+
+const PORT = 8000
+
+app.use(cors())
+
+app.use('/graphql', GraphQLMiddleware)
+
+app.get('/search', ApiElasticSearchClient)
+
+app.get('/playground', expressPlayground({ endpoint: '/graphql' }))
+
+app.listen(PORT)
+console.log(`Running a GraphQL API server at localhost:${PORT}`)
