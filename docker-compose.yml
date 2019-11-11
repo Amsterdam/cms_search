@@ -18,4 +18,6 @@ services:
       - $PWD/data:/app/data
     environment:
       - DATAPUNT_API_URL=${DATAPUNT_API_URL:-https://api.data.amsterdam.nl/}
+    depends_on:
+      - elasticsearch
 
