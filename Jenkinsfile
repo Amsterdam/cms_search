@@ -25,7 +25,7 @@ node {
     stage("Build image") {
         tryStep "build", {
             docker.withRegistry('https://repo.data.amsterdam.nl','docker-registry') {
-                def image = docker.build("datapunt/cms_search:${env.BUILD_NUMBER}", "src")
+                def image = docker.build("datapunt/cms_search:${env.BUILD_NUMBER}")
                 image.push()
             }
         }
