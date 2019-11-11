@@ -14,7 +14,5 @@ COPY ./.env.${NODE_ENV} ./.env
 
 EXPOSE 8080
 
-ENTRYPOINT ["npm", "run"]
-
-CMD ["serve"]
+CMD ["npm", "run", "serve"]
 
