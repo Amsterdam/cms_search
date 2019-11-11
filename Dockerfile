@@ -10,7 +10,7 @@ ARG NODE_ENV=production
 
 COPY ./.env.${NODE_ENV} ./.env
 
-EXPOSE 4000
+EXPOSE 8000
 
 ENTRYPOINT ["npm", "run"]
 
