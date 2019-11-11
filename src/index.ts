@@ -12,7 +12,7 @@ const app = express()
 app.use(cors())
 
 // Health check
-app.get('/metrics', (req, res) => res.send('Working!'))
+app.get('/metrics', (req, res) => res.send(`Working! ${process.env.ELASTIC_HOST}`))
 
 // GraphQL
 app.use(`${URL_PREFIX}/graphql`, GraphQLMiddleware)
