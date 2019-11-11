@@ -16,9 +16,6 @@ app.get('/metrics', (req, res) => res.send('Working!'))
 
 // GraphQL
 app.use(`${URL_PREFIX}/graphql`, GraphQLMiddleware)
-app.get(`${URL_PREFIX}/esendpoint`, (req, res) =>
-  res.send(`ES enpoint! ${process.env.ELASTIC_HOST}`),
-)
 app.get(`${URL_PREFIX}/playground`, expressPlayground({ endpoint: `${URL_PREFIX}/graphql` }))
 
 // Elastic Search
