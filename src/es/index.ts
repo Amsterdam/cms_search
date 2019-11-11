@@ -3,7 +3,7 @@ import cmsSchema from './es.schema'
 import config from '../config'
 
 const client = new ElasticSearch.Client({
-  hosts: [process.env.ES_HOST],
+  hosts: [process.env.ELASTIC_HOST],
 })
 
 client.ping(
