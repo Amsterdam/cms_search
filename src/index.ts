@@ -9,17 +9,20 @@ import GraphQLMiddleware from './graphql'
 const app = express()
 
 const PORT = 8080
+const URL_PREFIX = '/cms_search'
 
 app.use(cors())
 
-app.use('/cms_search/graphql', GraphQLMiddleware)
-
 // Health check
-app.use('/metrics', (req, res) => res.send('Working!'))
+app.get('/metrics', (req, res) => res.send('Working!'))
 
-app.get('/cms_search/search', ApiElasticSearchClient)
+// GraphQL
+app.use(`${URL_PREFIX}/graphql`, GraphQLMiddleware)
+app.get(`${URL_PREFIX}/playground`, expressPlayground({ endpoint: `${URL_PREFIX}/playground` }))
 
-app.get('/cms_search/playground', expressPlayground({ endpoint: '/graphql' }))
+// Elastic Search
+app.get(`${URL_PREFIX}/search`, ApiElasticSearchClient)
 
 app.listen(PORT)
+
 console.log(`Running a GraphQL API server at localhost:${PORT}`)
