@@ -12,14 +12,14 @@ const PORT = 8080
 
 app.use(cors())
 
-app.use('/graphql', GraphQLMiddleware)
+app.use('/cms_search/graphql', GraphQLMiddleware)
 
 // Health check
 app.use('/metrics', (req, res) => res.send('Working!'))
 
-app.get('/search', ApiElasticSearchClient)
+app.get('/cms_search/search', ApiElasticSearchClient)
 
-app.get('/playground', expressPlayground({ endpoint: '/graphql' }))
+app.get('/cms_search/playground', expressPlayground({ endpoint: '/graphql' }))
 
 app.listen(PORT)
 console.log(`Running a GraphQL API server at localhost:${PORT}`)
