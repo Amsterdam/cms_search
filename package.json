@@ -8,7 +8,7 @@
     "build": "tsc --build",
     "generate": "graphql-codegen --config ./src/codegen.yml",
     "postinstall": "cp .env.development .env",
-    "serve": "npm run build && node ./lib/",
+    "serve": "npm run build && nodemon ./lib/",
     "start": "concurrently \"nodemon --transpile-only src/index.ts\" \"npm run generate -- --watch\""
   },
   "dependencies": {

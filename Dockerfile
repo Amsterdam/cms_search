@@ -16,5 +16,6 @@ EXPOSE 8080
 
 ENTRYPOINT [""]
 
-CMD ["npm", "run", "serve"]
+RUN npm run serve
+# CMD ["npm", "run", "serve"]
 
