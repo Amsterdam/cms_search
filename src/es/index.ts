@@ -3,7 +3,7 @@ import cmsSchema from './es.schema'
 import config from '../config'
 
 const client = new Client({
-  node: `${process.env.ELASTIC_HOST}:9200`,
+  node: `http://${process.env.ELASTIC_HOST}:9200`,
 })
 
 export function ElasticSearchClient(body: object) {
