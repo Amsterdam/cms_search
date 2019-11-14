@@ -7,11 +7,13 @@ export const CMS_LABELS = {
   special: 'Specials',
 }
 
+export const CMS_TYPES = Object.keys(CMS_LABELS)
+
 export default {
   es: {
     cms: {
       index: 'elasticsearch_index_cms_articles_index',
-      defaultTypes: Object.keys(CMS_LABELS),
+      defaultTypes: CMS_TYPES,
       defaultSize: 50,
     },
   },

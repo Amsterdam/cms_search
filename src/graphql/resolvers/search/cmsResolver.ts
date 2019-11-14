@@ -1,21 +1,17 @@
 import { SearchResult, QueryCmsSearchArgs, Result } from '../../../generated/graphql'
-import { ElasticSearchClient, getValuesFromES } from '../../../es'
-import cmsSchema from '../../../es/es.schema'
-import config, { CMS_LABELS } from '../../../config'
+import { getValuesFromES, getFromElasticSearch } from '../../../es'
+import { CMS_LABELS, CMS_TYPES } from '../../../config'
 import { getFormattedDate } from '../../../normalize'
 
-const cmsResolver = async ({ q, input }: QueryCmsSearchArgs): Promise<SearchResult> => {
+async function cmsResolver({ q, input }: QueryCmsSearchArgs): Promise<SearchResult> {
   let { limit, types } = input
-  const { defaultSize, defaultTypes } = config.es.cms
 
-  limit = limit || defaultSize
-  types = types || defaultTypes
+  // Make sure that there's a value for types
+  types = types || CMS_TYPES
 
-  const results: Array<object> = await ElasticSearchClient(cmsSchema(q, limit, types)).then(
-    r => r.body.hits.hits,
-  )
+  const results = await getFromElasticSearch(q, limit, types)
 
-  const formattedResults: Array<Result> = results.map(({ _source }: any) => {
+  const formattedResults: Array<Result> = results.map(({ _source: result }: any) => {
     const {
       field_short_title,
       field_slug,
@@ -30,7 +26,7 @@ const cmsResolver = async ({ q, input }: QueryCmsSearchArgs): Promise<SearchResu
       media_image_url,
       uuid,
       type,
-    } = getValuesFromES(_source) as any
+    } = getValuesFromES(result) as any
     return {
       id: uuid,
       label: field_short_title,
@@ -53,7 +49,7 @@ const cmsResolver = async ({ q, input }: QueryCmsSearchArgs): Promise<SearchResu
 
   return {
     totalCount: results.length,
-    results: types.map((type: string | number) => {
+    results: types.map((type: any) => {
       const results = formattedResults.filter(({ type: resultType }) => type === resultType)
       return {
         count: results.length,
