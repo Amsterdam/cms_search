@@ -1,21 +1,8 @@
 import { SearchResult, QueryCmsSearchArgs, Result } from '../../../generated/graphql'
-import { ElasticSearchClient } from '../../../es'
+import { ElasticSearchClient, getValuesFromES } from '../../../es'
 import cmsSchema from '../../../es/es.schema'
 import config, { CMS_LABELS } from '../../../config'
 import { getFormattedDate } from '../../../normalize'
-
-/**
- * Quick fix for now: values from ES are Arrays with one entry, which is the only thing we need.
- * @param object
- */
-const getValuesFromES = (object: object): object =>
-  Object.entries(object).reduce(
-    (acc, [key, value]) => ({
-      ...acc,
-      [key]: value && value.length ? value[0] : value,
-    }),
-    {},
-  )
 
 const cmsResolver = async ({ q, input }: QueryCmsSearchArgs): Promise<SearchResult> => {
   let { limit, types } = input
@@ -66,7 +53,7 @@ const cmsResolver = async ({ q, input }: QueryCmsSearchArgs): Promise<SearchResu
 
   return {
     totalCount: results.length,
-    results: types.map(type => {
+    results: types.map((type: string | number) => {
       const results = formattedResults.filter(({ type: resultType }) => type === resultType)
       return {
         count: results.length,

@@ -4,8 +4,9 @@ import { PORT, URL_PREFIX } from './config'
 import express from 'express'
 import expressPlayground from 'graphql-playground-middleware-express'
 import cors from 'cors'
-import ApiElasticSearchClient from './es'
+import ElasticSearchMiddelware from './es'
 import GraphQLMiddleware from './graphql'
+import TypeAheadMiddleWare from './typeahead'
 
 const app = express()
 
@@ -19,7 +20,10 @@ app.use(`${URL_PREFIX}/graphql`, GraphQLMiddleware)
 app.get(`${URL_PREFIX}/playground`, expressPlayground({ endpoint: `${URL_PREFIX}/graphql` }))
 
 // Elastic Search
-app.get(`${URL_PREFIX}/search`, ApiElasticSearchClient)
+app.get(`${URL_PREFIX}/search`, ElasticSearchMiddelware)
+
+// TypeAhead
+app.get(`${URL_PREFIX}/typeahead`, TypeAheadMiddleWare)
 
 app.listen(PORT)
 
