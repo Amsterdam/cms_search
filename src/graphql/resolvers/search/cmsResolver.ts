@@ -13,6 +13,7 @@ async function cmsResolver({ q, input }: QueryCmsSearchArgs): Promise<SearchResu
 
   const formattedResults: Array<Result> = results.map(({ _source: result }: any) => {
     const {
+      title,
       field_short_title,
       field_slug,
       field_link,
@@ -21,15 +22,17 @@ async function cmsResolver({ q, input }: QueryCmsSearchArgs): Promise<SearchResu
       field_publication_month,
       field_publication_year,
       field_special_type,
+      field_intro,
       body,
       field_file,
       media_image_url,
       uuid,
       type,
-    } = getValuesFromES(result) as any
+    } = getValuesFromES(result) as any    
+
     return {
       id: uuid,
-      label: field_short_title,
+      label: field_short_title || title,
       slug: field_slug,
       type: type,
       body,
@@ -38,6 +41,7 @@ async function cmsResolver({ q, input }: QueryCmsSearchArgs): Promise<SearchResu
       date: field_publication_date,
       specialType: field_special_type,
       file: field_file,
+      intro: field_intro,
       link: field_link,
       dateLocale: getFormattedDate(
         field_publication_date,

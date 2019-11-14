@@ -1,3 +1,5 @@
+import moment from 'moment'
+// import 'moment/locale/nl-NL';
 import { DataSearchResult } from './generated/graphql'
 
 export const normalizeData = ({
@@ -12,17 +14,11 @@ export const normalizeData = ({
   ...otherField,
 })
 
-const formatDate = (date: Date, day = true, month = true, year = true): string =>
-  date.toLocaleDateString('nl-NL', {
-    ...(day && { day: 'numeric' }),
-    ...(month && { month: 'long' }),
-    ...(year && { year: 'numeric' }),
-  })
-
 export const getFormattedDate = (date?: number | Date, year?: number, month?: number): string => {
+  moment.locale('nl-NL')
+
   let localeDate = date
 
-  let localeDateFormatted = date ? formatDate(new Date(date)) : ''
   /**
    * Sometimes we don't get a field_publication_date, but only a field_publication_year and / or field_publication_month
    * Then we need to convert it to a locale date that only shows the year or year and month
@@ -34,9 +30,9 @@ export const getFormattedDate = (date?: number | Date, year?: number, month?: nu
       // Month (undefined or a string) - 1, check https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC
       Date.UTC(year, Number(month) - 1 || 1, 1, 0, 0, 0),
     )
-
-    localeDateFormatted = formatDate(localeDate, false, !!month, !!year)
   }
 
-  return localeDateFormatted
+  const format = date ? 'D MMMM YYYY' : `${month ? 'MMMM ' : ''}${year ? 'YYYY' : ''}`
+
+  return moment(localeDate).format(format)
 }

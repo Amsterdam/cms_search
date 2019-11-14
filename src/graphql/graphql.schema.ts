@@ -49,6 +49,7 @@ const schema = gql`
     file: String
     date: String
     body: String
+    intro: String
     dateLocale: String
     link: CMSLink
   }
