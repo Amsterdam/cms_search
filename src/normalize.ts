@@ -17,7 +17,7 @@ export const normalizeData = ({
 export const getFormattedDate = (date?: number | Date, year?: number, month?: number): string => {
   moment.locale('nl-NL')
 
-  let localeDate = date
+  let localeDate = typeof date === 'number' ? date * 1000 : date
 
   /**
    * Sometimes we don't get a field_publication_date, but only a field_publication_year and / or field_publication_month
