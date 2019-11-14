@@ -1,7 +1,7 @@
 import { getFromElasticSearch, getValuesFromES} from '../es'
 import { CMS_LABELS } from '../config'
 
-export default async function typeAheadQuery({ query }: any, res: any) {
+export default async function TypeAheadMiddelware({ query }: any, res: any) {
     const { q = '' } = query
     const types = ['article', 'publication']
   
