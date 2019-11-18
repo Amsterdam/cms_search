@@ -44,10 +44,10 @@ export default ({ q, limit, from, types }: ElasticSearchArgs) => ({
   from,
   size: limit,
   sort: [
-    '_score',
     { field_publication_date: { order: 'desc' } },
     { field_publication_year: { order: 'desc' } },
     { field_publication_month: { order: 'desc' } },
+    '_score',
   ],
   aggs: {
     count_by_type: {
