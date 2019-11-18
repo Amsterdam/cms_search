@@ -21,6 +21,7 @@ const schema = gql`
 
   input SearchInput {
     limit: Int
+    from: Int
     types: [String!]
   }
 

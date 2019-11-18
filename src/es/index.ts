@@ -1,5 +1,5 @@
 import { Client } from '@elastic/elasticsearch'
-import cmsSchema from './es.schema'
+import cmsSchema, { ElasticSearchArgs } from './es.schema'
 import config from '../config'
 
 const client = new Client({
@@ -11,17 +11,18 @@ export function ElasticSearchClient(body: object) {
   return client.search({ index: config.es.cms.index, body: body })
 }
 
-export async function getFromElasticSearch(q: any, limit: any = false, types: any = false) {
+export async function getFromElasticSearch({ q, limit, from, types }: ElasticSearchArgs) {
   const { defaultSize, defaultTypes } = config.es.cms
 
   limit = limit || defaultSize
-  types =  types || defaultTypes
+  types = types || defaultTypes
+  from = from || 0
 
-  const results: Array<object> = await ElasticSearchClient(cmsSchema(q, limit, types)).then(
-    r => r.body.hits.hits,
-  )
+  const results: Array<object> = await ElasticSearchClient(
+    cmsSchema({ q, limit, from, types }),
+  ).then(r => r.body.hits.hits)
 
-  return results;
+  return results
 }
 
 /**
@@ -38,7 +39,7 @@ export const getValuesFromES = (object: object): object =>
   )
 
 export default function ElasticSearchMiddelware(req: any, res: any) {
-  ElasticSearchClient(cmsSchema(req.query.q || ''))
+  ElasticSearchClient(cmsSchema({ q: req.query.q || '' }))
     .then(r => {
       res.send(r.body.hits.hits)
     })

@@ -17,6 +17,7 @@ export const normalizeData = ({
 export const getFormattedDate = (date?: number | Date, year?: number, month?: number): string => {
   moment.locale('nl-NL')
 
+  // If the `date` parameter is a number, the unix timestamp should be multiplied by 1000 to get the correct output
   let localeDate = typeof date === 'number' ? date * 1000 : date
 
   /**

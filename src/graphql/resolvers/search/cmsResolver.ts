@@ -4,12 +4,12 @@ import { CMS_LABELS, CMS_TYPES } from '../../../config'
 import { getFormattedDate } from '../../../normalize'
 
 async function cmsResolver({ q, input }: QueryCmsSearchArgs): Promise<SearchResult> {
-  let { limit, types } = input
+  let { limit, from, types } = input
 
   // Make sure that there's a value for types
   types = types || CMS_TYPES
 
-  const results = await getFromElasticSearch(q, limit, types)
+  const results = await getFromElasticSearch({ q, limit, from, types })
 
   const formattedResults: Array<Result> = results.map(({ _source: result }: any) => {
     const {
@@ -28,7 +28,7 @@ async function cmsResolver({ q, input }: QueryCmsSearchArgs): Promise<SearchResu
       media_image_url,
       uuid,
       type,
-    } = getValuesFromES(result) as any    
+    } = getValuesFromES(result) as any
 
     return {
       id: uuid,

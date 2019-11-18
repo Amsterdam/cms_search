@@ -27,6 +27,7 @@ export type CmsResult = Result & {
   file?: Maybe<Scalars['String']>,
   date?: Maybe<Scalars['String']>,
   body?: Maybe<Scalars['String']>,
+  intro?: Maybe<Scalars['String']>,
   dateLocale?: Maybe<Scalars['String']>,
   link?: Maybe<CmsLink>,
 };
@@ -94,6 +95,7 @@ export type Result = {
 
 export type SearchInput = {
   limit?: Maybe<Scalars['Int']>,
+  from?: Maybe<Scalars['Int']>,
   types?: Maybe<Array<Scalars['String']>>,
 };
 
@@ -232,6 +234,7 @@ export type CmsResultResolvers<ContextType = any, ParentType extends ResolversPa
   file?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
   date?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
   body?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
+  intro?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
   dateLocale?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
   link?: Resolver<Maybe<ResolversTypes['CMSLink']>, ParentType, ContextType>,
 };

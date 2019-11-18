@@ -1,4 +1,10 @@
-export default (q: string, limit?: number, types?: Array<string>) => ({
+import { SearchInput } from '../generated/graphql'
+
+export type ElasticSearchArgs = {
+  q: string
+} & SearchInput
+
+export default ({ q, limit, from, types }: ElasticSearchArgs) => ({
   query: {
     bool: {
       must: [],
@@ -35,7 +41,7 @@ export default (q: string, limit?: number, types?: Array<string>) => ({
       minimum_should_match: 1,
     },
   },
-  from: 0,
+  from,
   size: limit,
   sort: [
     '_score',
