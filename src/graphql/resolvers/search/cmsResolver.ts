@@ -23,6 +23,7 @@ async function cmsResolver({ q, input }: QueryCmsSearchArgs): Promise<SearchResu
       field_publication_year,
       field_special_type,
       field_intro,
+      field_teaser,
       body,
       field_file,
       media_image_url,
@@ -42,6 +43,7 @@ async function cmsResolver({ q, input }: QueryCmsSearchArgs): Promise<SearchResu
       specialType: field_special_type,
       file: field_file,
       intro: field_intro,
+      teaser: field_teaser,
       link: field_link,
       dateLocale: getFormattedDate(
         field_publication_date,

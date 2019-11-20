@@ -51,6 +51,7 @@ const schema = gql`
     date: String
     body: String
     intro: String
+    teaser: String
     dateLocale: String
     link: CMSLink
   }

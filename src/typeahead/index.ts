@@ -8,10 +8,10 @@ export default async function TypeAheadMiddelware({ query }: any, res: any) {
   const results = await getFromElasticSearch({ q, types })
 
   const formattedResults: Array<any> = results.map(({ _source: result }: any) => {
-    const { field_short_title: shortTitle, type, uuid } = getValuesFromES(result) as any
+    const { title, field_short_title: shortTitle, type, uuid } = getValuesFromES(result) as any
 
     return {
-      _display: shortTitle,
+      _display: shortTitle || title,
       uri: `${process.env.CMS_URL}jsonapi/${type}/${uuid}`,
       type,
     }
