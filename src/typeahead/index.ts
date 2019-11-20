@@ -12,7 +12,7 @@ export default async function TypeAheadMiddelware({ query }: any, res: any) {
 
     return {
       _display: shortTitle || title,
-      uri: `${process.env.CMS_URL}/jsonapi/${type}/${uuid}`,
+      uri: `${process.env.CMS_URL}/jsonapi/node/${type}/${uuid}`,
       type,
     }
   })
