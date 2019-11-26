@@ -9,7 +9,7 @@ async function cmsResolver({ q, input }: QueryCmsSearchArgs): Promise<CmsSearchR
   // Make sure that there's a value for types
   types = types || CMS_TYPES
 
-  const { results, totalCount, themeCount } = await getCmsFromElasticSearch({
+  const { results, totalCount, themeCount, typeCount } = await getCmsFromElasticSearch({
     q,
     limit,
     from,
@@ -61,10 +61,13 @@ async function cmsResolver({ q, input }: QueryCmsSearchArgs): Promise<CmsSearchR
   return {
     totalCount,
     themeCount,
-    results: types.map((type: any) => {
+    results: types.map((type: string) => {
       const results = formattedResults.filter(({ type: resultType }) => type === resultType)
+      const totalCount = typeCount.find(({ key }: { key: string }) => key === type).count
+
       return {
         count: results.length,
+        totalCount,
         label: CMS_LABELS[type],
         type: type,
         results,

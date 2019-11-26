@@ -39,11 +39,13 @@ export async function getCmsFromElasticSearch({ q, limit, from, types }: Elastic
     0,
   )
   const themeCount = countResults.count_by_theme
+  const typeCount = countResults.count_by_type
 
   return {
     results: results.hits.hits,
     totalCount,
     themeCount,
+    typeCount,
   }
 }
 

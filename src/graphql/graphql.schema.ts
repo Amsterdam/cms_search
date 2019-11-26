@@ -79,6 +79,7 @@ const schema = gql`
 
   type CMSSearchResultType implements SearchResultType {
     count: Int!
+    totalCount: Int
     type: String
     label: String
     results: [CMSResult!]
