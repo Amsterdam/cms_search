@@ -33,6 +33,12 @@ const schema = gql`
   type CMSSearchResult implements SearchResult {
     totalCount: Int!
     results: [CMSSearchResultType!]!
+    themeCount: [CMSThemeCount]
+  }
+
+  type CMSThemeCount {
+    key: String
+    count: Int
   }
 
   type CMSLink {

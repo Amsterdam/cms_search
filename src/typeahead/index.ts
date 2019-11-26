@@ -1,11 +1,11 @@
-import { getFromElasticSearch, getValuesFromES } from '../es'
+import { getCmsFromElasticSearch, getValuesFromES } from '../es'
 import { CMS_LABELS } from '../config'
 
-export default async function TypeAheadMiddelware({ query }: any, res: any) {
+export default async ({ query }: any, res: any) => {
   const { q = '' } = query
   const types = ['article', 'publication']
 
-  const results = await getFromElasticSearch({ q, types })
+  const { results, totalCount } = await getCmsFromElasticSearch({ q, types })
 
   const formattedResults: Array<any> = results.map(({ _source: result }: any) => {
     const { title, field_short_title: shortTitle, type, uuid } = getValuesFromES(result) as any
@@ -18,13 +18,10 @@ export default async function TypeAheadMiddelware({ query }: any, res: any) {
   })
 
   return res.send(
-    types.map(type => {
-      const results = formattedResults.filter(({ type: resultType }) => type === resultType)
-      return {
-        total_resuls: results.length,
-        label: CMS_LABELS[type],
-        content: results,
-      }
-    }),
+    types.map(type => ({
+      total_resuls: totalCount,
+      label: CMS_LABELS[type],
+      content: formattedResults.filter(({ type: resultType }) => type === resultType),
+    })),
   )
 }

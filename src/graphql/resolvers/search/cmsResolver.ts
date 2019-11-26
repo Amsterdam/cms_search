@@ -1,15 +1,20 @@
-import { SearchResult, QueryCmsSearchArgs, Result } from '../../../generated/graphql'
-import { getValuesFromES, getFromElasticSearch } from '../../../es'
+import { QueryCmsSearchArgs, Result, CmsSearchResult } from '../../../generated/graphql'
+import { getValuesFromES, getCmsFromElasticSearch } from '../../../es'
 import { CMS_LABELS, CMS_TYPES } from '../../../config'
 import { getFormattedDate } from '../../../normalize'
 
-async function cmsResolver({ q, input }: QueryCmsSearchArgs): Promise<SearchResult> {
+async function cmsResolver({ q, input }: QueryCmsSearchArgs): Promise<CmsSearchResult> {
   let { limit, from, types } = input
 
   // Make sure that there's a value for types
   types = types || CMS_TYPES
 
-  const results = await getFromElasticSearch({ q, limit, from, types })
+  const { results, totalCount, themeCount } = await getCmsFromElasticSearch({
+    q,
+    limit,
+    from,
+    types,
+  })
 
   const formattedResults: Array<Result> = results.map(({ _source: result }: any) => {
     const {
@@ -54,7 +59,8 @@ async function cmsResolver({ q, input }: QueryCmsSearchArgs): Promise<SearchResu
   })
 
   return {
-    totalCount: results.length,
+    totalCount,
+    themeCount,
     results: types.map((type: any) => {
       const results = formattedResults.filter(({ type: resultType }) => type === resultType)
       return {
