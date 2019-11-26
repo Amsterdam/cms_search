@@ -48,7 +48,7 @@ export default ({ q, limit, from, types }: ElasticSearchArgs) => {
   return {
     query: {
       bool: {
-        must: [],
+        must: [{ term: { field_published: true } }],
         must_not: [],
         should: should,
         filter: {
@@ -69,6 +69,11 @@ export default ({ q, limit, from, types }: ElasticSearchArgs) => {
       count_by_type: {
         terms: {
           field: 'type',
+        },
+      },
+      count_by_theme: {
+        terms: {
+          field: 'field_theme_name',
         },
       },
     },
