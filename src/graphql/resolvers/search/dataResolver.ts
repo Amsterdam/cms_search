@@ -41,9 +41,14 @@ const DATA_SEARCH_CONFIG = [
   },
 ]
 
-const dataResolver = async ({ q, input }: QueryDataSearchArgs): Promise<SearchResult> => {
+const dataResolver = async ({ q, input }: QueryDataSearchArgs, context: any): Promise<SearchResult> => {
   const { limit, types } = input
+  const { token } = await context()
   let filteredDataSearchConfig = DATA_SEARCH_CONFIG
+
+
+console.log('token', token);
+
 
   if (types) {
     filteredDataSearchConfig = filteredDataSearchConfig.filter((api: any) =>
