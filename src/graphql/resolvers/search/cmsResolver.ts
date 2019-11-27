@@ -63,7 +63,8 @@ async function cmsResolver({ q, input }: QueryCmsSearchArgs): Promise<CmsSearchR
     themeCount,
     results: types.map((type: string) => {
       const results = formattedResults.filter(({ type: resultType }) => type === resultType)
-      const totalCount = typeCount.find(({ key }: { key: string }) => key === type).count
+      const count = typeCount.find(({ key }: { key: string }) => key === type)
+      const totalCount = count ? count.count : 0
 
       return {
         count: results.length,
