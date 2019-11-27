@@ -39,16 +39,20 @@ const DATA_SEARCH_CONFIG = [
     type: 'monumenten',
     label: 'Monumenten',
   },
+  {
+    endpoint: 'handelsregister/search/vestiging',
+    type: 'vestiging',
+    label: 'vestiging',
+  },
 ]
 
-const dataResolver = async ({ q, input }: QueryDataSearchArgs, context: any): Promise<SearchResult> => {
+const dataResolver = async (
+  { q, input }: QueryDataSearchArgs,
+  context: any,
+): Promise<SearchResult> => {
   const { limit, types } = input
   const { token } = await context()
   let filteredDataSearchConfig = DATA_SEARCH_CONFIG
-
-
-console.log('token', token);
-
 
   if (types) {
     filteredDataSearchConfig = filteredDataSearchConfig.filter((api: any) =>
@@ -63,7 +67,20 @@ console.log('token', token);
         ...(api.params ? { ...api.params } : {}),
       }).toString()
       const url = `${process.env.API_ROOT}${api.endpoint}/?${query}`
-      return fetch(url).then((res: any) => res.json())
+      return fetch(url, {
+        headers: {
+          Authorization: token || '',
+        },
+      }).then((res: any) => {
+        if (res.status !== 200) {
+          return {
+            count: 0,
+            results: [],
+          }
+        }
+
+        return res.json()
+      })
     }),
   )
 
