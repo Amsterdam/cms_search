@@ -3,12 +3,18 @@ import { buildSchema } from 'graphql'
 import resolvers from './resolvers'
 import typeDefs from './graphql.schema'
 
-// Create a context for holding contextual data
-const context = async (req: any) => {
-  const { authorization: token } = req.headers;
+export type Context = {
+  token: any
+}
 
-  return { token };
-};
+// Create a context for holding contextual data
+const context = async (req: any): Promise<Context> => {
+  const { authorization: token } = req.headers
+
+  return {
+    token,
+  }
+}
 
 const schema = buildSchema(`
   ${typeDefs}

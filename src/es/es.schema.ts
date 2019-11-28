@@ -1,8 +1,8 @@
-import { SearchInput } from '../generated/graphql'
+import { CmsSearchInput } from '../generated/graphql'
 
 export type ElasticSearchArgs = {
   q: string
-} & SearchInput
+} & CmsSearchInput
 
 export default ({ q, limit, from, types }: ElasticSearchArgs) => {
   let terms = q.split(' ')
