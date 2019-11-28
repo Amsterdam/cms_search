@@ -1,45 +1,114 @@
 import fetch from 'node-fetch'
-import { SearchResult, QueryDataSearchArgs, DataSearchResultType } from '../../../generated/graphql'
-import { normalizeData } from '../../../normalize'
+import {
+  SearchResult,
+  QueryDataSearchArgs,
+  DataSearchResultType,
+  DataSearchResult,
+} from '../../../generated/graphql'
 
-const DATA_SEARCH_CONFIG = [
+const AUTH_SCOPES = {
+  hr: 'HR/R',
+  brkSpecial: 'BRK/RSN',
+  brk: 'BRK/RS',
+}
+
+type DataSearchType = {
+  endpoint: string
+  type: string
+  label: string
+  labelSingular: string
+  params?: {
+    subtype: string
+  }
+  authScope?: string
+  specialAuthScope?: string
+}
+
+const DATA_SEARCH_CONFIG: DataSearchType[] = [
   {
     endpoint: 'atlas/search/openbareruimte',
-    type: 'openbare_ruimte_weg',
-    label: 'Openbare Ruimte (Weg)',
+    type: 'straatnamen',
+    label: 'Straatnamen',
+    labelSingular: 'Straatnaam',
     params: {
       subtype: 'weg',
     },
   },
   {
     endpoint: 'atlas/search/adres',
-    type: 'adres',
-    label: 'Adres',
+    type: 'adressen',
+    labelSingular: 'Adres',
+    label: 'Adressen',
   },
   {
     endpoint: 'atlas/search/openbareruimte',
-    type: 'openbare_ruimte',
-    label: 'Openbare Ruimte',
+    type: 'openbare_ruimtes',
+    label: 'Openbare ruimtes',
+    labelSingular: 'Openbare ruimte',
     params: {
       subtype: 'not_weg',
     },
   },
   {
+    endpoint: 'atlas/search/pand',
+    type: 'panden',
+    label: 'Panden',
+    labelSingular: 'Pand',
+  },
+  {
+    endpoint: 'atlas/search/gebied',
+    type: 'gebieden',
+    label: 'Gebieden',
+    labelSingular: 'Gebied',
+  },
+  {
+    endpoint: 'handelsregister/search/vestiging',
+    type: 'vestigingen',
+    label: 'Vestigingen',
+    labelSingular: 'Vestiging',
+    authScope: AUTH_SCOPES.hr,
+  },
+  {
+    endpoint: 'handelsregister/search/maatschappelijkeactiviteit',
+    type: 'maatschappelijkeactiviteit',
+    label: 'Maatschappelijke activiteiten',
+    labelSingular: 'Maatschappelijke activiteit',
+    authScope: AUTH_SCOPES.hr,
+  },
+  {
     endpoint: 'atlas/search/kadastraalobject',
-    type: 'kadastraal_object',
-    label: 'Kadastraal object',
+    type: 'kadastrale_objecten',
+    labelSingular: 'Kadastraal object',
+    label: 'Kadastrale objecten',
+  },
+  {
+    endpoint: 'atlas/search/kadastraalsubject',
+    type: 'kadastrale_subjecten',
+    authScope: AUTH_SCOPES.brk,
+    specialAuthScope: AUTH_SCOPES.brkSpecial,
+    labelSingular: 'Kadastraal subject',
+    label: 'Kadastrale subjecten',
   },
   {
     endpoint: 'meetbouten/search',
     type: 'meetbouten',
+    labelSingular: 'Meetbout',
     label: 'Meetbouten',
   },
   {
     endpoint: 'monumenten/search',
     type: 'monumenten',
+    labelSingular: 'Monument',
     label: 'Monumenten',
   },
 ]
+
+const normalizeData = ({ _links, _display, type, ...otherField }: any): DataSearchResult => ({
+  id: _links && _links.self ? _links.self.href.match(/([^\/]*)\/*$/)[1] : null,
+  label: _display,
+  type,
+  ...otherField,
+})
 
 const dataResolver = async ({ q, input }: QueryDataSearchArgs): Promise<SearchResult> => {
   const { limit, types } = input
@@ -51,28 +120,41 @@ const dataResolver = async ({ q, input }: QueryDataSearchArgs): Promise<SearchRe
     )
   }
 
+  const promiseArray = filteredDataSearchConfig.map((api: any) => {
+    const query = new URLSearchParams({
+      q,
+      ...(api.params ? { ...api.params } : {}),
+    }).toString()
+    const url = `${process.env.API_ROOT}${api.endpoint}/?${query}`
+    return fetch(url).then((res: any) => res.json())
+  })
+
+  // Todo: error handling
   const responses = await Promise.all(
-    filteredDataSearchConfig.map((api: any) => {
-      const query = new URLSearchParams({
-        q,
-        ...(api.params ? { ...api.params } : {}),
-      }).toString()
-      const url = `${process.env.API_ROOT}${api.endpoint}/?${query}`
-      return fetch(url).then((res: any) => res.json())
-    }),
+    promiseArray.map(p =>
+      p.catch(e => {
+        console.warn(e)
+        return e
+      }),
+    ),
   )
+  const validResponses = responses.filter(result => !(result instanceof Error))
 
   let totalCount = 0
-  const results = responses.map(
+  const results = validResponses.map(
     ({ results, count }: any, i): DataSearchResultType => {
       const resultCount = count ? count : 0
       totalCount = totalCount + resultCount
       return {
         count: resultCount,
-        label: filteredDataSearchConfig[i].label,
+        label:
+          count === 1
+            ? filteredDataSearchConfig[i].labelSingular
+            : filteredDataSearchConfig[i].label,
         type: filteredDataSearchConfig[i].type,
         results:
-          results && results.slice(0, limit || -1).map((result: any) => normalizeData(result)),
+          (results && results.slice(0, limit || -1).map((result: any) => normalizeData(result))) ||
+          [],
       }
     },
   )
