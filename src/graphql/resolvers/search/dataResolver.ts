@@ -7,9 +7,14 @@ import {
 } from '../../../generated/graphql'
 
 const AUTH_SCOPES = {
-  hr: 'HR/R',
-  brkSpecial: 'BRK/RSN',
-  brk: 'BRK/RS',
+  HR: 'HR/R',
+  BRK: 'BRK/RS',
+  BRKPLUS: 'BRK/RSN',
+}
+
+const ROLES = {
+  EMPLOYEE: 'employee',
+  EMPLOYEE_PLUS: 'employee_plus',
 }
 
 type DataSearchType = {
@@ -20,7 +25,10 @@ type DataSearchType = {
   params?: {
     subtype: string
   }
-  authScope?: string
+  authScope?: Array<{
+    role: string
+    scope: Array<string>
+  }>
   specialAuthScope?: string
 }
 
@@ -66,14 +74,14 @@ const DATA_SEARCH_CONFIG: DataSearchType[] = [
     type: 'vestigingen',
     label: 'Vestigingen',
     labelSingular: 'Vestiging',
-    authScope: AUTH_SCOPES.hr,
+    authScope: [{ role: ROLES.EMPLOYEE, scope: [AUTH_SCOPES.HR] }],
   },
   {
     endpoint: 'handelsregister/search/maatschappelijkeactiviteit',
     type: 'maatschappelijkeactiviteit',
     label: 'Maatschappelijke activiteiten',
     labelSingular: 'Maatschappelijke activiteit',
-    authScope: AUTH_SCOPES.hr,
+    authScope: [{ role: ROLES.EMPLOYEE, scope: [AUTH_SCOPES.HR] }],
   },
   {
     endpoint: 'atlas/search/kadastraalobject',
@@ -84,10 +92,13 @@ const DATA_SEARCH_CONFIG: DataSearchType[] = [
   {
     endpoint: 'atlas/search/kadastraalsubject',
     type: 'kadastrale_subjecten',
-    authScope: AUTH_SCOPES.brk,
-    specialAuthScope: AUTH_SCOPES.brkSpecial,
+
     labelSingular: 'Kadastraal subject',
     label: 'Kadastrale subjecten',
+    authScope: [
+      { role: ROLES.EMPLOYEE, scope: [AUTH_SCOPES.BRK] },
+      { role: ROLES.EMPLOYEE_PLUS, scope: [AUTH_SCOPES.BRKPLUS] },
+    ],
   },
   {
     endpoint: 'meetbouten/search',
