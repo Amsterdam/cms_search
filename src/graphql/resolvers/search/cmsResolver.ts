@@ -1,4 +1,4 @@
-import { QueryCmsSearchArgs, Result, CmsSearchResult } from '../../../generated/graphql'
+import { QueryCmsSearchArgs, CmsResult, CmsSearchResult } from '../../../generated/graphql'
 import { getValuesFromES, getCmsFromElasticSearch } from '../../../es'
 import { CMS_LABELS, CMS_TYPES } from '../../../config'
 import moment from 'moment'
@@ -40,7 +40,7 @@ async function cmsResolver({ q, input }: QueryCmsSearchArgs): Promise<CmsSearchR
     types,
   })
 
-  const formattedResults: Array<Result> = results.map(({ _source: result }: any) => {
+  const formattedResults: Array<CmsResult> = results.map(({ _source: result }: any) => {
     const {
       title,
       field_short_title,
