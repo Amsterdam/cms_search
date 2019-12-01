@@ -122,6 +122,7 @@ const normalizeData = ({ _links, _display, type, ...otherField }: any): DataSear
 })
 
 const dataResolver = async (
+  _: any,
   { q, input }: QueryDataSearchArgs,
   context: any,
 ): Promise<SearchResult> => {
@@ -187,9 +188,11 @@ const dataResolver = async (
     },
   )
 
+  // throw new Error('error')
+
   return {
-    totalCount,
-    results,
+    totalCount: new Error('hiii'),
+    results
   }
 }
 
