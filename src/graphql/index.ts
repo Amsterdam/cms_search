@@ -22,11 +22,17 @@ const schema = `
 `
 
 export default graphqlHTTP(async req => ({
-  schema: makeExecutableSchema({ typeDefs: schema, resolvers }),
+  schema: makeExecutableSchema({ typeDefs: schema, resolvers, resolverValidationOptions: {
+
+    requireResolversForResolveType: false,
+
+    requireResolversForArgs: false
+  } }),
   // rootValue: resolvers,
   context: () => context(req),
   customFormatErrorFn: (error: any) => {
     console.log(error);
-    return ({ message: 'error.message', statusCode: 'error.statusCode' })
+    return error
   }
 }))
+

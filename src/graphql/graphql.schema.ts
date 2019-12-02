@@ -5,7 +5,7 @@ const schema = gql`
   union Results = DatasetSearchResultType | CMSSearchResultType | DataSearchResultType
 
   interface SearchResult {
-    totalCount: Int
+    totalCount: Int!
     results: [Results!]!
   }
 
@@ -39,7 +39,7 @@ const schema = gql`
   }
 
   type DataSearchResult implements SearchResult {
-    totalCount: Int
+    totalCount: Int!
     results: [DataSearchResultType!]!
   }
 
