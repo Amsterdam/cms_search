@@ -2,7 +2,10 @@ import fetch from 'node-fetch'
 import { DatasetSearchResult, QueryDatasetSearchArgs } from '../../../../generated/graphql'
 import { formatFilters, getCatalogFilters, normalizeDatasets, properties } from './normalize'
 
-export default async ({ q, input }: QueryDatasetSearchArgs): Promise<DatasetSearchResult> => {
+export default async (
+  _: any,
+  { q, input }: QueryDatasetSearchArgs,
+): Promise<DatasetSearchResult> => {
   const { from, limit, filters: inputFilters } = input
 
   /**

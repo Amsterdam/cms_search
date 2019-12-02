@@ -2,6 +2,7 @@ import graphqlHTTP from 'express-graphql'
 import { buildSchema } from 'graphql'
 import resolvers from './resolvers'
 import typeDefs from './graphql.schema'
+import { makeExecutableSchema } from 'graphql-tools'
 
 export type Context = {
   token: any
@@ -16,12 +17,18 @@ const context = async (req: any): Promise<Context> => {
   }
 }
 
-const schema = buildSchema(`
+const schema = `
   ${typeDefs}
-`)
+`
 
 export default graphqlHTTP(async req => ({
-  schema,
-  rootValue: resolvers,
+  schema: makeExecutableSchema({ typeDefs: schema, resolvers, resolverValidationOptions: {
+
+    requireResolversForResolveType: false,
+
+    requireResolversForArgs: false
+  } }),
+  // rootValue: resolvers,
   context: () => context(req),
 }))
+
