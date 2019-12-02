@@ -30,9 +30,5 @@ export default graphqlHTTP(async req => ({
   } }),
   // rootValue: resolvers,
   context: () => context(req),
-  customFormatErrorFn: (error: any) => {
-    console.log(error);
-    return error
-  }
 }))
 

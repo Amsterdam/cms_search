@@ -79,7 +79,7 @@ export type DataSearchInput = {
 
 export type DataSearchResult = SearchResult & {
    __typename?: 'DataSearchResult',
-  totalCount?: Maybe<Scalars['Int']>,
+  totalCount: Scalars['Int'],
   results: Array<DataSearchResultType>,
 };
 
@@ -167,7 +167,7 @@ export type QueryCmsSearchArgs = {
 export type Results = DatasetSearchResultType | CmsSearchResultType | DataSearchResultType;
 
 export type SearchResult = {
-  totalCount?: Maybe<Scalars['Int']>,
+  totalCount: Scalars['Int'],
   results: Array<Results>,
 };
 
@@ -353,7 +353,7 @@ export type DataResultResolvers<ContextType = any, ParentType extends ResolversP
 };
 
 export type DataSearchResultResolvers<ContextType = any, ParentType extends ResolversParentTypes['DataSearchResult'] = ResolversParentTypes['DataSearchResult']> = {
-  totalCount?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>,
+  totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
   results?: Resolver<Array<ResolversTypes['DataSearchResultType']>, ParentType, ContextType>,
 };
 
@@ -408,7 +408,7 @@ export type ResultsResolvers<ContextType = any, ParentType extends ResolversPare
 
 export type SearchResultResolvers<ContextType = any, ParentType extends ResolversParentTypes['SearchResult'] = ResolversParentTypes['SearchResult']> = {
   __resolveType: TypeResolveFn<'DataSearchResult' | 'DatasetSearchResult' | 'CMSSearchResult', ParentType, ContextType>,
-  totalCount?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>,
+  totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
   results?: Resolver<Array<ResolversTypes['Results']>, ParentType, ContextType>,
 };
 
