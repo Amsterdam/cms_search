@@ -2,9 +2,11 @@
 const gql = (input: any) => input
 
 const schema = gql`
+  union Results = DatasetSearchResultType | CMSSearchResultType | DataSearchResultType
+
   interface SearchResult {
     totalCount: Int!
-    results: [SearchResultType!]!
+    results: [Results!]!
   }
 
   interface SearchResultType {
@@ -13,16 +15,27 @@ const schema = gql`
     label: String
   }
 
-  interface Result {
-    id: ID
-    type: String!
-    label: String
-  }
-
-  input SearchInput {
+  input DataSearchInput {
     limit: Int
     from: Int
     types: [String!]
+  }
+
+  input CMSSearchInput {
+    limit: Int
+    from: Int
+    types: [String!]
+  }
+
+  input DatasetSearchInput {
+    from: Int
+    limit: Int
+    filters: [DatasetSearchFilter!]
+  }
+
+  input DatasetSearchFilter {
+    type: String!
+    values: [String!]!
   }
 
   type DataSearchResult implements SearchResult {
@@ -30,10 +43,28 @@ const schema = gql`
     results: [DataSearchResultType!]!
   }
 
+  type DatasetSearchResult implements SearchResult {
+    totalCount: Int!
+    results: [DatasetSearchResultType!]!
+    filters: [DatasetFilter!]
+  }
+
   type CMSSearchResult implements SearchResult {
     totalCount: Int!
     results: [CMSSearchResultType!]!
     themeCount: [CMSThemeCount]
+  }
+
+  type DatasetFilter {
+    type: String!
+    label: String!
+    options: [DatasetFilterOptions!]!
+  }
+
+  type DatasetFilterOptions {
+    id: String!
+    label: String!
+    count: Int!
   }
 
   type CMSThemeCount {
@@ -45,7 +76,7 @@ const schema = gql`
     uri: String!
   }
 
-  type CMSResult implements Result {
+  type CMSResult {
     id: ID
     type: String!
     label: String
@@ -69,7 +100,7 @@ const schema = gql`
     results: [DataResult!]
   }
 
-  type DataResult implements Result {
+  type DataResult {
     id: ID
     type: String!
     label: String
@@ -85,9 +116,24 @@ const schema = gql`
     results: [CMSResult!]
   }
 
+  type DatasetSearchResultType {
+    header: String!
+    description: String!
+    modified: String!
+    tags: [String!]!
+    id: String!
+    formats: [DatasetFormats!]!
+  }
+
+  type DatasetFormats {
+    name: String!
+    count: Int!
+  }
+
   type Query {
-    dataSearch(q: String!, input: SearchInput!): DataSearchResult
-    cmsSearch(q: String!, input: SearchInput!): CMSSearchResult
+    dataSearch(q: String!, input: DataSearchInput!): DataSearchResult
+    datasetSearch(q: String!, input: DatasetSearchInput!): DatasetSearchResult
+    cmsSearch(q: String!, input: CMSSearchInput!): CMSSearchResult
   }
 `
 
