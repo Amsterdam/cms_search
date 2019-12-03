@@ -4,8 +4,8 @@ import datasetSearch from './datasets'
 
 export default {
   Query: {
-  cmsSearch: cmsResolver,
-  dataSearch: dataResolver,
-  datasetSearch,
-  }
+    cmsSearch: cmsResolver,
+    dataSearch: dataResolver,
+    datasetSearch,
+  },
 }

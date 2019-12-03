@@ -27,7 +27,7 @@ const getFormattedDate = (date?: number | Date, year?: number, month?: number): 
   return moment(localeDate).format(format)
 }
 
-async function cmsResolver(_:any, { q, input }: QueryCmsSearchArgs): Promise<CmsSearchResult> {
+async function cmsResolver(_: any, { q, input }: QueryCmsSearchArgs): Promise<CmsSearchResult> {
   let { limit, from, types } = input
 
   // Make sure that there's a value for types

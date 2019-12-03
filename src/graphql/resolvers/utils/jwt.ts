@@ -12,6 +12,7 @@ export function getUserScopes(token: string) {
       const currentTime = Math.floor(Date.now() / 1000)
 
       // Do a soft validation on the token by checking the expiration date
+      // @ts-ignore
       scopes = currentTime < decoded.exp ? decoded.scopes : []
     }
   }
