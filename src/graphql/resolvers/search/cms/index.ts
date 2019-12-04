@@ -1,19 +1,16 @@
-import {
-  CmsSearchResult
-} from '../../../../generated/graphql'
+import { CmsSearchResult } from '../../../../generated/graphql'
 import { CMS_TYPES } from '../../../../config'
 import getFromCMS, { QueryCmsSearchArgs } from './normalize'
 
-async function articleSearch(_: any, { q, input }: QueryCmsSearchArgs): Promise<CmsSearchResult> {
-  return await getFromCMS(CMS_TYPES.ARTICLE, { q, input })
-}
+const cmsSearch = (type: string) => async (
+  _: any,
+  { q, input }: QueryCmsSearchArgs,
+): Promise<CmsSearchResult> => await getFromCMS(type, { q, input })
 
-async function publicationSearch(_: any, { q, input }: QueryCmsSearchArgs): Promise<CmsSearchResult> {
-  return await getFromCMS(CMS_TYPES.PUBLICATION, { q, input })
-}
+const articleSearch = cmsSearch(CMS_TYPES.ARTICLE)
 
-async function specialSearch(_: any, { q, input }: QueryCmsSearchArgs): Promise<CmsSearchResult> {
-  return await getFromCMS(CMS_TYPES.SPECIAL, { q, input })
-}
+const publicationSearch = cmsSearch(CMS_TYPES.PUBLICATION)
+
+const specialSearch = cmsSearch(CMS_TYPES.SPECIAL)
 
 export { articleSearch, publicationSearch, specialSearch }
