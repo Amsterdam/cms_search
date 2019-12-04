@@ -27,6 +27,33 @@ type CatalogFilters = {
   distributionTypes: CatalogFilterType
 }
 
+const properties = {
+  status: {
+    type: 'status',
+    name: '/properties/ams:status',
+  },
+  theme: {
+    type: 'theme',
+    name: '/properties/dcat:theme/items',
+  },
+  format: {
+    type: 'format',
+    name: '/properties/dcat:distribution/items/properties/dcat:mediaType',
+  },
+  owner: {
+    type: 'owner',
+    name: '/properties/ams:owner',
+  },
+  distributionType: {
+    type: 'distributionType',
+    name: '/properties/dcat:distribution/items/properties/ams:distributionType',
+  },
+  serviceType: {
+    type: 'serviceType',
+    name: '/properties/dcat:distribution/items/properties/ams:serviceType',
+  },
+}
+
 /**
  * @example
  * arrayToObject([{label: 'hello', foo: 'bar'}], 'foo')
@@ -35,14 +62,15 @@ type CatalogFilters = {
  * @param array
  * @param keyField
  */
-const arrayToObject = (array: Array<{ label: string }>, keyField: string) =>
-  array.reduce(
+function arrayToObject(array: Array<{ label: string }>, keyField: string) {
+  return array.reduce(
     (acc, item) => ({
       ...acc,
       [item[keyField]]: item.label,
     }),
     {},
   )
+}
 
 /**
  * Build an array with available file formats and the amount per format, and sort them by the amount
@@ -52,7 +80,7 @@ const arrayToObject = (array: Array<{ label: string }>, keyField: string) =>
  * Outputs: [{ name: 'csv', count: 2 }, { name: 'pdf', count: 1 }, { name: 'docx', count: 1 }]
  * @param fileFormats
  */
-export const aggregateFileFormats = (fileFormats: Array<string>): FileFormatFilterType => {
+function aggregateFileFormats(fileFormats: Array<string>): FileFormatFilterType {
   const result = fileFormats.reduce((aggregation: AggregationType, value) => {
     const counter = aggregation.find(item => item.name === value)
 
@@ -76,7 +104,7 @@ export const aggregateFileFormats = (fileFormats: Array<string>): FileFormatFilt
   })
 }
 
-const normalizeDatasets = (content: any, catalogFilters: CatalogFilters) => {
+function normalizeDatasets(content: any, catalogFilters: CatalogFilters) {
   if (!Object.keys(catalogFilters).length) {
     return false
   }
@@ -151,38 +179,11 @@ function getCatalogFilters(data: any): CatalogFilters {
   }
 }
 
-const properties = {
-  status: {
-    type: 'status',
-    name: '/properties/ams:status',
-  },
-  theme: {
-    type: 'theme',
-    name: '/properties/dcat:theme/items',
-  },
-  format: {
-    type: 'format',
-    name: '/properties/dcat:distribution/items/properties/dcat:mediaType',
-  },
-  owner: {
-    type: 'owner',
-    name: '/properties/ams:owner',
-  },
-  distributionType: {
-    type: 'distributionType',
-    name: '/properties/dcat:distribution/items/properties/ams:distributionType',
-  },
-  serviceType: {
-    type: 'serviceType',
-    name: '/properties/dcat:distribution/items/properties/ams:serviceType',
-  },
-}
-
-const getFacetOptions = (
+function getFacetOptions(
   facet: Array<string> | undefined,
   filterCatalog: Array<{ id: string; label: string }>,
   namespace: undefined | string = undefined,
-) => {
+) {
   const facetObject = facet || {}
   return Object.keys(facetObject).map(option => {
     const id = namespace ? option.replace(`${namespace}:`, '') : option
@@ -237,4 +238,13 @@ function formatFilters(filters: Object, catalogFilters: CatalogFilters): Array<D
   ]
 }
 
-export { formatFilters, properties, normalizeDatasets, getCatalogFilters }
+export {
+  arrayToObject,
+  aggregateFileFormats,
+  getFacetOptions,
+  getOptionsFromProperty,
+  formatFilters,
+  properties,
+  normalizeDatasets,
+  getCatalogFilters,
+}

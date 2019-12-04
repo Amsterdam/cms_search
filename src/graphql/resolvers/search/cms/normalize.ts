@@ -1,9 +1,10 @@
-import { QueryCmsSearchArgs, CmsResult, CmsSearchResult } from '../../../generated/graphql'
-import { getValuesFromES, getCmsFromElasticSearch } from '../../../es'
-import { CMS_LABELS, CMS_TYPES } from '../../../config'
+import { CmsSearchResultType, QueryArticleSearchArgs, QueryPublicationSearchArgs, QuerySpecialSearchArgs, CmsSearchResult } from '../../../../generated/graphql'
+import { getValuesFromES, getCmsFromElasticSearch } from '../../../../es'
 import moment from 'moment'
 
-const getFormattedDate = (date?: number | Date, year?: number, month?: number): string => {
+export type QueryCmsSearchArgs = QueryArticleSearchArgs | QueryPublicationSearchArgs | QuerySpecialSearchArgs
+
+function getFormattedDate(date?: number | Date, year?: number, month?: number): string {
   moment.locale('nl-NL')
 
   // If the `date` parameter is a number, the unix timestamp should be multiplied by 1000 to get the correct output
@@ -27,20 +28,8 @@ const getFormattedDate = (date?: number | Date, year?: number, month?: number): 
   return moment(localeDate).format(format)
 }
 
-async function cmsResolver(_: any, { q, input }: QueryCmsSearchArgs): Promise<CmsSearchResult> {
-  let { limit, from, types } = input
-
-  // Make sure that there's a value for types
-  types = types || CMS_TYPES
-
-  const { results, totalCount, themeCount, typeCount } = await getCmsFromElasticSearch({
-    q,
-    limit,
-    from,
-    types,
-  })
-
-  const formattedResults: Array<CmsResult> = results.map(({ _source: result }: any) => {
+function getFormattedResults(results: any): Array<CmsSearchResultType> {
+  return results.map(({ _source: result }: any) => {
     const {
       title,
       field_short_title,
@@ -81,24 +70,26 @@ async function cmsResolver(_: any, { q, input }: QueryCmsSearchArgs): Promise<Cm
       ),
     }
   })
+}
+
+async function getFromCMS(type: string, { q, input }: QueryCmsSearchArgs): Promise<CmsSearchResult> {
+  const { limit, from } = input
+  
+  const { results, totalCount } = await getCmsFromElasticSearch({
+    q,
+    limit,
+    from,
+    types: [type],
+  })
+
+  const formattedResults = getFormattedResults(results)
 
   return {
     totalCount,
-    themeCount,
-    results: types.map((type: string) => {
-      const results = formattedResults.filter(({ type: resultType }) => type === resultType)
-      const count = typeCount.find(({ key }: { key: string }) => key === type)
-      const totalCount = count ? count.count : 0
-
-      return {
-        count: results.length,
-        totalCount,
-        label: CMS_LABELS[type],
-        type: type,
-        results,
-      }
-    }),
+    results: formattedResults.filter(({ type: resultType }) => type === resultType),
   }
 }
 
-export default cmsResolver
+export default getFromCMS
+
+export { getFormattedDate }

@@ -52,7 +52,6 @@ const schema = gql`
   type CMSSearchResult implements SearchResult {
     totalCount: Int!
     results: [CMSSearchResultType!]!
-    themeCount: [CMSThemeCount]
   }
 
   type DatasetFilter {
@@ -67,16 +66,11 @@ const schema = gql`
     count: Int!
   }
 
-  type CMSThemeCount {
-    key: String
-    count: Int
-  }
-
   type CMSLink {
     uri: String!
   }
 
-  type CMSResult {
+  type CMSSearchResultType {
     id: ID
     type: String!
     label: String
@@ -108,14 +102,6 @@ const schema = gql`
     dataset: String
   }
 
-  type CMSSearchResultType implements SearchResultType {
-    count: Int!
-    totalCount: Int
-    type: String
-    label: String
-    results: [CMSResult!]
-  }
-
   type DatasetSearchResultType {
     header: String!
     description: String!
@@ -131,9 +117,11 @@ const schema = gql`
   }
 
   type Query {
+    articleSearch(q: String!, input: CMSSearchInput!): CMSSearchResult
     dataSearch(q: String!, input: DataSearchInput!): DataSearchResult
     datasetSearch(q: String!, input: DatasetSearchInput!): DatasetSearchResult
-    cmsSearch(q: String!, input: CMSSearchInput!): CMSSearchResult
+    publicationSearch(q: String!, input: CMSSearchInput!): CMSSearchResult
+    specialSearch(q: String!, input: CMSSearchInput!): CMSSearchResult
   }
 `
 
