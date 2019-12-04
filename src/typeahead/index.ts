@@ -1,9 +1,9 @@
 import { getCmsFromElasticSearch, getValuesFromES } from '../es'
-import { CMS_LABELS } from '../config'
+import { CMS_LABELS, CMS_TYPES } from '../config'
 
 export default async ({ query }: any, res: any) => {
   const { q = '' } = query
-  const types = ['article', 'publication']
+  const types = [CMS_TYPES.ARTICLE, CMS_TYPES.PUBLICATION]
 
   const { results, totalCount } = await getCmsFromElasticSearch({ q, types })
 
