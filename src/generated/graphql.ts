@@ -65,6 +65,7 @@ export type DataSearchResult = SearchResult & {
    __typename?: 'DataSearchResult',
   totalCount: Scalars['Int'],
   results: Array<DataSearchResultType>,
+  filters?: Maybe<Array<Filter>>,
 };
 
 export type DataSearchResultType = SearchResultType & {
@@ -73,20 +74,6 @@ export type DataSearchResultType = SearchResultType & {
   type?: Maybe<Scalars['String']>,
   label?: Maybe<Scalars['String']>,
   results?: Maybe<Array<DataResult>>,
-};
-
-export type DatasetFilter = {
-   __typename?: 'DatasetFilter',
-  type: Scalars['String'],
-  label: Scalars['String'],
-  options: Array<DatasetFilterOptions>,
-};
-
-export type DatasetFilterOptions = {
-   __typename?: 'DatasetFilterOptions',
-  id: Scalars['String'],
-  label: Scalars['String'],
-  count: Scalars['Int'],
 };
 
 export type DatasetFormats = {
@@ -110,7 +97,7 @@ export type DatasetSearchResult = SearchResult & {
    __typename?: 'DatasetSearchResult',
   totalCount: Scalars['Int'],
   results: Array<DatasetSearchResultType>,
-  filters?: Maybe<Array<DatasetFilter>>,
+  filters?: Maybe<Array<Filter>>,
 };
 
 export type DatasetSearchResultType = {
@@ -121,6 +108,20 @@ export type DatasetSearchResultType = {
   tags: Array<Scalars['String']>,
   id: Scalars['String'],
   formats: Array<DatasetFormats>,
+};
+
+export type Filter = {
+   __typename?: 'Filter',
+  type: Scalars['String'],
+  label: Scalars['String'],
+  options: Array<FilterOptions>,
+};
+
+export type FilterOptions = {
+   __typename?: 'FilterOptions',
+  id: Scalars['String'],
+  label: Scalars['String'],
+  count: Scalars['Int'],
 };
 
 export type Query = {
@@ -263,11 +264,11 @@ export type ResolversTypes = {
   DataResult: ResolverTypeWrapper<DataResult>,
   DataSearchInput: DataSearchInput,
   DataSearchResult: ResolverTypeWrapper<DataSearchResult>,
+  Filter: ResolverTypeWrapper<Filter>,
+  FilterOptions: ResolverTypeWrapper<FilterOptions>,
   DatasetSearchInput: DatasetSearchInput,
   DatasetSearchFilter: DatasetSearchFilter,
   DatasetSearchResult: ResolverTypeWrapper<DatasetSearchResult>,
-  DatasetFilter: ResolverTypeWrapper<DatasetFilter>,
-  DatasetFilterOptions: ResolverTypeWrapper<DatasetFilterOptions>,
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
 };
 
@@ -290,11 +291,11 @@ export type ResolversParentTypes = {
   DataResult: DataResult,
   DataSearchInput: DataSearchInput,
   DataSearchResult: DataSearchResult,
+  Filter: Filter,
+  FilterOptions: FilterOptions,
   DatasetSearchInput: DatasetSearchInput,
   DatasetSearchFilter: DatasetSearchFilter,
   DatasetSearchResult: DatasetSearchResult,
-  DatasetFilter: DatasetFilter,
-  DatasetFilterOptions: DatasetFilterOptions,
   Boolean: Scalars['Boolean'],
 };
 
@@ -335,6 +336,7 @@ export type DataResultResolvers<ContextType = any, ParentType extends ResolversP
 export type DataSearchResultResolvers<ContextType = any, ParentType extends ResolversParentTypes['DataSearchResult'] = ResolversParentTypes['DataSearchResult']> = {
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
   results?: Resolver<Array<ResolversTypes['DataSearchResultType']>, ParentType, ContextType>,
+  filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>,
 };
 
 export type DataSearchResultTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['DataSearchResultType'] = ResolversParentTypes['DataSearchResultType']> = {
@@ -342,18 +344,6 @@ export type DataSearchResultTypeResolvers<ContextType = any, ParentType extends 
   type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
   label?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
   results?: Resolver<Maybe<Array<ResolversTypes['DataResult']>>, ParentType, ContextType>,
-};
-
-export type DatasetFilterResolvers<ContextType = any, ParentType extends ResolversParentTypes['DatasetFilter'] = ResolversParentTypes['DatasetFilter']> = {
-  type?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  label?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  options?: Resolver<Array<ResolversTypes['DatasetFilterOptions']>, ParentType, ContextType>,
-};
-
-export type DatasetFilterOptionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['DatasetFilterOptions'] = ResolversParentTypes['DatasetFilterOptions']> = {
-  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  label?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
 };
 
 export type DatasetFormatsResolvers<ContextType = any, ParentType extends ResolversParentTypes['DatasetFormats'] = ResolversParentTypes['DatasetFormats']> = {
@@ -364,7 +354,7 @@ export type DatasetFormatsResolvers<ContextType = any, ParentType extends Resolv
 export type DatasetSearchResultResolvers<ContextType = any, ParentType extends ResolversParentTypes['DatasetSearchResult'] = ResolversParentTypes['DatasetSearchResult']> = {
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
   results?: Resolver<Array<ResolversTypes['DatasetSearchResultType']>, ParentType, ContextType>,
-  filters?: Resolver<Maybe<Array<ResolversTypes['DatasetFilter']>>, ParentType, ContextType>,
+  filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>,
 };
 
 export type DatasetSearchResultTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['DatasetSearchResultType'] = ResolversParentTypes['DatasetSearchResultType']> = {
@@ -374,6 +364,18 @@ export type DatasetSearchResultTypeResolvers<ContextType = any, ParentType exten
   tags?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>,
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   formats?: Resolver<Array<ResolversTypes['DatasetFormats']>, ParentType, ContextType>,
+};
+
+export type FilterResolvers<ContextType = any, ParentType extends ResolversParentTypes['Filter'] = ResolversParentTypes['Filter']> = {
+  type?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  label?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  options?: Resolver<Array<ResolversTypes['FilterOptions']>, ParentType, ContextType>,
+};
+
+export type FilterOptionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['FilterOptions'] = ResolversParentTypes['FilterOptions']> = {
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  label?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -408,11 +410,11 @@ export type Resolvers<ContextType = any> = {
   DataResult?: DataResultResolvers<ContextType>,
   DataSearchResult?: DataSearchResultResolvers<ContextType>,
   DataSearchResultType?: DataSearchResultTypeResolvers<ContextType>,
-  DatasetFilter?: DatasetFilterResolvers<ContextType>,
-  DatasetFilterOptions?: DatasetFilterOptionsResolvers<ContextType>,
   DatasetFormats?: DatasetFormatsResolvers<ContextType>,
   DatasetSearchResult?: DatasetSearchResultResolvers<ContextType>,
   DatasetSearchResultType?: DatasetSearchResultTypeResolvers<ContextType>,
+  Filter?: FilterResolvers<ContextType>,
+  FilterOptions?: FilterOptionsResolvers<ContextType>,
   Query?: QueryResolvers<ContextType>,
   Results?: ResultsResolvers,
   SearchResult?: SearchResultResolvers,

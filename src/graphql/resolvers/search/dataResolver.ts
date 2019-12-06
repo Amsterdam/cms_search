@@ -1,9 +1,9 @@
 import fetch from 'node-fetch'
 import {
-  SearchResult,
   QueryDataSearchArgs,
   DataSearchResultType,
   DataSearchResult,
+  FilterOptions
 } from '../../../generated/graphql'
 import { getUserScopes } from '../utils/jwt'
 
@@ -122,6 +122,8 @@ const DATA_SEARCH_CONFIG: DataSearchType[] = [
   },
 ]
 
+const DATA_SEARCH_FILTER = { type: 'types', label: 'Types' }
+
 const normalizeData = ({ _links, _display, type, ...otherField }: any): DataSearchResult => ({
   id: _links && _links.self ? _links.self.href.match(/([^\/]*)\/*$/)[1] : null,
   label: _display,
@@ -133,16 +135,10 @@ const dataResolver = async (
   _: any,
   { q, input }: QueryDataSearchArgs,
   context: any,
-): Promise<SearchResult> => {
+): Promise<DataSearchResult> => {
   const { limit, types } = input
   const { token } = await context()
   let filteredDataSearchConfig = DATA_SEARCH_CONFIG
-
-  if (types) {
-    filteredDataSearchConfig = filteredDataSearchConfig.filter((api: any) =>
-      types.includes(api.type),
-    )
-  }
 
   const promiseArray = filteredDataSearchConfig.map((api: any) => {
     const query = new URLSearchParams({
@@ -181,7 +177,7 @@ const dataResolver = async (
   const scopes = getUserScopes(token)
 
   let totalCount = 0
-  const results = validResponses.map(
+  let results = validResponses.map(
     ({ results, count }: any, i): DataSearchResultType => {
       const resultCount = count ? count : 0
       totalCount = totalCount + resultCount
@@ -209,8 +205,28 @@ const dataResolver = async (
     },
   )
 
+  const filters = [
+    {
+      type: DATA_SEARCH_FILTER.type,
+      label: DATA_SEARCH_FILTER.label,
+      options: results.map((result: DataSearchResultType): FilterOptions => ({
+        id: result.type || '',
+        label: result.label || '',
+        count: result.count,
+      })),
+    },
+  ]
+
+  // Todo: Add Dataloader to cache the previous results and prevent too much data being retrieved when just a single type is requested
+  if (types) {
+    results = results.filter(
+      (result: DataSearchResultType) => result.type && types.includes(result.type),
+    )
+  }
+
   return {
     totalCount,
+    filters,
     results,
   }
 }

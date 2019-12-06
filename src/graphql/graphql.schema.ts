@@ -41,12 +41,13 @@ const schema = gql`
   type DataSearchResult implements SearchResult {
     totalCount: Int!
     results: [DataSearchResultType!]!
+    filters: [Filter!]
   }
 
   type DatasetSearchResult implements SearchResult {
     totalCount: Int!
     results: [DatasetSearchResultType!]!
-    filters: [DatasetFilter!]
+    filters: [Filter!]
   }
 
   type CMSSearchResult implements SearchResult {
@@ -54,13 +55,13 @@ const schema = gql`
     results: [CMSSearchResultType!]!
   }
 
-  type DatasetFilter {
+  type Filter {
     type: String!
     label: String!
-    options: [DatasetFilterOptions!]!
+    options: [FilterOptions!]!
   }
 
-  type DatasetFilterOptions {
+  type FilterOptions {
     id: String!
     label: String!
     count: Int!
