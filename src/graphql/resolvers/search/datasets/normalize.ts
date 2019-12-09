@@ -1,5 +1,5 @@
 import removeMd from 'remove-markdown'
-import { DatasetFilter } from '../../../../generated/graphql'
+import { Filter } from '../../../../generated/graphql'
 
 type AggregationType = Array<{ name: string; count: number }>
 
@@ -196,7 +196,7 @@ function getFacetOptions(
   })
 }
 
-function formatFilters(filters: Object, catalogFilters: CatalogFilters): Array<DatasetFilter> {
+function formatFilters(filters: Object, catalogFilters: CatalogFilters): Array<Filter> {
   return [
     {
       type: properties.status.type,
