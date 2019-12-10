@@ -2,6 +2,7 @@ import { Client } from '@elastic/elasticsearch'
 import { SearchResponse } from 'elasticsearch'
 import cmsSchema, { ElasticSearchArgs } from './es.schema'
 import config from '../config'
+import logPerf from '../graphql/resolvers/utils/logPerf'
 
 const client = new Client({
   node: `http://${process.env.ELASTIC_HOST}:9200`,
@@ -19,9 +20,11 @@ export async function getCmsFromElasticSearch({ q, limit, from, types }: Elastic
   types = types || defaultTypes
   from = from || 0
 
-  const results: SearchResponse<any> = await ElasticSearchClient(
-    cmsSchema({ q, limit, from, types }),
-  ).then(r => r.body)
+  const results: SearchResponse<any> = (await logPerf(
+    `cms`,
+    `http://${process.env.ELASTIC_HOST}:9200`,
+    ElasticSearchClient(cmsSchema({ q, limit, from, types })),
+  )) as SearchResponse<any>
   const countResults: any = Object.entries(results.aggregations).reduce((acc, [key, value]) => {
     // @ts-ignore
     const { buckets } = value
