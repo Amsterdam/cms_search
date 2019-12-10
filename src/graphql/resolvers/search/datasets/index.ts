@@ -1,6 +1,8 @@
 import fetch from 'node-fetch'
+
 import { DatasetSearchResult, QueryDatasetSearchArgs } from '../../../../generated/graphql'
 import { formatFilters, getCatalogFilters, normalizeDatasets, properties } from './normalize'
+import logPerf from '../../utils/logPerf'
 
 export default async (
   _: any,
@@ -46,15 +48,14 @@ export default async (
   const openApiUrl = `${process.env.API_ROOT}dcatd/openapi`
 
   let filters
-  let results = []
+  let results: any = []
   let totalCount = 0
 
   try {
     const [datasets, openApiResults] = await Promise.all([
-      fetch(datasetsUrl).then((res: any) => res.json()),
-      fetch(openApiUrl).then((res: any) => res.json()),
+      logPerf('dcatd', fetch(datasetsUrl)),
+      logPerf('openApi', fetch(openApiUrl)),
     ])
-
     const datasetFilters = getCatalogFilters(openApiResults)
 
     filters = formatFilters(datasets['ams:facet_info'], datasetFilters)

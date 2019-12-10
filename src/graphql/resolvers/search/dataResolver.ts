@@ -3,7 +3,7 @@ import {
   QueryDataSearchArgs,
   DataSearchResultType,
   DataSearchResult,
-  FilterOptions
+  FilterOptions,
 } from '../../../generated/graphql'
 import { getUserScopes } from '../utils/jwt'
 
@@ -209,11 +209,13 @@ const dataResolver = async (
     {
       type: DATA_SEARCH_FILTER.type,
       label: DATA_SEARCH_FILTER.label,
-      options: results.map((result: DataSearchResultType): FilterOptions => ({
-        id: result.type || '',
-        label: result.label || '',
-        count: result.count,
-      })),
+      options: results.map(
+        (result: DataSearchResultType): FilterOptions => ({
+          id: result.type || '',
+          label: result.label || '',
+          count: result.count,
+        }),
+      ),
     },
   ]
 

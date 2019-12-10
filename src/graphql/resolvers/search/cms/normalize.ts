@@ -1,8 +1,17 @@
-import { CmsSearchResultType, QueryArticleSearchArgs, QueryPublicationSearchArgs, QuerySpecialSearchArgs, CmsSearchResult } from '../../../../generated/graphql'
+import {
+  CmsSearchResultType,
+  QueryArticleSearchArgs,
+  QueryPublicationSearchArgs,
+  QuerySpecialSearchArgs,
+  CmsSearchResult,
+} from '../../../../generated/graphql'
 import { getValuesFromES, getCmsFromElasticSearch } from '../../../../es'
 import moment from 'moment'
 
-export type QueryCmsSearchArgs = QueryArticleSearchArgs | QueryPublicationSearchArgs | QuerySpecialSearchArgs
+export type QueryCmsSearchArgs =
+  | QueryArticleSearchArgs
+  | QueryPublicationSearchArgs
+  | QuerySpecialSearchArgs
 
 function getFormattedDate(date?: number | Date, year?: number, month?: number): string {
   moment.locale('nl-NL')
@@ -72,9 +81,12 @@ function getFormattedResults(results: any): Array<CmsSearchResultType> {
   })
 }
 
-async function getFromCMS(type: string, { q, input }: QueryCmsSearchArgs): Promise<CmsSearchResult> {
+async function getFromCMS(
+  type: string,
+  { q, input }: QueryCmsSearchArgs,
+): Promise<CmsSearchResult> {
   const { limit, from } = input
-  
+
   const { results, totalCount } = await getCmsFromElasticSearch({
     q,
     limit,

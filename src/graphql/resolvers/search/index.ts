@@ -1,4 +1,4 @@
-import {articleSearch, publicationSearch, specialSearch} from './cms'
+import { articleSearch, publicationSearch, specialSearch } from './cms'
 import dataResolver from './dataResolver'
 import datasetSearch from './datasets'
 
