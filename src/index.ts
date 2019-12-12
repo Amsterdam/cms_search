@@ -1,18 +1,11 @@
 require('dotenv').config()
-import * as Sentry from '@sentry/node'
+
 import { PORT, URL_PREFIX } from './config'
 import express from 'express'
 import expressPlayground from 'graphql-playground-middleware-express'
 import cors from 'cors'
 import GraphQLMiddleware from './graphql'
 import TypeAheadMiddleWare from './typeahead'
-
-const environment = process.env.NODE_ENV
-
-Sentry.init({
-  dsn: 'https://bedcc5aa7d5b44e89893be96e95dbcc8@sentry.data.amsterdam.nl/37',
-  environment,
-})
 
 const app = express()
 
