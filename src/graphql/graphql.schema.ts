@@ -35,6 +35,7 @@ const schema = gql`
 
   input DatasetSearchFilter {
     type: String!
+    multiSelect: Boolean!
     values: [String!]!
   }
 
@@ -47,6 +48,9 @@ const schema = gql`
   type DatasetSearchResult implements SearchResult {
     totalCount: Int!
     results: [DatasetSearchResultType!]!
+  }
+
+  type DatasetFiltersResult {
     filters: [Filter!]
   }
 
@@ -59,11 +63,13 @@ const schema = gql`
     type: String!
     label: String!
     options: [FilterOptions!]!
+    filterType: String
   }
 
   type FilterOptions {
     id: String!
     label: String!
+    enumType: String
     count: Int!
   }
 
@@ -100,7 +106,7 @@ const schema = gql`
     type: String!
     label: String
     subtype: String
-    dataset: String
+    datasetdataset: String
   }
 
   type DatasetSearchResultType {
@@ -123,6 +129,7 @@ const schema = gql`
     datasetSearch(q: String!, input: DatasetSearchInput!): DatasetSearchResult
     publicationSearch(q: String!, input: CMSSearchInput!): CMSSearchResult
     specialSearch(q: String!, input: CMSSearchInput!): CMSSearchResult
+    getDatasetFilters(q: String!): DatasetFiltersResult
   }
 `
 

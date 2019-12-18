@@ -1,4 +1,4 @@
-export const PORT = 8081
+export const PORT = 8080
 export const URL_PREFIX = '/cms_search'
 
 export const CMS_TYPES = {
