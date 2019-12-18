@@ -2,6 +2,7 @@ import fetch from 'node-fetch'
 
 import { DatasetSearchResult, QueryDatasetSearchArgs } from '../../../../generated/graphql'
 import { getCatalogFilters, normalizeDatasets, properties } from './normalize'
+import { openApiCached } from '../datasetFilters'
 
 export default async (
   _: any,
@@ -44,7 +45,6 @@ export default async (
   const urlQuery = new URLSearchParams(query).toString()
 
   const datasetsUrl = `${process.env.API_ROOT}dcatd/datasets?${urlQuery}`
-  const openApiUrl = `${process.env.API_ROOT}dcatd/openapi`
 
   let results: any = []
   let totalCount = 0
@@ -52,7 +52,7 @@ export default async (
   try {
     const [datasets, openApiResults] = await Promise.all([
       fetch(datasetsUrl).then((res: any) => res.json()),
-      fetch(openApiUrl).then((res: any) => res.json()),
+      openApiCached(),
     ])
     const datasetFilters = getCatalogFilters(openApiResults)
 
