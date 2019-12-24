@@ -57,7 +57,7 @@ export default async (
     const datasetFilters = getCatalogFilters(openApiResults)
 
     results = normalizeDatasets(datasets['dcat:dataset'], datasetFilters)
-    totalCount = Array.isArray(results) ? results.length : 0
+    totalCount = datasets['void:documents']
   } catch (e) {
     // Todo: error handling
     console.warn(e)
