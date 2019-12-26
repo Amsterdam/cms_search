@@ -8,10 +8,16 @@ import {
 import { getValuesFromES, getCmsFromElasticSearch } from '../../../../es'
 import moment from 'moment'
 
+import cmsFilters from './filters'
+
 export type QueryCmsSearchArgs =
   | QueryArticleSearchArgs
   | QueryPublicationSearchArgs
   | QuerySpecialSearchArgs
+
+type JsonAPI = {
+  data: Array<Object>
+}
 
 function getFormattedDate(date?: number | Date, year?: number, month?: number): string {
   moment.locale('nl-NL')
@@ -102,6 +108,32 @@ async function getFromCMS(
   }
 }
 
+function getThemeFilterOptions(result: JsonAPI): Array<any> {
+  return result.data.map((item: any) => {
+    const id = item.attributes.drupal_internal__tid
+
+    return {
+      id,
+      label: item.attributes.name,
+      count: null, // Should we fill this value??
+      enumType: `theme:${id}`,
+    }
+  })
+}
+
+function formatFilters(themeTaxonomy: JsonAPI): Array<any> {
+  const themeFilterOptions = getThemeFilterOptions(themeTaxonomy)
+
+  return [ // This is already structured as an array as there will be more filters later on
+    {
+      type: 'theme',
+      label: "Thema's",
+      filterType: 'array',
+      options: themeFilterOptions,
+    },
+  ]
+}
+
 export default getFromCMS
 
-export { getFormattedDate }
+export { getFormattedDate, getThemeFilterOptions, formatFilters }

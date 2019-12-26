@@ -57,6 +57,7 @@ const schema = gql`
   type CMSSearchResult implements SearchResult {
     totalCount: Int!
     results: [CMSSearchResultType!]!
+    filters: [Filter!]
   }
 
   type Filter {

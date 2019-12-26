@@ -13,7 +13,7 @@ export default async (_: any, { q }: any): Promise<any> => {
     const urlQuery = new URLSearchParams({ q }).toString()
     const datasetsUrl = `${process.env.API_ROOT}dcatd/datasets?${urlQuery}`
 
-    const [datasets, openApiResults] = await Promise.all([
+    const [datasets, openApiResults]: any = await Promise.all([
       fetch(datasetsUrl).then((res: any) => res.json()),
       openApiCached(),
     ])
