@@ -7,12 +7,12 @@ const week = 60 * 60 * 24 * 7
 export const themeTaxonomyCached = async () =>
   await withCache('themeTaxonomy', fetch(`${process.env.CMS_URL}/jsonapi/taxonomy_term/theme`), week)
 
-export default async (): Promise<any> => {
+export default async (filterCount: Object): Promise<any> => {
   let filters
   try {
     const themeTaxonomy: any = await Promise.resolve(themeTaxonomyCached())
 
-    filters = formatFilters(themeTaxonomy)    
+    filters = formatFilters(themeTaxonomy, filterCount.theme)    
   } catch (e) {
     console.warn(e)
   }

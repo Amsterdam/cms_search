@@ -20,6 +20,7 @@ export type CmsSearchInput = {
   limit?: Maybe<Scalars['Int']>,
   from?: Maybe<Scalars['Int']>,
   types?: Maybe<Array<Scalars['String']>>,
+  filters?: Maybe<Array<FilterInput>>,
 };
 
 export type CmsSearchResult = SearchResult & {
@@ -88,16 +89,10 @@ export type DatasetFormats = {
   count: Scalars['Int'],
 };
 
-export type DatasetSearchFilter = {
-  type: Scalars['String'],
-  multiSelect: Scalars['Boolean'],
-  values: Array<Scalars['String']>,
-};
-
 export type DatasetSearchInput = {
   from?: Maybe<Scalars['Int']>,
   limit?: Maybe<Scalars['Int']>,
-  filters?: Maybe<Array<DatasetSearchFilter>>,
+  filters?: Maybe<Array<FilterInput>>,
 };
 
 export type DatasetSearchResult = SearchResult & {
@@ -122,6 +117,12 @@ export type Filter = {
   label: Scalars['String'],
   options: Array<FilterOptions>,
   filterType?: Maybe<Scalars['String']>,
+};
+
+export type FilterInput = {
+  type: Scalars['String'],
+  multiSelect: Scalars['Boolean'],
+  values: Array<Scalars['String']>,
 };
 
 export type FilterOptions = {
@@ -265,6 +266,8 @@ export type ResolversTypes = {
   String: ResolverTypeWrapper<Scalars['String']>,
   CMSSearchInput: CmsSearchInput,
   Int: ResolverTypeWrapper<Scalars['Int']>,
+  FilterInput: FilterInput,
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
   CMSSearchResult: ResolverTypeWrapper<CmsSearchResult>,
   SearchResult: ResolverTypeWrapper<Omit<SearchResult, 'results'> & { results: Array<ResolversTypes['Results']> }>,
   Results: ResolversTypes['DatasetSearchResultType'] | ResolversTypes['CMSSearchResultType'] | ResolversTypes['DataSearchResultType'],
@@ -281,8 +284,6 @@ export type ResolversTypes = {
   DataSearchInput: DataSearchInput,
   DataSearchResult: ResolverTypeWrapper<DataSearchResult>,
   DatasetSearchInput: DatasetSearchInput,
-  DatasetSearchFilter: DatasetSearchFilter,
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
   DatasetSearchResult: ResolverTypeWrapper<DatasetSearchResult>,
   DatasetFiltersResult: ResolverTypeWrapper<DatasetFiltersResult>,
 };
@@ -293,6 +294,8 @@ export type ResolversParentTypes = {
   String: Scalars['String'],
   CMSSearchInput: CmsSearchInput,
   Int: Scalars['Int'],
+  FilterInput: FilterInput,
+  Boolean: Scalars['Boolean'],
   CMSSearchResult: CmsSearchResult,
   SearchResult: Omit<SearchResult, 'results'> & { results: Array<ResolversParentTypes['Results']> },
   Results: ResolversParentTypes['DatasetSearchResultType'] | ResolversParentTypes['CMSSearchResultType'] | ResolversParentTypes['DataSearchResultType'],
@@ -309,8 +312,6 @@ export type ResolversParentTypes = {
   DataSearchInput: DataSearchInput,
   DataSearchResult: DataSearchResult,
   DatasetSearchInput: DatasetSearchInput,
-  DatasetSearchFilter: DatasetSearchFilter,
-  Boolean: Scalars['Boolean'],
   DatasetSearchResult: DatasetSearchResult,
   DatasetFiltersResult: DatasetFiltersResult,
 };

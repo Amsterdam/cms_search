@@ -3,12 +3,9 @@ import {
   QueryArticleSearchArgs,
   QueryPublicationSearchArgs,
   QuerySpecialSearchArgs,
-  CmsSearchResult,
 } from '../../../../generated/graphql'
-import { getValuesFromES, getCmsFromElasticSearch } from '../../../../es'
+import { getValuesFromES } from '../../../../es'
 import moment from 'moment'
-
-import cmsFilters from './filters'
 
 export type QueryCmsSearchArgs =
   | QueryArticleSearchArgs
@@ -87,42 +84,24 @@ function getFormattedResults(results: any): Array<CmsSearchResultType> {
   })
 }
 
-async function getFromCMS(
-  type: string,
-  { q, input }: QueryCmsSearchArgs,
-): Promise<CmsSearchResult> {
-  const { limit, from } = input
-
-  const { results, totalCount } = await getCmsFromElasticSearch({
-    q,
-    limit,
-    from,
-    types: [type],
-  })
-
-  const formattedResults = getFormattedResults(results)
-
-  return {
-    totalCount,
-    results: formattedResults.filter(({ type: resultType }) => type === resultType),
-  }
-}
-
-function getThemeFilterOptions(result: JsonAPI): Array<any> {
+function getThemeFilterOptions(result: JsonAPI, themeCount: Array<{ key: string, count: number }>): Array<any> {
   return result.data.map((item: any) => {
     const id = item.attributes.drupal_internal__tid
+
+    const { count } = themeCount.find(count => count.key === id) || {}
 
     return {
       id,
       label: item.attributes.name,
-      count: null, // Should we fill this value??
+      count: count || 0,
       enumType: `theme:${id}`,
     }
   })
 }
 
-function formatFilters(themeTaxonomy: JsonAPI): Array<any> {
-  const themeFilterOptions = getThemeFilterOptions(themeTaxonomy)
+
+function formatFilters(themeTaxonomy: JsonAPI, themeCount: Array<{ key: string, count: number }>): Array<any> {
+  const themeFilterOptions = getThemeFilterOptions(themeTaxonomy, themeCount)
 
   return [ // This is already structured as an array as there will be more filters later on
     {
@@ -134,6 +113,6 @@ function formatFilters(themeTaxonomy: JsonAPI): Array<any> {
   ]
 }
 
-export default getFromCMS
+export default getFormattedResults
 
 export { getFormattedDate, getThemeFilterOptions, formatFilters }

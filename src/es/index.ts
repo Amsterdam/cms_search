@@ -12,8 +12,13 @@ export function ElasticSearchClient(body: object) {
   return client.search({ index: config.es.cms.index, body: body })
 }
 
-export async function getCmsFromElasticSearch({ q, limit, from, types }: ElasticSearchArgs) {
+export async function getCmsFromElasticSearch({ q, limit, from, types, filters }: ElasticSearchArgs) {
   const { defaultSize } = config.es.cms
+
+console.log(filters);
+
+
+
 
   limit = limit || defaultSize
   from = from || 0
@@ -42,6 +47,7 @@ export async function getCmsFromElasticSearch({ q, limit, from, types }: Elastic
   return {
     results: results.hits.hits,
     totalCount,
+    filterCount: { theme: countResults.count_by_theme },
   }
 }
 

@@ -4,7 +4,7 @@ export type ElasticSearchArgs = {
   q: string
 } & CmsSearchInput
 
-export default ({ q, limit, from, types, themeFilter }: ElasticSearchArgs) => {
+export default ({ q, limit, from, types, filters: inputFilters }: ElasticSearchArgs) => {
   let terms = q.split(' ')
   const nrTerms = terms.length
 
@@ -49,8 +49,15 @@ export default ({ q, limit, from, types, themeFilter }: ElasticSearchArgs) => {
   return {
     query: {
       bool: {
-        must: [{ term: { field_published: true }}, { term: { field_theme_name: 'Bestuur'  } }, 
-          
+        must: [{ term: { field_published: true }}, 
+          // { term: { field_theme_name: ''  } }, 
+
+
+
+
+
+
+
         ],
         must_not: [],
         should: should,
@@ -79,7 +86,7 @@ export default ({ q, limit, from, types, themeFilter }: ElasticSearchArgs) => {
       },
       count_by_theme: {
         terms: {
-          field: 'field_theme_name',
+          field: 'field_theme_id',
         },
       },
     },
