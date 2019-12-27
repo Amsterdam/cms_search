@@ -15,7 +15,7 @@ const cmsSearch = (type: string) => async (
     limit,
     from,
     types: [type],
-    filters: inputFilters
+    filters: inputFilters,
   })
 
   const formattedResults = getFormattedResults(results)
@@ -24,7 +24,7 @@ const cmsSearch = (type: string) => async (
   return {
     totalCount,
     results: formattedResults.filter(({ type: resultType }) => type === resultType),
-    ...filters
+    ...filters,
   }
 }
 

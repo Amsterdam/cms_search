@@ -12,15 +12,21 @@ export function ElasticSearchClient(body: object) {
   return client.search({ index: config.es.cms.index, body: body })
 }
 
-export async function getCmsFromElasticSearch({ q, limit, from, types, filters }: ElasticSearchArgs) {
+export async function getCmsFromElasticSearch({
+  q,
+  limit,
+  from,
+  types,
+  filters,
+}: ElasticSearchArgs) {
   const { defaultSize } = config.es.cms
 
   limit = limit || defaultSize
   from = from || 0
-  types = types
 
   const themeFilter = filters && filters.find(filter => filter.type === 'theme')
-  const themeFilterValues =  themeFilter && themeFilter.values && themeFilter.values.map(value => value.split(':').pop())
+  const themeFilterValues: any =
+    themeFilter && themeFilter.values && themeFilter.values.map(value => value.split(':').pop())
 
   const results: SearchResponse<any> = await ElasticSearchClient(
     cmsSchema({ q, limit, from, types, filters: themeFilterValues }),

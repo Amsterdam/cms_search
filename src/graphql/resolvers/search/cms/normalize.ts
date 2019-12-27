@@ -84,7 +84,10 @@ function getFormattedResults(results: any): Array<CmsSearchResultType> {
   })
 }
 
-function getThemeFilterOptions(result: JsonAPI, themeCount: Array<{ key: string, count: number }>): Array<any> {
+function getThemeFilterOptions(
+  result: JsonAPI,
+  themeCount: Array<{ key: string; count: number }>,
+): Array<any> {
   return result.data.map((item: any) => {
     const id = item.attributes.drupal_internal__tid
 
@@ -99,11 +102,14 @@ function getThemeFilterOptions(result: JsonAPI, themeCount: Array<{ key: string,
   })
 }
 
-
-function formatFilters(themeTaxonomy: JsonAPI, themeCount: Array<{ key: string, count: number }>): Array<any> {
+function formatFilters(
+  themeTaxonomy: JsonAPI,
+  themeCount: Array<{ key: string; count: number }>,
+): Array<any> {
   const themeFilterOptions = getThemeFilterOptions(themeTaxonomy, themeCount)
 
-  return [ // This is already structured as an array as there will be more filters later on
+  return [
+    // This is already structured as an array as there will be more filters later on
     {
       type: 'theme',
       label: "Thema's",
