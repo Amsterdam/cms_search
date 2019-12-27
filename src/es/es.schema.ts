@@ -48,10 +48,6 @@ export default ({ q, limit, from, types, filters: themeFilters }: ElasticSearchA
   const filters =
     themeFilters && themeFilters.map(themeFilter => ({ term: { field_theme_id: themeFilter } }))
 
-console.log(themeFilters, filters);
-
-
-
   return {
     query: {
       bool: {
