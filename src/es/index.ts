@@ -12,15 +12,18 @@ export function ElasticSearchClient(body: object) {
   return client.search({ index: config.es.cms.index, body: body })
 }
 
-export async function getCmsFromElasticSearch({ q, limit, from, types }: ElasticSearchArgs) {
+export async function getCmsFromElasticSearch({ q, limit, from, types, filters }: ElasticSearchArgs) {
   const { defaultSize } = config.es.cms
 
   limit = limit || defaultSize
   from = from || 0
   types = types
 
+  const themeFilter = filters && filters.find(filter => filter.type === 'theme')
+  const themeFilterValues =  themeFilter && themeFilter.values && themeFilter.values.map(value => value.split(':').pop())
+
   const results: SearchResponse<any> = await ElasticSearchClient(
-    cmsSchema({ q, limit, from, types }),
+    cmsSchema({ q, limit, from, types, filters: themeFilterValues }),
   ).then(r => r.body)
   const countResults: any = Object.entries(results.aggregations).reduce((acc, [key, value]) => {
     // @ts-ignore
@@ -42,6 +45,7 @@ export async function getCmsFromElasticSearch({ q, limit, from, types }: Elastic
   return {
     results: results.hits.hits,
     totalCount,
+    filterCount: { theme: countResults.count_by_theme },
   }
 }
 

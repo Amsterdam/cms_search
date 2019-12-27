@@ -25,15 +25,16 @@ const schema = gql`
     limit: Int
     from: Int
     types: [String!]
+    filters: [FilterInput!]
   }
 
   input DatasetSearchInput {
     from: Int
     limit: Int
-    filters: [DatasetSearchFilter!]
+    filters: [FilterInput!]
   }
 
-  input DatasetSearchFilter {
+  input FilterInput {
     type: String!
     multiSelect: Boolean!
     values: [String!]!
@@ -57,6 +58,7 @@ const schema = gql`
   type CMSSearchResult implements SearchResult {
     totalCount: Int!
     results: [CMSSearchResultType!]!
+    filters: [Filter!]
   }
 
   type Filter {

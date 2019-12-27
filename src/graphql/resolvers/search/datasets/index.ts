@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 
 import { DatasetSearchResult, QueryDatasetSearchArgs } from '../../../../generated/graphql'
 import { getCatalogFilters, normalizeDatasets, properties } from './normalize'
-import { openApiCached } from '../datasetFilters'
+import { openApiCached } from './filters'
 
 export default async (
   _: any,
@@ -50,7 +50,7 @@ export default async (
   let totalCount = 0
 
   try {
-    const [datasets, openApiResults] = await Promise.all([
+    const [datasets, openApiResults]: any = await Promise.all([
       fetch(datasetsUrl).then((res: any) => res.json()),
       openApiCached(),
     ])

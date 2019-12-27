@@ -15,3 +15,4 @@ the Elastic Search from acceptance to localhost with :
     ssh -L 9200:es01.acc.data.amsterdam.nl:9200 user@dc01.acc.data.amsterdam.nl
 
 Currently the Elastic Search index for Drupal is not in a backup and cannot yet be restored with update-el.sh.
+

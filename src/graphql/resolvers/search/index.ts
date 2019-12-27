@@ -1,7 +1,7 @@
 import { articleSearch, publicationSearch, specialSearch } from './cms'
 import dataResolver from './dataResolver'
 import datasetSearch from './datasets'
-import datasetFilters from './datasetFilters'
+import datasetFilters from './datasets/filters'
 
 export default {
   Query: {
@@ -13,3 +13,5 @@ export default {
     getDatasetFilters: datasetFilters,
   },
 }
+
+
