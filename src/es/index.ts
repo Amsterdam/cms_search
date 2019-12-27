@@ -15,17 +15,15 @@ export function ElasticSearchClient(body: object) {
 export async function getCmsFromElasticSearch({ q, limit, from, types, filters }: ElasticSearchArgs) {
   const { defaultSize } = config.es.cms
 
-console.log(filters);
-
-
-
-
   limit = limit || defaultSize
   from = from || 0
   types = types
 
+  const themeFilter = filters && filters.find(filter => filter.type === 'theme')
+  const themeFilterValues =  themeFilter && themeFilter.values && themeFilter.values.map(value => value.split(':').pop())
+
   const results: SearchResponse<any> = await ElasticSearchClient(
-    cmsSchema({ q, limit, from, types }),
+    cmsSchema({ q, limit, from, types, filters: themeFilterValues }),
   ).then(r => r.body)
   const countResults: any = Object.entries(results.aggregations).reduce((acc, [key, value]) => {
     // @ts-ignore

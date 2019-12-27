@@ -8,8 +8,6 @@ const cmsSearch = (type: string) => async (
   _: any,
   { q, input }: QueryCmsSearchArgs,
 ): Promise<CmsSearchResult> => {
-
-
   const { from, limit, filters: inputFilters } = input
 
   const { results, totalCount, filterCount } = await getCmsFromElasticSearch({
