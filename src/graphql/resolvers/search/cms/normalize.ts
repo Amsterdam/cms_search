@@ -4,7 +4,7 @@ import {
   QueryPublicationSearchArgs,
   QuerySpecialSearchArgs,
 } from '../../../../generated/graphql'
-import { getValuesFromES } from '../../../../es'
+import { getValuesFromES } from '../../../../es/cms'
 import moment from 'moment'
 
 export type QueryCmsSearchArgs =

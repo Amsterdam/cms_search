@@ -4,27 +4,13 @@ import {
   DataSearchResultType,
   DataSearchResult,
   FilterOptions,
-  Maybe,
-  DataResult,
 } from '../../../../generated/graphql'
 import { getUserScopes } from '../../../utils/jwt'
-
-const AUTH_SCOPES = {
-  HR: 'HR/R',
-  BRK: 'BRK/RS',
-  BRKPLUS: 'BRK/RSN',
-}
-
-const DEFAULT_FROM = 0
-const DEFAULT_LIMIT = 10
-
-const ROLES = {
-  EMPLOYEE: 'employee',
-  EMPLOYEE_PLUS: 'employee_plus',
-}
+import { AUTH_SCOPES, DEFAULT_FROM, DEFAULT_LIMIT, ROLES } from '../../../../config'
+import { normalizeDataResults } from './normalize'
 
 type DataSearchType = {
-  endpoint: string[]
+  endpoint: string
   type: string
   label: string
   labelSingular: string
@@ -37,9 +23,11 @@ type DataSearchType = {
   }>
 }
 
+const DATA_SEARCH_API_MAX_RESULTS = 100
+
 const DATA_SEARCH_CONFIG: DataSearchType[] = [
   {
-    endpoint: ['atlas/search/openbareruimte'],
+    endpoint: 'atlas/search/openbareruimte',
     type: 'straatnamen',
     label: 'Straatnamen',
     labelSingular: 'Straatnaam',
@@ -49,14 +37,14 @@ const DATA_SEARCH_CONFIG: DataSearchType[] = [
     authScope: [],
   },
   {
-    endpoint: ['atlas/search/adres'],
+    endpoint: 'atlas/search/adres',
     type: 'adressen',
     labelSingular: 'Adres',
     label: 'Adressen',
     authScope: [],
   },
   {
-    endpoint: ['atlas/search/openbareruimte'],
+    endpoint: 'atlas/search/openbareruimte',
     type: 'openbare_ruimtes',
     label: 'Openbare ruimtes',
     labelSingular: 'Openbare ruimte',
@@ -66,42 +54,42 @@ const DATA_SEARCH_CONFIG: DataSearchType[] = [
     authScope: [],
   },
   {
-    endpoint: ['atlas/search/pand'],
+    endpoint: 'atlas/search/pand',
     type: 'panden',
     label: 'Panden',
     labelSingular: 'Pand',
     authScope: [],
   },
   {
-    endpoint: ['atlas/search/gebied'],
+    endpoint: 'atlas/search/gebied',
     type: 'gebieden',
     label: 'Gebieden',
     labelSingular: 'Gebied',
     authScope: [],
   },
   {
-    endpoint: ['handelsregister/search/vestiging'],
+    endpoint: 'handelsregister/search/vestiging',
     type: 'vestigingen',
     label: 'Vestigingen',
     labelSingular: 'Vestiging',
     authScope: [{ role: ROLES.EMPLOYEE, scope: AUTH_SCOPES.HR }],
   },
   {
-    endpoint: ['handelsregister/search/maatschappelijkeactiviteit'],
+    endpoint: 'handelsregister/search/maatschappelijkeactiviteit',
     type: 'maatschappelijkeactiviteit',
     label: 'Maatschappelijke activiteiten',
     labelSingular: 'Maatschappelijke activiteit',
     authScope: [{ role: ROLES.EMPLOYEE, scope: AUTH_SCOPES.HR }],
   },
   {
-    endpoint: ['atlas/search/kadastraalobject'],
+    endpoint: 'atlas/search/kadastraalobject',
     type: 'kadastrale_objecten',
     labelSingular: 'Kadastraal object',
     label: 'Kadastrale objecten',
     authScope: [],
   },
   {
-    endpoint: ['atlas/search/kadastraalsubject'],
+    endpoint: 'atlas/search/kadastraalsubject',
     type: 'kadastrale_subjecten',
 
     labelSingular: 'Kadastraal subject',
@@ -112,14 +100,14 @@ const DATA_SEARCH_CONFIG: DataSearchType[] = [
     ],
   },
   {
-    endpoint: ['meetbouten/search'],
+    endpoint: 'meetbouten/search',
     type: 'meetbouten',
     labelSingular: 'Meetbout',
     label: 'Meetbouten',
     authScope: [],
   },
   {
-    endpoint: ['monumenten/search'],
+    endpoint: 'monumenten/search',
     type: 'monumenten',
     labelSingular: 'Monument',
     label: 'Monumenten',
@@ -129,21 +117,21 @@ const DATA_SEARCH_CONFIG: DataSearchType[] = [
 
 const DATA_SEARCH_FILTER = { type: 'types', label: 'Types' }
 
-export const normalizeData = ({ _links, _display, type, ...otherField }: any): DataResult => ({
-  id: _links && _links.self ? _links.self.href.match(/([^\/]*)\/*$/)[1] : null,
-  label: _display,
-  type,
-  ...otherField,
-})
-
+/**
+ * Builds an array of array's that might contain more than one endpoint (string).
+ * First we check if we need to fetch from one or more pages, by checking if the given limit + from
+ * is greater than the max results the API's gives us. If this is the case, add the endpoints with a
+ * ?page=n parameter to the array, so we can aggregate the results later, slice them and return them
+ * to the user so that we have pagination functionality.
+ */
 export const getEndpoints = (
   config: Array<object>,
   token: string,
   q: string,
-  limit: Maybe<number> = DEFAULT_LIMIT,
-  from: Maybe<number> = DEFAULT_FROM,
+  limit: number,
+  from: number,
 ): Array<Array<string>> => {
-  const pages = (limit && from ? Math.ceil((limit + from) / 100) : 0) + 1
+  const pages = (limit && from ? Math.ceil((limit + from) / DATA_SEARCH_API_MAX_RESULTS) : 0) + 1
 
   return config.map((api: any) =>
     Array.from(Array(pages).keys())
@@ -151,14 +139,10 @@ export const getEndpoints = (
       .map(number => {
         const query = new URLSearchParams({
           q,
-          ...(number > 1
-            ? {
-                page: number,
-              }
-            : {}),
+          page: number || 1,
           ...(api.params ? { ...api.params } : {}),
         }).toString()
-        return `${process.env.API_ROOT}${api.endpoint[0]}/?${query}`
+        return `${process.env.API_ROOT}${api.endpoint}/?${query}`
       }),
   )
 }
@@ -166,8 +150,8 @@ export const getEndpoints = (
 export const buildRequestPromises = (
   endpoints: Array<Array<string>>,
   token: string,
-): Array<Promise<any>> => {
-  return endpoints.map(urlArray =>
+): Array<Promise<any>> =>
+  endpoints.map(urlArray =>
     Promise.all(
       urlArray.map(url =>
         fetch(
@@ -190,7 +174,6 @@ export const buildRequestPromises = (
       ),
     ),
   )
-}
 
 export const buildResults = (
   validResponses: object[],
@@ -202,7 +185,10 @@ export const buildResults = (
     (result: any, i): DataSearchResultType => {
       const { count } = result[0] // Since we expect count will not change on other pages, we just use it from the first page.
       let results = result.reduce(
-        (acc: object[], { results }: any) => [...acc, ...(Array.isArray(results) ? results : [])],
+        (acc: object[], { results }: { results: undefined | object[] }) => [
+          ...acc,
+          ...(Array.isArray(results) ? results : []),
+        ],
         [],
       )
 
@@ -217,9 +203,7 @@ export const buildResults = (
 
       // Return an error when the user isnt authorized to view this information, therefore the field `results` must be nullable in the schema
       results = userIsAuthorized
-        ? (results &&
-            results.slice(from, limit + from).map((result: any) => normalizeData(result))) ||
-          []
+        ? results.slice(from, limit + from).map((result: object) => normalizeDataResults(result))
         : new Error(`Not authorized to view ${DATA_SEARCH_CONFIG[i].label}`)
 
       return {
@@ -231,7 +215,7 @@ export const buildResults = (
     },
   )
 
-const dataResolver = async (
+const index = async (
   _: any,
   { q, input }: QueryDataSearchArgs,
   context: any,
@@ -292,4 +276,4 @@ const dataResolver = async (
   }
 }
 
-export default dataResolver
+export default index

@@ -1,4 +1,8 @@
-import * as dataResolver from './dataResolver'
+import * as dataResolver from './index'
+import * as normalize from './normalize'
+import { DEFAULT_FROM, DEFAULT_LIMIT } from '../../../../config'
+
+jest.mock('./normalize.ts')
 
 describe('dataResolver', () => {
   const mockedEndpoint = `${process.env.API_ROOT}endpoint`
@@ -11,22 +15,24 @@ describe('dataResolver', () => {
         ],
         '',
         'dam',
+        DEFAULT_LIMIT,
+        DEFAULT_FROM,
       )
       expect(result).toEqual([
-        [`${mockedEndpoint}/foo/?q=dam`],
-        [`${mockedEndpoint}/bar/?q=dam&some=params`],
+        [`${mockedEndpoint}/foo/?q=dam&page=1`],
+        [`${mockedEndpoint}/bar/?q=dam&page=1&some=params`],
       ])
     })
 
     it('should add an endpoint with a pagination parameter when limit + from > 100', () => {
       expect(
         dataResolver.getEndpoints([{ endpoint: ['endpoint/foo'] }], '', 'dam', 100, 10),
-      ).toEqual([[`${mockedEndpoint}/foo/?q=dam`, `${mockedEndpoint}/foo/?q=dam&page=2`]])
+      ).toEqual([[`${mockedEndpoint}/foo/?q=dam&page=1`, `${mockedEndpoint}/foo/?q=dam&page=2`]])
       expect(
         dataResolver.getEndpoints([{ endpoint: ['endpoint/foo'] }], '', 'dam', 81, 120),
       ).toEqual([
         [
-          `${mockedEndpoint}/foo/?q=dam`,
+          `${mockedEndpoint}/foo/?q=dam&page=1`,
           `${mockedEndpoint}/foo/?q=dam&page=2`,
           `${mockedEndpoint}/foo/?q=dam&page=3`,
         ],
@@ -49,9 +55,9 @@ describe('dataResolver', () => {
   })
 
   describe('buildResults', () => {
-    const normalizeDataMock = jest
-      .spyOn(dataResolver, 'normalizeData')
-      .mockImplementation(value => value)
+    beforeEach(() => {
+      jest.spyOn(normalize, 'normalizeDataResults').mockImplementation(value => value)
+    })
 
     it('should return an array with aggregated results, count, type and label', () => {
       const result = dataResolver.buildResults(
@@ -79,7 +85,7 @@ describe('dataResolver', () => {
           type: 'straatnamen',
         },
       ])
-      expect(normalizeDataMock).toHaveBeenCalledTimes(4)
+      expect(normalize.normalizeDataResults).toHaveBeenCalledTimes(4)
     })
 
     it('should slice the array according the given limit and from values', () => {

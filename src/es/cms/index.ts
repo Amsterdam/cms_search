@@ -1,7 +1,9 @@
 import { Client } from '@elastic/elasticsearch'
 import { SearchResponse } from 'elasticsearch'
 import cmsSchema, { ElasticSearchArgs } from './es.schema'
-import config from '../config'
+import { DEFAULT_FROM, DEFAULT_LIMIT } from '../../config'
+
+const CMS_ES_INDEX = 'elasticsearch_index_cms_articles_index'
 
 const client = new Client({
   node: `http://${process.env.ELASTIC_HOST}:9200`,
@@ -9,7 +11,7 @@ const client = new Client({
 
 export function ElasticSearchClient(body: object) {
   // perform the actual search passing in the index, the search query and the type
-  return client.search({ index: config.es.cms.index, body: body })
+  return client.search({ index: CMS_ES_INDEX, body: body })
 }
 
 export async function getCmsFromElasticSearch({
@@ -19,10 +21,8 @@ export async function getCmsFromElasticSearch({
   types,
   filters,
 }: ElasticSearchArgs) {
-  const { defaultSize } = config.es.cms
-
-  limit = limit || defaultSize
-  from = from || 0
+  limit = limit || DEFAULT_LIMIT
+  from = from || DEFAULT_FROM
 
   const themeFilter = filters && filters.find(filter => filter.type === 'theme')
   const themeFilterValues: any =

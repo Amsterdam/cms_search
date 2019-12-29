@@ -2,7 +2,7 @@ import { CmsSearchResult } from '../../../../generated/graphql'
 import { CMS_TYPES } from '../../../../config'
 import getFormattedResults, { QueryCmsSearchArgs } from './normalize'
 import getCmsFilters from './filters'
-import { getCmsFromElasticSearch } from '../../../../es'
+import { getCmsFromElasticSearch } from '../../../../es/cms'
 
 const cmsSearch = (type: string) => async (
   _: any,
