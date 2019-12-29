@@ -1,17 +1,15 @@
 import { articleSearch, publicationSearch, specialSearch } from './cms'
-import dataResolver from './dataResolver'
+import dataSearch from './data'
 import datasetSearch from './datasets'
 import datasetFilters from './datasets/filters'
 
 export default {
   Query: {
     articleSearch,
-    dataSearch: dataResolver,
+    dataSearch,
     datasetSearch,
     publicationSearch,
     specialSearch,
     getDatasetFilters: datasetFilters,
   },
 }
-
-

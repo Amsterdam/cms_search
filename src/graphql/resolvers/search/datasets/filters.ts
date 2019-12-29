@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 import { formatFilters, getCatalogFilters } from '../datasets/normalize'
-import withCache from '../../utils/memoryCache'
+import withCache from '../../../utils/memoryCache'
 
 const week = 60 * 60 * 24 * 7
 

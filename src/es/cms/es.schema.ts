@@ -1,4 +1,4 @@
-import { CmsSearchInput } from '../generated/graphql'
+import { CmsSearchInput } from '../../generated/graphql'
 
 export type ElasticSearchArgs = {
   q: string
