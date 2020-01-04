@@ -31,6 +31,8 @@ type CatalogFilters = {
   distributionTypes: CatalogFilterType
 }
 
+const MAX_INTRO_LENGTH = 140
+
 const properties = {
   status: {
     type: 'status',
@@ -128,13 +130,22 @@ function normalizeDatasets(content: any, catalogFilters: CatalogFilters) {
       return distributionMap[resource['ams:distributionType']]
     })
 
+    // Get the distinc values of dcat:distribution
+    const distributionTypes = item['dcat:distribution']
+      .map((resource: any) => distributionMap[resource['ams:distributionType']])
+      .filter((value: any, index: any, self: string | any[]) => self.indexOf(value) === index)
+
     const id = item['dct:identifier']
+    const description = removeMd(item['dct:description'])
 
     return {
       header: item['dct:title'],
-      description: removeMd(item['dct:description']),
+      description,
+      teaser:
+        description.length > MAX_INTRO_LENGTH ? `${description.substring(0, 140)}...` : description,
       modified: item['ams:sort_modified'],
       formats: aggregateFileFormats(formats),
+      distributionTypes,
       tags: item['dcat:keyword'],
       id,
     }

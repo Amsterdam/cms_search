@@ -108,16 +108,19 @@ const schema = gql`
     type: String!
     label: String
     subtype: String
+    endpoint: String
     datasetdataset: String
   }
 
   type DatasetSearchResultType {
     header: String!
     description: String!
+    teaser: String!
     modified: String!
     tags: [String!]!
     id: String!
     formats: [DatasetFormats!]!
+    distributionTypes: [String]
   }
 
   type DatasetFormats {
