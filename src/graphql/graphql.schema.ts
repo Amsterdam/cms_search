@@ -25,16 +25,18 @@ const schema = gql`
     limit: Int
     from: Int
     types: [String!]
+    filters: [FilterInput!]
   }
 
   input DatasetSearchInput {
     from: Int
     limit: Int
-    filters: [DatasetSearchFilter!]
+    filters: [FilterInput!]
   }
 
-  input DatasetSearchFilter {
+  input FilterInput {
     type: String!
+    multiSelect: Boolean!
     values: [String!]!
   }
 
@@ -47,23 +49,29 @@ const schema = gql`
   type DatasetSearchResult implements SearchResult {
     totalCount: Int!
     results: [DatasetSearchResultType!]!
+  }
+
+  type DatasetFiltersResult {
     filters: [Filter!]
   }
 
   type CMSSearchResult implements SearchResult {
     totalCount: Int!
     results: [CMSSearchResultType!]!
+    filters: [Filter!]
   }
 
   type Filter {
     type: String!
     label: String!
     options: [FilterOptions!]!
+    filterType: String
   }
 
   type FilterOptions {
     id: String!
     label: String!
+    enumType: String
     count: Int!
   }
 
@@ -100,16 +108,19 @@ const schema = gql`
     type: String!
     label: String
     subtype: String
-    dataset: String
+    endpoint: String
+    datasetdataset: String
   }
 
   type DatasetSearchResultType {
     header: String!
     description: String!
+    teaser: String!
     modified: String!
     tags: [String!]!
     id: String!
     formats: [DatasetFormats!]!
+    distributionTypes: [String]
   }
 
   type DatasetFormats {
@@ -123,6 +134,7 @@ const schema = gql`
     datasetSearch(q: String!, input: DatasetSearchInput!): DatasetSearchResult
     publicationSearch(q: String!, input: CMSSearchInput!): CMSSearchResult
     specialSearch(q: String!, input: CMSSearchInput!): CMSSearchResult
+    getDatasetFilters(q: String!): DatasetFiltersResult
   }
 `
 

@@ -1,4 +1,4 @@
-import { getCmsFromElasticSearch, getValuesFromES } from '../es'
+import { getCmsFromElasticSearch, getValuesFromES } from '../es/cms'
 import { CMS_LABELS, CMS_TYPES } from '../config'
 
 export default async ({ query }: any, res: any) => {

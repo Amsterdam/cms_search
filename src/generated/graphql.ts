@@ -1,5 +1,6 @@
 import { GraphQLResolveInfo } from 'graphql'
 export type Maybe<T> = T | null
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } &
   { [P in K]-?: NonNullable<T[P]> }
 /** All built-in and custom scalars, mapped to their actual values */
@@ -16,8 +17,22 @@ export type CmsLink = {
   uri: Scalars['String']
 }
 
-export type CmsResult = Result & {
-  __typename?: 'CMSResult'
+export type CmsSearchInput = {
+  limit?: Maybe<Scalars['Int']>
+  from?: Maybe<Scalars['Int']>
+  types?: Maybe<Array<Scalars['String']>>
+  filters?: Maybe<Array<FilterInput>>
+}
+
+export type CmsSearchResult = SearchResult & {
+  __typename?: 'CMSSearchResult'
+  totalCount: Scalars['Int']
+  results: Array<CmsSearchResultType>
+  filters?: Maybe<Array<Filter>>
+}
+
+export type CmsSearchResultType = {
+  __typename?: 'CMSSearchResultType'
   id?: Maybe<Scalars['ID']>
   type: Scalars['String']
   label?: Maybe<Scalars['String']>
@@ -34,47 +49,27 @@ export type CmsResult = Result & {
   link?: Maybe<CmsLink>
 }
 
-export type CmsSearchResult = SearchResult & {
-  __typename?: 'CMSSearchResult'
-  totalCount: Scalars['Int']
-  results: Array<CmsSearchResultType>
-  themeCount?: Maybe<Array<Maybe<CmsThemeCount>>>
-}
-
-export type CmsSearchResultType = SearchResultType & {
-  __typename?: 'CMSSearchResultType'
-  count: Scalars['Int']
-  totalCount?: Maybe<Scalars['Int']>
-  type?: Maybe<Scalars['String']>
-  label?: Maybe<Scalars['String']>
-  results?: Maybe<Array<CmsResult>>
-}
-
-export type CmsThemeCount = {
-  __typename?: 'CMSThemeCount'
-  key?: Maybe<Scalars['String']>
-  count?: Maybe<Scalars['Int']>
-}
-
-export type DataResult = Result & {
+export type DataResult = {
   __typename?: 'DataResult'
   id?: Maybe<Scalars['ID']>
   type: Scalars['String']
   label?: Maybe<Scalars['String']>
   subtype?: Maybe<Scalars['String']>
-  dataset?: Maybe<Scalars['String']>
+  endpoint?: Maybe<Scalars['String']>
+  datasetdataset?: Maybe<Scalars['String']>
 }
 
 export type DataSearchInput = {
-  limit?: Maybe<Scalars['Int']>,
-  from?: Maybe<Scalars['Int']>,
-  types?: Maybe<Array<Scalars['String']>>,
-};
+  limit?: Maybe<Scalars['Int']>
+  from?: Maybe<Scalars['Int']>
+  types?: Maybe<Array<Scalars['String']>>
+}
 
 export type DataSearchResult = SearchResult & {
   __typename?: 'DataSearchResult'
   totalCount: Scalars['Int']
   results: Array<DataSearchResultType>
+  filters?: Maybe<Array<Filter>>
 }
 
 export type DataSearchResultType = SearchResultType & {
@@ -85,87 +80,107 @@ export type DataSearchResultType = SearchResultType & {
   results?: Maybe<Array<DataResult>>
 }
 
-export type DatasetFormats = {
-   __typename?: 'DatasetFormats',
-  name: Scalars['String'],
-  count: Scalars['Int'],
-};
+export type DatasetFiltersResult = {
+  __typename?: 'DatasetFiltersResult'
+  filters?: Maybe<Array<Filter>>
+}
 
-export type DatasetSearchFilter = {
-  type: Scalars['String'],
-  values: Array<Scalars['String']>,
-};
+export type DatasetFormats = {
+  __typename?: 'DatasetFormats'
+  name: Scalars['String']
+  count: Scalars['Int']
+}
 
 export type DatasetSearchInput = {
-  from?: Maybe<Scalars['Int']>,
-  limit?: Maybe<Scalars['Int']>,
-  filters?: Maybe<Array<DatasetSearchFilter>>,
-};
+  from?: Maybe<Scalars['Int']>
+  limit?: Maybe<Scalars['Int']>
+  filters?: Maybe<Array<FilterInput>>
+}
 
 export type DatasetSearchResult = SearchResult & {
-   __typename?: 'DatasetSearchResult',
-  totalCount: Scalars['Int'],
-  results: Array<DatasetSearchResultType>,
-  filters?: Maybe<Array<Filter>>,
-};
+  __typename?: 'DatasetSearchResult'
+  totalCount: Scalars['Int']
+  results: Array<DatasetSearchResultType>
+}
 
 export type DatasetSearchResultType = {
-   __typename?: 'DatasetSearchResultType',
-  header: Scalars['String'],
-  description: Scalars['String'],
-  modified: Scalars['String'],
-  tags: Array<Scalars['String']>,
-  id: Scalars['String'],
-  formats: Array<DatasetFormats>,
-};
+  __typename?: 'DatasetSearchResultType'
+  header: Scalars['String']
+  description: Scalars['String']
+  teaser: Scalars['String']
+  modified: Scalars['String']
+  tags: Array<Scalars['String']>
+  id: Scalars['String']
+  formats: Array<DatasetFormats>
+  distributionTypes?: Maybe<Array<Maybe<Scalars['String']>>>
+}
 
 export type Filter = {
-   __typename?: 'Filter',
-  type: Scalars['String'],
-  label: Scalars['String'],
-  options: Array<FilterOptions>,
-};
+  __typename?: 'Filter'
+  type: Scalars['String']
+  label: Scalars['String']
+  options: Array<FilterOptions>
+  filterType?: Maybe<Scalars['String']>
+}
+
+export type FilterInput = {
+  type: Scalars['String']
+  multiSelect: Scalars['Boolean']
+  values: Array<Scalars['String']>
+}
 
 export type FilterOptions = {
-   __typename?: 'FilterOptions',
-  id: Scalars['String'],
-  label: Scalars['String'],
-  count: Scalars['Int'],
-};
+  __typename?: 'FilterOptions'
+  id: Scalars['String']
+  label: Scalars['String']
+  enumType?: Maybe<Scalars['String']>
+  count: Scalars['Int']
+}
 
 export type Query = {
   __typename?: 'Query'
+  articleSearch?: Maybe<CmsSearchResult>
   dataSearch?: Maybe<DataSearchResult>
-  cmsSearch?: Maybe<CmsSearchResult>
+  datasetSearch?: Maybe<DatasetSearchResult>
+  publicationSearch?: Maybe<CmsSearchResult>
+  specialSearch?: Maybe<CmsSearchResult>
+  getDatasetFilters?: Maybe<DatasetFiltersResult>
+}
+
+export type QueryArticleSearchArgs = {
+  q: Scalars['String']
+  input: CmsSearchInput
 }
 
 export type QueryDataSearchArgs = {
   q: Scalars['String']
-  input: SearchInput
+  input: DataSearchInput
 }
 
-export type QueryCmsSearchArgs = {
+export type QueryDatasetSearchArgs = {
   q: Scalars['String']
-  input: SearchInput
+  input: DatasetSearchInput
 }
 
-export type Result = {
-  id?: Maybe<Scalars['ID']>
-  type: Scalars['String']
-  label?: Maybe<Scalars['String']>
+export type QueryPublicationSearchArgs = {
+  q: Scalars['String']
+  input: CmsSearchInput
 }
 
-export type SearchInput = {
-  limit?: Maybe<Scalars['Int']>
-  from?: Maybe<Scalars['Int']>
-  types?: Maybe<Array<Scalars['String']>>
+export type QuerySpecialSearchArgs = {
+  q: Scalars['String']
+  input: CmsSearchInput
 }
 
-export type Results = DatasetSearchResultType | CmsSearchResultType | DataSearchResultType;
+export type QueryGetDatasetFiltersArgs = {
+  q: Scalars['String']
+}
+
+export type Results = DatasetSearchResultType | CmsSearchResultType | DataSearchResultType
 
 export type SearchResult = {
   totalCount: Scalars['Int']
-  results: Array<SearchResultType>
+  results: Array<Results>
 }
 
 export type SearchResultType = {
@@ -256,42 +271,64 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>
   String: ResolverTypeWrapper<Scalars['String']>
-  SearchInput: SearchInput
+  CMSSearchInput: CmsSearchInput
   Int: ResolverTypeWrapper<Scalars['Int']>
-  DataSearchResult: ResolverTypeWrapper<DataSearchResult>
-  SearchResult: ResolverTypeWrapper<SearchResult>
-  SearchResultType: ResolverTypeWrapper<SearchResultType>
-  DataSearchResultType: ResolverTypeWrapper<DataSearchResultType>
-  DataResult: ResolverTypeWrapper<DataResult>
-  Result: ResolverTypeWrapper<Result>
-  ID: ResolverTypeWrapper<Scalars['ID']>
-  CMSSearchResult: ResolverTypeWrapper<CmsSearchResult>
-  CMSSearchResultType: ResolverTypeWrapper<CmsSearchResultType>
-  CMSResult: ResolverTypeWrapper<CmsResult>
-  CMSLink: ResolverTypeWrapper<CmsLink>
-  CMSThemeCount: ResolverTypeWrapper<CmsThemeCount>
+  FilterInput: FilterInput
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>
+  CMSSearchResult: ResolverTypeWrapper<CmsSearchResult>
+  SearchResult: ResolverTypeWrapper<
+    Omit<SearchResult, 'results'> & { results: Array<ResolversTypes['Results']> }
+  >
+  Results:
+    | ResolversTypes['DatasetSearchResultType']
+    | ResolversTypes['CMSSearchResultType']
+    | ResolversTypes['DataSearchResultType']
+  DatasetSearchResultType: ResolverTypeWrapper<DatasetSearchResultType>
+  DatasetFormats: ResolverTypeWrapper<DatasetFormats>
+  CMSSearchResultType: ResolverTypeWrapper<CmsSearchResultType>
+  ID: ResolverTypeWrapper<Scalars['ID']>
+  CMSLink: ResolverTypeWrapper<CmsLink>
+  DataSearchResultType: ResolverTypeWrapper<DataSearchResultType>
+  SearchResultType: ResolverTypeWrapper<SearchResultType>
+  DataResult: ResolverTypeWrapper<DataResult>
+  Filter: ResolverTypeWrapper<Filter>
+  FilterOptions: ResolverTypeWrapper<FilterOptions>
+  DataSearchInput: DataSearchInput
+  DataSearchResult: ResolverTypeWrapper<DataSearchResult>
+  DatasetSearchInput: DatasetSearchInput
+  DatasetSearchResult: ResolverTypeWrapper<DatasetSearchResult>
+  DatasetFiltersResult: ResolverTypeWrapper<DatasetFiltersResult>
 }
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Query: {}
   String: Scalars['String']
-  SearchInput: SearchInput
+  CMSSearchInput: CmsSearchInput
   Int: Scalars['Int']
-  DataSearchResult: DataSearchResult
-  SearchResult: SearchResult
-  SearchResultType: SearchResultType
-  DataSearchResultType: DataSearchResultType
-  DataResult: DataResult
-  Result: Result
-  ID: Scalars['ID']
-  CMSSearchResult: CmsSearchResult
-  CMSSearchResultType: CmsSearchResultType
-  CMSResult: CmsResult
-  CMSLink: CmsLink
-  CMSThemeCount: CmsThemeCount
+  FilterInput: FilterInput
   Boolean: Scalars['Boolean']
+  CMSSearchResult: CmsSearchResult
+  SearchResult: Omit<SearchResult, 'results'> & { results: Array<ResolversParentTypes['Results']> }
+  Results:
+    | ResolversParentTypes['DatasetSearchResultType']
+    | ResolversParentTypes['CMSSearchResultType']
+    | ResolversParentTypes['DataSearchResultType']
+  DatasetSearchResultType: DatasetSearchResultType
+  DatasetFormats: DatasetFormats
+  CMSSearchResultType: CmsSearchResultType
+  ID: Scalars['ID']
+  CMSLink: CmsLink
+  DataSearchResultType: DataSearchResultType
+  SearchResultType: SearchResultType
+  DataResult: DataResult
+  Filter: Filter
+  FilterOptions: FilterOptions
+  DataSearchInput: DataSearchInput
+  DataSearchResult: DataSearchResult
+  DatasetSearchInput: DatasetSearchInput
+  DatasetSearchResult: DatasetSearchResult
+  DatasetFiltersResult: DatasetFiltersResult
 }
 
 export type CmsLinkResolvers<
@@ -301,9 +338,18 @@ export type CmsLinkResolvers<
   uri?: Resolver<ResolversTypes['String'], ParentType, ContextType>
 }
 
-export type CmsResultResolvers<
+export type CmsSearchResultResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes['CMSResult'] = ResolversParentTypes['CMSResult']
+  ParentType extends ResolversParentTypes['CMSSearchResult'] = ResolversParentTypes['CMSSearchResult']
+> = {
+  totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  results?: Resolver<Array<ResolversTypes['CMSSearchResultType']>, ParentType, ContextType>
+  filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
+}
+
+export type CmsSearchResultTypeResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['CMSSearchResultType'] = ResolversParentTypes['CMSSearchResultType']
 > = {
   id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>
   type?: Resolver<ResolversTypes['String'], ParentType, ContextType>
@@ -321,38 +367,6 @@ export type CmsResultResolvers<
   link?: Resolver<Maybe<ResolversTypes['CMSLink']>, ParentType, ContextType>
 }
 
-export type CmsSearchResultResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['CMSSearchResult'] = ResolversParentTypes['CMSSearchResult']
-> = {
-  totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
-  results?: Resolver<Array<ResolversTypes['CMSSearchResultType']>, ParentType, ContextType>
-  themeCount?: Resolver<
-    Maybe<Array<Maybe<ResolversTypes['CMSThemeCount']>>>,
-    ParentType,
-    ContextType
-  >
-}
-
-export type CmsSearchResultTypeResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['CMSSearchResultType'] = ResolversParentTypes['CMSSearchResultType']
-> = {
-  count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
-  totalCount?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
-  type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  label?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  results?: Resolver<Maybe<Array<ResolversTypes['CMSResult']>>, ParentType, ContextType>
-}
-
-export type CmsThemeCountResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['CMSThemeCount'] = ResolversParentTypes['CMSThemeCount']
-> = {
-  key?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  count?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
-}
-
 export type DataResultResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['DataResult'] = ResolversParentTypes['DataResult']
@@ -361,7 +375,8 @@ export type DataResultResolvers<
   type?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   label?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   subtype?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  dataset?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  endpoint?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  datasetdataset?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
 }
 
 export type DataSearchResultResolvers<
@@ -370,6 +385,7 @@ export type DataSearchResultResolvers<
 > = {
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   results?: Resolver<Array<ResolversTypes['DataSearchResultType']>, ParentType, ContextType>
+  filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
 }
 
 export type DataSearchResultTypeResolvers<
@@ -382,52 +398,138 @@ export type DataSearchResultTypeResolvers<
   results?: Resolver<Maybe<Array<ResolversTypes['DataResult']>>, ParentType, ContextType>
 }
 
+export type DatasetFiltersResultResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['DatasetFiltersResult'] = ResolversParentTypes['DatasetFiltersResult']
+> = {
+  filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
+}
+
+export type DatasetFormatsResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['DatasetFormats'] = ResolversParentTypes['DatasetFormats']
+> = {
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+}
+
+export type DatasetSearchResultResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['DatasetSearchResult'] = ResolversParentTypes['DatasetSearchResult']
+> = {
+  totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  results?: Resolver<Array<ResolversTypes['DatasetSearchResultType']>, ParentType, ContextType>
+}
+
+export type DatasetSearchResultTypeResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['DatasetSearchResultType'] = ResolversParentTypes['DatasetSearchResultType']
+> = {
+  header?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  teaser?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  modified?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  tags?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  formats?: Resolver<Array<ResolversTypes['DatasetFormats']>, ParentType, ContextType>
+  distributionTypes?: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['String']>>>,
+    ParentType,
+    ContextType
+  >
+}
+
+export type FilterResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Filter'] = ResolversParentTypes['Filter']
+> = {
+  type?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  label?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  options?: Resolver<Array<ResolversTypes['FilterOptions']>, ParentType, ContextType>
+  filterType?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+}
+
+export type FilterOptionsResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['FilterOptions'] = ResolversParentTypes['FilterOptions']
+> = {
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  label?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  enumType?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+}
+
 export type QueryResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']
 > = {
+  articleSearch?: Resolver<
+    Maybe<ResolversTypes['CMSSearchResult']>,
+    ParentType,
+    ContextType,
+    RequireFields<QueryArticleSearchArgs, 'q' | 'input'>
+  >
   dataSearch?: Resolver<
     Maybe<ResolversTypes['DataSearchResult']>,
     ParentType,
     ContextType,
     RequireFields<QueryDataSearchArgs, 'q' | 'input'>
   >
-  cmsSearch?: Resolver<
+  datasetSearch?: Resolver<
+    Maybe<ResolversTypes['DatasetSearchResult']>,
+    ParentType,
+    ContextType,
+    RequireFields<QueryDatasetSearchArgs, 'q' | 'input'>
+  >
+  publicationSearch?: Resolver<
     Maybe<ResolversTypes['CMSSearchResult']>,
     ParentType,
     ContextType,
-    RequireFields<QueryCmsSearchArgs, 'q' | 'input'>
+    RequireFields<QueryPublicationSearchArgs, 'q' | 'input'>
+  >
+  specialSearch?: Resolver<
+    Maybe<ResolversTypes['CMSSearchResult']>,
+    ParentType,
+    ContextType,
+    RequireFields<QuerySpecialSearchArgs, 'q' | 'input'>
+  >
+  getDatasetFilters?: Resolver<
+    Maybe<ResolversTypes['DatasetFiltersResult']>,
+    ParentType,
+    ContextType,
+    RequireFields<QueryGetDatasetFiltersArgs, 'q'>
   >
 }
 
-export type ResultResolvers<
+export type ResultsResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes['Result'] = ResolversParentTypes['Result']
+  ParentType extends ResolversParentTypes['Results'] = ResolversParentTypes['Results']
 > = {
-  __resolveType: TypeResolveFn<'DataResult' | 'CMSResult', ParentType, ContextType>
-  id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>
-  type?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  label?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  __resolveType: TypeResolveFn<
+    'DatasetSearchResultType' | 'CMSSearchResultType' | 'DataSearchResultType',
+    ParentType,
+    ContextType
+  >
 }
 
 export type SearchResultResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['SearchResult'] = ResolversParentTypes['SearchResult']
 > = {
-  __resolveType: TypeResolveFn<'DataSearchResult' | 'CMSSearchResult', ParentType, ContextType>
+  __resolveType: TypeResolveFn<
+    'CMSSearchResult' | 'DataSearchResult' | 'DatasetSearchResult',
+    ParentType,
+    ContextType
+  >
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
-  results?: Resolver<Array<ResolversTypes['SearchResultType']>, ParentType, ContextType>
+  results?: Resolver<Array<ResolversTypes['Results']>, ParentType, ContextType>
 }
 
 export type SearchResultTypeResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['SearchResultType'] = ResolversParentTypes['SearchResultType']
 > = {
-  __resolveType: TypeResolveFn<
-    'DataSearchResultType' | 'CMSSearchResultType',
-    ParentType,
-    ContextType
-  >
+  __resolveType: TypeResolveFn<'DataSearchResultType', ParentType, ContextType>
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   label?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
@@ -435,15 +537,19 @@ export type SearchResultTypeResolvers<
 
 export type Resolvers<ContextType = any> = {
   CMSLink?: CmsLinkResolvers<ContextType>
-  CMSResult?: CmsResultResolvers<ContextType>
   CMSSearchResult?: CmsSearchResultResolvers<ContextType>
   CMSSearchResultType?: CmsSearchResultTypeResolvers<ContextType>
-  CMSThemeCount?: CmsThemeCountResolvers<ContextType>
   DataResult?: DataResultResolvers<ContextType>
   DataSearchResult?: DataSearchResultResolvers<ContextType>
   DataSearchResultType?: DataSearchResultTypeResolvers<ContextType>
+  DatasetFiltersResult?: DatasetFiltersResultResolvers<ContextType>
+  DatasetFormats?: DatasetFormatsResolvers<ContextType>
+  DatasetSearchResult?: DatasetSearchResultResolvers<ContextType>
+  DatasetSearchResultType?: DatasetSearchResultTypeResolvers<ContextType>
+  Filter?: FilterResolvers<ContextType>
+  FilterOptions?: FilterOptionsResolvers<ContextType>
   Query?: QueryResolvers<ContextType>
-  Result?: ResultResolvers
+  Results?: ResultsResolvers
   SearchResult?: SearchResultResolvers
   SearchResultType?: SearchResultTypeResolvers
 }

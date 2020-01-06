@@ -26,7 +26,6 @@ export default graphqlHTTP(async req => ({
     resolvers,
     resolverValidationOptions: {
       requireResolversForResolveType: false,
-
       requireResolversForArgs: false,
     },
   }),

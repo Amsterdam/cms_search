@@ -1,6 +1,8 @@
 import fetch from 'node-fetch'
+
 import { DatasetSearchResult, QueryDatasetSearchArgs } from '../../../../generated/graphql'
-import { formatFilters, getCatalogFilters, normalizeDatasets, properties } from './normalize'
+import { getCatalogFilters, normalizeDatasets, properties } from './normalize'
+import { openApiCached } from './filters'
 
 export default async (
   _: any,
@@ -10,10 +12,10 @@ export default async (
 
   /**
    * Output like: {
-   *   property/foo/bar: 'eq=value1,value2'
+   *   property/foo/bar: 'in=value1,value2'
    * }
    */
-  const queryFilters = (inputFilters || []).reduce((acc, { type, values }) => {
+  const queryFilters = (inputFilters || []).reduce((acc, { type, values, multiSelect }) => {
     const selected = Object.values(properties).find(
       ({ type: propertyType }) => propertyType === type,
     )
@@ -21,7 +23,7 @@ export default async (
     return selected
       ? {
           ...acc,
-          [selected.name]: `eq=${values.join(',')}`,
+          [selected.name]: `${multiSelect ? 'in' : 'eq'}=${values.join(`,`)}`,
         }
       : {}
   }, {})
@@ -43,23 +45,19 @@ export default async (
   const urlQuery = new URLSearchParams(query).toString()
 
   const datasetsUrl = `${process.env.API_ROOT}dcatd/datasets?${urlQuery}`
-  const openApiUrl = `${process.env.API_ROOT}dcatd/openapi`
 
-  let filters
-  let results = []
+  let results: any = []
   let totalCount = 0
 
   try {
-    const [datasets, openApiResults] = await Promise.all([
+    const [datasets, openApiResults]: any = await Promise.all([
       fetch(datasetsUrl).then((res: any) => res.json()),
-      fetch(openApiUrl).then((res: any) => res.json()),
+      openApiCached(),
     ])
-
     const datasetFilters = getCatalogFilters(openApiResults)
 
-    filters = formatFilters(datasets['ams:facet_info'], datasetFilters)
     results = normalizeDatasets(datasets['dcat:dataset'], datasetFilters)
-    totalCount = Array.isArray(results) ? results.length : 0
+    totalCount = datasets['void:documents']
   } catch (e) {
     // Todo: error handling
     console.warn(e)
@@ -68,6 +66,5 @@ export default async (
   return {
     totalCount,
     results,
-    filters,
   }
 }

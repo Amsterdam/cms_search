@@ -1,11 +1,32 @@
 import { CmsSearchResult } from '../../../../generated/graphql'
 import { CMS_TYPES } from '../../../../config'
-import getFromCMS, { QueryCmsSearchArgs } from './normalize'
+import getFormattedResults, { QueryCmsSearchArgs } from './normalize'
+import getCmsFilters from './filters'
+import { getCmsFromElasticSearch } from '../../../../es/cms'
 
 const cmsSearch = (type: string) => async (
   _: any,
   { q, input }: QueryCmsSearchArgs,
-): Promise<CmsSearchResult> => await getFromCMS(type, { q, input })
+): Promise<CmsSearchResult> => {
+  const { from, limit, filters: inputFilters } = input
+
+  const { results, totalCount, filterCount } = await getCmsFromElasticSearch({
+    q,
+    limit,
+    from,
+    types: [type],
+    filters: inputFilters,
+  })
+
+  const formattedResults = getFormattedResults(results)
+  const filters = await getCmsFilters(filterCount)
+
+  return {
+    totalCount,
+    results: formattedResults.filter(({ type: resultType }) => type === resultType),
+    ...filters,
+  }
+}
 
 const articleSearch = cmsSearch(CMS_TYPES.ARTICLE)
 

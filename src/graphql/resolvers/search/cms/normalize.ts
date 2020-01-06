@@ -1,8 +1,20 @@
-import { CmsSearchResultType, QueryArticleSearchArgs, QueryPublicationSearchArgs, QuerySpecialSearchArgs, CmsSearchResult } from '../../../../generated/graphql'
-import { getValuesFromES, getCmsFromElasticSearch } from '../../../../es'
+import {
+  CmsSearchResultType,
+  QueryArticleSearchArgs,
+  QueryPublicationSearchArgs,
+  QuerySpecialSearchArgs,
+} from '../../../../generated/graphql'
+import { getValuesFromES } from '../../../../es/cms'
 import moment from 'moment'
 
-export type QueryCmsSearchArgs = QueryArticleSearchArgs | QueryPublicationSearchArgs | QuerySpecialSearchArgs
+export type QueryCmsSearchArgs =
+  | QueryArticleSearchArgs
+  | QueryPublicationSearchArgs
+  | QuerySpecialSearchArgs
+
+type JsonAPI = {
+  data: Array<Object>
+}
 
 function getFormattedDate(date?: number | Date, year?: number, month?: number): string {
   moment.locale('nl-NL')
@@ -72,24 +84,41 @@ function getFormattedResults(results: any): Array<CmsSearchResultType> {
   })
 }
 
-async function getFromCMS(type: string, { q, input }: QueryCmsSearchArgs): Promise<CmsSearchResult> {
-  const { limit, from } = input
-  
-  const { results, totalCount } = await getCmsFromElasticSearch({
-    q,
-    limit,
-    from,
-    types: [type],
+function getThemeFilterOptions(
+  result: JsonAPI,
+  themeCount: Array<{ key: string; count: number }>,
+): Array<any> {
+  return result.data.map((item: any) => {
+    const id = item.attributes.drupal_internal__tid
+
+    const { count } = themeCount.find(count => count.key === id) || {}
+
+    return {
+      id,
+      label: item.attributes.name,
+      count: count || 0,
+      enumType: `theme:${id}`,
+    }
   })
-
-  const formattedResults = getFormattedResults(results)
-
-  return {
-    totalCount,
-    results: formattedResults.filter(({ type: resultType }) => type === resultType),
-  }
 }
 
-export default getFromCMS
+function formatFilters(
+  themeTaxonomy: JsonAPI,
+  themeCount: Array<{ key: string; count: number }>,
+): Array<any> {
+  const themeFilterOptions = getThemeFilterOptions(themeTaxonomy, themeCount)
 
-export { getFormattedDate }
+  return [
+    // This is already structured as an array as there will be more filters later on
+    {
+      type: 'theme',
+      label: "Thema's",
+      filterType: 'array',
+      options: themeFilterOptions,
+    },
+  ]
+}
+
+export default getFormattedResults
+
+export { getFormattedDate, getThemeFilterOptions, formatFilters }

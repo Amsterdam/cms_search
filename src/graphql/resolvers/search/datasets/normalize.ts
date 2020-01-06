@@ -10,7 +10,11 @@ type PropertyType = {
 
 type FileFormatFilterType = Array<{ name: string; count: number }>
 
-type CatalogFilterType = Array<{ id: string; label: string }>
+export type CatalogFilterOptionsType = Array<{ id: string; label: string; enumType: string }>
+export type CatalogFilterType = {
+  options: CatalogFilterOptionsType
+  filterType: string
+}
 
 type CatalogFilters = {
   statusTypes: CatalogFilterType
@@ -22,10 +26,12 @@ type CatalogFilters = {
   licenseTypes: CatalogFilterType
   spatialUnits: CatalogFilterType
   temporalUnits: CatalogFilterType
-  accrualPeriodicities: CatalogFilterType
+  accrualPeriodicity: CatalogFilterType
   languages: CatalogFilterType
   distributionTypes: CatalogFilterType
 }
+
+const MAX_INTRO_LENGTH = 140
 
 const properties = {
   status: {
@@ -109,9 +115,9 @@ function normalizeDatasets(content: any, catalogFilters: CatalogFilters) {
     return false
   }
 
-  const formatMap = arrayToObject(catalogFilters.formatTypes, 'id')
-  const serviceMap = arrayToObject(catalogFilters.serviceTypes, 'id')
-  const distributionMap = arrayToObject(catalogFilters.distributionTypes, 'id')
+  const formatMap = arrayToObject(catalogFilters.formatTypes.options, 'id')
+  const serviceMap = arrayToObject(catalogFilters.serviceTypes.options, 'id')
+  const distributionMap = arrayToObject(catalogFilters.distributionTypes.options, 'id')
 
   return content.map((item: any) => {
     const formats = item['dcat:distribution'].map((resource: any) => {
@@ -124,13 +130,24 @@ function normalizeDatasets(content: any, catalogFilters: CatalogFilters) {
       return distributionMap[resource['ams:distributionType']]
     })
 
+    // Get the distinc values of dcat:distribution
+    const distributionTypes = item['dcat:distribution']
+      .map((resource: any) => distributionMap[resource['ams:distributionType']])
+      .filter((value: any, index: any, self: string | any[]) => self.indexOf(value) === index)
+
     const id = item['dct:identifier']
+    const description = removeMd(item['dct:description'])
 
     return {
       header: item['dct:title'],
-      description: removeMd(item['dct:description']),
+      description,
+      teaser:
+        description.length > MAX_INTRO_LENGTH
+          ? `${description.substring(0, MAX_INTRO_LENGTH)}...`
+          : description,
       modified: item['ams:sort_modified'],
       formats: aggregateFileFormats(formats),
+      distributionTypes,
       tags: item['dcat:keyword'],
       id,
     }
@@ -145,12 +162,13 @@ function normalizeDatasets(content: any, catalogFilters: CatalogFilters) {
  * Outputs: [{ id: 'bar', label: 'hello' }, {id: 'baz', label: 'Anders'}]
  * @param propertyType
  */
-function getOptionsFromProperty(propertyType: PropertyType): CatalogFilterType {
+function getOptionsFromProperty(propertyType: PropertyType): CatalogFilterOptionsType {
   return propertyType.enum.map((item, i: number) => {
     const index = item.indexOf(':')
     return {
       id: index === -1 ? item : item.substring(index + 1),
       label: propertyType.enumNames[i] ? propertyType.enumNames[i] : 'Anders',
+      enumType: propertyType.enum[i] ? propertyType.enum[i] : 'other',
     }
   })
 }
@@ -161,80 +179,112 @@ function getCatalogFilters(data: any): CatalogFilters {
   const ownerProperties = dcatDocProperties['ams:owner'].examples
 
   return {
-    statusTypes: getOptionsFromProperty(dcatDocProperties['ams:status']),
-    groupTypes: getOptionsFromProperty(dcatDocProperties['dcat:theme'].items),
-    formatTypes: getOptionsFromProperty(distributionProperties['dcat:mediaType']),
-    serviceTypes: getOptionsFromProperty(distributionProperties['ams:serviceType']),
-    resourceTypes: getOptionsFromProperty(distributionProperties['ams:resourceType']),
-    ownerTypes: ownerProperties.map((item: any) => ({
-      id: item,
-      label: item,
-    })),
-    licenseTypes: getOptionsFromProperty(dcatDocProperties['ams:license']),
-    spatialUnits: getOptionsFromProperty(dcatDocProperties['ams:spatialUnit']),
-    temporalUnits: getOptionsFromProperty(dcatDocProperties['ams:temporalUnit']),
-    accrualPeriodicities: getOptionsFromProperty(dcatDocProperties['dct:accrualPeriodicity']),
-    languages: getOptionsFromProperty(dcatDocProperties['dct:language']),
-    distributionTypes: getOptionsFromProperty(distributionProperties['ams:distributionType']),
+    statusTypes: {
+      filterType: dcatDocProperties['ams:status'].type,
+      options: getOptionsFromProperty(dcatDocProperties['ams:status']),
+    },
+    groupTypes: {
+      options: getOptionsFromProperty(dcatDocProperties['dcat:theme'].items),
+      filterType: dcatDocProperties['dcat:theme'].type,
+    },
+    formatTypes: {
+      options: getOptionsFromProperty(distributionProperties['dcat:mediaType']),
+      filterType: distributionProperties['dcat:mediaType'].type,
+    },
+    serviceTypes: {
+      options: getOptionsFromProperty(distributionProperties['ams:serviceType']),
+      filterType: distributionProperties['ams:serviceType'].type,
+    },
+    resourceTypes: {
+      options: getOptionsFromProperty(distributionProperties['ams:resourceType']),
+      filterType: distributionProperties['ams:resourceType'].type,
+    },
+    ownerTypes: {
+      options: ownerProperties.map((item: any) => ({
+        id: item,
+        label: item,
+        enumType: item,
+      })),
+      filterType: dcatDocProperties['ams:owner'].type,
+    },
+    licenseTypes: {
+      options: getOptionsFromProperty(dcatDocProperties['ams:license']),
+      filterType: dcatDocProperties['ams:license'].type,
+    },
+    spatialUnits: {
+      options: getOptionsFromProperty(dcatDocProperties['ams:spatialUnit']),
+      filterType: dcatDocProperties['ams:spatialUnit'].type,
+    },
+    temporalUnits: {
+      options: getOptionsFromProperty(dcatDocProperties['ams:temporalUnit']),
+      filterType: dcatDocProperties['ams:temporalUnit'].type,
+    },
+    accrualPeriodicity: {
+      options: getOptionsFromProperty(dcatDocProperties['dct:accrualPeriodicity']),
+      filterType: dcatDocProperties['dct:accrualPeriodicity'].type,
+    },
+    languages: {
+      options: getOptionsFromProperty(dcatDocProperties['dct:language']),
+      filterType: dcatDocProperties['dct:language'].type,
+    },
+    distributionTypes: {
+      options: getOptionsFromProperty(distributionProperties['ams:distributionType']),
+      filterType: distributionProperties['ams:distributionType'].type,
+    },
   }
 }
 
-function getFacetOptions(
-  facet: Array<string> | undefined,
-  filterCatalog: Array<{ id: string; label: string }>,
-  namespace: undefined | string = undefined,
-) {
-  const facetObject = facet || {}
-  return Object.keys(facetObject).map(option => {
-    const id = namespace ? option.replace(`${namespace}:`, '') : option
-    const catalogOption = filterCatalog && filterCatalog.filter(item => item.id === id)[0]
-    return {
-      id,
-      label: catalogOption ? catalogOption.label : id,
-      count: facetObject[option],
-    }
-  })
+function getFacetOptions(facets: any, filterCatalog: CatalogFilterType) {
+  return filterCatalog.options.map(({ label, enumType, id }) => ({
+    id,
+    label: label ? label : id,
+    count: Object.values(facets).reduce((acc, value: any) => value[enumType] || acc, 0) as number,
+    enumType: enumType,
+  }))
 }
 
-function formatFilters(filters: Object, catalogFilters: CatalogFilters): Array<Filter> {
+function formatFilters(facets: Object, catalogFilters: CatalogFilters): Array<Filter> {
   return [
-    {
-      type: properties.status.type,
-      label: "Thema's",
-      options: getFacetOptions(
-        filters[properties.status.name],
-        catalogFilters.statusTypes,
-        'status',
-      ),
-    },
+    // {
+    //   type: properties.status.type,
+    //   label: 'Status',
+    //   filterType: catalogFilters.statusTypes.filterType,
+    //   options: getFacetOptions(
+    //     filters[properties.status.name],
+    //     catalogFilters.statusTypes,
+    //     'status',
+    //   ),
+    // },
     {
       type: properties.theme.type,
-      label: 'Groepen',
-      options: getFacetOptions(filters[properties.theme.name], catalogFilters.groupTypes, 'theme'),
+      label: "Thema's",
+      filterType: catalogFilters.groupTypes.filterType,
+      options: getFacetOptions(facets, catalogFilters.groupTypes),
     },
-    {
-      type: properties.format.type,
-      label: 'Bestandsformaten',
-      options: getFacetOptions(filters[properties.format.name], catalogFilters.formatTypes),
-    },
-    {
-      type: properties.owner.type,
-      label: 'Eigenaar',
-      options: getFacetOptions(filters[properties.owner.name], catalogFilters.ownerTypes),
-    },
+    // {
+    //   type: properties.format.type,
+    //   label: 'Bestandsformaten',
+    //   filterType: catalogFilters.formatTypes.filterType,
+    //   options: getFacetOptions(filters[properties.format.name], catalogFilters.formatTypes),
+    // },
+    // {
+    //   type: properties.owner.type,
+    //   label: 'Eigenaar',
+    //   filterType: catalogFilters.ownerTypes.filterType,
+    //   options: getFacetOptions(filters[properties.owner.name], catalogFilters.ownerTypes),
+    // },
     {
       type: properties.distributionType.type,
       label: 'Verschijningsvorm',
-      options: getFacetOptions(
-        filters[properties.distributionType.name],
-        catalogFilters.distributionTypes,
-      ),
+      filterType: catalogFilters.distributionTypes.filterType,
+      options: getFacetOptions(facets, catalogFilters.distributionTypes),
     },
-    {
-      type: properties.serviceType.type,
-      label: 'API/Service formaten',
-      options: getFacetOptions(filters[properties.serviceType.name], catalogFilters.serviceTypes),
-    },
+    // {
+    //   type: properties.serviceType.type,
+    //   label: 'API/Service formaten',
+    //   filterType: catalogFilters.distributionTypes.filterType,
+    //   options: getFacetOptions(filters[properties.serviceType.name], catalogFilters.serviceTypes),
+    // },
   ]
 }
 
