@@ -142,7 +142,9 @@ function normalizeDatasets(content: any, catalogFilters: CatalogFilters) {
       header: item['dct:title'],
       description,
       teaser:
-        description.length > MAX_INTRO_LENGTH ? `${description.substring(0, 140)}...` : description,
+        description.length > MAX_INTRO_LENGTH
+          ? `${description.substring(0, MAX_INTRO_LENGTH)}...`
+          : description,
       modified: item['ams:sort_modified'],
       formats: aggregateFileFormats(formats),
       distributionTypes,
