@@ -8,6 +8,7 @@ import {
 import { getUserScopes } from '../../../utils/jwt'
 import { AUTH_SCOPES, DEFAULT_FROM, DEFAULT_LIMIT, ROLES } from '../../../../config'
 import { normalizeDataResults } from './normalize'
+import DataError from '../../../utils/DataError'
 
 type DataSearchType = {
   endpoint: string
@@ -45,7 +46,7 @@ const DATA_SEARCH_CONFIG: DataSearchType[] = [
   },
   {
     endpoint: 'atlas/search/openbareruimte',
-    type: 'openbare_ruimtes',
+    type: 'openbareruimte',
     label: 'Openbare ruimtes',
     labelSingular: 'Openbare ruimte',
     params: {
@@ -164,6 +165,7 @@ export const buildRequestPromises = (
               }
             : {},
         ).then((res: any) =>
+          // Todo: error handling when endpoint is unavailable
           res.status !== 200
             ? {
                 count: 0,
@@ -195,6 +197,9 @@ export const buildResults = (
       const resultCount = count || 0
       // totalCount = totalCount + resultCount
 
+      const type = DATA_SEARCH_CONFIG[i].type
+      const label = count === 1 ? DATA_SEARCH_CONFIG[i].labelSingular : DATA_SEARCH_CONFIG[i].label
+
       // Compare the scopes from the users token with the scopes as defined for this data type
       const userIsAuthorized =
         DATA_SEARCH_CONFIG[i].authScope && DATA_SEARCH_CONFIG[i].authScope.length > 0
@@ -204,12 +209,17 @@ export const buildResults = (
       // Return an error when the user isnt authorized to view this information, therefore the field `results` must be nullable in the schema
       results = userIsAuthorized
         ? results.slice(from, limit + from).map((result: object) => normalizeDataResults(result))
-        : new Error(`Not authorized to view ${DATA_SEARCH_CONFIG[i].label}`)
+        : new DataError({
+            message: `Not authorized to view ${label}`,
+            code: 'UNAUTHORIZED',
+            type,
+            label,
+          })
 
       return {
         count: resultCount,
-        label: count === 1 ? DATA_SEARCH_CONFIG[i].labelSingular : DATA_SEARCH_CONFIG[i].label,
-        type: DATA_SEARCH_CONFIG[i].type,
+        label,
+        type,
         results,
       }
     },

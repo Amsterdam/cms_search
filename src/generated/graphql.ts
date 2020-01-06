@@ -106,10 +106,12 @@ export type DatasetSearchResultType = {
   __typename?: 'DatasetSearchResultType'
   header: Scalars['String']
   description: Scalars['String']
+  teaser: Scalars['String']
   modified: Scalars['String']
   tags: Array<Scalars['String']>
   id: Scalars['String']
   formats: Array<DatasetFormats>
+  distributionTypes?: Maybe<Array<Maybe<Scalars['String']>>>
 }
 
 export type Filter = {
@@ -423,10 +425,16 @@ export type DatasetSearchResultTypeResolvers<
 > = {
   header?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   description?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  teaser?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   modified?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   tags?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   formats?: Resolver<Array<ResolversTypes['DatasetFormats']>, ParentType, ContextType>
+  distributionTypes?: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['String']>>>,
+    ParentType,
+    ContextType
+  >
 }
 
 export type FilterResolvers<
