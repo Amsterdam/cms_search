@@ -5,7 +5,8 @@ export type ElasticSearchArgs = {
 } & CmsSearchInput
 
 export default ({ q, limit, from, types, filters: themeFilters, sort }: ElasticSearchArgs) => {
-  let terms = q.split(' ')
+  const searchQuery = q.toLocaleLowerCase()
+  let terms = searchQuery.split(' ')
   const nrTerms = terms.length
 
   /** The way the results are indexed by the Drupal ElasticSearch plugin requires us to construct
@@ -13,42 +14,89 @@ export default ({ q, limit, from, types, filters: themeFilters, sort }: ElasticS
    * from this array are searched as terms except for the last one - this value is
    * prefixed to also find part of words
    **/
-  const should = ['', ...terms].reduce((acc, cur): any => {
-    return [
-      ...acc,
-      {
-        match: {
-          title: {
-            query: cur,
-          },
-        },
+  // const should = ['', ...terms].reduce((acc, cur): any => {
+  //   return [
+  //     ...acc,
+  //     {
+  //       match: {
+  //         title: {
+  //           query: `*${cur}*`,
+  //           boost: 6.0,
+  //         },
+  //       },
+  //     },
+  //     {
+  //       term: {
+  //         field_intro: {
+  //           value: cur,
+  //           boost: 2.0,
+  //         },
+  //       },
+  //     },
+  //     {
+  //       term: {
+  //         processed: {
+  //           value: cur,
+  //           boost: 1.0,
+  //         },
+  //       },
+  //     },
+  //   ]
+  // })
+
+  const minimumShouldMatch = 2
+  const should = [
+    {
+      bool: {
+        should: ['', ...terms].reduce((acc, cur): any => {
+          return [
+            ...acc,
+            {
+              match: {
+                title: {
+                  query: `*${cur}*`,
+                  boost: 8.0,
+                },
+              },
+            },
+          ]
+        }),
       },
-      {
-        term: {
-          title: {
-            value: cur,
-            boost: 4.0,
-          },
-        },
+    },
+    {
+      bool: {
+        should: ['', ...terms].reduce((acc, cur): any => {
+          return [
+            ...acc,
+            {
+              match: {
+                title: {
+                  query: `*${cur}*`,
+                  boost: 4.0,
+                },
+              },
+            },
+            {
+              term: {
+                field_intro: {
+                  value: cur,
+                  boost: 2.0,
+                },
+              },
+            },
+            {
+              term: {
+                processed: {
+                  value: cur,
+                  boost: 1.0,
+                },
+              },
+            },
+          ]
+        }),
       },
-      {
-        term: {
-          field_intro: {
-            value: cur,
-            boost: 2.0,
-          },
-        },
-      },
-      {
-        term: {
-          processed: {
-            value: cur,
-            boost: 1.0,
-          },
-        },
-      },
-    ]
-  })
+    },
+  ]
 
   const filters =
     themeFilters && themeFilters.map(themeFilter => ({ term: { field_theme_id: themeFilter } }))
@@ -91,13 +139,13 @@ export default ({ q, limit, from, types, filters: themeFilters, sort }: ElasticS
             : []),
         ],
         must_not: [],
-        should: [...should],
+        should,
         filter: {
           terms: {
             type: types,
           },
         },
-        minimum_should_match: nrTerms, // All the terms from the query string must be matched
+        minimum_should_match: minimumShouldMatch, // All the terms from the query string must be matched
       },
     },
     from,
