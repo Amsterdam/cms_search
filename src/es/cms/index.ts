@@ -20,6 +20,7 @@ export async function getCmsFromElasticSearch({
   from,
   types,
   filters,
+  sort,
 }: ElasticSearchArgs) {
   limit = limit || DEFAULT_LIMIT
   from = from || DEFAULT_FROM
@@ -29,7 +30,7 @@ export async function getCmsFromElasticSearch({
     themeFilter && themeFilter.values && themeFilter.values.map(value => value.split(':').pop())
 
   const results: SearchResponse<any> = await ElasticSearchClient(
-    cmsSchema({ q, limit, from, types, filters: themeFilterValues }),
+    cmsSchema({ q, limit, from, types, filters: themeFilterValues, sort }),
   ).then(r => r.body)
   const countResults: any = Object.entries(results.aggregations).reduce((acc, [key, value]) => {
     // @ts-ignore

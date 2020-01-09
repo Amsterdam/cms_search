@@ -22,6 +22,7 @@ export type CmsSearchInput = {
   from?: Maybe<Scalars['Int']>
   types?: Maybe<Array<Scalars['String']>>
   filters?: Maybe<Array<FilterInput>>
+  sort?: Maybe<CmsSortInput>
 }
 
 export type CmsSearchResult = SearchResult & {
@@ -49,12 +50,18 @@ export type CmsSearchResultType = {
   link?: Maybe<CmsLink>
 }
 
+export type CmsSortInput = {
+  field: Scalars['String']
+  order: Scalars['String']
+}
+
 export type DataResult = {
   __typename?: 'DataResult'
   id?: Maybe<Scalars['ID']>
   type: Scalars['String']
   label?: Maybe<Scalars['String']>
   subtype?: Maybe<Scalars['String']>
+  endpoint?: Maybe<Scalars['String']>
   datasetdataset?: Maybe<Scalars['String']>
 }
 
@@ -274,6 +281,7 @@ export type ResolversTypes = {
   Int: ResolverTypeWrapper<Scalars['Int']>
   FilterInput: FilterInput
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>
+  CMSSortInput: CmsSortInput
   CMSSearchResult: ResolverTypeWrapper<CmsSearchResult>
   SearchResult: ResolverTypeWrapper<
     Omit<SearchResult, 'results'> & { results: Array<ResolversTypes['Results']> }
@@ -307,6 +315,7 @@ export type ResolversParentTypes = {
   Int: Scalars['Int']
   FilterInput: FilterInput
   Boolean: Scalars['Boolean']
+  CMSSortInput: CmsSortInput
   CMSSearchResult: CmsSearchResult
   SearchResult: Omit<SearchResult, 'results'> & { results: Array<ResolversParentTypes['Results']> }
   Results:
@@ -374,6 +383,7 @@ export type DataResultResolvers<
   type?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   label?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   subtype?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  endpoint?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   datasetdataset?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
 }
 
