@@ -22,6 +22,7 @@ export type CmsSearchInput = {
   from?: Maybe<Scalars['Int']>
   types?: Maybe<Array<Scalars['String']>>
   filters?: Maybe<Array<FilterInput>>
+  sort?: Maybe<CmsSortInput>
 }
 
 export type CmsSearchResult = SearchResult & {
@@ -47,6 +48,11 @@ export type CmsSearchResultType = {
   teaser?: Maybe<Scalars['String']>
   dateLocale?: Maybe<Scalars['String']>
   link?: Maybe<CmsLink>
+}
+
+export type CmsSortInput = {
+  field: Scalars['String']
+  order: Scalars['String']
 }
 
 export type DataResult = {
@@ -275,6 +281,7 @@ export type ResolversTypes = {
   Int: ResolverTypeWrapper<Scalars['Int']>
   FilterInput: FilterInput
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>
+  CMSSortInput: CmsSortInput
   CMSSearchResult: ResolverTypeWrapper<CmsSearchResult>
   SearchResult: ResolverTypeWrapper<
     Omit<SearchResult, 'results'> & { results: Array<ResolversTypes['Results']> }
@@ -308,6 +315,7 @@ export type ResolversParentTypes = {
   Int: Scalars['Int']
   FilterInput: FilterInput
   Boolean: Scalars['Boolean']
+  CMSSortInput: CmsSortInput
   CMSSearchResult: CmsSearchResult
   SearchResult: Omit<SearchResult, 'results'> & { results: Array<ResolversParentTypes['Results']> }
   Results:

@@ -21,11 +21,17 @@ const schema = gql`
     types: [String!]
   }
 
+  input CMSSortInput {
+    field: String!
+    order: String!
+  }
+
   input CMSSearchInput {
     limit: Int
     from: Int
     types: [String!]
     filters: [FilterInput!]
+    sort: CMSSortInput
   }
 
   input DatasetSearchInput {

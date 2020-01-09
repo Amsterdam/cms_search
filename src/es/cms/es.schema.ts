@@ -4,7 +4,7 @@ export type ElasticSearchArgs = {
   q: string
 } & CmsSearchInput
 
-export default ({ q, limit, from, types, filters: themeFilters }: ElasticSearchArgs) => {
+export default ({ q, limit, from, types, filters: themeFilters, sort }: ElasticSearchArgs) => {
   let terms = q.split(' ')
   const nrTerms = terms.length
 
@@ -13,13 +13,18 @@ export default ({ q, limit, from, types, filters: themeFilters }: ElasticSearchA
    * from this array are searched as terms except for the last one - this value is
    * prefixed to also find part of words
    **/
-  const should = ['', ...terms].reduce((acc, cur, index): any => {
-    const queryType = nrTerms === index ? 'prefix' : 'term'
-
+  const should = ['', ...terms].reduce((acc, cur): any => {
     return [
       ...acc,
       {
-        [queryType]: {
+        match: {
+          title: {
+            query: cur,
+          },
+        },
+      },
+      {
+        term: {
           title: {
             value: cur,
             boost: 4.0,
@@ -48,6 +53,28 @@ export default ({ q, limit, from, types, filters: themeFilters }: ElasticSearchA
   const filters =
     themeFilters && themeFilters.map(themeFilter => ({ term: { field_theme_id: themeFilter } }))
 
+  let sorting: Array<object> = []
+
+  if (sort) {
+    const { order } = sort
+    switch (sort.field) {
+      case 'title':
+        sorting = [{ title_string: order }]
+        break
+
+      case 'date':
+        sorting = [
+          { field_publication_date: { order } },
+          { field_publication_year: { order } },
+          { field_publication_month: { order } },
+        ]
+        break
+
+      default:
+        sorting = []
+    }
+  }
+
   return {
     query: {
       bool: {
@@ -64,7 +91,7 @@ export default ({ q, limit, from, types, filters: themeFilters }: ElasticSearchA
             : []),
         ],
         must_not: [],
-        should: should,
+        should: [...should],
         filter: {
           terms: {
             type: types,
@@ -75,12 +102,7 @@ export default ({ q, limit, from, types, filters: themeFilters }: ElasticSearchA
     },
     from,
     size: limit,
-    sort: [
-      { field_publication_date: { order: 'desc' } },
-      { field_publication_year: { order: 'desc' } },
-      { field_publication_month: { order: 'desc' } },
-      '_score',
-    ],
+    sort: [...sorting, '_score'],
     aggs: {
       count_by_type: {
         terms: {
