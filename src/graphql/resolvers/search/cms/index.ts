@@ -8,7 +8,7 @@ const cmsSearch = (type: string) => async (
   _: any,
   { q, input }: QueryCmsSearchArgs,
 ): Promise<CmsSearchResult> => {
-  const { from, limit, filters: inputFilters } = input
+  const { from, limit, filters: inputFilters, sort } = input
 
   const { results, totalCount, filterCount } = await getCmsFromElasticSearch({
     q,
@@ -16,6 +16,7 @@ const cmsSearch = (type: string) => async (
     from,
     types: [type],
     filters: inputFilters,
+    sort,
   })
 
   const formattedResults = getFormattedResults(results)
