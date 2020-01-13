@@ -1,4 +1,5 @@
 import fetch from 'node-fetch'
+import AbortController from 'abort-controller'
 import {
   QueryDataSearchArgs,
   DataSearchResultType,
@@ -154,26 +155,42 @@ export const buildRequestPromises = (
 ): Array<Promise<any>> =>
   endpoints.map(urlArray =>
     Promise.all(
-      urlArray.map(url =>
-        fetch(
-          url,
-          token
+      urlArray.map(url => {
+        const controller = new AbortController()
+
+        // Abort the fetch request when it takes too long
+        const timeout = setTimeout(() => {
+          console.warn('ABORTED', url) // For logging in Sentry
+          controller.abort()
+
+          // TODO: replace with a proper error message
+          return Promise.resolve({
+            count: 0,
+            results: [],
+          })
+        }, 500)
+
+        return fetch(url, {
+          signal: controller.signal,
+          ...(token
             ? {
                 headers: {
                   Authorization: token,
                 },
               }
-            : {},
-        ).then((res: any) =>
-          // Todo: error handling when endpoint is unavailable
-          res.status !== 200
+            : {}),
+        }).then((res: any) => {
+          clearTimeout(timeout) // The data is on its way, so clear the timeout
+
+          // Todo: error handling when endpoint returns something other than OK
+          return res.status !== 200
             ? {
                 count: 0,
                 results: [],
               }
-            : res.json(),
-        ),
-      ),
+            : res.json()
+        })
+      }),
     ),
   )
 
