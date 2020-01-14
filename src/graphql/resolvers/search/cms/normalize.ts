@@ -1,11 +1,14 @@
+import moment from 'moment'
+import { FILTERS } from './constants'
 import {
   CmsSearchResultType,
   QueryArticleSearchArgs,
   QueryPublicationSearchArgs,
   QuerySpecialSearchArgs,
+  Filter,
+  FilterOptions,
 } from '../../../../generated/graphql'
 import { getValuesFromES } from '../../../../es/cms'
-import moment from 'moment'
 
 export type QueryCmsSearchArgs =
   | QueryArticleSearchArgs
@@ -87,7 +90,7 @@ function getFormattedResults(results: any): Array<CmsSearchResultType> {
 function getThemeFilterOptions(
   result: JsonAPI,
   themeCount: Array<{ key: string; count: number }>,
-): Array<any> {
+): Array<FilterOptions> {
   return result.data.map((item: any) => {
     const id = item.attributes.drupal_internal__tid
 
@@ -97,28 +100,61 @@ function getThemeFilterOptions(
       id,
       label: item.attributes.name,
       count: count || 0,
-      enumType: `theme:${id}`,
+      enumType: `${FILTERS['THEME'].type}:${id}`,
     }
   })
 }
 
-function formatFilters(
+function getDateFilterOptions(): Array<FilterOptions> {
+  const nrYears = 22
+  const currentYear = new Date().getFullYear()
+
+  return [...Array(nrYears).keys()].map((key: number) => {
+    let year = currentYear - key
+
+    if (key === nrYears - 1) {
+      year = currentYear - key + 1 // We need the previous year in the array
+      return {
+        id: `older-${year}`,
+        label: `Ouder dan ${year}`,
+        count: 0,
+        enumType: `${FILTERS['DATE'].type}:older-${year}`,
+      }
+    }
+    return {
+      id: `${year}`,
+      label: `${year}`,
+      count: 0,
+      enumType: `${FILTERS['DATE'].type}:${year}`,
+    }
+  })
+}
+
+function formatThemeFilters(
   themeTaxonomy: JsonAPI,
   themeCount: Array<{ key: string; count: number }>,
-): Array<any> {
-  const themeFilterOptions = getThemeFilterOptions(themeTaxonomy, themeCount)
+): Filter {
+  const { type, label, filterType } = FILTERS['THEME']
 
-  return [
-    // This is already structured as an array as there will be more filters later on
-    {
-      type: 'theme',
-      label: "Thema's",
-      filterType: 'array',
-      options: themeFilterOptions,
-    },
-  ]
+  return {
+    type,
+    label,
+    filterType,
+    options: getThemeFilterOptions(themeTaxonomy, themeCount),
+  }
+}
+
+function formatDateFilters(): Filter {
+  const { type, label, filterType } = FILTERS['DATE']
+
+  return {
+    type,
+    label,
+    filterType,
+    options: getDateFilterOptions(),
+  }
 }
 
 export default getFormattedResults
 
-export { getFormattedDate, getThemeFilterOptions, formatFilters }
+export { getFormattedDate, getThemeFilterOptions, formatThemeFilters, formatDateFilters }
