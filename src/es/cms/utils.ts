@@ -11,11 +11,27 @@ function getSearchQuery(q: string) {
    * from this array are searched. The value for "minimum_should_match" is set to 1, so at least
    * one of the shoudl rules must match:
    *
-   * 1) With one search term: the search term is used in the title OR in the intro
-   * 2) With multiple search terms: all search terms are used in the title OR at least one search
+   * 1) In all scenarios: the complete search term is used in the title
+   * 2) With one search term: each search term is used in the title OR in the intro
+   * 3) With multiple search terms: all search terms are used in the title OR at least one search
    *    term is used in the title and at least one of the other search terms are used in the intro
    **/
   return [
+    {
+      bool: {
+        // The entire term must be used in the title standalone
+        must: [
+          {
+            match: {
+              title: {
+                query: q, // match the entire search term
+                boost: 4.0,
+              },
+            },
+          },
+        ],
+      },
+    },
     {
       bool: {
         // The term must be used in the title standalone, as prefix or as suffix
