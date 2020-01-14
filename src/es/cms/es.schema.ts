@@ -6,7 +6,7 @@ export type ElasticSearchArgs = {
 
 export default ({ q, limit, from, types, filters: themeFilters, sort }: ElasticSearchArgs) => {
   let should: Array<object> = []
-  let sorting: Array<object> = []
+  let sorting: Array<object | string> = ['_score'] // default sorting on score
 
   if (q && q.length > 0) {
     const searchQuery = q.toLowerCase()
@@ -107,7 +107,6 @@ export default ({ q, limit, from, types, filters: themeFilters, sort }: ElasticS
         break
 
       default:
-        sorting = []
     }
   }
 
@@ -136,9 +135,10 @@ export default ({ q, limit, from, types, filters: themeFilters, sort }: ElasticS
         minimum_should_match: should.length > 0 ? 1 : 0, // At least one of the should rules must match
       },
     },
+
     from,
     size: limit,
-    sort: [...sorting, '_score'],
+    sort: [...sorting],
     aggs: {
       count_by_type: {
         terms: {
