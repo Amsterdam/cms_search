@@ -5,10 +5,10 @@ export type ElasticSearchArgs = {
   q: string
 } & CmsSearchInput
 
-export default ({ q, limit, from, types = null, filters, sort }: ElasticSearchArgs) => {
+export default ({ q, limit, from, types = null, filters: themeFilters, sort }: ElasticSearchArgs) => {
   let shouldQuery: Array<object> = []
   let filterQuery: Array<object> = []
-  let sorting: Array<object> = []
+  let sorting: Array<object | string> = ['_score'] // default sorting on score
 
   if (q && q.length > 0) {
     shouldQuery = getSearchQuery(q)
@@ -34,7 +34,6 @@ export default ({ q, limit, from, types = null, filters, sort }: ElasticSearchAr
         break
 
       default:
-        sorting = []
     }
   }
 
@@ -52,9 +51,10 @@ export default ({ q, limit, from, types = null, filters, sort }: ElasticSearchAr
         minimum_should_match: shouldQuery.length > 0 ? 1 : 0, // At least one of the should rules must match
       },
     },
+
     from,
     size: limit,
-    sort: [...sorting, '_score'],
+    sort: [...sorting],
     aggs: {
       count_by_type: {
         terms: {
