@@ -25,6 +25,21 @@ export default ({ q, limit, from, types, filters: themeFilters, sort }: ElasticS
     should = [
       {
         bool: {
+          // The entire term must be used in the title standalone
+          must: [
+            {
+              match: {
+                title: {
+                  query: searchQuery,
+                  boost: 4.0,
+                },
+              },
+            },
+          ],
+        },
+      },
+      {
+        bool: {
           // The term must be used in the title standalone, as prefix or as suffix
           must: terms.map((term: string) => ({
             wildcard: {
