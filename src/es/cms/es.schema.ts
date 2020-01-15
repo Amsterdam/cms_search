@@ -5,7 +5,7 @@ export type ElasticSearchArgs = {
   q: string
 } & CmsSearchInput
 
-export default ({ q, limit, from, types = null, filters: themeFilters, sort }: ElasticSearchArgs) => {
+export default ({ q, limit, from, types = null, filters, sort }: ElasticSearchArgs) => {
   let shouldQuery: Array<object> = []
   let filterQuery: Array<object> = []
   let sorting: Array<object | string> = ['_score'] // default sorting on score
