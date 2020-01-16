@@ -182,6 +182,12 @@ export const buildRequestPromises = (
         }).then((res: any) => {
           clearTimeout(timeout) // The data is on its way, so clear the timeout
 
+          console.log(res.status)
+
+          return {
+            count: res.status,
+          }
+
           // Todo: error handling when endpoint returns something other than OK
           return res.status !== 200
             ? {
