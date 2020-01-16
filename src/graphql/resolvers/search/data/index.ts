@@ -161,13 +161,13 @@ export const buildRequestPromises = (
         // Abort the fetch request when it takes too long
         const timeout = setTimeout(() => {
           console.warn('ABORTED', url) // For logging in Sentry
-          // controller.abort()
+          controller.abort()
 
-          // // TODO: replace with a proper error message
-          // return Promise.resolve({
-          //   count: 0,
-          //   results: [],
-          // })
+          // TODO: replace with a proper error message
+          return Promise.resolve({
+            count: 0,
+            results: [],
+          })
         }, 800)
 
         return fetch(url, {
@@ -181,12 +181,6 @@ export const buildRequestPromises = (
             : {}),
         }).then((res: any) => {
           clearTimeout(timeout) // The data is on its way, so clear the timeout
-
-          console.log(res.status)
-
-          return {
-            count: res.status,
-          }
 
           // Todo: error handling when endpoint returns something other than OK
           return res.status !== 200
