@@ -168,7 +168,7 @@ export const buildRequestPromises = (
             count: 0,
             results: [],
           })
-        }, 500)
+        }, 800)
 
         return fetch(url, {
           signal: controller.signal,
