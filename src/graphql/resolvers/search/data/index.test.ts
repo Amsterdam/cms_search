@@ -5,7 +5,7 @@ import { DEFAULT_FROM, DEFAULT_LIMIT } from '../../../../config'
 jest.mock('./normalize.ts')
 
 describe('dataResolver', () => {
-  const mockedEndpoint = `${process.env.API_ROOT}endpoint`
+  const mockedEndpoint = `${process.env.DATAPUNT_API_URL}endpoint`
   describe('getEndpoints', () => {
     it('should return an array of urls based on a config file', () => {
       const result = dataResolver.getEndpoints(

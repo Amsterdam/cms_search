@@ -44,7 +44,7 @@ export default async (
 
   const urlQuery = new URLSearchParams(query).toString()
 
-  const datasetsUrl = `${process.env.API_ROOT}dcatd/datasets?${urlQuery}`
+  const datasetsUrl = `${process.env.DATAPUNT_API_URL}dcatd/datasets?${urlQuery}`
 
   let results: any = []
   let totalCount = 0
