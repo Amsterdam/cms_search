@@ -144,7 +144,7 @@ export const getEndpoints = (
           page: number || 1,
           ...(api.params ? { ...api.params } : {}),
         }).toString()
-        return `${process.env.API_ROOT}${api.endpoint}/?${query}`
+        return `${process.env.DATAPUNT_API_URL}${api.endpoint}/?${query}`
       }),
   )
 }
