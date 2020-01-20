@@ -75,7 +75,6 @@ describe('dataResolver', () => {
         ],
         10,
         0,
-        [],
       )
       expect(result).toEqual([
         {
@@ -134,7 +133,6 @@ describe('dataResolver', () => {
             ],
             limit,
             from,
-            [],
           ),
         ).toEqual([
           {
