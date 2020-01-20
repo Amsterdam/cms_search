@@ -10,17 +10,6 @@ export const CMS_TYPES = {
   SPECIAL: 'special',
 }
 
-export const AUTH_SCOPES = {
-  HR: 'HR/R',
-  BRK: 'BRK/RS',
-  BRKPLUS: 'BRK/RSN',
-}
-
-export const ROLES = {
-  EMPLOYEE: 'employee',
-  EMPLOYEE_PLUS: 'employee_plus',
-}
-
 export const CMS_LABELS = {
   [CMS_TYPES.ARTICLE]: 'Artikelen',
   [CMS_TYPES.PUBLICATION]: 'Publicaties',
