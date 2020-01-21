@@ -7,8 +7,6 @@ COPY . .
 
 RUN npm install
 
-ARG NODE_ENV=production
-
 EXPOSE 8080
 
 ENTRYPOINT [""]

@@ -9,7 +9,7 @@
     "generate": "graphql-codegen --config ./src/codegen.yml",
     "postinstall": "cp .env.development .env",
     "test": "npx jest",
-    "serve": "npm run build && nodemon ./lib/",
+    "serve": "npm run build && node ./lib/",
     "start": "concurrently \"nodemon --transpile-only src/index.ts\" \"npm run generate -- --watch\""
   },
   "dependencies": {
