@@ -10,6 +10,6 @@ export default {
     datasetSearch,
     publicationSearch,
     specialSearch,
-    getDatasetFilters: datasetFilters,
+    datasetFilters,
   },
 }
