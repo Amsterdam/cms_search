@@ -2,7 +2,7 @@ import { CmsSearchInput } from '../../generated/graphql'
 import { getSearchQuery, getFilterQuery } from './utils'
 
 export type ElasticSearchArgs = {
-  q: string
+  q: string | undefined
 } & CmsSearchInput
 
 export default ({ q, limit, from, types = null, filters, sort }: ElasticSearchArgs) => {
