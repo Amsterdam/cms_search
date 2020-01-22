@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import { formatThemeFilters, formatDateFilters } from './normalize'
+import { formatThemeFilters } from './normalize'
 import withCache from '../../../utils/memoryCache'
 
 interface FilterCount {
@@ -24,9 +24,7 @@ export default async (filterCount: FilterCount): Promise<any> => {
     const themeTaxonomy: any = await Promise.resolve(themeTaxonomyCached())
     const themeFilters: any = formatThemeFilters(themeTaxonomy, filterCount.theme)
 
-    const dateFilters: any = formatDateFilters()
-
-    filters = [themeFilters, dateFilters]
+    filters = [themeFilters]
   } catch (e) {
     console.warn(e)
   }
