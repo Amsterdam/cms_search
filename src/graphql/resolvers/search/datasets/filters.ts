@@ -13,7 +13,7 @@ export default async (_: any, { q }: any): Promise<any> => {
   let filters
   try {
     const urlQuery = new URLSearchParams({ q }).toString()
-    const datasetsUrl = `${process.env.DATAPUNT_API_URL}dcatd/datasets?${urlQuery}`
+    const datasetsUrl = `${DCAT_ENDPOINTS['datasets']}?${urlQuery}`
 
     const [datasets, openApiResults]: any = await Promise.all([
       fetch(datasetsUrl).then((res: any) => res.json()),
