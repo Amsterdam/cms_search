@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 import { formatFilters, getCatalogFilters } from './normalize'
 import withCache from '../../../utils/memoryCache'
 
-export const DCAT_ENDPOINTS = JSON.parse(process.env.DCAT_ENDPOINTS || '')
+export const DCAT_ENDPOINTS = JSON.parse((process.env.DCAT_ENDPOINTS || '').replace(/'/gm, ''))
 
 const week = 60 * 60 * 24 * 7
 

@@ -22,15 +22,14 @@ type DataSearchType = {
 
 const DATA_SEARCH_API_MAX_RESULTS = 100
 
-console.log(process.env.DATA_SEARCH_ENDPOINTS)
-
-const SEARCH_ENDPOINTS = JSON.parse(process.env.DATA_SEARCH_ENDPOINTS || '')
+const SEARCH_ENDPOINTS = JSON.parse((process.env.DATA_SEARCH_ENDPOINTS || '').replace(/'/gm, ''))
 
 const DATA_SEARCH_CONFIG: DataSearchType[] = [
   {
     endpoint: SEARCH_ENDPOINTS['openbareruimte'],
     type: 'straatnamen',
     label: 'Straatnamen',
+
     labelSingular: 'Straatnaam',
     params: {
       subtype: 'weg',
