@@ -22,6 +22,8 @@ type DataSearchType = {
 
 const DATA_SEARCH_API_MAX_RESULTS = 100
 
+console.log(process.env.DATA_SEARCH_ENDPOINTS)
+
 const SEARCH_ENDPOINTS = JSON.parse(process.env.DATA_SEARCH_ENDPOINTS || '')
 
 const DATA_SEARCH_CONFIG: DataSearchType[] = [
