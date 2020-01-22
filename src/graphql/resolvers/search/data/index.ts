@@ -9,6 +9,7 @@ import {
 import { DEFAULT_FROM, DEFAULT_LIMIT } from '../../../../config'
 import { normalizeDataResults } from './normalize'
 import DataError from '../../../utils/DataError'
+import { FILTER_TYPES } from '../cms/constants'
 
 type DataSearchType = {
   endpoint: string
@@ -246,6 +247,7 @@ const index = async (
     {
       type: DATA_SEARCH_FILTER.type,
       label: DATA_SEARCH_FILTER.label,
+      filterType: FILTER_TYPES.RADIO,
       options: results.map(
         (result: DataSearchResultType): FilterOptions => ({
           id: result.type || '',
