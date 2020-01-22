@@ -1,5 +1,6 @@
 import removeMd from 'remove-markdown'
 import { Filter } from '../../../../generated/graphql'
+import { FILTER_TYPES } from '../cms/constants'
 
 type AggregationType = Array<{ name: string; count: number }>
 
@@ -258,7 +259,7 @@ function formatFilters(facets: Object, catalogFilters: CatalogFilters): Array<Fi
     {
       type: properties.theme.type,
       label: "Thema's",
-      filterType: catalogFilters.groupTypes.filterType,
+      filterType: FILTER_TYPES.CHECKBOX,
       options: getFacetOptions(facets, catalogFilters.groupTypes),
     },
     // {
@@ -276,7 +277,7 @@ function formatFilters(facets: Object, catalogFilters: CatalogFilters): Array<Fi
     {
       type: properties.distributionType.type,
       label: 'Verschijningsvorm',
-      filterType: catalogFilters.distributionTypes.filterType,
+      filterType: FILTER_TYPES.RADIO,
       options: getFacetOptions(facets, catalogFilters.distributionTypes),
     },
     // {
