@@ -135,12 +135,12 @@ const schema = gql`
   }
 
   type Query {
-    articleSearch(q: String!, input: CMSSearchInput!): CMSSearchResult
+    articleSearch(q: String, input: CMSSearchInput!): CMSSearchResult
     dataSearch(q: String!, input: DataSearchInput!): DataSearchResult
-    datasetSearch(q: String!, input: DatasetSearchInput!): DatasetSearchResult
-    publicationSearch(q: String!, input: CMSSearchInput!): CMSSearchResult
-    specialSearch(q: String!, input: CMSSearchInput!): CMSSearchResult
-    getDatasetFilters(q: String!): DatasetFiltersResult
+    datasetSearch(q: String, input: DatasetSearchInput!): DatasetSearchResult
+    publicationSearch(q: String, input: CMSSearchInput!): CMSSearchResult
+    specialSearch(q: String, input: CMSSearchInput!): CMSSearchResult
+    datasetFilters(q: String): DatasetFiltersResult
   }
 `
 

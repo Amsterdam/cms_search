@@ -150,11 +150,11 @@ export type Query = {
   datasetSearch?: Maybe<DatasetSearchResult>
   publicationSearch?: Maybe<CmsSearchResult>
   specialSearch?: Maybe<CmsSearchResult>
-  getDatasetFilters?: Maybe<DatasetFiltersResult>
+  datasetFilters?: Maybe<DatasetFiltersResult>
 }
 
 export type QueryArticleSearchArgs = {
-  q: Scalars['String']
+  q?: Maybe<Scalars['String']>
   input: CmsSearchInput
 }
 
@@ -164,22 +164,22 @@ export type QueryDataSearchArgs = {
 }
 
 export type QueryDatasetSearchArgs = {
-  q: Scalars['String']
+  q?: Maybe<Scalars['String']>
   input: DatasetSearchInput
 }
 
 export type QueryPublicationSearchArgs = {
-  q: Scalars['String']
+  q?: Maybe<Scalars['String']>
   input: CmsSearchInput
 }
 
 export type QuerySpecialSearchArgs = {
-  q: Scalars['String']
+  q?: Maybe<Scalars['String']>
   input: CmsSearchInput
 }
 
-export type QueryGetDatasetFiltersArgs = {
-  q: Scalars['String']
+export type QueryDatasetFiltersArgs = {
+  q?: Maybe<Scalars['String']>
 }
 
 export type Results = DatasetSearchResultType | CmsSearchResultType | DataSearchResultType
@@ -475,7 +475,7 @@ export type QueryResolvers<
     Maybe<ResolversTypes['CMSSearchResult']>,
     ParentType,
     ContextType,
-    RequireFields<QueryArticleSearchArgs, 'q' | 'input'>
+    RequireFields<QueryArticleSearchArgs, 'input'>
   >
   dataSearch?: Resolver<
     Maybe<ResolversTypes['DataSearchResult']>,
@@ -487,25 +487,25 @@ export type QueryResolvers<
     Maybe<ResolversTypes['DatasetSearchResult']>,
     ParentType,
     ContextType,
-    RequireFields<QueryDatasetSearchArgs, 'q' | 'input'>
+    RequireFields<QueryDatasetSearchArgs, 'input'>
   >
   publicationSearch?: Resolver<
     Maybe<ResolversTypes['CMSSearchResult']>,
     ParentType,
     ContextType,
-    RequireFields<QueryPublicationSearchArgs, 'q' | 'input'>
+    RequireFields<QueryPublicationSearchArgs, 'input'>
   >
   specialSearch?: Resolver<
     Maybe<ResolversTypes['CMSSearchResult']>,
     ParentType,
     ContextType,
-    RequireFields<QuerySpecialSearchArgs, 'q' | 'input'>
+    RequireFields<QuerySpecialSearchArgs, 'input'>
   >
-  getDatasetFilters?: Resolver<
+  datasetFilters?: Resolver<
     Maybe<ResolversTypes['DatasetFiltersResult']>,
     ParentType,
     ContextType,
-    RequireFields<QueryGetDatasetFiltersArgs, 'q'>
+    QueryDatasetFiltersArgs
   >
 }
 
