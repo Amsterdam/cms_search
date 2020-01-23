@@ -2,9 +2,11 @@ import graphqlHTTP from 'express-graphql'
 import resolvers from './resolvers'
 import typeDefs from './graphql.schema'
 import { makeExecutableSchema } from 'graphql-tools'
+import loadData from './resolvers/search/data/loaders'
 
 export type Context = {
-  token: any
+  token: string
+  loaders: Object
 }
 
 // Create a context for holding contextual data
@@ -13,6 +15,9 @@ const context = async (req: any): Promise<Context> => {
 
   return {
     token,
+    loaders: {
+      loadData,
+    },
   }
 }
 
@@ -29,6 +34,5 @@ export default graphqlHTTP(async req => ({
       requireResolversForArgs: false,
     },
   }),
-  // rootValue: resolvers,
   context: () => context(req),
 }))

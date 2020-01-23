@@ -10,6 +10,8 @@ import { DEFAULT_FROM, DEFAULT_LIMIT } from '../../../../config'
 import { normalizeDataResults } from './normalize'
 import DataError from '../../../utils/DataError'
 
+import { dataloaderFn } from './dataloader'
+
 type DataSearchType = {
   endpoint: string
   type: string
@@ -228,7 +230,7 @@ const index = async (
   context: any,
 ): Promise<DataSearchResult> => {
   const { types } = input
-  const { token } = await context()
+  const { token, loaders } = await context()
   let { limit, from } = input
   limit = limit || DEFAULT_LIMIT
   from = from || DEFAULT_FROM
@@ -262,6 +264,16 @@ const index = async (
       (result: DataSearchResultType) => result.type && types.includes(result.type),
     )
   }
+
+  // const { loadData } = loaders
+
+  // loadData.load('dam').then((data: any) => console.log(data));
+
+  console.log(dataloaderFn('dam'))
+
+  // loadData({ from: 0, limit: 10 })
+  //   .load('dam')
+  //   .then((data: any) => console.log(data))
 
   return {
     totalCount,
