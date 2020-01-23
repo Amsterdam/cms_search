@@ -14,7 +14,7 @@ const week = 60 * 60 * 24 * 7
 export const themeTaxonomyCached = async () =>
   await withCache(
     'themeTaxonomy',
-    fetch(`${process.env.CMS_URL}/jsonapi/taxonomy_term/theme`),
+    fetch(`${process.env.CMS_URL}/jsonapi/taxonomy_term/themes`),
     week,
   )
 
