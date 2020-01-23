@@ -192,14 +192,19 @@ export const buildResults = (
 ): Array<DataSearchResultType> =>
   responses.map(
     (result: any, i): DataSearchResultType => {
-      const { count, status = 200 } = result[0] // Since we expect count will not change on other pages, we just use it from the first page.
-      let results = result.reduce(
+      const { count, status = 200, results: responseResults = [] } = result // Since we expect count will not change on other pages, we just use it from the first page.
+
+      // let results = responseResults
+
+      let results = responseResults.reduce(
         (acc: object[], { results }: { results: undefined | object[] }) => [
           ...acc,
           ...(Array.isArray(results) ? results : []),
         ],
         [],
       )
+
+      console.log('result', responseResults)
 
       const resultCount = count || 0
 
@@ -210,9 +215,7 @@ export const buildResults = (
       if (status !== 200) {
         results = new DataError(status, type, label)
       } else {
-        results = results
-          .slice(from, limit + from)
-          .map((result: object) => normalizeDataResults(result))
+        results = results.slice(from, limit + from)
       }
 
       return {
@@ -235,34 +238,46 @@ const index = async (
   limit = limit || DEFAULT_LIMIT
   from = from || DEFAULT_FROM
 
-  const apiEndpoints = getEndpoints(DATA_SEARCH_CONFIG, token, q, limit, from)
-  const promiseArray = buildRequestPromises(apiEndpoints, token)
+  // const apiEndpoints = getEndpoints(DATA_SEARCH_CONFIG, token, q, limit, from)
+  // const promiseArray = buildRequestPromises(apiEndpoints, token)
 
-  const responses = await Promise.all(promiseArray)
+  // const responses = await Promise.all(promiseArray)
 
-  let results = buildResults(responses, limit, from)
+  // let results = buildResults(responses, limit, from)
 
-  const totalCount = results.reduce((acc: number, { count }: { count: number }) => acc + count, 0)
+  // const totalCount = results.reduce((acc: number, { count }: { count: number }) => acc + count, 0)
 
-  const filters = [
-    {
-      type: DATA_SEARCH_FILTER.type,
-      label: DATA_SEARCH_FILTER.label,
-      options: results.map(
-        (result: DataSearchResultType): FilterOptions => ({
-          id: result.type || '',
-          label: result.label || '',
-          count: result.count,
-        }),
-      ),
-    },
-  ]
+  // const filters = [
+  //   {
+  //     type: DATA_SEARCH_FILTER.type,
+  //     label: DATA_SEARCH_FILTER.label,
+  //     options: results.map(
+  //       (result: DataSearchResultType): FilterOptions => ({
+  //         id: result.type || '',
+  //         label: result.label || '',
+  //         count: result.count,
+  //       }),
+  //     ),
+  //   },
+  // ]
 
   // Todo: Add Dataloader to cache the previous results and prevent too much data being retrieved when just a single type is requested
-  if (types) {
-    results = results.filter(
-      (result: DataSearchResultType) => result.type && types.includes(result.type),
-    )
+  // if (types) {
+  //   results = results.filter(
+  //     (result: DataSearchResultType) => result.type && types.includes(result.type),
+  //   )
+  // }
+
+  const dataloaderResults = await dataloaderFn('dam')
+
+  // console.log(dataloaderResults)
+
+  const totalCount =
+    dataloaderResults.reduce((acc: number, { count }: { count: number }) => acc + count, 0) || 0
+
+  return {
+    totalCount,
+    results: buildResults(dataloaderResults, limit, from),
   }
 
   // const { loadData } = loaders
