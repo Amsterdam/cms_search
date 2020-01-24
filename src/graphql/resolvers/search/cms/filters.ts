@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 import { formatThemeFilters } from './normalize'
-import withCache from '../../../utils/memoryCache'
+import withCache from '../../../utils/withCache'
 
 interface FilterCount {
   theme: Array<{
@@ -14,7 +14,7 @@ const week = 60 * 60 * 24 * 7
 export const themeTaxonomyCached = async () =>
   await withCache(
     'themeTaxonomy',
-    fetch(`${process.env.CMS_URL}/jsonapi/taxonomy_term/themes`),
+    () => fetch(`${process.env.CMS_URL}/jsonapi/taxonomy_term/themes`).then(res => res.json()),
     week,
   )
 
