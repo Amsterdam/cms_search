@@ -1,19 +1,23 @@
 import fetch from 'node-fetch'
 import { formatFilters, getCatalogFilters } from './normalize'
-import withCache from '../../../utils/memoryCache'
+import withCache from '../../../utils/withCache'
 
 export const DCAT_ENDPOINTS = JSON.parse((process.env.DCAT_ENDPOINTS || '').replace(/'/gm, ''))
 
 const week = 60 * 60 * 24 * 7
 
 export const openApiCached = async () =>
-  withCache('openApi', fetch(DCAT_ENDPOINTS['openapi']), week)
+  withCache(
+    'openApi',
+    () => fetch(DCAT_ENDPOINTS['openapi']).then(res => res.json()),
+    week,
+  )
 
-export default async (_: any, { q }: any): Promise<any> => {
+export default async (_: any, { q = '' }: any): Promise<any> => {
   let filters
   try {
     const urlQuery = new URLSearchParams({ q }).toString()
-    const datasetsUrl = `${process.env.DATAPUNT_API_URL}dcatd/datasets?${urlQuery}`
+    const datasetsUrl = `${DCAT_ENDPOINTS['datasets']}?${urlQuery}`
 
     const [datasets, openApiResults]: any = await Promise.all([
       fetch(datasetsUrl).then((res: any) => res.json()),
