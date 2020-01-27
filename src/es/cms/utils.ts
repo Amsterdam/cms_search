@@ -1,4 +1,4 @@
-import { FILTERS } from '../../graphql/resolvers/search/cms/constants'
+import { FILTERS } from '../../graphql/search/cms/config'
 import { FilterInput } from '../../generated/graphql'
 
 // Constructs an array with the search conditions

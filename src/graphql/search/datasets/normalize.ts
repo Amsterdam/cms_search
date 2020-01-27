@@ -1,5 +1,5 @@
 import removeMd from 'remove-markdown'
-import { Filter } from '../../../../generated/graphql'
+import { Filter } from '../../../generated/graphql'
 
 type AggregationType = Array<{ name: string; count: number }>
 

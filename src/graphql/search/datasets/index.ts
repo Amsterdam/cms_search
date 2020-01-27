@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 
-import { DatasetSearchResult, QueryDatasetSearchArgs } from '../../../../generated/graphql'
+import { DatasetSearchResult, QueryDatasetSearchArgs } from '../../../generated/graphql'
 import { getCatalogFilters, normalizeDatasets, properties } from './normalize'
 import { openApiCached, DCAT_ENDPOINTS } from './filters'
 
@@ -8,7 +8,7 @@ export default async (
   _: any,
   { q, input }: QueryDatasetSearchArgs,
 ): Promise<DatasetSearchResult> => {
-  const { from, limit, filters: inputFilters } = input
+  const { from, limit, filters: inputFilters } = input || {}
 
   /**
    * Output like: {

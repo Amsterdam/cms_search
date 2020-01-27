@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { FILTERS } from './constants'
+import { FILTERS } from './config'
 import {
   CmsSearchResultType,
   QueryArticleSearchArgs,
@@ -7,8 +7,8 @@ import {
   QuerySpecialSearchArgs,
   Filter,
   FilterOptions,
-} from '../../../../generated/graphql'
-import { getValuesFromES } from '../../../../es/cms'
+} from '../../../generated/graphql'
+import { getValuesFromES } from '../../../es/cms'
 
 export type QueryCmsSearchArgs =
   | QueryArticleSearchArgs

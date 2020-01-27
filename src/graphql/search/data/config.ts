@@ -1,4 +1,4 @@
-type DataSearchType = {
+export type DataSearchType = {
   endpoint: string
   type: string
   label: string
@@ -10,9 +10,11 @@ type DataSearchType = {
 
 // The environment variable DATA_SEARCH_ENDPOINTS gets created by Ansible Playbook while building the project
 // using OpenStack. Therefore extra quotes are added that we need to strip out manually here
-const SEARCH_ENDPOINTS = JSON.parse((process.env.DATA_SEARCH_ENDPOINTS || '').replace(/'/gm, ''))
+export const SEARCH_ENDPOINTS = process.env.DATA_SEARCH_ENDPOINTS
+  ? JSON.parse(process.env.DATA_SEARCH_ENDPOINTS.replace(/'/gm, ''))
+  : {}
 
-export const DATA_SEARCH_ENDPOINTS: DataSearchType[] = [
+export const DATA_SEARCH_ENDPOINTS: Array<DataSearchType> = [
   {
     endpoint: SEARCH_ENDPOINTS['openbareruimte'],
     type: 'straatnamen',
@@ -92,3 +94,9 @@ export const DATA_SEARCH_ENDPOINTS: DataSearchType[] = [
 export const DATA_SEARCH_FILTER = { type: 'types', label: 'Types' }
 
 export const DATA_SEARCH_API_MAX_RESULTS = 100
+
+export const NORMAL_VBO_STATUSSES = [
+  'Verblijfsobject in gebruik (niet ingemeten)',
+  'Verblijfsobject in gebruik',
+  'Verbouwing verblijfsobject',
+]

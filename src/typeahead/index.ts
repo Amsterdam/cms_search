@@ -1,9 +1,9 @@
 import { getCmsFromElasticSearch, getValuesFromES } from '../es/cms'
-import { CMS_LABELS, CMS_TYPES } from '../config'
+import { LABELS, TYPES } from '../graphql/search/cms/config'
 
 export default async ({ query }: any, res: any) => {
   const { q = '' } = query
-  const types = [CMS_TYPES.ARTICLE, CMS_TYPES.PUBLICATION]
+  const types = [TYPES.ARTICLE, TYPES.PUBLICATION]
 
   const { results, totalCount } = await getCmsFromElasticSearch({ q, types })
 
@@ -20,7 +20,7 @@ export default async ({ query }: any, res: any) => {
   return res.send(
     types.map(type => ({
       total_resuls: totalCount,
-      label: CMS_LABELS[type],
+      label: LABELS[type],
       content: formattedResults.filter(({ type: resultType }) => type === resultType),
     })),
   )

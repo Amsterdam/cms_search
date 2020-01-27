@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 import { formatThemeFilters } from './normalize'
-import withCache from '../../../utils/withCache'
+import withCache from '../../utils/withCache'
 
 interface FilterCount {
   theme: Array<{
