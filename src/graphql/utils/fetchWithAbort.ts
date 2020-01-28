@@ -15,7 +15,7 @@ async function fetchWithAbort(endpoint: string, headers: Object = {}) {
       clearTimeout(timeout) // The data is on its way, so clear the timeout
 
       if (res.status !== 200) {
-        return { error: res.status, message: '' }
+        return { status: res.status, message: '' }
       }
       return res.json()
     })

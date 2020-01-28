@@ -7,7 +7,9 @@ import getFilters from './filters'
 const index = async (
   _: any,
   { q: searchTerm, input }: QueryDataSearchArgs,
-  context: any,
+  context: {
+    loaders: { data: { load: Function; clear: Function } }
+  },
 ): Promise<DataSearchResult> => {
   const { limit, from, types } = input || {}
   const { loaders } = context
@@ -30,7 +32,13 @@ const index = async (
   const dataloaderResults: Object[] = await Promise.all(
     // Construct the keys e.g. the URLs that should be loaded or fetched
     endpoints.map(async ({ endpoint, type, label, labelSingular }: any) => {
-      const result = await loaders.data.load(`${endpoint}?q=${searchTerm}`)
+      const key = `${endpoint}?q=${searchTerm}`
+      const result = await loaders.data.load(key)
+
+      // If an error is thrown, delete the key from the cache and try again
+      if (result.status !== 200) {
+        loaders.data.clear(`${endpoint}?q=${searchTerm}`)
+      }
 
       return { ...result, type, label, labelSingular }
     }),

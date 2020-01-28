@@ -47,21 +47,23 @@ export const combineTypeResults = (
         labelSingular,
       } = result // Since we expect count will not change on other pages, we just use it from the first page.
 
-      let results =
-        responseResults.length > 0
-          ? responseResults.map((responseResult: any) => normalizeTypeResults(responseResult))
-          : []
-      const resultCount = count || 0
+      let results: any = [] // GraphQL can handle Error as response on nullable types and will return `null` for the field and places the Error in the `errors` field, extending the error to handle this will break the autogeneration of types
 
       // If there's an error return something different from the GraphQL server
       if (status !== 200) {
         results = new DataError(status, type, label)
       } else {
-        results = results.slice(from, limit + from)
+        // Slice and normalize the results when there are results
+        results =
+          responseResults.length > 0
+            ? responseResults
+                .slice(from, limit + from)
+                .map((responseResult: Object) => normalizeTypeResults(responseResult))
+            : []
       }
 
       return {
-        count: resultCount,
+        count: count || 0,
         label: count === 1 ? labelSingular : label,
         type,
         results,

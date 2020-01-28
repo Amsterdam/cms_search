@@ -6,18 +6,16 @@ function loaderFunction(keys: readonly string[], token = ''): any {
   return new Promise(async resolve => {
     // Get the values that correspond to the keys
     const values = await Promise.all(
-      keys.map((key: string) => {
-        console.log('token, fetch > ', key)
-
-        return fetchWithAbort(
+      keys.map((key: string) =>
+        fetchWithAbort(
           key,
           token && token.length > 0
             ? {
                 authorization: `Bearer ${token}`,
               }
             : {},
-        )
-      }),
+        ),
+      ),
     )
 
     // Resolve the Promise with the values

@@ -46,8 +46,6 @@ export default async (
 
   const datasetsUrl = `${DCAT_ENDPOINTS['datasets']}?${urlQuery}`
 
-  console.log(datasetsUrl)
-
   let results: any = []
   let totalCount = 0
 
