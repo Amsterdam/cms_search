@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 
 import { DatasetSearchResult, QueryDatasetSearchArgs } from '../../../../generated/graphql'
 import { getCatalogFilters, normalizeDatasets, properties } from './normalize'
-import { openApiCached } from './filters'
+import { openApiCached, DCAT_ENDPOINTS } from './filters'
 
 export default async (
   _: any,
@@ -44,7 +44,9 @@ export default async (
 
   const urlQuery = new URLSearchParams(query).toString()
 
-  const datasetsUrl = `${process.env.DATAPUNT_API_URL}dcatd/datasets?${urlQuery}`
+  const datasetsUrl = `${DCAT_ENDPOINTS['datasets']}?${urlQuery}`
+
+  console.log(datasetsUrl)
 
   let results: any = []
   let totalCount = 0

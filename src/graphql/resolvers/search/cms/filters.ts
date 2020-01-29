@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
-import { formatThemeFilters, formatDateFilters } from './normalize'
-import withCache from '../../../utils/memoryCache'
+import { formatThemeFilters } from './normalize'
+import withCache from '../../../utils/withCache'
 
 interface FilterCount {
   theme: Array<{
@@ -14,7 +14,7 @@ const week = 60 * 60 * 24 * 7
 export const themeTaxonomyCached = async () =>
   await withCache(
     'themeTaxonomy',
-    fetch(`${process.env.CMS_URL}/jsonapi/taxonomy_term/theme`),
+    () => fetch(`${process.env.CMS_URL}/jsonapi/taxonomy_term/themes`).then(res => res.json()),
     week,
   )
 
@@ -24,9 +24,7 @@ export default async (filterCount: FilterCount): Promise<any> => {
     const themeTaxonomy: any = await Promise.resolve(themeTaxonomyCached())
     const themeFilters: any = formatThemeFilters(themeTaxonomy, filterCount.theme)
 
-    const dateFilters: any = formatDateFilters()
-
-    filters = [themeFilters, dateFilters]
+    filters = [themeFilters]
   } catch (e) {
     console.warn(e)
   }
