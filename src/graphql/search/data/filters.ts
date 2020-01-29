@@ -1,6 +1,6 @@
 import { DATA_SEARCH_FILTER, DATA_SEARCH_ENDPOINTS, DataSearchType } from './config'
 import { FilterOptions, Filter, DataSearchResultType } from '../../../generated/graphql'
-import { FILTER_TYPES } from '../../resolvers/search/cms/constants'
+import { FILTER_TYPES } from '../../config'
 
 export default (results: DataSearchResultType[]): { filters: Array<Filter> } => {
   const filters = [

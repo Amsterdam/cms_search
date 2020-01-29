@@ -9,7 +9,7 @@ import {
   properties,
   DCAT_ENDPOINTS,
 } from './config'
-import { FILTER_TYPES } from '../../resolvers/search/cms/constants'
+import { FILTER_TYPES } from '../../config'
 
 /**
  * @example

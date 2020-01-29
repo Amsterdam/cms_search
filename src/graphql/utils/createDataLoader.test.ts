@@ -12,7 +12,9 @@ describe('dataloader', () => {
   const mockedLRUMap = <jest.Mock<any, any>>(<unknown>LRUMap)
 
   it('should return the cached dataloader when there is no token given', () => {
-    const mockedLoaderFunction = jest.spyOn(loaderFunction, 'default').mockReturnValueOnce({})
+    const mockedLoaderFunction = jest
+      .spyOn(loaderFunction, 'default')
+      .mockReturnValueOnce(Promise.resolve([Promise.resolve({})]))
 
     mockedDataLoader.mockImplementation((): any => true)
     mockedLRUMap.mockImplementation((): any => true)

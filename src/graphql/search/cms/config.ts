@@ -1,6 +1,8 @@
+import { FILTER_TYPES } from '../../config'
+
 export const FILTERS = {
-  THEME: { type: 'theme', label: "Thema's", filterType: 'array' },
-  DATE: { type: 'date', label: 'Publicatiedatum', filterType: 'string' },
+  THEME: { type: 'theme', label: "Thema's", filterType: FILTER_TYPES.CHECKBOX },
+  DATE: { type: 'date', label: 'Publicatiedatum', filterType: FILTER_TYPES.SELECT },
 }
 
 export const TYPES = {

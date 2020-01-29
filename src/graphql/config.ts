@@ -10,3 +10,9 @@ export type Context = {
     }
   }
 }
+
+export const FILTER_TYPES = {
+  RADIO: 'radio',
+  CHECKBOX: 'checkbox',
+  SELECT: 'select',
+}
