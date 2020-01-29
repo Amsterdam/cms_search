@@ -1,7 +1,4 @@
-import {
-  formatFilters,
-  // getCatalogFilters
-} from './normalize'
+import { formatFilters } from './normalize'
 import { Filter } from '../../../generated/graphql'
 
 export default (facets: any, openApiResults: any): { filters: Array<Filter> } => {

@@ -1,5 +1,3 @@
-// import DataLoader from 'dataloader'
-
 import { LRUMap } from 'lru_map'
 import createDataLoader, { MAX_CACHE_SIZE } from './createDataLoader'
 import DataLoader from 'dataloader'
@@ -36,13 +34,13 @@ describe('dataloader', () => {
     mockedLoaderFunction.mockReset()
   })
 
-  it('should return the cached dataloader when there is a token given', () => {
+  it('should NOT return the cached dataloader when there is a token given', () => {
     mockedDataLoader.mockImplementation((): any => true)
     mockedLRUMap.mockImplementation((): any => true)
 
     const output = createDataLoader('erewrerewr')
 
-    // The cacheMap MUST not be used
+    // The cacheMap MUST NOT be used
     expect(mockedLRUMap).not.toHaveBeenCalled()
 
     // TODO: Check if the spy on loaderFunction can be accepted as `anonymous` function here

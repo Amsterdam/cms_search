@@ -1,7 +1,7 @@
 import fetchWithAbort from './fetchWithAbort'
 
 // A function returns a Promise that resolves to the values corresponding the keys
-function loaderFunction(keys: readonly string[], token = ''): any {
+function loaderFunction(keys: readonly string[], token = ''): Promise<Array<Promise<Object>>> {
   // Return a Promise that resolves to the values corresponding the keys
   return new Promise(async resolve => {
     // Get the values that correspond to the keys

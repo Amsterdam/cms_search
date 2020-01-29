@@ -13,7 +13,7 @@ async function fetchWithAbort(endpoint: string, headers: Object = {}) {
   }, MAX_REQUEST_TIME)
 
   return await fetch(endpoint, { ...headers, signal: controller.signal })
-    .then((res: any) => {
+    .then(res => {
       clearTimeout(timeout) // The data is on its way, so clear the timeout
 
       if (res.status !== 200) {
@@ -21,13 +21,7 @@ async function fetchWithAbort(endpoint: string, headers: Object = {}) {
       }
       return res.json()
     })
-    .catch((e: Error) => {
-      if (e.name === 'AbortError') {
-        return { status: 504, message: e.message }
-      } else {
-        return { status: 500, message: e.message }
-      }
-    })
+    .catch((e: Error) => ({ status: e.name === 'AbortError' ? 504 : 500, message: e.message }))
 }
 
 export default fetchWithAbort

@@ -1,7 +1,7 @@
 import { DEFAULT_FROM, DEFAULT_LIMIT } from '../../../config'
 import { DataSearchResult, QueryDataSearchArgs } from '../../../generated/graphql'
 import { combineTypeResults } from './normalize'
-import { DATA_SEARCH_ENDPOINTS } from './config'
+import { DATA_SEARCH_ENDPOINTS, DataSearchType } from './config'
 import getFilters from './filters'
 import { Context } from '../../config'
 
@@ -13,11 +13,11 @@ const index = async (
   const { limit, from, types } = input || {}
   const { loaders } = context
 
-  let endpoints: any = []
+  let endpoints: Array<Object> = []
 
   // If there are types in the request, not all endpoints should be called from DataLoader
   if (types && types.length > 0) {
-    endpoints = DATA_SEARCH_ENDPOINTS.filter(({ type }: any) => types.includes(type))
+    endpoints = DATA_SEARCH_ENDPOINTS.filter(({ type }: DataSearchType) => types.includes(type))
 
     // Throw an error when the requested types don't exist
     if (endpoints.length === 0) {

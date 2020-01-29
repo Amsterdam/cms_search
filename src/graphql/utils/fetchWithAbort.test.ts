@@ -8,13 +8,14 @@ import fetchWithAbort, { MAX_REQUEST_TIME } from './fetchWithAbort'
 
 describe('fetchWithAbort', () => {
   describe('Returns data when the request returns result', () => {
-    const mockFetch = jest.spyOn(fetch, 'default').mockImplementation((): any =>
-      Promise.resolve({
-        status: 200,
-        json: () => ({
-          foo: 'var',
+    const mockFetch = jest.spyOn(fetch, 'default').mockImplementation(
+      (): Promise<any> =>
+        Promise.resolve({
+          status: 200,
+          json: () => ({
+            foo: 'var',
+          }),
         }),
-      }),
     )
 
     afterEach(() => {
@@ -31,13 +32,14 @@ describe('fetchWithAbort', () => {
       })
     })
     it('with header information', async () => {
-      const mockFetch = jest.spyOn(fetch, 'default').mockImplementationOnce((): any =>
-        Promise.resolve({
-          status: 200,
-          json: () => ({
-            foo: 'var',
+      const mockFetch = jest.spyOn(fetch, 'default').mockImplementationOnce(
+        (): Promise<any> =>
+          Promise.resolve({
+            status: 200,
+            json: () => ({
+              foo: 'var',
+            }),
           }),
-        }),
       )
 
       const output = await fetchWithAbort('url', { lorem: 'ipsum' })
@@ -54,11 +56,12 @@ describe('fetchWithAbort', () => {
 
   describe('Returns data when the request returns', () => {
     it('a non OK status code', async () => {
-      const mockFetch = jest.spyOn(fetch, 'default').mockImplementationOnce((): any =>
-        Promise.resolve({
-          status: 401,
-          json: () => ({}),
-        }),
+      const mockFetch = jest.spyOn(fetch, 'default').mockImplementationOnce(
+        (): Promise<any> =>
+          Promise.resolve({
+            status: 401,
+            json: () => ({}),
+          }),
       )
 
       const output = await fetchWithAbort('url')
@@ -74,11 +77,12 @@ describe('fetchWithAbort', () => {
     })
 
     it('when the request throws an error', async () => {
-      let mockFetch = jest.spyOn(fetch, 'default').mockImplementationOnce((): any =>
-        Promise.reject({
-          name: 'Error',
-          message: 'Lorem ipsum',
-        }),
+      let mockFetch = jest.spyOn(fetch, 'default').mockImplementationOnce(
+        (): Promise<any> =>
+          Promise.reject({
+            name: 'Error',
+            message: 'Lorem ipsum',
+          }),
       )
 
       const output = await fetchWithAbort('url')
@@ -94,11 +98,12 @@ describe('fetchWithAbort', () => {
     })
 
     it('when the request throws an AbortError', async () => {
-      let mockFetch = jest.spyOn(fetch, 'default').mockImplementationOnce((): any =>
-        Promise.reject({
-          name: 'AbortError',
-          message: 'Lorem ipsum',
-        }),
+      let mockFetch = jest.spyOn(fetch, 'default').mockImplementationOnce(
+        (): Promise<any> =>
+          Promise.reject({
+            name: 'AbortError',
+            message: 'Lorem ipsum',
+          }),
       )
 
       const output = await fetchWithAbort('url')
@@ -117,13 +122,14 @@ describe('fetchWithAbort', () => {
   it('aborts the fetch request if it takes to long', async () => {
     const mockedAbortController = <jest.Mock<any, any>>(<unknown>AbortController)
 
-    mockedAbortController.mockImplementation((): any => ({ abort: jest.fn() }))
+    mockedAbortController.mockImplementation((): Object => ({ abort: jest.fn() }))
 
-    const mockFetch = jest.spyOn(fetch, 'default').mockImplementationOnce((): any =>
-      Promise.reject({
-        name: 'AbortError',
-        message: 'Lorem ipsum',
-      }),
+    const mockFetch = jest.spyOn(fetch, 'default').mockImplementationOnce(
+      (): Promise<any> =>
+        Promise.reject({
+          name: 'AbortError',
+          message: 'Lorem ipsum',
+        }),
     )
 
     jest.useFakeTimers()
