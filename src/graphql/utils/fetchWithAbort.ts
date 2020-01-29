@@ -1,6 +1,8 @@
 import fetch from 'node-fetch'
 import AbortController from 'abort-controller'
 
+export const MAX_REQUEST_TIME = 1200
+
 async function fetchWithAbort(endpoint: string, headers: Object = {}) {
   const controller = new AbortController()
 
@@ -8,7 +10,7 @@ async function fetchWithAbort(endpoint: string, headers: Object = {}) {
   const timeout = setTimeout(() => {
     controller.abort()
     console.warn('ABORTED', endpoint) // For logging in Sentry
-  }, 1200)
+  }, MAX_REQUEST_TIME)
 
   return await fetch(endpoint, { ...headers, signal: controller.signal })
     .then((res: any) => {

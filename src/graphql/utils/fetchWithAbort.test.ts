@@ -4,7 +4,7 @@ import AbortController from 'abort-controller'
 jest.mock('node-fetch')
 jest.mock('abort-controller')
 
-import fetchWithAbort from './fetchWithAbort'
+import fetchWithAbort, { MAX_REQUEST_TIME } from './fetchWithAbort'
 
 describe('fetchWithAbort', () => {
   describe('Returns data when the request returns result', () => {
@@ -130,7 +130,7 @@ describe('fetchWithAbort', () => {
 
     const output = await fetchWithAbort('url')
 
-    expect(setTimeout).toHaveBeenCalledWith(jasmine.any(Function), 1200)
+    expect(setTimeout).toHaveBeenCalledWith(jasmine.any(Function), MAX_REQUEST_TIME)
     expect(mockedAbortController).toHaveBeenCalled()
 
     expect(output).toEqual({

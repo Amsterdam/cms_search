@@ -1,10 +1,9 @@
 // import DataLoader from 'dataloader'
 
 import { LRUMap } from 'lru_map'
-import { createDataLoader } from './dataloader'
+import createDataLoader, { MAX_CACHE_SIZE } from './createDataLoader'
 import DataLoader from 'dataloader'
-import { MAX_CACHE_SIZE } from './config'
-import * as loaderFunction from '../../utils/loaderFunction'
+import * as loaderFunction from './loaderFunction'
 
 jest.mock('../../utils/loaderFunction')
 jest.mock('dataloader')

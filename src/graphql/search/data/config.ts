@@ -100,5 +100,3 @@ export const NORMAL_VBO_STATUSSES = [
   'Verblijfsobject in gebruik',
   'Verbouwing verblijfsobject',
 ]
-
-export const MAX_CACHE_SIZE = 100

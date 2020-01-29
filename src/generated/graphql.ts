@@ -28,7 +28,7 @@ export type CmsSearchInput = {
 export type CmsSearchResult = SearchResult & {
   __typename?: 'CMSSearchResult'
   totalCount: Scalars['Int']
-  results: Array<CmsSearchResultType>
+  results?: Maybe<Array<CmsSearchResultType>>
   filters?: Maybe<Array<Filter>>
 }
 
@@ -86,11 +86,6 @@ export type DataSearchResultType = SearchResultType & {
   results?: Maybe<Array<DataResult>>
 }
 
-export type DatasetFiltersResult = {
-  __typename?: 'DatasetFiltersResult'
-  filters?: Maybe<Array<Filter>>
-}
-
 export type DatasetFormats = {
   __typename?: 'DatasetFormats'
   name: Scalars['String']
@@ -106,7 +101,8 @@ export type DatasetSearchInput = {
 export type DatasetSearchResult = SearchResult & {
   __typename?: 'DatasetSearchResult'
   totalCount: Scalars['Int']
-  results: Array<DatasetSearchResultType>
+  results?: Maybe<Array<DatasetSearchResultType>>
+  filters?: Maybe<Array<Filter>>
 }
 
 export type DatasetSearchResultType = {
@@ -150,7 +146,6 @@ export type Query = {
   datasetSearch?: Maybe<DatasetSearchResult>
   publicationSearch?: Maybe<CmsSearchResult>
   specialSearch?: Maybe<CmsSearchResult>
-  datasetFilters?: Maybe<DatasetFiltersResult>
 }
 
 export type QueryArticleSearchArgs = {
@@ -178,15 +173,11 @@ export type QuerySpecialSearchArgs = {
   input?: Maybe<CmsSearchInput>
 }
 
-export type QueryDatasetFiltersArgs = {
-  q?: Maybe<Scalars['String']>
-}
-
 export type Results = DatasetSearchResultType | CmsSearchResultType | DataSearchResultType
 
 export type SearchResult = {
   totalCount: Scalars['Int']
-  results: Array<Results>
+  results?: Maybe<Array<Results>>
 }
 
 export type SearchResultType = {
@@ -284,7 +275,7 @@ export type ResolversTypes = {
   CMSSortInput: CmsSortInput
   CMSSearchResult: ResolverTypeWrapper<CmsSearchResult>
   SearchResult: ResolverTypeWrapper<
-    Omit<SearchResult, 'results'> & { results: Array<ResolversTypes['Results']> }
+    Omit<SearchResult, 'results'> & { results?: Maybe<Array<ResolversTypes['Results']>> }
   >
   Results:
     | ResolversTypes['DatasetSearchResultType']
@@ -304,7 +295,6 @@ export type ResolversTypes = {
   DataSearchResult: ResolverTypeWrapper<DataSearchResult>
   DatasetSearchInput: DatasetSearchInput
   DatasetSearchResult: ResolverTypeWrapper<DatasetSearchResult>
-  DatasetFiltersResult: ResolverTypeWrapper<DatasetFiltersResult>
 }
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -317,7 +307,9 @@ export type ResolversParentTypes = {
   Boolean: Scalars['Boolean']
   CMSSortInput: CmsSortInput
   CMSSearchResult: CmsSearchResult
-  SearchResult: Omit<SearchResult, 'results'> & { results: Array<ResolversParentTypes['Results']> }
+  SearchResult: Omit<SearchResult, 'results'> & {
+    results?: Maybe<Array<ResolversParentTypes['Results']>>
+  }
   Results:
     | ResolversParentTypes['DatasetSearchResultType']
     | ResolversParentTypes['CMSSearchResultType']
@@ -336,7 +328,6 @@ export type ResolversParentTypes = {
   DataSearchResult: DataSearchResult
   DatasetSearchInput: DatasetSearchInput
   DatasetSearchResult: DatasetSearchResult
-  DatasetFiltersResult: DatasetFiltersResult
 }
 
 export type CmsLinkResolvers<
@@ -351,7 +342,7 @@ export type CmsSearchResultResolvers<
   ParentType extends ResolversParentTypes['CMSSearchResult'] = ResolversParentTypes['CMSSearchResult']
 > = {
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
-  results?: Resolver<Array<ResolversTypes['CMSSearchResultType']>, ParentType, ContextType>
+  results?: Resolver<Maybe<Array<ResolversTypes['CMSSearchResultType']>>, ParentType, ContextType>
   filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
 }
 
@@ -406,13 +397,6 @@ export type DataSearchResultTypeResolvers<
   results?: Resolver<Maybe<Array<ResolversTypes['DataResult']>>, ParentType, ContextType>
 }
 
-export type DatasetFiltersResultResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['DatasetFiltersResult'] = ResolversParentTypes['DatasetFiltersResult']
-> = {
-  filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
-}
-
 export type DatasetFormatsResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['DatasetFormats'] = ResolversParentTypes['DatasetFormats']
@@ -426,7 +410,12 @@ export type DatasetSearchResultResolvers<
   ParentType extends ResolversParentTypes['DatasetSearchResult'] = ResolversParentTypes['DatasetSearchResult']
 > = {
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
-  results?: Resolver<Array<ResolversTypes['DatasetSearchResultType']>, ParentType, ContextType>
+  results?: Resolver<
+    Maybe<Array<ResolversTypes['DatasetSearchResultType']>>,
+    ParentType,
+    ContextType
+  >
+  filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
 }
 
 export type DatasetSearchResultTypeResolvers<
@@ -501,12 +490,6 @@ export type QueryResolvers<
     ContextType,
     QuerySpecialSearchArgs
   >
-  datasetFilters?: Resolver<
-    Maybe<ResolversTypes['DatasetFiltersResult']>,
-    ParentType,
-    ContextType,
-    QueryDatasetFiltersArgs
-  >
 }
 
 export type ResultsResolvers<
@@ -530,7 +513,7 @@ export type SearchResultResolvers<
     ContextType
   >
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
-  results?: Resolver<Array<ResolversTypes['Results']>, ParentType, ContextType>
+  results?: Resolver<Maybe<Array<ResolversTypes['Results']>>, ParentType, ContextType>
 }
 
 export type SearchResultTypeResolvers<
@@ -550,7 +533,6 @@ export type Resolvers<ContextType = any> = {
   DataResult?: DataResultResolvers<ContextType>
   DataSearchResult?: DataSearchResultResolvers<ContextType>
   DataSearchResultType?: DataSearchResultTypeResolvers<ContextType>
-  DatasetFiltersResult?: DatasetFiltersResultResolvers<ContextType>
   DatasetFormats?: DatasetFormatsResolvers<ContextType>
   DatasetSearchResult?: DatasetSearchResultResolvers<ContextType>
   DatasetSearchResultType?: DatasetSearchResultTypeResolvers<ContextType>

@@ -1,15 +1,17 @@
 import DataLoader from 'dataloader'
 import { LRUMap } from 'lru_map'
-import loaderFunction from '../../utils/loaderFunction'
+import loaderFunction from './loaderFunction'
+
+export const MAX_CACHE_SIZE = 100
 
 // This DataLoader stays cached above the per-request level using `lru_map`
 const loader = new DataLoader(loaderFunction, {
   cache: true,
-  cacheMap: new LRUMap(100),
+  cacheMap: new LRUMap(MAX_CACHE_SIZE),
 })
 
 // Function to either get the existing DataLoader from cache or create a new one
-export function createDataLoader(token: string) {
+export default function createDataLoader(token: string) {
   if (!token) {
     return loader
   }

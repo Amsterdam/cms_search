@@ -3,13 +3,12 @@ import { DataSearchResult, QueryDataSearchArgs } from '../../../generated/graphq
 import { combineTypeResults } from './normalize'
 import { DATA_SEARCH_ENDPOINTS } from './config'
 import getFilters from './filters'
+import { Context } from '../../config'
 
 const index = async (
   _: any,
   { q: searchTerm, input }: QueryDataSearchArgs,
-  context: {
-    loaders: { data: { load: Function; clear: Function } }
-  },
+  context: Context,
 ): Promise<DataSearchResult> => {
   const { limit, from, types } = input || {}
   const { loaders } = context
@@ -35,7 +34,7 @@ const index = async (
       const key = `${endpoint}?q=${searchTerm}`
       const result = await loaders.data.load(key)
 
-      // If an error is thrown, delete the key from the cache and try again
+      // If an error is thrown, delete the key from the cache and throw an error
       if (result.status !== 200) {
         loaders.data.clear(`${endpoint}?q=${searchTerm}`)
       }

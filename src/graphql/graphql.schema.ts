@@ -6,7 +6,7 @@ const schema = gql`
 
   interface SearchResult {
     totalCount: Int!
-    results: [Results!]!
+    results: [Results!]
   }
 
   interface SearchResultType {
@@ -54,16 +54,13 @@ const schema = gql`
 
   type DatasetSearchResult implements SearchResult {
     totalCount: Int!
-    results: [DatasetSearchResultType!]!
-  }
-
-  type DatasetFiltersResult {
+    results: [DatasetSearchResultType!]
     filters: [Filter!]
   }
 
   type CMSSearchResult implements SearchResult {
     totalCount: Int!
-    results: [CMSSearchResultType!]!
+    results: [CMSSearchResultType!]
     filters: [Filter!]
   }
 
@@ -140,7 +137,6 @@ const schema = gql`
     datasetSearch(q: String, input: DatasetSearchInput): DatasetSearchResult
     publicationSearch(q: String, input: CMSSearchInput): CMSSearchResult
     specialSearch(q: String, input: CMSSearchInput): CMSSearchResult
-    datasetFilters(q: String): DatasetFiltersResult
   }
 `
 

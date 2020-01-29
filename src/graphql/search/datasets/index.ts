@@ -1,70 +1,45 @@
-import fetch from 'node-fetch'
-
 import { DatasetSearchResult, QueryDatasetSearchArgs } from '../../../generated/graphql'
-import { getCatalogFilters, normalizeDatasets, properties } from './normalize'
-import { openApiCached, DCAT_ENDPOINTS } from './filters'
+import { getDatasetsEndpoint, normalizeDatasets } from './normalize'
+import getFilters from './filters'
+import DataError from '../../utils/DataError'
+import { DCAT_ENDPOINTS } from './config'
+import { Context } from '../../config'
 
 export default async (
   _: any,
-  { q, input }: QueryDatasetSearchArgs,
+  { q = '', input }: QueryDatasetSearchArgs,
+  context: Context,
 ): Promise<DatasetSearchResult> => {
-  const { from, limit, filters: inputFilters } = input || {}
+  const { loaders } = context
 
-  /**
-   * Output like: {
-   *   property/foo/bar: 'in=value1,value2'
-   * }
-   */
-  const queryFilters = (inputFilters || []).reduce((acc, { type, values, multiSelect }) => {
-    const selected = Object.values(properties).find(
-      ({ type: propertyType }) => propertyType === type,
-    )
-
-    return selected
-      ? {
-          ...acc,
-          [selected.name]: `${multiSelect ? 'in' : 'eq'}=${values.join(`,`)}`,
-        }
-      : {}
-  }, {})
-
-  // Filter out objects with undefined values and make sure value is always a string
-  const query = Object.entries({
-    q,
-    offset: from,
-    limit: limit,
-    ...queryFilters,
-  }).reduce(
-    (acc, [key, value]) => ({
-      ...acc,
-      ...(typeof value !== 'undefined' ? { [key]: `${value}` } : {}),
-    }),
-    {},
-  )
-
-  const urlQuery = new URLSearchParams(query).toString()
-
-  const datasetsUrl = `${DCAT_ENDPOINTS['datasets']}?${urlQuery}`
+  const datasetsUrl = getDatasetsEndpoint(q, input || {})
 
   let results: any = []
   let totalCount = 0
 
-  try {
-    const [datasets, openApiResults]: any = await Promise.all([
-      fetch(datasetsUrl).then((res: any) => res.json()),
-      openApiCached(),
-    ])
-    const datasetFilters = getCatalogFilters(openApiResults)
+  // Get the results from the DataLoader
+  const [datasets, openApiResults]: any = await Promise.all([
+    await loaders.datasets.load(datasetsUrl),
+    await loaders.datasets.load(DCAT_ENDPOINTS['openapi']),
+  ])
 
-    results = normalizeDatasets(datasets['dcat:dataset'], datasetFilters)
-    totalCount = datasets['void:documents']
-  } catch (e) {
-    // Todo: error handling
-    console.warn(e)
+  // If an error is thrown, delete the key from the cache and throw an error
+  if (datasets.status && datasets.status !== 200 && datasets.message) {
+    loaders.datasets.clear(datasetsUrl)
+
+    results = new DataError(null, 'datasets', 'Datasets')
+  } else {
+    results = normalizeDatasets(datasets['dcat:dataset'], openApiResults)
   }
+
+  totalCount = datasets['void:documents']
+
+  // Get the available filters and merge with the results to get a count
+  const filters = getFilters(datasets['ams:facet_info'], openApiResults)
 
   return {
     totalCount,
     results,
+    ...filters,
   }
 }

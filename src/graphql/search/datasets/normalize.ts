@@ -1,64 +1,14 @@
 import removeMd from 'remove-markdown'
-import { Filter } from '../../../generated/graphql'
-
-type AggregationType = Array<{ name: string; count: number }>
-
-type PropertyType = {
-  enum: Array<string>
-  enumNames: Array<string>
-}
-
-type FileFormatFilterType = Array<{ name: string; count: number }>
-
-export type CatalogFilterOptionsType = Array<{ id: string; label: string; enumType: string }>
-export type CatalogFilterType = {
-  options: CatalogFilterOptionsType
-  filterType: string
-}
-
-type CatalogFilters = {
-  statusTypes: CatalogFilterType
-  groupTypes: CatalogFilterType
-  formatTypes: CatalogFilterType
-  serviceTypes: CatalogFilterType
-  resourceTypes: CatalogFilterType
-  ownerTypes: CatalogFilterType
-  licenseTypes: CatalogFilterType
-  spatialUnits: CatalogFilterType
-  temporalUnits: CatalogFilterType
-  accrualPeriodicity: CatalogFilterType
-  languages: CatalogFilterType
-  distributionTypes: CatalogFilterType
-}
-
-const MAX_INTRO_LENGTH = 140
-
-const properties = {
-  status: {
-    type: 'status',
-    name: '/properties/ams:status',
-  },
-  theme: {
-    type: 'theme',
-    name: '/properties/dcat:theme/items',
-  },
-  format: {
-    type: 'format',
-    name: '/properties/dcat:distribution/items/properties/dcat:mediaType',
-  },
-  owner: {
-    type: 'owner',
-    name: '/properties/ams:owner',
-  },
-  distributionType: {
-    type: 'distributionType',
-    name: '/properties/dcat:distribution/items/properties/ams:distributionType',
-  },
-  serviceType: {
-    type: 'serviceType',
-    name: '/properties/dcat:distribution/items/properties/ams:serviceType',
-  },
-}
+import { Filter, DatasetSearchInput } from '../../../generated/graphql'
+import {
+  FileFormatFilterType,
+  AggregationType,
+  MAX_INTRO_LENGTH,
+  PropertyType,
+  CatalogFilterOptionsType,
+  properties,
+  DCAT_ENDPOINTS,
+} from './config'
 
 /**
  * @example
@@ -110,14 +60,25 @@ function aggregateFileFormats(fileFormats: Array<string>): FileFormatFilterType 
   })
 }
 
-function normalizeDatasets(content: any, catalogFilters: CatalogFilters) {
-  if (!Object.keys(catalogFilters).length) {
+function normalizeDatasets(content: any, openApiData: any) {
+  if (!Object.keys(openApiData).length) {
     return false
   }
 
-  const formatMap = arrayToObject(catalogFilters.formatTypes.options, 'id')
-  const serviceMap = arrayToObject(catalogFilters.serviceTypes.options, 'id')
-  const distributionMap = arrayToObject(catalogFilters.distributionTypes.options, 'id')
+  const { distributionProperties } = getProperties(openApiData)
+
+  const formatMap = arrayToObject(
+    getOptionsFromProperty(distributionProperties['dcat:mediaType']),
+    'id',
+  )
+  const serviceMap = arrayToObject(
+    getOptionsFromProperty(distributionProperties['ams:serviceType']),
+    'id',
+  )
+  const distributionMap = arrayToObject(
+    getOptionsFromProperty(distributionProperties['ams:distributionType']),
+    'id',
+  )
 
   return content.map((item: any) => {
     const formats = item['dcat:distribution'].map((resource: any) => {
@@ -162,7 +123,7 @@ function normalizeDatasets(content: any, catalogFilters: CatalogFilters) {
  * Outputs: [{ id: 'bar', label: 'hello' }, {id: 'baz', label: 'Anders'}]
  * @param propertyType
  */
-function getOptionsFromProperty(propertyType: PropertyType): CatalogFilterOptionsType {
+function getOptionsFromProperty(propertyType: PropertyType): Array<CatalogFilterOptionsType> {
   return propertyType.enum.map((item, i: number) => {
     const index = item.indexOf(':')
     return {
@@ -173,69 +134,22 @@ function getOptionsFromProperty(propertyType: PropertyType): CatalogFilterOption
   })
 }
 
-function getCatalogFilters(data: any): CatalogFilters {
-  const dcatDocProperties = data.components.schemas['dcat-dataset'].properties
+function getProperties(openApiData: any) {
+  const dcatDocProperties = openApiData.components.schemas['dcat-dataset'].properties
   const distributionProperties = dcatDocProperties['dcat:distribution'].items.properties
   const ownerProperties = dcatDocProperties['ams:owner'].examples
 
   return {
-    statusTypes: {
-      filterType: dcatDocProperties['ams:status'].type,
-      options: getOptionsFromProperty(dcatDocProperties['ams:status']),
-    },
-    groupTypes: {
-      options: getOptionsFromProperty(dcatDocProperties['dcat:theme'].items),
-      filterType: dcatDocProperties['dcat:theme'].type,
-    },
-    formatTypes: {
-      options: getOptionsFromProperty(distributionProperties['dcat:mediaType']),
-      filterType: distributionProperties['dcat:mediaType'].type,
-    },
-    serviceTypes: {
-      options: getOptionsFromProperty(distributionProperties['ams:serviceType']),
-      filterType: distributionProperties['ams:serviceType'].type,
-    },
-    resourceTypes: {
-      options: getOptionsFromProperty(distributionProperties['ams:resourceType']),
-      filterType: distributionProperties['ams:resourceType'].type,
-    },
-    ownerTypes: {
-      options: ownerProperties.map((item: any) => ({
-        id: item,
-        label: item,
-        enumType: item,
-      })),
-      filterType: dcatDocProperties['ams:owner'].type,
-    },
-    licenseTypes: {
-      options: getOptionsFromProperty(dcatDocProperties['ams:license']),
-      filterType: dcatDocProperties['ams:license'].type,
-    },
-    spatialUnits: {
-      options: getOptionsFromProperty(dcatDocProperties['ams:spatialUnit']),
-      filterType: dcatDocProperties['ams:spatialUnit'].type,
-    },
-    temporalUnits: {
-      options: getOptionsFromProperty(dcatDocProperties['ams:temporalUnit']),
-      filterType: dcatDocProperties['ams:temporalUnit'].type,
-    },
-    accrualPeriodicity: {
-      options: getOptionsFromProperty(dcatDocProperties['dct:accrualPeriodicity']),
-      filterType: dcatDocProperties['dct:accrualPeriodicity'].type,
-    },
-    languages: {
-      options: getOptionsFromProperty(dcatDocProperties['dct:language']),
-      filterType: dcatDocProperties['dct:language'].type,
-    },
-    distributionTypes: {
-      options: getOptionsFromProperty(distributionProperties['ams:distributionType']),
-      filterType: distributionProperties['ams:distributionType'].type,
-    },
+    dcatDocProperties,
+    distributionProperties,
+    ownerProperties,
   }
 }
 
-function getFacetOptions(facets: any, filterCatalog: CatalogFilterType) {
-  return filterCatalog.options.map(({ label, enumType, id }) => ({
+function getFacetOptions(facets: any, property: any) {
+  const options: Array<CatalogFilterOptionsType> = getOptionsFromProperty(property)
+
+  return options.map(({ label, enumType, id }) => ({
     id,
     label: label ? label : id,
     count: Object.values(facets).reduce((acc, value: any) => value[enumType] || acc, 0) as number,
@@ -243,49 +157,65 @@ function getFacetOptions(facets: any, filterCatalog: CatalogFilterType) {
   }))
 }
 
-function formatFilters(facets: Object, catalogFilters: CatalogFilters): Array<Filter> {
+function formatFilters(facets: Object, openApiData: any): Array<Filter> {
+  const { dcatDocProperties, distributionProperties } = getProperties(openApiData)
+
   return [
-    // {
-    //   type: properties.status.type,
-    //   label: 'Status',
-    //   filterType: catalogFilters.statusTypes.filterType,
-    //   options: getFacetOptions(
-    //     filters[properties.status.name],
-    //     catalogFilters.statusTypes,
-    //     'status',
-    //   ),
-    // },
     {
       type: properties.theme.type,
       label: "Thema's",
-      filterType: catalogFilters.groupTypes.filterType,
-      options: getFacetOptions(facets, catalogFilters.groupTypes),
+      filterType: dcatDocProperties['dcat:theme'].type,
+      options: getFacetOptions(facets, dcatDocProperties['dcat:theme'].items),
     },
-    // {
-    //   type: properties.format.type,
-    //   label: 'Bestandsformaten',
-    //   filterType: catalogFilters.formatTypes.filterType,
-    //   options: getFacetOptions(filters[properties.format.name], catalogFilters.formatTypes),
-    // },
-    // {
-    //   type: properties.owner.type,
-    //   label: 'Eigenaar',
-    //   filterType: catalogFilters.ownerTypes.filterType,
-    //   options: getFacetOptions(filters[properties.owner.name], catalogFilters.ownerTypes),
-    // },
     {
       type: properties.distributionType.type,
       label: 'Verschijningsvorm',
-      filterType: catalogFilters.distributionTypes.filterType,
-      options: getFacetOptions(facets, catalogFilters.distributionTypes),
+      filterType: distributionProperties['ams:distributionType'].type,
+      options: getFacetOptions(facets, distributionProperties['ams:distributionType']),
     },
-    // {
-    //   type: properties.serviceType.type,
-    //   label: 'API/Service formaten',
-    //   filterType: catalogFilters.distributionTypes.filterType,
-    //   options: getFacetOptions(filters[properties.serviceType.name], catalogFilters.serviceTypes),
-    // },
   ]
+}
+
+// Construct the endpoint that can be used to load the datasets
+function getDatasetsEndpoint(
+  q: string | null,
+  { from, limit, filters: inputFilters }: DatasetSearchInput,
+) {
+  /**
+   * Output like: {
+   *   property/foo/bar: 'in=value1,value2'
+   * }
+   */
+  const queryFilters = (inputFilters || []).reduce((acc, { type, values, multiSelect }) => {
+    const selected = Object.values(properties).find(
+      ({ type: propertyType }) => propertyType === type,
+    )
+
+    return selected
+      ? {
+          ...acc,
+          [selected.name]: `${multiSelect ? 'in' : 'eq'}=${values.join(`,`)}`,
+        }
+      : {}
+  }, {})
+
+  // Filter out objects with undefined values and make sure value is always a string
+  const query = Object.entries({
+    q,
+    offset: from,
+    limit: limit,
+    ...queryFilters,
+  }).reduce(
+    (acc, [key, value]) => ({
+      ...acc,
+      ...(typeof value !== 'undefined' ? { [key]: `${value}` } : {}),
+    }),
+    {},
+  )
+
+  const urlQuery = new URLSearchParams(query).toString()
+
+  return `${DCAT_ENDPOINTS['datasets']}?${urlQuery}`
 }
 
 export {
@@ -293,8 +223,8 @@ export {
   aggregateFileFormats,
   getFacetOptions,
   getOptionsFromProperty,
+  getDatasetsEndpoint,
   formatFilters,
   properties,
   normalizeDatasets,
-  getCatalogFilters,
 }

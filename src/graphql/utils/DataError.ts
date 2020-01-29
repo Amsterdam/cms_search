@@ -7,7 +7,7 @@ interface Extensions {
 // Creates a custom Error object to send along an `extensions` object with your GraphQL Error
 export default class DataError extends Error {
   extensions: Extensions
-  constructor(status: number, type: string, label: string) {
+  constructor(status: number | null, type: string, label: string) {
     let message
     let code
 

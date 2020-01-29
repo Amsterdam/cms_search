@@ -179,29 +179,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "datasetFilters",
-            "description": "",
-            "args": [
-              {
-                "name": "q",
-                "description": "",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "OBJECT",
-              "name": "DatasetFiltersResult",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -442,19 +419,15 @@
             "description": "",
             "args": [],
             "type": {
-              "kind": "NON_NULL",
+              "kind": "LIST",
               "name": null,
               "ofType": {
-                "kind": "LIST",
+                "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "CMSSearchResultType",
-                    "ofType": null
-                  }
+                  "kind": "OBJECT",
+                  "name": "CMSSearchResultType",
+                  "ofType": null
                 }
               }
             },
@@ -519,19 +492,15 @@
             "description": "",
             "args": [],
             "type": {
-              "kind": "NON_NULL",
+              "kind": "LIST",
               "name": null,
               "ofType": {
-                "kind": "LIST",
+                "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "UNION",
-                    "name": "Results",
-                    "ofType": null
-                  }
+                  "kind": "UNION",
+                  "name": "Results",
+                  "ofType": null
                 }
               }
             },
@@ -1576,42 +1545,21 @@
             "description": "",
             "args": [],
             "type": {
-              "kind": "NON_NULL",
+              "kind": "LIST",
               "name": null,
               "ofType": {
-                "kind": "LIST",
+                "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "DatasetSearchResultType",
-                    "ofType": null
-                  }
+                  "kind": "OBJECT",
+                  "name": "DatasetSearchResultType",
+                  "ofType": null
                 }
               }
             },
             "isDeprecated": false,
             "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "SearchResult",
-            "ofType": null
-          }
-        ],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "DatasetFiltersResult",
-        "description": "",
-        "fields": [
+          },
           {
             "name": "filters",
             "description": "",
@@ -1634,7 +1582,13 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "SearchResult",
+            "ofType": null
+          }
+        ],
         "enumValues": null,
         "possibleTypes": null
       },

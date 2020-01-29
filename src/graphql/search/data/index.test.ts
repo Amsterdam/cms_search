@@ -29,6 +29,13 @@ describe('dataResolver', () => {
   const TYPE = 'users'
   const FILTERS = { filters: [{ type: ' foo', id: 'foo', label: 'Foo', options: [] }] }
 
+  const CONTEXT = {
+    loaders: {
+      data: { load: jest.fn, clear: jest.fn() },
+      datasets: { load: jest.fn, clear: jest.fn() },
+    },
+  }
+
   describe('Call the endpoints', () => {
     // Spy on these functions and return mock response as they're tested seperately
     beforeEach(() => {
@@ -47,7 +54,7 @@ describe('dataResolver', () => {
       await dataResolver(
         '',
         { q: SEARCH_TERM },
-        { loaders: { data: { load: mockDataLoader, clear: jest.fn() } } },
+        { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: jest.fn() } } },
       )
 
       // No types given so return all endpoints from the config
@@ -66,7 +73,7 @@ describe('dataResolver', () => {
       await dataResolver(
         '',
         { q: SEARCH_TERM, input: { types: [TYPE] } },
-        { loaders: { data: { load: mockDataLoader, clear: jest.fn() } } },
+        { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: jest.fn() } } },
       )
 
       // Only return the endpoint for the given type
@@ -83,7 +90,7 @@ describe('dataResolver', () => {
       await dataResolver(
         '',
         { q: SEARCH_TERM, input: { types: [TYPE] } },
-        { loaders: { data: { load: mockDataLoader, clear: mockClear } } },
+        { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: mockClear } } },
       )
 
       // Only return the endpoint for the given type
@@ -137,7 +144,7 @@ describe('dataResolver', () => {
       await dataResolver(
         '',
         { q: SEARCH_TERM },
-        { loaders: { data: { load: mockDataLoader, clear: jest.fn() } } },
+        { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: jest.fn() } } },
       )
 
       // Then function combineTypeResults will be called with the combination of DATA_SEARCH_ENDPOINTS and the result from the dataloader
@@ -161,7 +168,7 @@ describe('dataResolver', () => {
       const output = await dataResolver(
         '',
         { q: SEARCH_TERM },
-        { loaders: { data: { load: mockDataLoader, clear: jest.fn() } } },
+        { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: jest.fn() } } },
       )
 
       expect(mockedGetFilters).toHaveBeenCalledWith(mockedCombinedTypeResults)
