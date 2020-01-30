@@ -34,12 +34,10 @@ export default async (
 
   totalCount = datasets['void:documents']
 
-  // Get the available filters and merge with the results to get a count
-  const filters = getFilters(datasets['ams:facet_info'], openApiResults)
-
   return {
     totalCount,
     results,
-    ...filters,
+    // Get the available filters and merge with the results to get a count
+    ...getFilters(datasets['ams:facet_info'], openApiResults),
   }
 }
