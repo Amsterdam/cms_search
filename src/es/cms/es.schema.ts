@@ -3,7 +3,7 @@ import { getSearchQuery, getFilterQuery } from './utils'
 
 export type ElasticSearchArgs = {
   q: string | null | undefined
-  from: number
+  from?: number
 } & CmsSearchInput
 
 export default ({ q, limit, from, types = null, filters, sort }: ElasticSearchArgs) => {

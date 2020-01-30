@@ -82,129 +82,65 @@ describe('normalize', () => {
     }
 
     it('should return the combined normalized results when one type', () => {
-      const output = combineTypeResults([input], 0, 0)
+      const output = combineTypeResults([input])
 
       expect(output.length).toBe(1)
       expect(output).toEqual([{ count: 12, label: 'Types', results: [], type: 'type2' }])
     })
 
     it('should return the combined normalized results when multiple types', () => {
-      const output = combineTypeResults([input, input], 0, 0)
+      const output = combineTypeResults([input, input])
 
       expect(output.length).toBe(2)
     })
 
     it('should reset the count when there is none provided', () => {
-      const output = combineTypeResults(
-        [
-          {
-            ...input,
-            count: null,
-          },
-        ],
-        0,
-        0,
-      )
+      const output = combineTypeResults([
+        {
+          ...input,
+          count: null,
+        },
+      ])
 
       expect(output[0].count).toBe(0)
     })
 
     it('should use the singular label when the count equals one', () => {
-      const output = combineTypeResults(
-        [
-          {
-            ...input,
-            count: 1,
-          },
-        ],
-        0,
-        0,
-      )
+      const output = combineTypeResults([
+        {
+          ...input,
+          count: 1,
+        },
+      ])
 
       expect(output[0].label).toBe('Type')
     })
 
-    describe('should slice the results when limit and from are given', () => {
+    it('should return all results', () => {
       const mockNormalizedTypeResult = { type: 'foo ' }
 
-      it('should return all results', () => {
-        const LIMIT = 10
+      const mockedNormalizeTypeResults = jest
+        .spyOn(normalize, 'normalizeTypeResults')
+        .mockReturnValue(mockNormalizedTypeResult)
 
-        const mockedNormalizeTypeResults = jest
-          .spyOn(normalize, 'normalizeTypeResults')
-          .mockReturnValue(mockNormalizedTypeResult)
+      const output = combineTypeResults([
+        {
+          ...input,
+          results: [1, 2, 3, 4],
+        },
+      ])
 
-        const output = combineTypeResults(
-          [
-            {
-              ...input,
-              results: [1, 2, 3, 4],
-            },
-          ],
-          LIMIT,
-          0,
-        )
+      expect(mockedNormalizeTypeResults).toHaveBeenCalledTimes(4)
 
-        expect(mockedNormalizeTypeResults).toHaveBeenCalledTimes(4)
+      expect(output[0].results && output[0].results.length).toBe(4)
+      expect(output[0].results).toEqual([
+        mockNormalizedTypeResult,
+        mockNormalizedTypeResult,
+        mockNormalizedTypeResult,
+        mockNormalizedTypeResult,
+      ])
 
-        expect(output[0].results && output[0].results.length).toBe(4)
-        expect(output[0].results).toEqual([
-          mockNormalizedTypeResult,
-          mockNormalizedTypeResult,
-          mockNormalizedTypeResult,
-          mockNormalizedTypeResult,
-        ])
-
-        mockedNormalizeTypeResults.mockReset()
-      })
-
-      it('should return the first three results', () => {
-        const LIMIT = 3
-
-        const mockedNormalizeTypeResults = jest
-          .spyOn(normalize, 'normalizeTypeResults')
-          .mockReturnValue(mockNormalizedTypeResult)
-
-        combineTypeResults(
-          [
-            {
-              ...input,
-              results: [1, 2, 3, 4],
-            },
-          ],
-          LIMIT,
-          0,
-        )
-
-        expect(mockedNormalizeTypeResults).toHaveBeenCalledTimes(LIMIT)
-        expect(mockedNormalizeTypeResults.mock.calls).toEqual([[1], [2], [3]]) // Only the first three should be used as argument for the mock function
-
-        mockedNormalizeTypeResults.mockReset()
-      })
-
-      it('should return the last three results', () => {
-        const LIMIT = 3
-
-        const mockedNormalizeTypeResults = jest
-          .spyOn(normalize, 'normalizeTypeResults')
-          .mockReturnValue(mockNormalizedTypeResult)
-
-        combineTypeResults(
-          [
-            {
-              ...input,
-              results: [1, 2, 3, 4],
-            },
-          ],
-          LIMIT,
-          1, // !!important, this why the first entry of the array gets skipped
-        )
-
-        expect(mockedNormalizeTypeResults).toHaveBeenCalledTimes(LIMIT)
-        expect(mockedNormalizeTypeResults.mock.calls).toEqual([[2], [3], [4]]) // Only the last three should be used as argument for the mock function
-
-        mockedNormalizeTypeResults.mockReset()
-      })
+      mockedNormalizeTypeResults.mockReset()
     })
   })
 })

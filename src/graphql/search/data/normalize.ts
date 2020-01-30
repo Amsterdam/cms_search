@@ -31,11 +31,7 @@ export const normalizeTypeResults = ({
   }
 }
 
-export const combineTypeResults = (
-  responses: object[],
-  limit: number,
-  from: number,
-): Array<DataSearchResultType> =>
+export const combineTypeResults = (responses: object[]): Array<DataSearchResultType> =>
   responses.map(
     (result: any, i): DataSearchResultType => {
       const {
@@ -56,9 +52,7 @@ export const combineTypeResults = (
         // Slice and normalize the results when there are results
         results =
           responseResults.length > 0
-            ? responseResults
-                .slice(from, limit + from)
-                .map((responseResult: Object) => normalizeTypeResults(responseResult))
+            ? responseResults.map((responseResult: Object) => normalizeTypeResults(responseResult))
             : []
       }
 

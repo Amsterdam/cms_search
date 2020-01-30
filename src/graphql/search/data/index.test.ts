@@ -1,7 +1,7 @@
 import dataResolver from './index'
 import * as filters from './filters'
 import * as normalize from './normalize'
-import { DEFAULT_LIMIT, DEFAULT_FROM } from '../../../config'
+import * as getPageInfo from '../../utils/getPageInfo'
 import { FilterInput } from '../../../generated/graphql'
 
 // Overwrite the DATA_SEARCH_ENDPOINTS const to make testing clearer and decoupled from real data
@@ -20,10 +20,13 @@ jest.mock('./config', () => ({
       label: 'Posts',
     },
   ],
+  DATA_SEARCH_LIMIT: 12,
+  DATA_SEARCH_MAX_RESULTS: 20,
 }))
 
 jest.mock('./filters')
 jest.mock('./normalize')
+jest.mock('../../utils/getPageInfo')
 
 describe('dataResolver', () => {
   const SEARCH_TERM = 'foo'
@@ -58,28 +61,30 @@ describe('dataResolver', () => {
         { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: jest.fn() } } },
       )
 
-      // No types given so return all endpoints from the config
+      // No filters given so return all endpoints from the config
       expect(mockDataLoader).toHaveBeenCalledTimes(2)
       expect(mockDataLoader.mock.calls).toEqual([
-        [`https://api.endpoint.com/users?q=${SEARCH_TERM}`],
-        [`https://api.endpoint.com/posts?q=${SEARCH_TERM}`],
+        [`https://api.endpoint.com/users?q=${SEARCH_TERM}&page=1`],
+        [`https://api.endpoint.com/posts?q=${SEARCH_TERM}&page=1`],
       ])
 
       mockDataLoader.mockReset()
     })
 
-    it('with the search term when there are types', async () => {
+    it('with the search term when there is pagination', async () => {
       const mockDataLoader = jest.fn(() => ({ status: 200, foo: 'var' }))
 
       await dataResolver(
         '',
-        { q: SEARCH_TERM, input: { filters: [TYPE] } },
+        { q: SEARCH_TERM, input: { page: 12, filters: [TYPE] } },
         { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: jest.fn() } } },
       )
 
       // Only return the endpoint for the given type
       expect(mockDataLoader).toHaveBeenCalledTimes(1)
-      expect(mockDataLoader).toHaveBeenCalledWith(`https://api.endpoint.com/users?q=${SEARCH_TERM}`)
+      expect(mockDataLoader).toHaveBeenCalledWith(
+        `https://api.endpoint.com/users?q=${SEARCH_TERM}&page=12`,
+      )
 
       mockDataLoader.mockReset()
     })
@@ -96,11 +101,15 @@ describe('dataResolver', () => {
 
       // Only return the endpoint for the given type
       expect(mockDataLoader).toHaveBeenCalledTimes(1)
-      expect(mockDataLoader).toHaveBeenCalledWith(`https://api.endpoint.com/users?q=${SEARCH_TERM}`)
+      expect(mockDataLoader).toHaveBeenCalledWith(
+        `https://api.endpoint.com/users?q=${SEARCH_TERM}&page=1`,
+      )
 
       // Error thrown so call clear()
       expect(mockClear).toHaveBeenCalledTimes(1)
-      expect(mockClear).toHaveBeenCalledWith(`https://api.endpoint.com/users?q=${SEARCH_TERM}`)
+      expect(mockClear).toHaveBeenCalledWith(
+        `https://api.endpoint.com/users?q=${SEARCH_TERM}&page=1`,
+      )
 
       mockDataLoader.mockReset()
       mockClear.mockReset()
@@ -108,7 +117,7 @@ describe('dataResolver', () => {
   })
 
   describe('Calls the combineTypeResults function', () => {
-    const mockReturn = [
+    const RETURN = [
       {
         type: 'users',
         labelSingular: 'User',
@@ -121,27 +130,53 @@ describe('dataResolver', () => {
       },
     ]
 
-    const mockDataLoaderReturn = {
+    const DATA = {
       status: 200,
       foo: 'var',
     }
 
-    const mockDataLoader = jest.fn(() => mockDataLoaderReturn)
-
     // Mock the combineTypeResults as this is tested seperately
-    const mockedCombinedTypeResults = [
-      { ...mockReturn[0], count: 1 },
-      { ...mockReturn[1], count: 3 },
+    const COMBINED = [
+      { ...RETURN[0], count: 1 },
+      { ...RETURN[1], count: 3 },
     ]
 
+    const TOTAL_COUNT = COMBINED[0].count + COMBINED[1].count
+
     // Set a value for the filters
-    const mockedFilters = { filters: [{ type: ' foo', id: 'foo', label: 'Foo', options: [] }] }
+    const FILTERS = { filters: [{ type: ' foo', id: 'foo', label: 'Foo', options: [] }] }
+
+    const PAGE_INFO = {
+      pageInfo: {
+        hasNextPage: true,
+        totalPages: 12,
+      },
+    }
+
+    let mockCombineTypeResults: jest.SpyInstance<any>
+    let mockGetFilters: jest.SpyInstance<any>
+    let mockGetPageInfo: jest.SpyInstance<any>
+    let mockDataLoader = jest.fn()
+
+    beforeEach(() => {
+      mockCombineTypeResults = jest
+        .spyOn(normalize, 'combineTypeResults')
+        .mockReturnValueOnce(COMBINED)
+
+      mockGetFilters = jest.spyOn(filters, 'default').mockReturnValueOnce(FILTERS)
+      mockGetPageInfo = jest.spyOn(getPageInfo, 'default').mockReturnValueOnce(PAGE_INFO)
+
+      mockDataLoader = jest.fn(() => DATA)
+    })
+
+    afterEach(() => {
+      mockCombineTypeResults.mockReset()
+      mockGetFilters.mockReset()
+      mockGetPageInfo.mockReset()
+      mockDataLoader.mockReset()
+    })
 
     it('with the normalized results ', async () => {
-      const mockedCombineTypeResults = jest
-        .spyOn(normalize, 'combineTypeResults')
-        .mockReturnValueOnce(mockedCombinedTypeResults)
-
       await dataResolver(
         '',
         { q: SEARCH_TERM },
@@ -149,22 +184,38 @@ describe('dataResolver', () => {
       )
 
       // Then function combineTypeResults will be called with the combination of DATA_SEARCH_ENDPOINTS and the result from the dataloader
-      expect(mockedCombineTypeResults).toHaveBeenCalledWith(
-        [
-          { ...mockReturn[0], ...mockDataLoaderReturn },
-          { ...mockReturn[1], ...mockDataLoaderReturn },
-        ],
-        DEFAULT_LIMIT,
-        DEFAULT_FROM,
-      )
+      expect(mockCombineTypeResults).toHaveBeenCalledWith([
+        { ...RETURN[0], ...DATA },
+        { ...RETURN[1], ...DATA },
+      ])
     })
 
-    it('and returns the correct values for the reducer', async () => {
-      const mockedCombineTypeResults = jest
-        .spyOn(normalize, 'combineTypeResults')
-        .mockReturnValueOnce(mockedCombinedTypeResults)
+    it('and handles pagination', async () => {
+      const PAGE = 4
 
-      const mockedGetFilters = jest.spyOn(filters, 'default').mockReturnValueOnce(mockedFilters)
+      const output = await dataResolver(
+        '',
+        { q: SEARCH_TERM, input: { page: PAGE } },
+        { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: jest.fn() } } },
+      )
+
+      // The filters should be collected
+      expect(mockGetFilters).toHaveBeenCalledWith(COMBINED)
+
+      // There pageInfo results are retrieved with the input values
+      expect(mockGetPageInfo).toHaveBeenCalledWith(TOTAL_COUNT, PAGE, 12)
+
+      expect(output).toMatchObject({
+        ...PAGE_INFO,
+      })
+    })
+
+    it('including the edge case when DATA_SEARCH_MAX_RESULTS is exceeded', async () => {
+      mockCombineTypeResults.mockReset()
+
+      mockCombineTypeResults = jest
+        .spyOn(normalize, 'combineTypeResults')
+        .mockReturnValueOnce([...COMBINED, { ...RETURN[0], count: 112 }])
 
       const output = await dataResolver(
         '',
@@ -172,16 +223,34 @@ describe('dataResolver', () => {
         { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: jest.fn() } } },
       )
 
-      expect(mockedGetFilters).toHaveBeenCalledWith(mockedCombinedTypeResults)
+      // There pageInfo results are retrieved with the input values,
+      // But with the maximum as totalCount
+      expect(mockGetPageInfo).toHaveBeenCalledWith(20, 1, 12)
+
+      expect(output).toMatchObject({
+        ...PAGE_INFO,
+      })
+    })
+
+    it('and returns the correct values for the reducer', async () => {
+      const output = await dataResolver(
+        '',
+        { q: SEARCH_TERM },
+        { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: jest.fn() } } },
+      )
+
+      // The filters should be collected
+      expect(mockGetFilters).toHaveBeenCalledWith(COMBINED)
+
+      // There pageInfo results are retrieved with the defaults
+      expect(mockGetPageInfo).toHaveBeenCalledWith(TOTAL_COUNT, 1, 12)
 
       expect(output).toEqual({
-        ...mockedFilters,
-        results: [...mockedCombinedTypeResults],
-        totalCount: mockedCombinedTypeResults[0].count + mockedCombinedTypeResults[1].count, // 1 + 3
+        ...FILTERS,
+        results: [...COMBINED],
+        totalCount: TOTAL_COUNT,
+        ...PAGE_INFO,
       })
-
-      mockedCombineTypeResults.mockReset()
-      mockDataLoader.mockReset()
     })
   })
 })

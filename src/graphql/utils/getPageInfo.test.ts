@@ -1,4 +1,4 @@
-import getPageInfo from './getPageInfo.test'
+import getPageInfo from './getPageInfo'
 
 // Overwrite the DEFAULT_LIMIT const to make testing clearer and decoupled from real data
 jest.mock('../config', () => ({
