@@ -1,8 +1,6 @@
 import { GraphQLResolveInfo } from 'graphql'
 export type Maybe<T> = T | null
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
-export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } &
-  { [P in K]-?: NonNullable<T[P]> }
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string
@@ -69,7 +67,7 @@ export type DataResult = {
 export type DataSearchInput = {
   limit?: Maybe<Scalars['Int']>
   page?: Maybe<Scalars['Int']>
-  types?: Maybe<Array<Scalars['String']>>
+  filters?: Maybe<Array<FilterInput>>
 }
 
 export type DataSearchResult = SearchResult & {
@@ -130,7 +128,6 @@ export type Filter = {
 
 export type FilterInput = {
   type: Scalars['String']
-  multiSelect: Scalars['Boolean']
   values: Array<Scalars['String']>
 }
 
@@ -163,7 +160,7 @@ export type QueryArticleSearchArgs = {
 }
 
 export type QueryDataSearchArgs = {
-  q: Scalars['String']
+  q?: Maybe<Scalars['String']>
   input?: Maybe<DataSearchInput>
 }
 
@@ -282,7 +279,6 @@ export type ResolversTypes = {
   CMSSearchInput: CmsSearchInput
   Int: ResolverTypeWrapper<Scalars['Int']>
   FilterInput: FilterInput
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>
   CMSSortInput: CmsSortInput
   CMSSearchResult: ResolverTypeWrapper<CmsSearchResult>
   SearchResult: ResolverTypeWrapper<
@@ -303,6 +299,7 @@ export type ResolversTypes = {
   Filter: ResolverTypeWrapper<Filter>
   FilterOptions: ResolverTypeWrapper<FilterOptions>
   PageInfo: ResolverTypeWrapper<PageInfo>
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>
   DataSearchInput: DataSearchInput
   DataSearchResult: ResolverTypeWrapper<DataSearchResult>
   DatasetSearchInput: DatasetSearchInput
@@ -316,7 +313,6 @@ export type ResolversParentTypes = {
   CMSSearchInput: CmsSearchInput
   Int: Scalars['Int']
   FilterInput: FilterInput
-  Boolean: Scalars['Boolean']
   CMSSortInput: CmsSortInput
   CMSSearchResult: CmsSearchResult
   SearchResult: Omit<SearchResult, 'results'> & {
@@ -337,6 +333,7 @@ export type ResolversParentTypes = {
   Filter: Filter
   FilterOptions: FilterOptions
   PageInfo: PageInfo
+  Boolean: Scalars['Boolean']
   DataSearchInput: DataSearchInput
   DataSearchResult: DataSearchResult
   DatasetSearchInput: DatasetSearchInput
@@ -494,7 +491,7 @@ export type QueryResolvers<
     Maybe<ResolversTypes['DataSearchResult']>,
     ParentType,
     ContextType,
-    RequireFields<QueryDataSearchArgs, 'q'>
+    QueryDataSearchArgs
   >
   datasetSearch?: Resolver<
     Maybe<ResolversTypes['DatasetSearchResult']>,
