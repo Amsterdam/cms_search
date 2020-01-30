@@ -1,8 +1,8 @@
-import { FILTER_TYPES } from '../../config'
+import { FilterTypes } from '../../config'
 
 export const FILTERS = {
-  THEME: { type: 'theme', label: "Thema's", filterType: FILTER_TYPES.CHECKBOX },
-  DATE: { type: 'date', label: 'Publicatiedatum', filterType: FILTER_TYPES.SELECT },
+  THEME: { type: 'theme', label: "Thema's", filterType: FilterTypes.Checkbox },
+  DATE: { type: 'date', label: 'Publicatiedatum', filterType: FilterTypes.Select },
 }
 
 export const TYPES = {

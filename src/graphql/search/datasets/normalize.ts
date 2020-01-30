@@ -9,7 +9,7 @@ import {
   properties,
   DCAT_ENDPOINTS,
 } from './config'
-import { FILTER_TYPES } from '../../config'
+import { FilterTypes } from '../../config'
 
 /**
  * @example
@@ -165,13 +165,13 @@ function formatFilters(facets: Object, openApiData: any): Array<Filter> {
     {
       type: properties.theme.type,
       label: "Thema's",
-      filterType: FILTER_TYPES.CHECKBOX,
+      filterType: FilterTypes.Checkbox,
       options: getFacetOptions(facets, dcatDocProperties['dcat:theme'].items),
     },
     {
       type: properties.distributionType.type,
       label: 'Verschijningsvorm',
-      filterType: FILTER_TYPES.RADIO,
+      filterType: FilterTypes.Radio,
       options: getFacetOptions(facets, distributionProperties['ams:distributionType']),
     },
   ]

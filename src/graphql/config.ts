@@ -11,10 +11,10 @@ export type Context = {
   }
 }
 
-export const FILTER_TYPES = {
-  RADIO: 'radio',
-  CHECKBOX: 'checkbox',
-  SELECT: 'select',
+export enum FilterTypes {
+  Radio = 'radio',
+  Checkbox = 'checkbox',
+  Select = 'select',
 }
 
 export const DEFAULT_LIMIT = 20

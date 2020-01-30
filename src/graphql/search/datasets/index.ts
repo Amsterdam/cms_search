@@ -43,16 +43,12 @@ export default async (
 
   totalCount = datasets['void:documents']
 
-  // Get the available filters and merge with the results to get a count
-  const filters = getFilters(datasets['ams:facet_info'], openApiResults)
-
-  // Get the page info details
-  const pageInfo = getPageInfo(totalCount, page, limit)
-
   return {
     totalCount,
     results,
-    ...filters,
-    ...pageInfo,
+    // Get the page info details
+    ...getPageInfo(totalCount, page, limit),
+    // Get the available filters and merge with the results to get a count
+    ...getFilters(datasets['ams:facet_info'], openApiResults),
   }
 }
