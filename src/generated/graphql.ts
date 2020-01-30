@@ -19,7 +19,7 @@ export type CmsLink = {
 
 export type CmsSearchInput = {
   limit?: Maybe<Scalars['Int']>
-  from?: Maybe<Scalars['Int']>
+  page?: Maybe<Scalars['Int']>
   types?: Maybe<Array<Scalars['String']>>
   filters?: Maybe<Array<FilterInput>>
   sort?: Maybe<CmsSortInput>
@@ -30,6 +30,7 @@ export type CmsSearchResult = SearchResult & {
   totalCount: Scalars['Int']
   results?: Maybe<Array<CmsSearchResultType>>
   filters?: Maybe<Array<Filter>>
+  pageInfo: PageInfo
 }
 
 export type CmsSearchResultType = {
@@ -67,7 +68,7 @@ export type DataResult = {
 
 export type DataSearchInput = {
   limit?: Maybe<Scalars['Int']>
-  from?: Maybe<Scalars['Int']>
+  page?: Maybe<Scalars['Int']>
   types?: Maybe<Array<Scalars['String']>>
 }
 
@@ -76,6 +77,7 @@ export type DataSearchResult = SearchResult & {
   totalCount: Scalars['Int']
   results: Array<DataSearchResultType>
   filters?: Maybe<Array<Filter>>
+  pageInfo: PageInfo
 }
 
 export type DataSearchResultType = SearchResultType & {
@@ -93,8 +95,8 @@ export type DatasetFormats = {
 }
 
 export type DatasetSearchInput = {
-  from?: Maybe<Scalars['Int']>
   limit?: Maybe<Scalars['Int']>
+  page?: Maybe<Scalars['Int']>
   filters?: Maybe<Array<FilterInput>>
 }
 
@@ -103,6 +105,7 @@ export type DatasetSearchResult = SearchResult & {
   totalCount: Scalars['Int']
   results?: Maybe<Array<DatasetSearchResultType>>
   filters?: Maybe<Array<Filter>>
+  pageInfo: PageInfo
 }
 
 export type DatasetSearchResultType = {
@@ -137,6 +140,12 @@ export type FilterOptions = {
   label: Scalars['String']
   enumType?: Maybe<Scalars['String']>
   count: Scalars['Int']
+}
+
+export type PageInfo = {
+  __typename?: 'PageInfo'
+  hasNextPage: Scalars['Boolean']
+  totalPages: Scalars['Int']
 }
 
 export type Query = {
@@ -178,6 +187,8 @@ export type Results = DatasetSearchResultType | CmsSearchResultType | DataSearch
 export type SearchResult = {
   totalCount: Scalars['Int']
   results?: Maybe<Array<Results>>
+  filters?: Maybe<Array<Filter>>
+  pageInfo: PageInfo
 }
 
 export type SearchResultType = {
@@ -291,6 +302,7 @@ export type ResolversTypes = {
   DataResult: ResolverTypeWrapper<DataResult>
   Filter: ResolverTypeWrapper<Filter>
   FilterOptions: ResolverTypeWrapper<FilterOptions>
+  PageInfo: ResolverTypeWrapper<PageInfo>
   DataSearchInput: DataSearchInput
   DataSearchResult: ResolverTypeWrapper<DataSearchResult>
   DatasetSearchInput: DatasetSearchInput
@@ -324,6 +336,7 @@ export type ResolversParentTypes = {
   DataResult: DataResult
   Filter: Filter
   FilterOptions: FilterOptions
+  PageInfo: PageInfo
   DataSearchInput: DataSearchInput
   DataSearchResult: DataSearchResult
   DatasetSearchInput: DatasetSearchInput
@@ -344,6 +357,7 @@ export type CmsSearchResultResolvers<
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   results?: Resolver<Maybe<Array<ResolversTypes['CMSSearchResultType']>>, ParentType, ContextType>
   filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
 }
 
 export type CmsSearchResultTypeResolvers<
@@ -385,6 +399,7 @@ export type DataSearchResultResolvers<
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   results?: Resolver<Array<ResolversTypes['DataSearchResultType']>, ParentType, ContextType>
   filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
 }
 
 export type DataSearchResultTypeResolvers<
@@ -416,6 +431,7 @@ export type DatasetSearchResultResolvers<
     ContextType
   >
   filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
 }
 
 export type DatasetSearchResultTypeResolvers<
@@ -454,6 +470,14 @@ export type FilterOptionsResolvers<
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   enumType?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+}
+
+export type PageInfoResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['PageInfo'] = ResolversParentTypes['PageInfo']
+> = {
+  hasNextPage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
+  totalPages?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
 }
 
 export type QueryResolvers<
@@ -514,6 +538,8 @@ export type SearchResultResolvers<
   >
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   results?: Resolver<Maybe<Array<ResolversTypes['Results']>>, ParentType, ContextType>
+  filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
 }
 
 export type SearchResultTypeResolvers<
@@ -538,6 +564,7 @@ export type Resolvers<ContextType = any> = {
   DatasetSearchResultType?: DatasetSearchResultTypeResolvers<ContextType>
   Filter?: FilterResolvers<ContextType>
   FilterOptions?: FilterOptionsResolvers<ContextType>
+  PageInfo?: PageInfoResolvers<ContextType>
   Query?: QueryResolvers<ContextType>
   Results?: ResultsResolvers
   SearchResult?: SearchResultResolvers

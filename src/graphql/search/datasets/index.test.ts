@@ -3,7 +3,7 @@ import * as filters from './filters'
 import * as normalize from './normalize'
 import DataError from '../../utils/DataError'
 
-// Overwrite the DATA_SEARCH_ENDPOINTS const to make testing clearer and decoupled from real data
+// Overwrite the DCAT_ENDPOINTS const to make testing clearer and decoupled from real data
 jest.mock('./config', () => ({
   DCAT_ENDPOINTS: {
     openapi: 'https://api.endpoint.com/openapi',

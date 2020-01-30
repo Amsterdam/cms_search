@@ -1,5 +1,5 @@
 import removeMd from 'remove-markdown'
-import { Filter, DatasetSearchInput } from '../../../generated/graphql'
+import { Filter, FilterInput } from '../../../generated/graphql'
 import {
   FileFormatFilterType,
   AggregationType,
@@ -180,14 +180,16 @@ function formatFilters(facets: Object, openApiData: any): Array<Filter> {
 // Construct the endpoint that can be used to load the datasets
 function getDatasetsEndpoint(
   q: string | null,
-  { from, limit, filters: inputFilters }: DatasetSearchInput,
+  from: number,
+  limit: number,
+  filters: Array<FilterInput>,
 ) {
   /**
    * Output like: {
    *   property/foo/bar: 'in=value1,value2'
    * }
    */
-  const queryFilters = (inputFilters || []).reduce((acc, { type, values, multiSelect }) => {
+  const queryFilters = (filters || []).reduce((acc, { type, values, multiSelect }) => {
     const selected = Object.values(properties).find(
       ({ type: propertyType }) => propertyType === type,
     )

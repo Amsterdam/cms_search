@@ -47,7 +47,7 @@ export const combineTypeResults = (
         labelSingular,
       } = result // Since we expect count will not change on other pages, we just use it from the first page.
 
-      let results: any = [] // GraphQL can handle Error as response on nullable types and will return `null` for the field and places the Error in the `errors` field, extending the error to handle this will break the autogeneration of types
+      let results: any = [] // GraphQL can handle Error as response on nullable types and will return `null` for the field and places the Error in the `errors` field, extending the error to handle this will break the autogeneration of type
 
       // If there's an error return something different from the GraphQL server
       if (status !== 200) {

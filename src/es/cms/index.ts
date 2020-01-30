@@ -1,7 +1,7 @@
 import { Client } from '@elastic/elasticsearch'
 import { SearchResponse } from 'elasticsearch'
 import cmsSchema, { ElasticSearchArgs } from './es.schema'
-import { DEFAULT_FROM, DEFAULT_LIMIT } from '../../config'
+import { DEFAULT_LIMIT } from '../../graphql/config'
 
 const CMS_ES_INDEX = 'elasticsearch_index_cms_articles_index'
 
@@ -23,7 +23,7 @@ export async function getCmsFromElasticSearch({
   sort,
 }: ElasticSearchArgs) {
   limit = limit || DEFAULT_LIMIT
-  from = from || DEFAULT_FROM
+  from = from || 0
 
   const results: SearchResponse<any> = await ElasticSearchClient(
     cmsSchema({ q, limit, from, types, filters, sort }),

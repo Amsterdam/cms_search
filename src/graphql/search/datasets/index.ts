@@ -2,8 +2,9 @@ import { DatasetSearchResult, QueryDatasetSearchArgs } from '../../../generated/
 import { getDatasetsEndpoint, normalizeDatasets } from './normalize'
 import getFilters from './filters'
 import DataError from '../../utils/DataError'
+import getPageInfo from '../../utils/getPageInfo'
 import { DCAT_ENDPOINTS } from './config'
-import { Context } from '../../config'
+import { Context, DEFAULT_LIMIT } from '../../config'
 
 export default async (
   _: any,
@@ -11,8 +12,16 @@ export default async (
   context: Context,
 ): Promise<DatasetSearchResult> => {
   const { loaders } = context
+  let { page, limit, filters: filterInput } = input || {}
 
-  const datasetsUrl = getDatasetsEndpoint(q, input || {})
+  // Get the page and limit from the input, otherwise use the defaults
+  page = page || 1
+  limit = limit || DEFAULT_LIMIT
+
+  const from = (page - 1) * limit
+
+  // Constructs the url to retrieve the datasets
+  const datasetsUrl = getDatasetsEndpoint(q, from, limit, filterInput || [])
 
   let results: any = []
   let totalCount = 0
@@ -37,9 +46,13 @@ export default async (
   // Get the available filters and merge with the results to get a count
   const filters = getFilters(datasets['ams:facet_info'], openApiResults)
 
+  // Get the page info details
+  const pageInfo = getPageInfo(totalCount, page, limit)
+
   return {
     totalCount,
     results,
     ...filters,
+    ...pageInfo,
   }
 }

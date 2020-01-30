@@ -16,3 +16,5 @@ export const FILTER_TYPES = {
   CHECKBOX: 'checkbox',
   SELECT: 'select',
 }
+
+export const DEFAULT_LIMIT = 20
