@@ -3,7 +3,7 @@ import createDataLoader, { MAX_CACHE_SIZE } from './createDataLoader'
 import DataLoader from 'dataloader'
 import * as loaderFunction from './loaderFunction'
 
-jest.mock('../../utils/loaderFunction')
+jest.mock('./loaderFunction')
 jest.mock('dataloader')
 jest.mock('lru_map')
 
