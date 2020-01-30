@@ -1,4 +1,5 @@
 import getFilters from './filters'
+import { FILTER_TYPES } from '../../config'
 
 // Overwrite the DATA_SEARCH_FILTER const to make testing clearer and decoupled from real data
 jest.mock('./config', () => ({
@@ -35,6 +36,7 @@ describe('filters', () => {
     expect(output.filters).toEqual([
       {
         label: 'Filter 1',
+        filterType: FILTER_TYPES.RADIO,
         options: [
           { count: 12, id: 'users', label: 'Users' },
           { count: 0, id: 'posts', label: 'Posts' },

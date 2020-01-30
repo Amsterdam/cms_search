@@ -2,6 +2,7 @@ import dataResolver from './index'
 import * as filters from './filters'
 import * as normalize from './normalize'
 import { DEFAULT_LIMIT, DEFAULT_FROM } from '../../../config'
+import { FilterInput } from '../../../generated/graphql'
 
 // Overwrite the DATA_SEARCH_ENDPOINTS const to make testing clearer and decoupled from real data
 jest.mock('./config', () => ({
@@ -26,7 +27,7 @@ jest.mock('./normalize')
 
 describe('dataResolver', () => {
   const SEARCH_TERM = 'foo'
-  const TYPE = 'users'
+  const TYPE: FilterInput = { type: 'types', values: ['users'] }
   const FILTERS = { filters: [{ type: ' foo', id: 'foo', label: 'Foo', options: [] }] }
 
   const CONTEXT = {
@@ -72,7 +73,7 @@ describe('dataResolver', () => {
 
       await dataResolver(
         '',
-        { q: SEARCH_TERM, input: { types: [TYPE] } },
+        { q: SEARCH_TERM, input: { filters: [TYPE] } },
         { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: jest.fn() } } },
       )
 
@@ -89,7 +90,7 @@ describe('dataResolver', () => {
 
       await dataResolver(
         '',
-        { q: SEARCH_TERM, input: { types: [TYPE] } },
+        { q: SEARCH_TERM, input: { filters: [TYPE] } },
         { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: mockClear } } },
       )
 
