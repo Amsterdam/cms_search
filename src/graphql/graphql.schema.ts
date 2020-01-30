@@ -18,7 +18,7 @@ const schema = gql`
   input DataSearchInput {
     limit: Int
     from: Int
-    types: [String!]
+    filters: [FilterInput!]
   }
 
   input CMSSortInput {
@@ -42,7 +42,6 @@ const schema = gql`
 
   input FilterInput {
     type: String!
-    multiSelect: Boolean!
     values: [String!]!
   }
 
@@ -133,7 +132,7 @@ const schema = gql`
 
   type Query {
     articleSearch(q: String, input: CMSSearchInput): CMSSearchResult
-    dataSearch(q: String!, input: DataSearchInput): DataSearchResult
+    dataSearch(q: String, input: DataSearchInput): DataSearchResult
     datasetSearch(q: String, input: DatasetSearchInput): DatasetSearchResult
     publicationSearch(q: String, input: CMSSearchInput): CMSSearchResult
     specialSearch(q: String, input: CMSSearchInput): CMSSearchResult

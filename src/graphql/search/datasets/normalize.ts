@@ -187,7 +187,7 @@ function getDatasetsEndpoint(
    *   property/foo/bar: 'in=value1,value2'
    * }
    */
-  const queryFilters = (inputFilters || []).reduce((acc, { type, values, multiSelect }) => {
+  const queryFilters = (inputFilters || []).reduce((acc, { type, values }) => {
     const selected = Object.values(properties).find(
       ({ type: propertyType }) => propertyType === type,
     )
@@ -195,7 +195,7 @@ function getDatasetsEndpoint(
     return selected
       ? {
           ...acc,
-          [selected.name]: `${multiSelect ? 'in' : 'eq'}=${values.join(`,`)}`,
+          [selected.name]: `in=${values.join(`,`)}`,
         }
       : {}
   }, {})
