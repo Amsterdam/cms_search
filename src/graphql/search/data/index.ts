@@ -1,6 +1,6 @@
 import { DataSearchResult, QueryDataSearchArgs } from '../../../generated/graphql'
 import { combineTypeResults } from './normalize'
-import { DATA_SEARCH_ENDPOINTS, DataSearchType, DATA_SEARCH_LIMIT } from './config'
+import { DATA_SEARCH_ENDPOINTS, DATA_SEARCH_LIMIT } from './config'
 import getFilters from './filters'
 import { Context } from '../../config'
 import getPageInfo from '../../utils/getPageInfo'
@@ -11,7 +11,7 @@ const index = async (
   context: Context,
 ): Promise<DataSearchResult> => {
   let { page, limit } = input || {}
-  const { types } = input || {}
+  const { filters } = input || {}
   const { loaders } = context
 
   // Get the page and limit from the input, otherwise use the defaults
@@ -22,9 +22,11 @@ const index = async (
 
   let endpoints: Array<Object> = []
 
-  // If there are types in the request, not all endpoints should be called from DataLoader
-  if (types && types.length > 0) {
-    endpoints = DATA_SEARCH_ENDPOINTS.filter(({ type }: DataSearchType) => types.includes(type))
+  // If there are filters in the request, not all endpoints should be called from DataLoader
+  if (filters && filters.length > 0) {
+    const filterTypes = filters.find(filter => filter.type === 'types')?.values ?? []
+
+    endpoints = DATA_SEARCH_ENDPOINTS.filter(({ type }) => filterTypes.includes(type))
 
     // Throw an error when the requested types don't exist
     if (endpoints.length === 0) {
@@ -62,17 +64,13 @@ const index = async (
   const totalCount =
     results.reduce((acc: number, { count }: { count: number }) => acc + count, 0) || 0
 
-  // Get the available filters and merge with the results to get a count
-  const filters = getFilters(results)
-
-  // Get the page info details
-  const pageInfo = getPageInfo(totalCount, page, limit)
-
   return {
     totalCount,
     results,
-    ...filters,
-    ...pageInfo,
+    // Get the page info details
+    ...getPageInfo(totalCount, page, limit),
+    // Get the available filters and merge with the results to get a count
+    ...getFilters(results),
   }
 }
 
