@@ -30,14 +30,12 @@ const cmsSearch = (type: string) => async (
   const formattedResults = getFormattedResults(results)
   const filters = await getCmsFilters(filterCount)
 
-  // Get the page info details
-  const pageInfo = getPageInfo(totalCount, page, limit)
-
   return {
     totalCount,
     results: formattedResults.filter(({ type: resultType }) => type === resultType),
+    // Get the page info details
+    pageInfo: getPageInfo(totalCount, page, limit),
     ...filters,
-    ...pageInfo,
   }
 }
 

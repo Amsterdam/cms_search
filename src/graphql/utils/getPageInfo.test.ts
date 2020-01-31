@@ -10,21 +10,17 @@ describe('getPageInfo', () => {
     const output = getPageInfo(12)
 
     expect(output).toEqual({
-      pageInfo: {
-        hasNextPage: false, // totalCount equals DEFAULT_LIMIT
-        totalPages: 1,
-      },
+      hasNextPage: false, // totalCount equals DEFAULT_LIMIT
+      totalPages: 1,
     })
   })
 
   it('returns the pageInfo object when custom limit', () => {
-    const output = getPageInfo(12, 1, 2)
+    const output = getPageInfo(21, 1, 10)
 
     expect(output).toEqual({
-      pageInfo: {
-        hasNextPage: true,
-        totalPages: 6,
-      },
+      hasNextPage: true,
+      totalPages: 3,
     })
   })
 })

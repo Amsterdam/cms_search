@@ -47,7 +47,7 @@ export default async (
     totalCount,
     results,
     // Get the page info details
-    ...getPageInfo(totalCount, page, limit),
+    pageInfo: getPageInfo(totalCount, page, limit),
     // Get the available filters and merge with the results to get a count
     ...getFilters(datasets['ams:facet_info'], openApiResults),
   }

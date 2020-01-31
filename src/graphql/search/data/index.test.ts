@@ -147,10 +147,8 @@ describe('dataResolver', () => {
     const FILTERS = { filters: [{ type: ' foo', id: 'foo', label: 'Foo', options: [] }] }
 
     const PAGE_INFO = {
-      pageInfo: {
-        hasNextPage: true,
-        totalPages: 12,
-      },
+      hasNextPage: true,
+      totalPages: 12,
     }
 
     let mockCombineTypeResults: jest.SpyInstance<any>
@@ -206,7 +204,7 @@ describe('dataResolver', () => {
       expect(mockGetPageInfo).toHaveBeenCalledWith(TOTAL_COUNT, PAGE, 12)
 
       expect(output).toMatchObject({
-        ...PAGE_INFO,
+        pageInfo: PAGE_INFO,
       })
     })
 
@@ -228,7 +226,10 @@ describe('dataResolver', () => {
       expect(mockGetPageInfo).toHaveBeenCalledWith(20, 1, 12)
 
       expect(output).toMatchObject({
-        ...PAGE_INFO,
+        pageInfo: {
+          ...PAGE_INFO,
+          hasLimitedResults: true, // IMPORTANT: The data APIs currently return a maximum of 1000 results
+        },
       })
     })
 
@@ -249,7 +250,7 @@ describe('dataResolver', () => {
         ...FILTERS,
         results: [...COMBINED],
         totalCount: TOTAL_COUNT,
-        ...PAGE_INFO,
+        pageInfo: { ...PAGE_INFO, hasLimitedResults: false },
       })
     })
   })

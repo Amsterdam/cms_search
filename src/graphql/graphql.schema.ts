@@ -138,6 +138,7 @@ const schema = gql`
   type PageInfo {
     hasNextPage: Boolean!
     totalPages: Int!
+    hasLimitedResults: Boolean
   }
 
   type Query {

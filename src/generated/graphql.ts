@@ -143,6 +143,7 @@ export type PageInfo = {
   __typename?: 'PageInfo'
   hasNextPage: Scalars['Boolean']
   totalPages: Scalars['Int']
+  hasLimitedResults?: Maybe<Scalars['Boolean']>
 }
 
 export type Query = {
@@ -475,6 +476,7 @@ export type PageInfoResolvers<
 > = {
   hasNextPage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
   totalPages?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  hasLimitedResults?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
 }
 
 export type QueryResolvers<

@@ -35,10 +35,8 @@ describe('datasetResolver', () => {
   }
 
   const PAGE_INFO = {
-    pageInfo: {
-      hasNextPage: true,
-      totalPages: 12,
-    },
+    hasNextPage: true,
+    totalPages: 12,
   }
 
   let mockGetDatasetsEndpoint: jest.SpyInstance<any>
@@ -121,7 +119,7 @@ describe('datasetResolver', () => {
       // And the output is returned
       expect(output).toMatchObject({
         ...FILTERS,
-        ...PAGE_INFO,
+        pageInfo: PAGE_INFO,
       })
     })
 
@@ -148,7 +146,7 @@ describe('datasetResolver', () => {
         results: 'mockedData',
         ...FILTERS,
         totalCount: DATASETS['void:documents'],
-        ...PAGE_INFO,
+        pageInfo: PAGE_INFO,
       })
     })
 

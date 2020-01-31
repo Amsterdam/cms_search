@@ -56,15 +56,23 @@ const index = async (
   const totalCount =
     results.reduce((acc: number, { count }: { count: number }) => acc + count, 0) || 0
 
-  return {
-    totalCount,
-    results,
+  // IMPORTANT: The data APIs currently return a maximum of 1000 results
+  const hasLimitedResults = !!(totalCount > DATA_SEARCH_MAX_RESULTS)
+
+  const pageInfo = {
     // Get the page info details
     ...getPageInfo(
-      totalCount > DATA_SEARCH_MAX_RESULTS ? DATA_SEARCH_MAX_RESULTS : totalCount, // IMPORTANT: The data APIs currently return a maximum of 1000 results.
+      hasLimitedResults ? DATA_SEARCH_MAX_RESULTS : totalCount,
       page,
       DATA_SEARCH_LIMIT,
     ),
+    hasLimitedResults,
+  }
+
+  return {
+    totalCount,
+    results,
+    pageInfo,
     // Get the available filters and merge with the results to get a count
     ...getFilters(results),
   }
