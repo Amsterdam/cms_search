@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 import AbortController from 'abort-controller'
 
-export const MAX_REQUEST_TIME = 2400
+export const MAX_REQUEST_TIME = 1200
 
 export interface ErrorResult {
   status: number
@@ -25,11 +25,13 @@ async function fetchWithAbort<T = Object>(
       clearTimeout(timeout) // The data is on its way, so clear the timeout
 
       if (!res.ok) {
-        return { status: res.status, message: '' }
+        throw new Error(`${res.status} - ${res.statusText}`)
       }
       return res.json()
     })
-    .catch((e: Error) => ({ status: e.name === 'AbortError' ? 504 : 500, message: e.message }))
+    .catch((e: Error) => {
+      throw e.name === 'AbortError' ? new Error(`504 - Gateway Timeout`) : e
+    })
 }
 
 export default fetchWithAbort

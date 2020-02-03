@@ -1,8 +1,8 @@
 import dataResolver from './index'
 import * as filters from './filters'
 import * as normalize from './normalize'
-import { DEFAULT_LIMIT, DEFAULT_FROM } from '../../../config'
 import { FilterInput } from '../../../generated/graphql'
+import CustomError from '../../utils/CustomError'
 
 // Overwrite the DATA_SEARCH_ENDPOINTS const to make testing clearer and decoupled from real data
 jest.mock('./config', () => ({
@@ -24,6 +24,7 @@ jest.mock('./config', () => ({
 
 jest.mock('./filters')
 jest.mock('./normalize')
+jest.mock('../../utils/CustomError')
 
 describe('dataResolver', () => {
   const SEARCH_TERM = 'foo'
@@ -37,16 +38,18 @@ describe('dataResolver', () => {
     },
   }
 
+  const DATA = { type: 'foo ' }
+
   describe('Call the endpoints', () => {
     // Spy on these functions and return mock response as they're tested seperately
     beforeEach(() => {
       jest.spyOn(filters, 'default').mockReturnValueOnce(FILTERS)
-      jest.spyOn(normalize, 'combineTypeResults').mockReturnValueOnce([])
+      jest.spyOn(normalize, 'normalizeResults').mockReturnValueOnce(DATA)
     })
 
     afterEach(() => {
       jest.spyOn(filters, 'default').mockReset()
-      jest.spyOn(normalize, 'combineTypeResults').mockReset()
+      jest.spyOn(normalize, 'normalizeResults').mockReset()
     })
 
     it('with the search term', async () => {
@@ -87,7 +90,7 @@ describe('dataResolver', () => {
     })
 
     it('with the search term and clears key from cache when an error occurs', async () => {
-      const mockDataLoader = jest.fn(() => ({ status: 999, foo: 'var' }))
+      const mockDataLoader = jest.fn(() => ({ status: 'rejected', reason: Error('error') })) // Dataloader returns error as the Promise was rejected
       const mockClear = jest.fn(() => true)
 
       await dataResolver(
@@ -111,81 +114,103 @@ describe('dataResolver', () => {
     })
   })
 
-  describe('Calls the combineTypeResults function', () => {
-    const mockReturn = [
+  describe('Calls the normalizeResults function', () => {
+    const NORMALIZED = [
       {
         type: 'users',
-        labelSingular: 'User',
-        label: 'Users',
+        foo: 'User',
       },
       {
         type: 'posts',
-        labelSingular: 'Post',
-        label: 'Posts',
+        foo: 'Post',
       },
     ]
 
-    const mockDataLoaderReturn = {
-      status: 200,
-      foo: 'var',
+    const DATA_LOADER = {
+      status: 'fulfilled',
+      value: {
+        results: [DATA],
+        count: 1,
+      },
     }
 
-    const mockDataLoader = jest.fn(() => mockDataLoaderReturn)
-
-    // Mock the combineTypeResults as this is tested seperately
-    const mockedCombinedTypeResults = [
-      { ...mockReturn[0], count: 1 },
-      { ...mockReturn[1], count: 3 },
-    ]
-
     // Set a value for the filters
-    const mockedFilters = { filters: [{ type: ' foo', id: 'foo', label: 'Foo', options: [] }] }
+    const FILTERS = { filters: [{ type: ' foo', id: 'foo', label: 'Foo', options: [] }] }
 
-    it('with the normalized results ', async () => {
-      const mockedCombineTypeResults = jest
-        .spyOn(normalize, 'combineTypeResults')
-        .mockReturnValueOnce(mockedCombinedTypeResults)
+    let mockDataLoader = jest.fn()
+    let mockGetFilters: jest.SpyInstance<any>
+    let mockNormalizeResults: jest.SpyInstance<any>
 
+    beforeEach(() => {
+      mockGetFilters = jest.spyOn(filters, 'default').mockReturnValueOnce(FILTERS)
+      mockNormalizeResults = jest
+        .spyOn(normalize, 'normalizeResults')
+        .mockReturnValueOnce(NORMALIZED[0])
+        .mockReturnValueOnce(NORMALIZED[1])
+      mockDataLoader = jest.fn(() => DATA_LOADER)
+    })
+
+    afterEach(() => {
+      mockGetFilters.mockReset()
+      mockNormalizeResults.mockReset()
+      mockDataLoader.mockReset()
+    })
+
+    it('with the dataloader results ', async () => {
       await dataResolver(
         '',
         { q: SEARCH_TERM },
         { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: jest.fn() } } },
       )
 
-      // Then function combineTypeResults will be called with the combination of DATA_SEARCH_ENDPOINTS and the result from the dataloader
-      expect(mockedCombineTypeResults).toHaveBeenCalledWith(
-        [
-          { ...mockReturn[0], ...mockDataLoaderReturn },
-          { ...mockReturn[1], ...mockDataLoaderReturn },
-        ],
-        DEFAULT_LIMIT,
-        DEFAULT_FROM,
-      )
+      // Then function normalizeResults will be called with the combination of DATA_SEARCH_ENDPOINTS and the result from the dataloader
+      expect(mockNormalizeResults.mock.calls).toEqual([[DATA], [DATA]])
     })
 
     it('and returns the correct values for the reducer', async () => {
-      const mockedCombineTypeResults = jest
-        .spyOn(normalize, 'combineTypeResults')
-        .mockReturnValueOnce(mockedCombinedTypeResults)
-
-      const mockedGetFilters = jest.spyOn(filters, 'default').mockReturnValueOnce(mockedFilters)
-
       const output = await dataResolver(
         '',
         { q: SEARCH_TERM },
         { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: jest.fn() } } },
       )
 
-      expect(mockedGetFilters).toHaveBeenCalledWith(mockedCombinedTypeResults)
+      // This is a combined results of the return of the normalizeResults function and the DATA_SEARCH_ENDPOINTS constant
+      const RESULTS = [
+        { count: 1, type: 'users', label: 'User', results: [NORMALIZED[0]] },
+        { count: 1, type: 'posts', label: 'Post', results: [NORMALIZED[1]] },
+      ]
+
+      expect(mockGetFilters).toHaveBeenCalledWith(RESULTS)
 
       expect(output).toEqual({
-        ...mockedFilters,
-        results: [...mockedCombinedTypeResults],
-        totalCount: mockedCombinedTypeResults[0].count + mockedCombinedTypeResults[1].count, // 1 + 3
+        ...FILTERS,
+        results: RESULTS,
+        totalCount: DATA_LOADER.value.count + DATA_LOADER.value.count, // 1 + 1
       })
+    })
 
-      mockedCombineTypeResults.mockReset()
-      mockDataLoader.mockReset()
+    it('or returns an error and clears the cache when something fails', async () => {
+      mockDataLoader = jest.fn(() => ({
+        status: 'rejected',
+        reason: Error('error'),
+      }))
+
+      const mockClear = jest.fn()
+
+      await dataResolver(
+        '',
+        { q: SEARCH_TERM },
+        { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: mockClear } } },
+      )
+
+      // The result contains a status code with an error, so call CustomError
+      expect(CustomError).toHaveBeenCalled()
+
+      // And clear the cache
+      expect(mockClear.mock.calls).toEqual([
+        [`https://api.endpoint.com/users/?q=${SEARCH_TERM}`],
+        [`https://api.endpoint.com/posts/?q=${SEARCH_TERM}`],
+      ])
     })
   })
 })

@@ -1,7 +1,7 @@
 import datasetResolver from './index'
 import * as filters from './filters'
 import * as normalize from './normalize'
-import DataError from '../../utils/DataError'
+import CustomError from '../../utils/CustomError'
 
 // Overwrite the DATA_SEARCH_ENDPOINTS const to make testing clearer and decoupled from real data
 jest.mock('./config', () => ({
@@ -12,7 +12,7 @@ jest.mock('./config', () => ({
 
 jest.mock('./filters')
 jest.mock('./normalize')
-jest.mock('../../utils/DataError')
+jest.mock('../../utils/CustomError')
 
 describe('datasetResolver', () => {
   const SEARCH_TERM = 'foo'
@@ -25,18 +25,34 @@ describe('datasetResolver', () => {
     },
   }
 
+  let mockDatasetLoader = jest.fn()
+  let mockGetDatasetsEndpoint: jest.SpyInstance<any>
+  let mockNormalizeDatasets: jest.SpyInstance<any>
+
+  beforeEach(() => {
+    mockDatasetLoader = jest.fn(() => ({
+      value: {
+        ['dcat:dataset']: '',
+      },
+    }))
+
+    mockGetDatasetsEndpoint = jest
+      .spyOn(normalize, 'getDatasetsEndpoint')
+      .mockReturnValueOnce('mockEndpoint')
+
+    mockNormalizeDatasets = jest
+      .spyOn(normalize, 'normalizeDatasets')
+      .mockReturnValueOnce('mockedData')
+  })
+
+  afterEach(() => {
+    mockDatasetLoader.mockReset()
+    mockGetDatasetsEndpoint.mockReset()
+    mockNormalizeDatasets.mockReset()
+  })
+
   describe('Call the endpoints', () => {
     it('with the search term', async () => {
-      const mockDatasetLoader = jest.fn(() => ({}))
-
-      const mockGetDatasetsEndpoint = jest
-        .spyOn(normalize, 'getDatasetsEndpoint')
-        .mockReturnValueOnce('mockEndpoint')
-
-      const mockNormalizeDatasets = jest
-        .spyOn(normalize, 'normalizeDatasets')
-        .mockReturnValueOnce('mockedData')
-
       await datasetResolver(
         '',
         { q: SEARCH_TERM },
@@ -53,30 +69,20 @@ describe('datasetResolver', () => {
         ['mockEndpoint'],
         ['https://api.endpoint.com/openapi'],
       ])
-
-      mockDatasetLoader.mockReset()
-      mockGetDatasetsEndpoint.mockReset()
-      mockNormalizeDatasets.mockReset()
     })
 
     it('and returns the data in the correct format', async () => {
       jest.spyOn(filters, 'default').mockReset()
 
       const MOCKED_DATASETS = {
-        ['dcat:dataset']: 'mockedDatasets',
-        ['void:documents']: 12,
-        ['ams:facet_info']: 'mockedFacetInfo',
+        value: {
+          ['dcat:dataset']: 'mockedDatasets',
+          ['void:documents']: 12,
+          ['ams:facet_info']: 'mockedFacetInfo',
+        },
       }
 
-      const mockDatasetLoader = jest.fn(() => MOCKED_DATASETS)
-
-      const mockGetDatasetsEndpoint = jest
-        .spyOn(normalize, 'getDatasetsEndpoint')
-        .mockReturnValueOnce('mockEndpoint')
-
-      const mockNormalizeDatasets = jest
-        .spyOn(normalize, 'normalizeDatasets')
-        .mockReturnValueOnce('mockedData')
+      mockDatasetLoader = jest.fn(() => MOCKED_DATASETS)
 
       const mockGetFilters = jest.spyOn(filters, 'default').mockReturnValueOnce(FILTERS)
 
@@ -92,10 +98,10 @@ describe('datasetResolver', () => {
       expect(mockDatasetLoader).toHaveBeenCalledTimes(2)
 
       // The data from the DataLoader must be normalized
-      expect(mockNormalizeDatasets).toHaveBeenCalledWith('mockedDatasets', MOCKED_DATASETS)
+      expect(mockNormalizeDatasets).toHaveBeenCalledWith('mockedDatasets', MOCKED_DATASETS.value)
 
       // The filters should be collected
-      expect(mockGetFilters).toHaveBeenCalledWith('mockedFacetInfo', MOCKED_DATASETS)
+      expect(mockGetFilters).toHaveBeenCalledWith('mockedFacetInfo', MOCKED_DATASETS.value)
 
       // And the output is returned
       expect(output).toEqual({
@@ -104,18 +110,15 @@ describe('datasetResolver', () => {
         totalCount: 12,
       })
 
-      mockDatasetLoader.mockReset()
       mockGetDatasetsEndpoint.mockReset()
       mockGetFilters.mockReset()
     })
 
     it('or returns an error and clears the cache when something fails', async () => {
-      const mockDatasetLoader = jest.fn(() => ({ status: 999, message: 'error' }))
-      const mockClear = jest.fn()
+      mockDatasetLoader.mockReset()
+      mockDatasetLoader = jest.fn(() => ({ status: 'rejected', reason: Error('error') }))
 
-      const mockGetDatasetsEndpoint = jest
-        .spyOn(normalize, 'getDatasetsEndpoint')
-        .mockReturnValueOnce('mockEndpoint')
+      const mockClear = jest.fn()
 
       await datasetResolver(
         '',
@@ -128,15 +131,14 @@ describe('datasetResolver', () => {
       // The DataLoader should be called with the datasets endpoint and the openapi endpoint from the config
       expect(mockDatasetLoader).toHaveBeenCalledTimes(2)
 
-      // The result contains a status code with an error, so call DataError
-      expect(DataError).toHaveBeenCalled()
+      // The result contains a status code with an error, so call CustomError
+      expect(CustomError).toHaveBeenCalledWith(Error('error'), 'datasets', 'Datasets')
 
       // And clear the cache
       expect(mockClear).toHaveBeenCalledWith('mockEndpoint')
 
       mockDatasetLoader.mockReset()
       mockClear.mockReset()
-      mockGetDatasetsEndpoint.mockReset()
     })
   })
 })

@@ -1,26 +1,20 @@
-import fetchWithAbort, { ErrorResult } from './fetchWithAbort'
+import fetchWithAbort from './fetchWithAbort'
 
 // A function returns a Promise that resolves to the values corresponding the keys
-function loaderFunction(keys: readonly string[], token = ''): Promise<Array<Object | ErrorResult>> {
-  // Return a Promise that resolves to the values corresponding the keys
-  return new Promise(async resolve => {
-    // Get the values that correspond to the keys
-    const values = await Promise.all(
-      keys.map((key: string) =>
-        fetchWithAbort(
-          key,
-          token && token.length > 0
-            ? {
-                headers: { authorization: token },
-              }
-            : {},
-        ),
+async function loaderFunction(keys: readonly string[], token = ''): Promise<Array<Object>> {
+  const values = await Promise.allSettled(
+    keys.map((key: string) =>
+      fetchWithAbort(
+        key,
+        token && token.length > 0
+          ? {
+              headers: { authorization: token },
+            }
+          : {},
       ),
-    )
-
-    // Resolve the Promise with the values
-    resolve(values)
-  })
+    ),
+  )
+  return values
 }
 
 export default loaderFunction

@@ -1,8 +1,7 @@
-import { DataResult, DataSearchResultType } from '../../../generated/graphql'
-import DataError from '../../utils/DataError'
+import { DataResult } from '../../../generated/graphql'
 import { NORMAL_VBO_STATUSSES } from './config'
 
-export const normalizeTypeResults = ({
+export const normalizeResults = ({
   _links,
   _display,
   type,
@@ -30,43 +29,3 @@ export const normalizeTypeResults = ({
     ...otherFields,
   }
 }
-
-export const combineTypeResults = (
-  responses: object[],
-  limit: number,
-  from: number,
-): Array<DataSearchResultType> =>
-  responses.map(
-    (result: any, i): DataSearchResultType => {
-      const {
-        count,
-        status = 200,
-        results: responseResults = [],
-        type,
-        label,
-        labelSingular,
-      } = result // Since we expect count will not change on other pages, we just use it from the first page.
-
-      let results: any = [] // GraphQL can handle Error as response on nullable types and will return `null` for the field and places the Error in the `errors` field, extending the error to handle this will break the autogeneration of types
-
-      // If there's an error return something different from the GraphQL server
-      if (status !== 200) {
-        results = new DataError(status, type, label)
-      } else {
-        // Slice and normalize the results when there are results
-        results =
-          responseResults.length > 0
-            ? responseResults
-                .slice(from, limit + from)
-                .map((responseResult: Object) => normalizeTypeResults(responseResult))
-            : []
-      }
-
-      return {
-        count: count || 0,
-        label: count === 1 ? labelSingular : label,
-        type,
-        results,
-      }
-    },
-  )
