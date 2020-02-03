@@ -1,8 +1,13 @@
-import { DataSearchResult, QueryDataSearchArgs } from '../../../generated/graphql'
-import { combineTypeResults } from './normalize'
-import { DATA_SEARCH_ENDPOINTS, DATA_SEARCH_LIMIT, DATA_SEARCH_MAX_RESULTS } from './config'
+import {
+  DataSearchResult,
+  QueryDataSearchArgs,
+  DataSearchResultType,
+} from '../../../generated/graphql'
+import { normalizeResults } from './normalize'
+import { DATA_SEARCH_ENDPOINTS, DATA_SEARCH_MAX_RESULTS, DATA_SEARCH_LIMIT } from './config'
 import getFilters from './filters'
 import { Context } from '../../config'
+import CustomError from '../../utils/CustomError'
 import getPageInfo from '../../utils/getPageInfo'
 
 const index = async (
@@ -34,27 +39,41 @@ const index = async (
   }
 
   // Get the results from the DataLoader
-  const dataloaderResults: Object[] = await Promise.all(
+  const dataloaderResults: DataSearchResultType[] = await Promise.all(
     // Construct the keys e.g. the URLs that should be loaded or fetched
     endpoints.map(async ({ endpoint, type, label, labelSingular }: any) => {
-      const key = `${endpoint}?q=${searchTerm}${page ? `&page=${page}` : ''}`
+      const key = `${endpoint}/?q=${searchTerm}${page ? `&page=${page}` : ''}`
       const result = await loaders.data.load(key)
+      const { status, value } = result
 
       // If an error is thrown, delete the key from the cache and throw an error
-      if (result.status !== 200) {
+      if (status === 'rejected') {
         loaders.data.clear(key)
+
+        return {
+          count: 0,
+          label: label,
+          type,
+          results: new CustomError(result.reason, type, label), // GraphQL can handle Error as response on nullable types and will return `null` for the field and places the Error in the `errors` field, extending the error to handle this will break the autogeneration of types
+        }
       }
 
-      return { ...result, type, label, labelSingular }
+      // The Promise resolved, so return the valid Data
+      const { results = [], count } = value || {}
+
+      return {
+        count: count || 0,
+        label: count === 1 ? labelSingular : label,
+        type,
+        results:
+          results.length > 0 ? results.map((result: Object) => normalizeResults(result)) : [],
+      }
     }),
   )
 
-  // Combine and normalize information about the types
-  const results = combineTypeResults(dataloaderResults)
-
   // Get the count of each individual type to calculate the total count for all types
   const totalCount =
-    results.reduce((acc: number, { count }: { count: number }) => acc + count, 0) || 0
+    dataloaderResults.reduce((acc: number, { count }: { count: number }) => acc + count, 0) || 0
 
   // IMPORTANT: The data APIs currently return a maximum of 1000 results
   const hasLimitedResults = !!(totalCount > DATA_SEARCH_MAX_RESULTS)
@@ -71,10 +90,10 @@ const index = async (
 
   return {
     totalCount,
-    results,
     pageInfo,
+    results: dataloaderResults,
     // Get the available filters and merge with the results to get a count
-    ...getFilters(results),
+    ...getFilters(dataloaderResults),
   }
 }
 

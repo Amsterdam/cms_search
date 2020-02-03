@@ -1,9 +1,9 @@
 import { getCmsFromElasticSearch, getValuesFromES } from '../es/cms'
-import { LABELS, TYPES } from '../graphql/search/cms/config'
+import { LABELS, CmsTypes } from '../graphql/search/cms/config'
 
 export default async ({ query }: any, res: any) => {
   const { q = '' } = query
-  const types = [TYPES.ARTICLE, TYPES.PUBLICATION]
+  const types = [CmsTypes.Article, CmsTypes.Publication]
 
   const { results, totalCount } = await getCmsFromElasticSearch({ q, types })
 

@@ -1,9 +1,9 @@
 import datasetResolver from './index'
 import * as filters from './filters'
 import * as normalize from './normalize'
-import DataError from '../../utils/DataError'
-import { DEFAULT_LIMIT } from '../../config'
 import * as getPageInfo from '../../utils/getPageInfo'
+import CustomError from '../../utils/CustomError'
+import { DEFAULT_LIMIT } from '../../config'
 
 // Overwrite the DCAT_ENDPOINTS const to make testing clearer and decoupled from real data
 jest.mock('./config', () => ({
@@ -14,8 +14,8 @@ jest.mock('./config', () => ({
 
 jest.mock('./filters')
 jest.mock('./normalize')
-jest.mock('../../utils/DataError')
 jest.mock('../../utils/getPageInfo')
+jest.mock('../../utils/CustomError')
 
 describe('datasetResolver', () => {
   const SEARCH_TERM = 'foo'
@@ -57,7 +57,9 @@ describe('datasetResolver', () => {
     mockGetFilters = jest.spyOn(filters, 'default').mockReturnValueOnce(FILTERS)
     mockGetPageInfo = jest.spyOn(getPageInfo, 'default').mockReturnValueOnce(PAGE_INFO)
 
-    mockDatasetLoader = jest.fn(() => DATASETS)
+    mockDatasetLoader = jest.fn(() => ({
+      value: DATASETS,
+    }))
   })
 
   afterEach(() => {
@@ -151,7 +153,9 @@ describe('datasetResolver', () => {
     })
 
     it('or returns an error and clears the cache when something fails', async () => {
-      const mockDatasetLoader = jest.fn(() => ({ status: 999, message: 'error' }))
+      mockDatasetLoader.mockReset()
+      mockDatasetLoader = jest.fn(() => ({ status: 'rejected', reason: Error('error') }))
+
       const mockClear = jest.fn()
 
       await datasetResolver(
@@ -165,8 +169,8 @@ describe('datasetResolver', () => {
       // The DataLoader should be called with the datasets endpoint and the openapi endpoint from the config
       expect(mockDatasetLoader).toHaveBeenCalledTimes(2)
 
-      // The result contains a status code with an error, so call DataError
-      expect(DataError).toHaveBeenCalled()
+      // The result contains a status code with an error, so call CustomError
+      expect(CustomError).toHaveBeenCalledWith(Error('error'), 'datasets', 'Datasets')
 
       // And clear the cache
       expect(mockClear).toHaveBeenCalledWith('mockEndpoint')

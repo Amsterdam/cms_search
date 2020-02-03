@@ -125,14 +125,10 @@ function normalizeDatasets(content: any, openApiData: any) {
  * @param propertyType
  */
 function getOptionsFromProperty(propertyType: PropertyType): Array<CatalogFilterOptionsType> {
-  return propertyType.enum.map((item, i: number) => {
-    const index = item.indexOf(':')
-    return {
-      id: index === -1 ? item : item.substring(index + 1),
-      label: propertyType.enumNames[i] ? propertyType.enumNames[i] : 'Anders',
-      enumType: propertyType.enum[i] ? propertyType.enum[i] : 'other',
-    }
-  })
+  return propertyType.enum.map((_, i: number) => ({
+    id: propertyType.enum[i] ? propertyType.enum[i] : 'other',
+    label: propertyType.enumNames[i] ? propertyType.enumNames[i] : 'Anders',
+  }))
 }
 
 function getProperties(openApiData: any) {
@@ -150,11 +146,10 @@ function getProperties(openApiData: any) {
 function getFacetOptions(facets: any, property: any) {
   const options: Array<CatalogFilterOptionsType> = getOptionsFromProperty(property)
 
-  return options.map(({ label, enumType, id }) => ({
+  return options.map(({ label, id }) => ({
     id,
     label: label ? label : id,
-    count: Object.values(facets).reduce((acc, value: any) => value[enumType] || acc, 0) as number,
-    enumType: enumType,
+    count: Object.values(facets).reduce((acc, value: any) => value[id] || acc, 0) as number,
   }))
 }
 

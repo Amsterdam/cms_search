@@ -25,7 +25,8 @@ describe('loaderFunction', () => {
       expect(mockFetchWithAbort).toHaveBeenCalledTimes(1)
       expect(mockFetchWithAbort).toHaveBeenCalledWith('foo', {})
 
-      expect(output).toEqual([{ foo: 'var' }])
+      // Promise.allSettled() returns an array with a status and value for resolved Promises
+      expect(output).toEqual([{ status: 'fulfilled', value: { foo: 'var' } }])
 
       mockFetchWithAbort.mockReset()
     })
@@ -43,7 +44,33 @@ describe('loaderFunction', () => {
         ['var', {}],
       ])
 
-      expect(output).toEqual([{ foo: 'var' }, { foo: 'var' }])
+      expect(output).toEqual([
+        { status: 'fulfilled', value: { foo: 'var' } },
+        { status: 'fulfilled', value: { foo: 'var' } },
+      ])
+
+      mockFetchWithAbort.mockReset()
+    })
+
+    it('when not all given keys are resolved', async () => {
+      const mockFetchWithAbort = jest
+        .spyOn(fetchWithAbort, 'default')
+        .mockImplementationOnce(() => Promise.resolve({ foo: 'var' }))
+        .mockImplementationOnce(() => Promise.reject(new Error('foo')))
+
+      const output = await loaderFunction(['foo', 'var'])
+
+      expect(mockFetchWithAbort).toHaveBeenCalledTimes(2)
+      expect(mockFetchWithAbort.mock.calls).toEqual([
+        ['foo', {}],
+        ['var', {}],
+      ])
+
+      // Promise.allSettled() returns an array with a status and value for resolved Promises, and a reason for rejected Promises
+      expect(output).toEqual([
+        { status: 'fulfilled', value: { foo: 'var' } },
+        { status: 'rejected', reason: Error('foo') },
+      ])
 
       mockFetchWithAbort.mockReset()
     })
@@ -57,10 +84,10 @@ describe('loaderFunction', () => {
 
       expect(mockFetchWithAbort).toHaveBeenCalledTimes(1)
       expect(mockFetchWithAbort).toHaveBeenCalledWith('foo', {
-        authorization: 'Bearer wewrewrew',
+        headers: { authorization: 'wewrewrew' },
       })
 
-      expect(output).toEqual([{ foo: 'var' }])
+      expect(output).toEqual([{ status: 'fulfilled', value: { foo: 'var' } }])
 
       mockFetchWithAbort.mockReset()
     })

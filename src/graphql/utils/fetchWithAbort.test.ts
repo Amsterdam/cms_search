@@ -11,7 +11,7 @@ describe('fetchWithAbort', () => {
     const mockFetch = jest.spyOn(fetch, 'default').mockImplementation(
       (): Promise<any> =>
         Promise.resolve({
-          status: 200,
+          ok: true,
           json: () => ({
             foo: 'var',
           }),
@@ -31,11 +31,11 @@ describe('fetchWithAbort', () => {
         foo: 'var',
       })
     })
-    it('with header information', async () => {
+    it('with options', async () => {
       const mockFetch = jest.spyOn(fetch, 'default').mockImplementationOnce(
         (): Promise<any> =>
           Promise.resolve({
-            status: 200,
+            ok: true,
             json: () => ({
               foo: 'var',
             }),
@@ -56,64 +56,42 @@ describe('fetchWithAbort', () => {
 
   describe('Returns data when the request returns', () => {
     it('a non OK status code', async () => {
+      const STATUS = 401
+      const STATUS_TEXT = 'foo'
       const mockFetch = jest.spyOn(fetch, 'default').mockImplementationOnce(
         (): Promise<any> =>
           Promise.resolve({
-            status: 401,
+            ok: false,
+            status: STATUS,
+            statusText: STATUS_TEXT,
             json: () => ({}),
           }),
       )
 
-      const output = await fetchWithAbort('url')
-
-      expect(mockFetch).toHaveBeenCalledWith('url', { signal: undefined })
-
-      expect(output).toEqual({
-        status: 401,
-        message: '',
-      })
+      try {
+        await fetchWithAbort('url')
+      } catch (e) {
+        expect(e.message).toBe(`${STATUS} - ${STATUS_TEXT}`) // The thrown error is the status code and statusText combined
+      }
 
       mockFetch.mockReset()
     })
 
     it('when the request throws an error', async () => {
+      const MESSAGE = 'Lorem ipsum'
       let mockFetch = jest.spyOn(fetch, 'default').mockImplementationOnce(
         (): Promise<any> =>
           Promise.reject({
             name: 'Error',
-            message: 'Lorem ipsum',
+            message: MESSAGE,
           }),
       )
 
-      const output = await fetchWithAbort('url')
-
-      expect(mockFetch).toHaveBeenCalledWith('url', { signal: undefined })
-
-      expect(output).toEqual({
-        status: 500,
-        message: 'Lorem ipsum',
-      })
-
-      mockFetch.mockReset()
-    })
-
-    it('when the request throws an AbortError', async () => {
-      let mockFetch = jest.spyOn(fetch, 'default').mockImplementationOnce(
-        (): Promise<any> =>
-          Promise.reject({
-            name: 'AbortError',
-            message: 'Lorem ipsum',
-          }),
-      )
-
-      const output = await fetchWithAbort('url')
-
-      expect(mockFetch).toHaveBeenCalledWith('url', { signal: undefined })
-
-      expect(output).toEqual({
-        status: 504,
-        message: 'Lorem ipsum',
-      })
+      try {
+        await fetchWithAbort('url')
+      } catch (e) {
+        expect(e.message).toBe(MESSAGE) // The thrown error is the error message
+      }
 
       mockFetch.mockReset()
     })
@@ -134,15 +112,14 @@ describe('fetchWithAbort', () => {
 
     jest.useFakeTimers()
 
-    const output = await fetchWithAbort('url')
+    try {
+      await fetchWithAbort('url')
 
-    expect(setTimeout).toHaveBeenCalledWith(jasmine.any(Function), MAX_REQUEST_TIME)
-    expect(mockedAbortController).toHaveBeenCalled()
-
-    expect(output).toEqual({
-      status: 504,
-      message: 'Lorem ipsum',
-    })
+      expect(setTimeout).toHaveBeenCalledWith(jasmine.any(Function), MAX_REQUEST_TIME)
+      expect(mockedAbortController).toHaveBeenCalled()
+    } catch (e) {
+      expect(e.message).toBe('504 - Gateway Timeout') // The thrown error is the error message
+    }
 
     mockFetch.mockReset()
     mockedAbortController.mockReset()
