@@ -16,11 +16,13 @@
     "@elastic/elasticsearch": "^7.5.0",
     "abort-controller": "^3.0.0",
     "cors": "^2.8.5",
+    "dataloader": "^2.0.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^14.5.8",
     "graphql-playground-middleware-express": "^1.7.12",
     "graphql-tools": "^4.0.6",
+    "lru_map": "^0.3.3",
     "memory-cache": "^0.2.0",
     "moment": "^2.24.0",
     "node-fetch": "^2.6.0",
@@ -49,11 +51,12 @@
     "prettier": "^1.19.1",
     "ts-jest": "^24.3.0",
     "ts-node": "^8.6.2",
-    "typescript": "^3.7.4"
+    "typescript": "^3.8.0-beta"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
     }
   },
   "lint-staged": {

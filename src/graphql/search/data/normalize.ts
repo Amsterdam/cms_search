@@ -1,12 +1,7 @@
-import { DataResult } from '../../../../generated/graphql'
+import { DataResult } from '../../../generated/graphql'
+import { NORMAL_VBO_STATUSSES } from './config'
 
-const NORMAL_VBO_STATUSSES = [
-  'Verblijfsobject in gebruik (niet ingemeten)',
-  'Verblijfsobject in gebruik',
-  'Verbouwing verblijfsobject',
-]
-
-export const normalizeDataResults = ({
+export const normalizeResults = ({
   _links,
   _display,
   type,

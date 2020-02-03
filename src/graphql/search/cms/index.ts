@@ -1,14 +1,14 @@
-import { CmsSearchResult } from '../../../../generated/graphql'
-import { CMS_TYPES } from '../../../../config'
+import { CmsSearchResult } from '../../../generated/graphql'
+import { CmsTypes } from './config'
 import getFormattedResults, { QueryCmsSearchArgs } from './normalize'
 import getCmsFilters from './filters'
-import { getCmsFromElasticSearch } from '../../../../es/cms'
+import { getCmsFromElasticSearch } from '../../../es/cms'
 
 const cmsSearch = (type: string) => async (
   _: any,
   { q, input }: QueryCmsSearchArgs,
 ): Promise<CmsSearchResult> => {
-  const { from, limit, filters: inputFilters, sort } = input
+  const { from, limit, filters: inputFilters, sort } = input || {}
 
   const { results, totalCount, filterCount } = await getCmsFromElasticSearch({
     q,
@@ -29,10 +29,10 @@ const cmsSearch = (type: string) => async (
   }
 }
 
-const articleSearch = cmsSearch(CMS_TYPES.ARTICLE)
+const articleSearch = cmsSearch(CmsTypes.Article)
 
-const publicationSearch = cmsSearch(CMS_TYPES.PUBLICATION)
+const publicationSearch = cmsSearch(CmsTypes.Publication)
 
-const specialSearch = cmsSearch(CMS_TYPES.SPECIAL)
+const specialSearch = cmsSearch(CmsTypes.Special)
 
 export { articleSearch, publicationSearch, specialSearch }

@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { FILTERS } from './constants'
+import { FILTERS } from './config'
 import {
   CmsSearchResultType,
   QueryArticleSearchArgs,
@@ -7,8 +7,8 @@ import {
   QuerySpecialSearchArgs,
   Filter,
   FilterOptions,
-} from '../../../../generated/graphql'
-import { getValuesFromES } from '../../../../es/cms'
+} from '../../../generated/graphql'
+import { getValuesFromES } from '../../../es/cms'
 
 export type QueryCmsSearchArgs =
   | QueryArticleSearchArgs
@@ -97,10 +97,9 @@ function getThemeFilterOptions(
     const { count } = themeCount.find(count => count.key === id) || {}
 
     return {
-      id,
+      id: `${FILTERS['THEME'].type}:${id}`,
       label: item.attributes.name,
       count: count || 0,
-      enumType: `${FILTERS['THEME'].type}:${id}`,
     }
   })
 }
@@ -115,17 +114,15 @@ function getDateFilterOptions(): Array<FilterOptions> {
     if (key === nrYears - 1) {
       year = currentYear - key + 1 // We need the previous year in the array
       return {
-        id: `older-${year}`,
+        id: `${FILTERS['DATE'].type}:older-${year}`,
         label: `Ouder dan ${year}`,
         count: 0,
-        enumType: `${FILTERS['DATE'].type}:older-${year}`,
       }
     }
     return {
-      id: `${year}`,
+      id: `${FILTERS['DATE'].type}:${year}`,
       label: `${year}`,
       count: 0,
-      enumType: `${FILTERS['DATE'].type}:${year}`,
     }
   })
 }

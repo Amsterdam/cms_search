@@ -1,6 +1,7 @@
 import fetch from 'node-fetch'
-import { formatThemeFilters } from './normalize'
-import withCache from '../../../utils/withCache'
+import { formatThemeFilters, formatDateFilters } from './normalize'
+import withCache from '../../utils/withCache'
+import { Filter } from '../../../generated/graphql'
 
 interface FilterCount {
   theme: Array<{
@@ -22,9 +23,11 @@ export default async (filterCount: FilterCount): Promise<any> => {
   let filters
   try {
     const themeTaxonomy: any = await Promise.resolve(themeTaxonomyCached())
-    const themeFilters: any = formatThemeFilters(themeTaxonomy, filterCount.theme)
+    const themeFilters: Filter = formatThemeFilters(themeTaxonomy, filterCount.theme)
 
-    filters = [themeFilters]
+    const dateFilters: Filter = formatDateFilters()
+
+    filters = [themeFilters, dateFilters]
   } catch (e) {
     console.warn(e)
   }
