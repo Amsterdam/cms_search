@@ -132,7 +132,6 @@ export type FilterOptions = {
   __typename?: 'FilterOptions'
   id: Scalars['String']
   label: Scalars['String']
-  enumType?: Maybe<Scalars['String']>
   count: Scalars['Int']
 }
 
@@ -449,7 +448,6 @@ export type FilterOptionsResolvers<
 > = {
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  enumType?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
 }
 

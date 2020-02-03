@@ -73,7 +73,6 @@ const schema = gql`
   type FilterOptions {
     id: String!
     label: String!
-    enumType: String
     count: Int!
   }
 

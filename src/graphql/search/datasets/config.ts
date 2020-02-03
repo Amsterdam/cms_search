@@ -7,7 +7,7 @@ export type PropertyType = {
 
 export type FileFormatFilterType = Array<{ name: string; count: number }>
 
-export type CatalogFilterOptionsType = { id: string; label: string; enumType: string }
+export type CatalogFilterOptionsType = { id: string; label: string }
 
 export const MAX_INTRO_LENGTH = 140
 
