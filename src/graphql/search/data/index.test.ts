@@ -61,8 +61,8 @@ describe('dataResolver', () => {
       // No types given so return all endpoints from the config
       expect(mockDataLoader).toHaveBeenCalledTimes(2)
       expect(mockDataLoader.mock.calls).toEqual([
-        [`https://api.endpoint.com/users?q=${SEARCH_TERM}`],
-        [`https://api.endpoint.com/posts?q=${SEARCH_TERM}`],
+        [`https://api.endpoint.com/users/?q=${SEARCH_TERM}`],
+        [`https://api.endpoint.com/posts/?q=${SEARCH_TERM}`],
       ])
 
       mockDataLoader.mockReset()
@@ -79,7 +79,9 @@ describe('dataResolver', () => {
 
       // Only return the endpoint for the given type
       expect(mockDataLoader).toHaveBeenCalledTimes(1)
-      expect(mockDataLoader).toHaveBeenCalledWith(`https://api.endpoint.com/users?q=${SEARCH_TERM}`)
+      expect(mockDataLoader).toHaveBeenCalledWith(
+        `https://api.endpoint.com/users/?q=${SEARCH_TERM}`,
+      )
 
       mockDataLoader.mockReset()
     })
@@ -96,11 +98,13 @@ describe('dataResolver', () => {
 
       // Only return the endpoint for the given type
       expect(mockDataLoader).toHaveBeenCalledTimes(1)
-      expect(mockDataLoader).toHaveBeenCalledWith(`https://api.endpoint.com/users?q=${SEARCH_TERM}`)
+      expect(mockDataLoader).toHaveBeenCalledWith(
+        `https://api.endpoint.com/users/?q=${SEARCH_TERM}`,
+      )
 
       // Error thrown so call clear()
       expect(mockClear).toHaveBeenCalledTimes(1)
-      expect(mockClear).toHaveBeenCalledWith(`https://api.endpoint.com/users?q=${SEARCH_TERM}`)
+      expect(mockClear).toHaveBeenCalledWith(`https://api.endpoint.com/users/?q=${SEARCH_TERM}`)
 
       mockDataLoader.mockReset()
       mockClear.mockReset()

@@ -33,12 +33,12 @@ const index = async (
   const dataloaderResults: Object[] = await Promise.all(
     // Construct the keys e.g. the URLs that should be loaded or fetched
     endpoints.map(async ({ endpoint, type, label, labelSingular }: any) => {
-      const key = `${endpoint}?q=${searchTerm}`
+      const key = `${endpoint}/?q=${searchTerm}`
       const result = await loaders.data.load(key)
 
       // If an error is thrown, delete the key from the cache and throw an error
       if (result.status !== 200) {
-        loaders.data.clear(`${endpoint}?q=${searchTerm}`)
+        loaders.data.clear(key)
       }
 
       return { ...result, type, label, labelSingular }

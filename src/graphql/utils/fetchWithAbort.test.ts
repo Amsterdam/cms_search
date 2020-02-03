@@ -11,7 +11,7 @@ describe('fetchWithAbort', () => {
     const mockFetch = jest.spyOn(fetch, 'default').mockImplementation(
       (): Promise<any> =>
         Promise.resolve({
-          status: 200,
+          ok: true,
           json: () => ({
             foo: 'var',
           }),
@@ -31,11 +31,11 @@ describe('fetchWithAbort', () => {
         foo: 'var',
       })
     })
-    it('with header information', async () => {
+    it('with options', async () => {
       const mockFetch = jest.spyOn(fetch, 'default').mockImplementationOnce(
         (): Promise<any> =>
           Promise.resolve({
-            status: 200,
+            ok: true,
             json: () => ({
               foo: 'var',
             }),
@@ -59,6 +59,7 @@ describe('fetchWithAbort', () => {
       const mockFetch = jest.spyOn(fetch, 'default').mockImplementationOnce(
         (): Promise<any> =>
           Promise.resolve({
+            ok: false,
             status: 401,
             json: () => ({}),
           }),

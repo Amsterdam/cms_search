@@ -57,7 +57,7 @@ describe('loaderFunction', () => {
 
       expect(mockFetchWithAbort).toHaveBeenCalledTimes(1)
       expect(mockFetchWithAbort).toHaveBeenCalledWith('foo', {
-        authorization: 'Bearer wewrewrew',
+        headers: { authorization: 'wewrewrew' },
       })
 
       expect(output).toEqual([{ foo: 'var' }])
