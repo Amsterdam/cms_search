@@ -6,6 +6,7 @@ import CustomError from '../../utils/CustomError'
 
 // Overwrite the DATA_SEARCH_ENDPOINTS const to make testing clearer and decoupled from real data
 jest.mock('./config', () => ({
+  DATA_SEARCH_FILTER: { type: 'foo' },
   DATA_SEARCH_ENDPOINTS: [
     {
       endpoint: 'https://api.endpoint.com/users',
@@ -28,8 +29,8 @@ jest.mock('../../utils/CustomError')
 
 describe('dataResolver', () => {
   const SEARCH_TERM = 'foo'
-  const TYPE: FilterInput = { type: 'types', values: ['users'] }
-  const FILTERS = { filters: [{ type: ' foo', id: 'foo', label: 'Foo', options: [] }] }
+  const TYPE: FilterInput = { type: 'foo', values: ['users'] }
+  const FILTERS = { filters: [{ type: 'foo', id: 'foo', label: 'Foo', options: [] }] }
 
   const CONTEXT = {
     loaders: {
