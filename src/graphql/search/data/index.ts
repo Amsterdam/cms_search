@@ -4,7 +4,7 @@ import {
   DataSearchResultType,
 } from '../../../generated/graphql'
 import { normalizeResults } from './normalize'
-import { DATA_SEARCH_ENDPOINTS } from './config'
+import { DATA_SEARCH_ENDPOINTS, DATA_SEARCH_FILTER, DATA_SEARCH_API_MAX_RESULTS } from './config'
 import getFilters from './filters'
 import { Context } from '../../config'
 import CustomError from '../../utils/CustomError'
@@ -14,14 +14,15 @@ const index = async (
   { q: searchTerm, input }: QueryDataSearchArgs,
   context: Context,
 ): Promise<DataSearchResult> => {
-  const { filters } = input || {}
+  const { filters, limit = DATA_SEARCH_API_MAX_RESULTS } = input || {}
   const { loaders } = context
 
   let endpoints: Array<Object> = []
 
   // If there are filters in the request, not all endpoints should be called from DataLoader
   if (filters && filters.length > 0) {
-    const filterTypes = filters.find(filter => filter.type === 'types')?.values ?? []
+    const filterTypes =
+      filters.find(filter => filter.type === DATA_SEARCH_FILTER.type)?.values ?? []
 
     endpoints = DATA_SEARCH_ENDPOINTS.filter(({ type }) => filterTypes.includes(type))
 
@@ -61,7 +62,9 @@ const index = async (
         label: count === 1 ? labelSingular : label,
         type,
         results:
-          results.length > 0 ? results.map((result: Object) => normalizeResults(result)) : [],
+          results.length > 0 // TODO: Delete the slice once the pagination gets merged
+            ? results.slice(0, limit).map((result: Object) => normalizeResults(result))
+            : [],
       }
     }),
   )
