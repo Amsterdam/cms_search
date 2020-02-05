@@ -13,6 +13,7 @@ export default class CustomError extends Error {
 
     switch (error.message) {
       case '401 - Unauthorized':
+      case '403 - Forbidden':
         code = 'UNAUTHORIZED'
         message = `Not authorized to view ${label}`
         break

@@ -24,9 +24,9 @@ const index = async (
   const { filters } = input || {}
   const { loaders } = context
 
-  // Get the page from the input, otherwise use the default
+  // Get the limit from the input, but only when the page is `null`
   limit = page || !limit ? DATA_SEARCH_LIMIT : limit
-  page = page || 1
+  page = page || 1 // Get the page from the input, otherwise use the default
 
   let endpoints: Array<Object> = []
 
@@ -73,7 +73,7 @@ const index = async (
         label: count === 1 ? labelSingular : label,
         type,
         results:
-          results.length > 0 // TODO: Delete the slice once the pagination gets merged
+          results.length > 0 // TODO: Add test to see if the corect number of results is returned
             ? results.slice(0, limit).map((result: Object) => normalizeResults(result))
             : [],
       }
