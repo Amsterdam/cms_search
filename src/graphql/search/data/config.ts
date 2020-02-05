@@ -93,7 +93,8 @@ export const DATA_SEARCH_ENDPOINTS: Array<DataSearchType> = [
 
 export const DATA_SEARCH_FILTER = { type: 'dataTypes', label: 'Types' }
 
-export const DATA_SEARCH_API_MAX_RESULTS = 100
+export const DATA_SEARCH_LIMIT = 100
+export const DATA_SEARCH_MAX_RESULTS = 1000
 
 export const NORMAL_VBO_STATUSSES = [
   'Verblijfsobject in gebruik (niet ingemeten)',

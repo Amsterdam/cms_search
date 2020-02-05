@@ -1,9 +1,10 @@
 import { DatasetSearchResult, QueryDatasetSearchArgs } from '../../../generated/graphql'
 import { getDatasetsEndpoint, normalizeDatasets } from './normalize'
 import getFilters from './filters'
+import getPageInfo from '../../utils/getPageInfo'
 import CustomError from '../../utils/CustomError'
 import { DCAT_ENDPOINTS } from './config'
-import { Context } from '../../config'
+import { Context, DEFAULT_LIMIT } from '../../config'
 
 export default async (
   _: any,
@@ -11,8 +12,16 @@ export default async (
   context: Context,
 ): Promise<DatasetSearchResult> => {
   const { loaders } = context
+  let { page, limit, filters: filterInput } = input || {}
 
-  const datasetsUrl = getDatasetsEndpoint(q, input || {})
+  // Get the page and limit from the input, otherwise use the defaults
+  page = page || 1
+  limit = limit || DEFAULT_LIMIT
+
+  const from = (page - 1) * limit
+
+  // Constructs the url to retrieve the datasets
+  const datasetsUrl = getDatasetsEndpoint(q, from, limit, filterInput || [])
 
   let results: any = []
   let filters: any = []
@@ -45,6 +54,8 @@ export default async (
   return {
     totalCount,
     results,
+    // Get the page info details
+    pageInfo: getPageInfo(totalCount, page, limit),
     ...filters,
   }
 }

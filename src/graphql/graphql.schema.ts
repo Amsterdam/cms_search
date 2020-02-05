@@ -7,6 +7,8 @@ const schema = gql`
   interface SearchResult {
     totalCount: Int!
     results: [Results!]
+    filters: [Filter!]
+    pageInfo: PageInfo!
   }
 
   interface SearchResultType {
@@ -17,7 +19,7 @@ const schema = gql`
 
   input DataSearchInput {
     limit: Int
-    from: Int
+    page: Int
     filters: [FilterInput!]
   }
 
@@ -28,15 +30,15 @@ const schema = gql`
 
   input CMSSearchInput {
     limit: Int
-    from: Int
+    page: Int
     types: [String!]
     filters: [FilterInput!]
     sort: CMSSortInput
   }
 
   input DatasetSearchInput {
-    from: Int
     limit: Int
+    page: Int
     filters: [FilterInput!]
   }
 
@@ -49,18 +51,21 @@ const schema = gql`
     totalCount: Int!
     results: [DataSearchResultType!]!
     filters: [Filter!]
+    pageInfo: PageInfo!
   }
 
   type DatasetSearchResult implements SearchResult {
     totalCount: Int!
     results: [DatasetSearchResultType!]
     filters: [Filter!]
+    pageInfo: PageInfo!
   }
 
   type CMSSearchResult implements SearchResult {
     totalCount: Int!
     results: [CMSSearchResultType!]
     filters: [Filter!]
+    pageInfo: PageInfo!
   }
 
   type Filter {
@@ -127,6 +132,12 @@ const schema = gql`
   type DatasetFormats {
     name: String!
     count: Int!
+  }
+
+  type PageInfo {
+    hasNextPage: Boolean!
+    totalPages: Int!
+    hasLimitedResults: Boolean
   }
 
   type Query {

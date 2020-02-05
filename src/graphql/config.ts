@@ -16,3 +16,5 @@ export enum FilterTypes {
   Checkbox = 'checkbox',
   Select = 'select',
 }
+
+export const DEFAULT_LIMIT = 20
