@@ -25,8 +25,8 @@ const index = async (
   const { loaders } = context
 
   // Get the page from the input, otherwise use the default
+  limit = page || !limit ? DATA_SEARCH_LIMIT : limit
   page = page || 1
-  limit = limit || DATA_SEARCH_LIMIT
 
   let endpoints: Array<Object> = []
 
