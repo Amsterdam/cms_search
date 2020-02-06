@@ -97,72 +97,73 @@ function getSearchQuery(q: string) {
   ]
 }
 
-// Constructs the ES query to filter on theme or date
-function getFilterQuery(types: Array<string> | null, filters: Array<FilterInput>) {
+// Constructs the ES query to filter on theme
+function getThemeFilter(filters: Array<FilterInput>) {
   const themeFilter = filters && filters.find(filter => filter.type === FILTERS['THEME'].type)
-  const themeFilterValues: any =
-    themeFilter && themeFilter.values
-      ? themeFilter.values.map(value => ({ term: { field_theme_id: value.split(':').pop() } }))
-      : []
 
+  if (themeFilter && themeFilter.values) {
+    return {
+      terms: { field_theme_id: themeFilter.values.map(value => value.split(':').pop()) },
+    }
+  }
+
+  return null
+}
+
+// Constructs the ES query to filter on date
+function getDateFilter(types: Array<string> | null, filters: Array<FilterInput>) {
   const dateFilter = filters && filters.find(filter => filter.type === FILTERS['DATE'].type)
-  const dateFilterValues: any =
-    dateFilter && dateFilter.values
-      ? dateFilter.values.map((value: any) => {
-          let filterValue = value.split(':').pop()
 
-          // Only publications have field_publication_date and can be filtered directly
-          if (types && types.includes('publication')) {
-            // When not filtering on a specific year, the value must be smaller than the last possible year
-            if (filterValue.startsWith('older')) {
-              return {
-                range: {
-                  field_publication_year: {
-                    lt: filterValue.replace('older-', ''),
-                  },
-                },
-              }
-            }
-            // Filtering on a specific year returns only results from that year
-            return { term: { field_publication_year: filterValue } }
-          }
+  if (dateFilter && dateFilter.values) {
+    return dateFilter.values.map((value: any) => {
+      let filterValue = value.split(':').pop()
 
-          // Other content than publications is filtered by checking if the unix timestamp of field_publication_date
-          // is in range of the beginning and the end of the filtered value
-
-          // When not filtering on a specific year, the value must be smaller than the last possible year
-          if (filterValue.startsWith('older')) {
-            return {
-              range: {
-                field_publication_date: {
-                  lt: filterValue.replace('older-', ''),
-                },
-              },
-            }
-          }
-
-          // Otherwise both the beginning and end of the filtered year must be calculated
-          const gte = new Date(filterValue).getTime() / 1000 // Unix first day of the year
-          const lte = new Date(filterValue, 12, 1).getTime() / 1000 // Unix last day of the year
-
+      // Only publications have field_publication_date and can be filtered directly
+      if (types && types.includes('publication')) {
+        // When not filtering on a specific year, the value must be smaller than the last possible year
+        if (filterValue.startsWith('older')) {
           return {
             range: {
-              field_publication_date: {
-                gte,
-                lte,
+              field_publication_year: {
+                lt: filterValue.replace('older-', ''),
               },
             },
           }
-        })
-      : []
+        }
+        // Filtering on a specific year returns only results from that year
+        return { term: { field_publication_year: filterValue } }
+      }
 
-  return [
-    {
-      bool: {
-        should: [...themeFilterValues, ...dateFilterValues],
-      },
-    },
-  ]
+      // Other content than publications is filtered by checking if the unix timestamp of field_publication_date
+      // is in range of the beginning and the end of the filtered value
+
+      // When not filtering on a specific year, the value must be smaller than the last possible year
+      if (filterValue.startsWith('older')) {
+        return {
+          range: {
+            field_publication_date: {
+              lt: filterValue.replace('older-', ''),
+            },
+          },
+        }
+      }
+
+      // Otherwise both the beginning and end of the filtered year must be calculated
+      const gte = new Date(filterValue).getTime() / 1000 // Unix first day of the year
+      const lte = new Date(filterValue, 12, 1).getTime() / 1000 - 1 // Unix last day of the year at 23:59
+
+      return {
+        range: {
+          field_publication_date: {
+            gte,
+            lte,
+          },
+        },
+      }
+    })
+  }
+
+  return []
 }
 
-export { getSearchQuery, getFilterQuery }
+export { getSearchQuery, getThemeFilter, getDateFilter }
