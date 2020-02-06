@@ -1,5 +1,5 @@
 import { CmsSearchInput } from '../../generated/graphql'
-import { getSearchQuery, getFilterQuery } from './utils'
+import { getSearchQuery, getThemeFilter, getDateFilter } from './utils'
 
 export type ElasticSearchArgs = {
   q: string | null | undefined
@@ -8,15 +8,18 @@ export type ElasticSearchArgs = {
 
 export default ({ q, limit, from, types = null, filters, sort }: ElasticSearchArgs) => {
   let shouldQuery: Array<object> = []
-  let filterQuery: Array<object> = []
+  let dateFilter: Array<object> = []
   let sorting: Array<object | string> = ['_score'] // default sorting on score
+
+  let themeFilter: Object | null = null
 
   if (q && q.length > 0) {
     shouldQuery = getSearchQuery(q)
   }
 
   if (filters && filters.length > 0) {
-    filterQuery = getFilterQuery(types, filters)
+    dateFilter = getDateFilter(types, filters)
+    themeFilter = getThemeFilter(filters)
   }
 
   if (sort) {
@@ -41,12 +44,19 @@ export default ({ q, limit, from, types = null, filters, sort }: ElasticSearchAr
   return {
     query: {
       bool: {
-        must: [{ term: { field_published: true } }, ...filterQuery],
+        must: [
+          { term: { field_published: true } },
+          {
+            terms: {
+              type: types,
+            },
+          },
+        ],
         must_not: [],
         should: shouldQuery,
         filter: {
-          terms: {
-            type: types,
+          bool: {
+            must: [...dateFilter],
           },
         },
         minimum_should_match: shouldQuery.length > 0 ? 1 : 0, // At least one of the should rules must match
@@ -57,15 +67,41 @@ export default ({ q, limit, from, types = null, filters, sort }: ElasticSearchAr
     size: limit,
     sort: [...sorting],
     aggs: {
-      count_by_type: {
-        terms: {
-          field: 'type',
+      type: {
+        filter: {
+          bool: {
+            // The themeFilter should affect the totalCount
+            must: [...(themeFilter ? [themeFilter] : [])],
+          },
+        },
+        aggs: {
+          count: {
+            terms: {
+              field: 'type',
+            },
+          },
         },
       },
-      count_by_theme: {
-        terms: {
-          field: 'field_theme_id',
+      theme: {
+        filter: {
+          bool: {
+            // The themeFilter should affect the totalCount
+            must: [],
+          },
         },
+        aggs: {
+          count: {
+            terms: {
+              field: 'field_theme_id',
+            },
+          },
+        },
+      },
+    },
+    post_filter: {
+      // The themeFilter should not change the count of the `field_theme_id`
+      bool: {
+        must: [...(themeFilter ? [themeFilter] : [])],
       },
     },
   }

@@ -28,9 +28,10 @@ export async function getCmsFromElasticSearch({
   const results: SearchResponse<any> = await ElasticSearchClient(
     cmsSchema({ q, limit, from, types, filters, sort }),
   ).then(r => r.body)
+
   const countResults: any = Object.entries(results.aggregations).reduce((acc, [key, value]) => {
     // @ts-ignore
-    const { buckets } = value
+    const { buckets } = value.count
     return {
       ...acc,
       [key]: buckets.map(({ doc_count, key }: any) => ({
@@ -40,15 +41,12 @@ export async function getCmsFromElasticSearch({
     }
   }, {})
 
-  const totalCount = countResults.count_by_type.reduce(
-    (acc: number, { count }: any) => acc + count,
-    0,
-  )
+  const totalCount = countResults.type.reduce((acc: number, { count }: any) => acc + count, 0)
 
   return {
     results: results.hits.hits,
     totalCount,
-    filterCount: { theme: countResults.count_by_theme },
+    filterCount: { theme: countResults.theme },
   }
 }
 
