@@ -85,7 +85,7 @@ export default ({ q, limit, from, types = null, filters, sort }: ElasticSearchAr
       theme: {
         filter: {
           bool: {
-            // The themeFilter should affect the totalCount
+            // No filters are set, but this is added to maintain consistency
             must: [],
           },
         },
