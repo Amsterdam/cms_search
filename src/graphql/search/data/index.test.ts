@@ -34,10 +34,11 @@ jest.mock('../../utils/CustomError')
 describe('dataResolver', () => {
   const SEARCH_TERM = 'foo'
   const TYPE: FilterInput = { type: 'foo', values: ['users'] }
-  const FILTERS = { filters: [{ type: 'foo', id: 'foo', label: 'Foo', options: [] }] }
+  const FILTERS = [{ type: 'foo', id: 'foo', label: 'Foo', options: [] }]
 
   const CONTEXT = {
     loaders: {
+      cms: { load: jest.fn, clear: jest.fn() },
       data: { load: jest.fn, clear: jest.fn() },
       datasets: { load: jest.fn, clear: jest.fn() },
     },
@@ -146,9 +147,6 @@ describe('dataResolver', () => {
       },
     }
 
-    // Set a value for the filters
-    const FILTERS = { filters: [{ type: ' foo', id: 'foo', label: 'Foo', options: [] }] }
-
     let mockDataLoader = jest.fn()
     let mockGetFilters: jest.SpyInstance<any>
     let mockNormalizeResults: jest.SpyInstance<any>
@@ -252,7 +250,7 @@ describe('dataResolver', () => {
       expect(mockGetPageInfo).toHaveBeenCalledWith(RESULTS[0].count + RESULTS[1].count, 1, 12)
 
       expect(output).toEqual({
-        ...FILTERS,
+        filters: FILTERS,
         results: RESULTS,
         totalCount: DATA_LOADER.value.count + DATA_LOADER.value.count, // 1 + 1
         pageInfo: { ...PAGE_INFO, hasLimitedResults: false },

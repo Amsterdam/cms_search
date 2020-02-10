@@ -19,10 +19,11 @@ jest.mock('../../utils/CustomError')
 
 describe('datasetResolver', () => {
   const SEARCH_TERM = 'foo'
-  const FILTERS = { filters: [{ type: ' foo', id: 'foo', label: 'Foo', options: [] }] }
+  const FILTERS = [{ type: ' foo', id: 'foo', label: 'Foo', options: [] }]
 
   const CONTEXT = {
     loaders: {
+      cms: { load: jest.fn, clear: jest.fn() },
       data: { load: jest.fn, clear: jest.fn() },
       datasets: { load: jest.fn, clear: jest.fn() },
     },
@@ -120,7 +121,7 @@ describe('datasetResolver', () => {
 
       // And the output is returned
       expect(output).toMatchObject({
-        ...FILTERS,
+        filters: FILTERS,
         pageInfo: PAGE_INFO,
       })
     })
@@ -141,12 +142,12 @@ describe('datasetResolver', () => {
       expect(mockNormalizeDatasets).toHaveBeenCalledWith('mockedDatasets', DATASETS)
 
       // The filters should be collected
-      expect(mockGetFilters).toHaveBeenCalledWith('mockedFacetInfo', DATASETS)
+      expect(mockGetFilters).toHaveBeenCalledWith(DATASETS, 'mockedFacetInfo')
 
       // And the output is returned
       expect(output).toEqual({
         results: 'mockedData',
-        ...FILTERS,
+        filters: FILTERS,
         totalCount: DATASETS['void:documents'],
         pageInfo: PAGE_INFO,
       })

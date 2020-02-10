@@ -33,7 +33,7 @@ describe('filters', () => {
     const output = getFilters(input)
 
     // Return all filters and set the count when possible to match
-    expect(output.filters).toEqual([
+    expect(output).toEqual([
       {
         label: 'Filter 1',
         filterType: FilterTypes.Radio,

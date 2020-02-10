@@ -1,6 +1,7 @@
 import { articleSearch, publicationSearch, specialSearch } from './cms'
 import dataSearch from './data'
 import datasetSearch from './datasets'
+import filters from './filters'
 
 export default {
   Query: {
@@ -9,5 +10,6 @@ export default {
     datasetSearch,
     publicationSearch,
     specialSearch,
+    filters,
   },
 }

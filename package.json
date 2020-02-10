@@ -6,7 +6,7 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc --build",
-    "generate": "graphql-codegen --config ./src/codegen.yml",
+    "generate": "concurrently \"graphql-codegen --config ./src/codegen.yml\" \"node generate-drupal-types.js\"",
     "postinstall": "cp .env.development .env",
     "test": "npx jest",
     "serve": "npm run build && node ./lib/",

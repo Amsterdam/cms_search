@@ -9,6 +9,7 @@ import {
   FilterOptions,
 } from '../../../generated/graphql'
 import { getValuesFromES } from '../../../es/cms'
+import { DrupalThemeFilterIDs } from '../../../generated/drupal'
 
 export type QueryCmsSearchArgs =
   | QueryArticleSearchArgs
@@ -89,16 +90,17 @@ function getFormattedResults(results: any): Array<CmsSearchResultType> {
 
 function getThemeFilterOptions(
   result: JsonAPI,
-  themeCount: Array<{ key: string; count: number }>,
+  themeCount?: Array<{ key: string; count: number }>,
 ): Array<FilterOptions> {
-  return result.data.map((item: any) => {
-    const id = item.attributes.drupal_internal__tid
+  return result.data.map(({ attributes }: any) => {
+    const id = attributes.drupal_internal__tid
+    const { count } = themeCount?.find(count => count.key === id) || {}
 
-    const { count } = themeCount.find(count => count.key === id) || {}
+    const key = Object.keys(DrupalThemeFilterIDs).find(x => DrupalThemeFilterIDs[x] === id) || ''
 
     return {
-      id: `${FILTERS['THEME'].type}:${id}`,
-      label: item.attributes.name,
+      id: `${FILTERS['THEME'].type}:${key}`,
+      label: attributes.name,
       count: count || 0,
     }
   })
@@ -129,7 +131,7 @@ function getDateFilterOptions(): Array<FilterOptions> {
 
 function formatThemeFilters(
   themeTaxonomy: JsonAPI,
-  themeCount: Array<{ key: string; count: number }>,
+  themeCount?: Array<{ key: string; count: number }>,
 ): Filter {
   const { type, label, filterType } = FILTERS['THEME']
 

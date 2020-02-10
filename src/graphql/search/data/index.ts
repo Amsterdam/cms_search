@@ -21,7 +21,7 @@ const index = async (
   context: Context,
 ): Promise<DataSearchResult> => {
   let { page, limit } = input || {}
-  const { filters } = input || {}
+  const { filters: filterInput } = input || {}
   const { loaders } = context
 
   // Get the limit from the input, but only when the page is `null`
@@ -31,9 +31,9 @@ const index = async (
   let endpoints: Array<Object> = []
 
   // If there are filters in the request, not all endpoints should be called from DataLoader
-  if (filters && filters.length > 0) {
+  if (filterInput && filterInput.length > 0) {
     const filterTypes =
-      filters.find(filter => filter.type === DATA_SEARCH_FILTER.type)?.values ?? []
+      filterInput.find(filter => filter.type === DATA_SEARCH_FILTER.type)?.values ?? []
 
     endpoints = DATA_SEARCH_ENDPOINTS.filter(({ type }) => filterTypes.includes(type))
 
@@ -97,12 +97,14 @@ const index = async (
     hasLimitedResults,
   }
 
+  // Get the available filters and merge with the results to get a count
+  const filters = getFilters(dataloaderResults)
+
   return {
     totalCount,
     pageInfo,
     results: dataloaderResults,
-    // Get the available filters and merge with the results to get a count
-    ...getFilters(dataloaderResults),
+    filters,
   }
 }
 

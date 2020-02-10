@@ -1,5 +1,6 @@
 import { FILTERS } from '../../graphql/search/cms/config'
 import { FilterInput } from '../../generated/graphql'
+import { DrupalThemeFilterIDs } from '../../generated/drupal'
 
 // Constructs an array with the search conditions
 function getSearchQuery(q: string) {
@@ -99,11 +100,17 @@ function getSearchQuery(q: string) {
 
 // Constructs the ES query to filter on theme
 function getThemeFilter(filters: Array<FilterInput>) {
-  const themeFilter = filters && filters.find(filter => filter.type === FILTERS['THEME'].type)
+  const themeFilter = filters?.find(filter => filter.type === FILTERS['THEME'].type)
 
-  if (themeFilter && themeFilter.values) {
+  const themeFilterValues = themeFilter?.values.map(value => {
+    const key = value.split(':').pop()
+
+    return (key && DrupalThemeFilterIDs[key]) || null
+  })
+
+  if (themeFilterValues && !themeFilterValues.some(filterValue => filterValue === null)) {
     return {
-      terms: { field_theme_id: themeFilter.values.map(value => value.split(':').pop()) },
+      terms: { field_theme_id: themeFilterValues },
     }
   }
 

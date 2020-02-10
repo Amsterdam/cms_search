@@ -3,12 +3,13 @@ import { CmsTypes } from './config'
 import getFormattedResults, { QueryCmsSearchArgs } from './normalize'
 import getCmsFilters from './filters'
 import { getCmsFromElasticSearch } from '../../../es/cms'
-import { DEFAULT_LIMIT } from '../../config'
+import { DEFAULT_LIMIT, Context } from '../../config'
 import getPageInfo from '../../utils/getPageInfo'
 
 const cmsSearch = (type: string) => async (
   _: any,
   { q, input }: QueryCmsSearchArgs,
+  { loaders }: Context,
 ): Promise<CmsSearchResult> => {
   let { page, limit, filters: filterInput, sort } = input || {}
 
@@ -27,15 +28,19 @@ const cmsSearch = (type: string) => async (
     sort,
   })
 
+  const cmsFilters: any = await loaders.cms.load(
+    `${process.env.CMS_URL}/jsonapi/taxonomy_term/themes`,
+  )
+
+  const filters = getCmsFilters(cmsFilters.value, filterCount)
+
   const formattedResults = getFormattedResults(results)
-  const filters = await getCmsFilters(filterCount)
 
   return {
     totalCount,
     results: formattedResults.filter(({ type: resultType }) => type === resultType),
-    // Get the page info details
-    pageInfo: getPageInfo(totalCount, page, limit),
-    ...filters,
+    pageInfo: getPageInfo(totalCount, page, limit), // Get the page info details
+    filters,
   }
 }
 
