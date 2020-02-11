@@ -2,17 +2,6 @@ const fs = require('fs')
 const fetch = require('node-fetch')
 const dotenv = require('dotenv')
 
-// Converts a string to a cleaned string that can be used as enum
-const toId = string =>
-  string
-    .toString()
-    .toLowerCase()
-    .replace(/\s+/g, '-') // Replace spaces with -
-    .replace(/[^\w-]+/g, '') // Remove all non-word chars
-    .replace(/--+/g, '-') // Replace multiple - with single -
-    .replace(/^-+/, '') // Trim - from start of text
-    .replace(/-+$/, '') // Trim - from end of text
-
 dotenv.config()
 
 async function fetchAndMapDrupalFilters() {
@@ -25,10 +14,20 @@ async function fetchAndMapDrupalFilters() {
 
     // Constructs an array with the cleaned up taxonomy names and internal IDs
     themeFilters = results.data.map(({ attributes }) => {
-      return `'${toId(attributes.name)}' = ${attributes.drupal_internal__tid},`
+      // Converts a string to a cleaned string that can be used as enum
+      const id = attributes.name
+        .toString()
+        .toLowerCase()
+        .replace(/\s+/g, '-') // Replace spaces with -
+        .replace(/[^\w-]+/g, '') // Remove all non-word chars
+        .replace(/--+/g, '-') // Replace multiple - with single -
+        .replace(/^-+/, '') // Trim - from start of text
+        .replace(/-+$/, '') // Trim - from end of text
+
+      return `'${id}' = ${attributes.drupal_internal__tid},`
     })
   } catch (e) {
-    console.warn(e)
+    throw e
   }
 
   // Export the enum for the theme taxonomy from Drupal
@@ -40,10 +39,14 @@ async function fetchAndMapDrupalFilters() {
   // Creates a new file in the generated directory
   fs.writeFile('src/generated/drupal.ts', exported, function(e) {
     if (e) {
-      return console.warn(e)
+      throw e
     }
     console.log('Types from Drupal were created!')
   })
 }
 
-fetchAndMapDrupalFilters()
+try {
+  fetchAndMapDrupalFilters()
+} catch (e) {
+  console.warn(e)
+}

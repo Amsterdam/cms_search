@@ -1,6 +1,41 @@
-import { combineFilters } from './utils'
+import { combineFilters, combineFilterOptions } from './utils'
 
 describe('utils', () => {
+  const MOCK_FILTER_OPTIONS = [
+    {
+      id: 'test',
+      label: 'Test option',
+    },
+  ]
+
+  describe('combineFilterOptions', () => {
+    it('should return the initial data when just one filter', () => {
+      const input = MOCK_FILTER_OPTIONS
+
+      expect(combineFilterOptions(input)).toEqual(input)
+    })
+
+    it('or when multiple matching filter options and additional options', () => {
+      const input = [
+        ...MOCK_FILTER_OPTIONS,
+        ...MOCK_FILTER_OPTIONS,
+        {
+          id: 'test-2',
+          label: 'Test option 2',
+        },
+      ]
+
+      // The result is a new array with the first input, but with the options from the second filter input
+      expect(combineFilterOptions(input)).toEqual([
+        ...MOCK_FILTER_OPTIONS,
+        {
+          id: 'test-2',
+          label: 'Test option 2',
+        },
+      ])
+    })
+  })
+
   describe('combineFilters', () => {
     const MOCK_FILTER = [
       {
@@ -44,43 +79,6 @@ describe('utils', () => {
 
       // The result is a new array with only the first input
       expect(combineFilters(input)).toEqual([input[0]])
-    })
-
-    it('or when multiple matching filters with additional options', () => {
-      const input = [
-        ...MOCK_FILTER,
-        {
-          ...MOCK_FILTER[0],
-          options: [
-            {
-              id: 'test-2',
-              label: 'Test option 2',
-            },
-            {
-              id: 'test-3',
-              label: 'Test option 3',
-            },
-          ],
-        },
-      ]
-
-      // The result is a new array with the first input, but with the options from the second filter input
-      expect(combineFilters(input)).toEqual([
-        {
-          ...MOCK_FILTER[0],
-          options: [
-            ...MOCK_FILTER[0].options,
-            {
-              id: 'test-2',
-              label: 'Test option 2',
-            },
-            {
-              id: 'test-3',
-              label: 'Test option 3',
-            },
-          ],
-        },
-      ])
     })
   })
 })

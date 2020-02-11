@@ -80,4 +80,25 @@ describe('filters', () => {
 
     expect(output).toEqual([...FILTERS, ...FILTERS])
   })
+
+  it('unless something goes wrong', async () => {
+    const ERROR = new Error('something went wrong')
+
+    const CONTEXT = {
+      loaders: {
+        cms: {
+          load: jest.fn(() => {
+            throw ERROR
+          }),
+          clear: jest.fn(),
+        },
+        data: { load: jest.fn, clear: jest.fn() },
+        datasets: { load: mockDatasetsDataloader, clear: jest.fn() },
+      },
+    }
+
+    const output = await filters({}, {}, CONTEXT)
+
+    expect(output).toEqual(ERROR)
+  })
 })
