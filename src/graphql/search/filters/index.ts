@@ -19,6 +19,6 @@ export default async (_: any, {}, { loaders }: Context) => {
 
     return combineFilters([cmsThemeFilters, datasetsThemeFilters])
   } catch (e) {
-    return e
+    return e as Error
   }
 }
