@@ -46,7 +46,7 @@ export default async (
     // Otherwise normalize the results
     results = normalizeDatasets(datasets.value['dcat:dataset'], openApiResults.value)
     // Get the available filters and merge with the results to get a count
-    filters = getFilters(datasets.value['ams:facet_info'], openApiResults.value)
+    filters = getFilters(openApiResults.value, datasets.value['ams:facet_info'])
     // Get the totalCount value
     totalCount = datasets.value['void:documents']
   }
@@ -56,6 +56,6 @@ export default async (
     results,
     // Get the page info details
     pageInfo: getPageInfo(totalCount, page, limit),
-    ...filters,
+    filters,
   }
 }

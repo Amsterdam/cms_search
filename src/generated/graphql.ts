@@ -122,7 +122,7 @@ export type Filter = {
   __typename?: 'Filter'
   type: Scalars['String']
   label: Scalars['String']
-  options: Array<FilterOptions>
+  options?: Maybe<Array<FilterOptions>>
   filterType?: Maybe<Scalars['String']>
 }
 
@@ -135,7 +135,7 @@ export type FilterOptions = {
   __typename?: 'FilterOptions'
   id: Scalars['String']
   label: Scalars['String']
-  count: Scalars['Int']
+  count?: Maybe<Scalars['Int']>
 }
 
 export type PageInfo = {
@@ -152,6 +152,7 @@ export type Query = {
   datasetSearch?: Maybe<DatasetSearchResult>
   publicationSearch?: Maybe<CmsSearchResult>
   specialSearch?: Maybe<CmsSearchResult>
+  filters?: Maybe<Array<Maybe<Filter>>>
 }
 
 export type QueryArticleSearchArgs = {
@@ -455,7 +456,7 @@ export type FilterResolvers<
 > = {
   type?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  options?: Resolver<Array<ResolversTypes['FilterOptions']>, ParentType, ContextType>
+  options?: Resolver<Maybe<Array<ResolversTypes['FilterOptions']>>, ParentType, ContextType>
   filterType?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
 }
 
@@ -465,7 +466,7 @@ export type FilterOptionsResolvers<
 > = {
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  count?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
 }
 
 export type PageInfoResolvers<
@@ -511,6 +512,7 @@ export type QueryResolvers<
     ContextType,
     QuerySpecialSearchArgs
   >
+  filters?: Resolver<Maybe<Array<Maybe<ResolversTypes['Filter']>>>, ParentType, ContextType>
 }
 
 export type ResultsResolvers<

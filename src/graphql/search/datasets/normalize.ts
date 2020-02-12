@@ -143,17 +143,19 @@ function getProperties(openApiData: any) {
   }
 }
 
-function getFacetOptions(facets: any, property: any) {
+function getFacetOptions(property: PropertyType, facets?: Object) {
   const options: Array<CatalogFilterOptionsType> = getOptionsFromProperty(property)
 
   return options.map(({ label, id }) => ({
     id,
     label: label ? label : id,
-    count: Object.values(facets).reduce((acc, value: any) => value[id] || acc, 0) as number,
+    count: facets
+      ? (Object.values(facets).reduce((acc, value: Object) => value[id] || acc, 0) as number)
+      : 0,
   }))
 }
 
-function formatFilters(facets: Object, openApiData: any): Array<Filter> {
+function formatFilters(openApiData: any, facets?: Object): Array<Filter> {
   const { dcatDocProperties, distributionProperties } = getProperties(openApiData)
 
   return [
@@ -161,13 +163,13 @@ function formatFilters(facets: Object, openApiData: any): Array<Filter> {
       type: properties.theme.type,
       label: "Thema's",
       filterType: FilterTypes.Checkbox,
-      options: getFacetOptions(facets, dcatDocProperties['dcat:theme'].items),
+      options: getFacetOptions(dcatDocProperties['dcat:theme'].items, facets),
     },
     {
       type: properties.distributionType.type,
       label: 'Verschijningsvorm',
       filterType: FilterTypes.Radio,
-      options: getFacetOptions(facets, distributionProperties['ams:distributionType']),
+      options: getFacetOptions(distributionProperties['ams:distributionType'], facets),
     },
   ]
 }

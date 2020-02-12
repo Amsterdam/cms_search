@@ -71,14 +71,14 @@ const schema = gql`
   type Filter {
     type: String!
     label: String!
-    options: [FilterOptions!]!
+    options: [FilterOptions!]
     filterType: String
   }
 
   type FilterOptions {
     id: String!
     label: String!
-    count: Int!
+    count: Int
   }
 
   type CMSLink {
@@ -146,6 +146,7 @@ const schema = gql`
     datasetSearch(q: String, input: DatasetSearchInput): DatasetSearchResult
     publicationSearch(q: String, input: CMSSearchInput): CMSSearchResult
     specialSearch(q: String, input: CMSSearchInput): CMSSearchResult
+    filters: [Filter]
   }
 `
 

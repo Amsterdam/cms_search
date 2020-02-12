@@ -1,5 +1,6 @@
 import { FILTERS } from '../../graphql/search/cms/config'
 import { FilterInput } from '../../generated/graphql'
+import { DRUPAL_THEME_FILTER_IDS } from '../../generated/drupal'
 
 // Constructs an array with the search conditions
 function getSearchQuery(q: string) {
@@ -99,11 +100,22 @@ function getSearchQuery(q: string) {
 
 // Constructs the ES query to filter on theme
 function getThemeFilter(filters: Array<FilterInput>) {
-  const themeFilter = filters && filters.find(filter => filter.type === FILTERS['THEME'].type)
+  const themeFilter = filters.find(filter => filter.type === FILTERS['THEME'].type)
 
-  if (themeFilter && themeFilter.values) {
+  if (!themeFilter) {
+    return null
+  }
+
+  const themeFilterValues = themeFilter.values.map(value => {
+    const filterKey = value.split(':').pop()
+    const [, id] = [...DRUPAL_THEME_FILTER_IDS].find(([key]) => key === filterKey) || []
+
+    return id || null
+  })
+
+  if (!themeFilterValues.some(filterValue => filterValue === null)) {
     return {
-      terms: { field_theme_id: themeFilter.values.map(value => value.split(':').pop()) },
+      terms: { field_theme_id: themeFilterValues },
     }
   }
 
@@ -112,7 +124,7 @@ function getThemeFilter(filters: Array<FilterInput>) {
 
 // Constructs the ES query to filter on date
 function getDateFilter(types: Array<string> | null, filters: Array<FilterInput>) {
-  const dateFilter = filters && filters.find(filter => filter.type === FILTERS['DATE'].type)
+  const dateFilter = filters.find(filter => filter.type === FILTERS['DATE'].type)
 
   if (dateFilter && dateFilter.values) {
     return dateFilter.values.map((value: any) => {

@@ -20,6 +20,7 @@ export default graphqlHTTP(async req => ({
   context: {
     // Create a context for holding contextual data
     loaders: {
+      cms: createDataLoader(''),
       data: createDataLoader(req.headers.authorization || ''),
       datasets: createDataLoader(''),
     },
