@@ -106,7 +106,7 @@ function getThemeFilter(filters: Array<FilterInput>) {
     return null
   }
 
-  const themeFilterValues: Array<number | null> = themeFilter.values.map(value => {
+  const themeFilterValues = themeFilter.values.map(value => {
     const filterKey = value.split(':').pop()
     const [, id] = [...DRUPAL_THEME_FILTER_IDS].find(([key]) => key === filterKey) || []
 
