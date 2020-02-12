@@ -11,4 +11,5 @@ export const DRUPAL_THEME_FILTER_IDS = new Map([
   ['werk-en-sociale-zekerheid', 59],
   ['wonen', 60],
   ['zorg-en-welzijn', 61],
+  ['test', 63],
 ])

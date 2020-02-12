@@ -5,6 +5,7 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
+    "prebuild": "node generate-drupal-types.js",
     "build": "tsc --build",
     "generate": "concurrently \"graphql-codegen --config ./src/codegen.yml\" \"node generate-drupal-types.js\"",
     "postinstall": "cp .env.development .env",
