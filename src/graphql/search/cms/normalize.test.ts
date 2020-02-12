@@ -9,9 +9,7 @@ jest.mock('./config', () => ({
 }))
 
 jest.mock('../../../generated/drupal', () => ({
-  DrupalThemeFilterIDs: {
-    ['test-filter']: 41,
-  },
+  DRUPAL_THEME_FILTER_IDS: new Map([['test-filter', 41]]),
 }))
 
 describe('utils', () => {
@@ -34,7 +32,7 @@ describe('utils', () => {
       ])
     })
 
-    it('should return an array with objects that have no match with the enum value from the config', () => {
+    it('should return an error when there is no match with the enum value from the config', () => {
       const input = {
         data: [
           {
@@ -46,8 +44,8 @@ describe('utils', () => {
         ],
       }
 
-      // The ID is combined from the Filters type and the enum value
-      expect(getThemeFilterOptions(input)).toEqual([{ count: 0, id: 'test:', label: 'Test' }])
+      // The functions returns an error
+      expect(() => getThemeFilterOptions(input)).toThrow('FilterOption not found')
     })
   })
 })

@@ -71,7 +71,7 @@ const schema = gql`
   type Filter {
     type: String!
     label: String!
-    options: [FilterOptions!]!
+    options: [FilterOptions!]
     filterType: String
   }
 

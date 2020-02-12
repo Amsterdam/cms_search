@@ -9,15 +9,23 @@ import {
   FilterOptions,
 } from '../../../generated/graphql'
 import { getValuesFromES } from '../../../es/cms'
-import { DrupalThemeFilterIDs } from '../../../generated/drupal'
+import { DRUPAL_THEME_FILTER_IDS } from '../../../generated/drupal'
+import { ThemeFilterCount } from './filters'
 
 export type QueryCmsSearchArgs =
   | QueryArticleSearchArgs
   | QueryPublicationSearchArgs
   | QuerySpecialSearchArgs
 
-type JsonAPI = {
-  data: Array<Object>
+export type JsonAPI = {
+  data: Array<{
+    attributes: Attributes
+  }>
+}
+
+type Attributes = {
+  drupal_internal__tid: number
+  name: string
 }
 
 function getFormattedDate(date?: number | Date, year?: number, month?: number): string {
@@ -90,13 +98,17 @@ function getFormattedResults(results: any): Array<CmsSearchResultType> {
 
 function getThemeFilterOptions(
   result: JsonAPI,
-  themeCount?: Array<{ key: string; count: number }>,
+  themeCount?: Array<ThemeFilterCount>,
 ): Array<FilterOptions> {
-  return result.data.map(({ attributes }: any) => {
+  return result.data.map(({ attributes }) => {
     const id = attributes.drupal_internal__tid
     const { count } = themeCount?.find(count => count.key === id) || {}
 
-    const key = Object.keys(DrupalThemeFilterIDs).find(x => DrupalThemeFilterIDs[x] === id) || ''
+    const [key] = [...DRUPAL_THEME_FILTER_IDS].find(([, value]) => value === id) || []
+
+    if (!key) {
+      throw new Error('FilterOption not found')
+    }
 
     return {
       id: `${FILTERS['THEME'].type}:${key}`,
@@ -129,10 +141,7 @@ function getDateFilterOptions(): Array<FilterOptions> {
   })
 }
 
-function formatThemeFilters(
-  themeTaxonomy: JsonAPI,
-  themeCount?: Array<{ key: string; count: number }>,
-): Filter {
+function formatThemeFilters(themeTaxonomy: JsonAPI, themeCount?: Array<ThemeFilterCount>): Filter {
   const { type, label, filterType } = FILTERS['THEME']
 
   return {

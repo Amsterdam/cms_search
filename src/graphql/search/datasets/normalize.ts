@@ -143,14 +143,14 @@ function getProperties(openApiData: any) {
   }
 }
 
-function getFacetOptions(property: any, facets?: any) {
+function getFacetOptions(property: PropertyType, facets?: Object) {
   const options: Array<CatalogFilterOptionsType> = getOptionsFromProperty(property)
 
   return options.map(({ label, id }) => ({
     id,
     label: label ? label : id,
     count: facets
-      ? (Object.values(facets).reduce((acc, value: any) => value[id] || acc, 0) as number)
+      ? (Object.values(facets).reduce((acc, value: Object) => value[id] || acc, 0) as number)
       : 0,
   }))
 }

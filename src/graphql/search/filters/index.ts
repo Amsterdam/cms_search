@@ -1,11 +1,10 @@
-import { Filter } from '../../../generated/graphql'
 import { Context } from '../../config'
 import getCmsFilters from '../cms/filters'
 import { DCAT_ENDPOINTS } from '../datasets/config'
 import getDatasetsFilters from '../datasets/filters'
 import { combineFilters } from './utils'
 
-export default async (_: any, {}, { loaders }: Context): Promise<Filter[]> => {
+export default async (_: any, {}, { loaders }: Context) => {
   try {
     // Get the drupal theme taxonomy from the DataLoader
     const cmsThemeTaxonomy: { value: any } = await loaders.cms.load(

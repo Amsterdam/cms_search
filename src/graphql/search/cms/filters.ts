@@ -1,16 +1,18 @@
-import { formatThemeFilters, formatDateFilters } from './normalize'
+import { JsonAPI, formatThemeFilters, formatDateFilters } from './normalize'
 import { Filter } from '../../../generated/graphql'
 
-interface FilterCount {
-  theme: Array<{
-    key: string
-    count: number
-  }>
+type FilterCount = {
+  theme: Array<ThemeFilterCount>
 }
 
-export default (filters: any, filterCount?: FilterCount): Array<Filter> => {
-  const themeFilters: Filter = formatThemeFilters(filters, filterCount?.theme)
-  const dateFilters: Filter = formatDateFilters()
+export type ThemeFilterCount = {
+  key: number
+  count: number
+}
+
+export default (filters: JsonAPI, filterCount?: FilterCount): Array<Filter> => {
+  const themeFilters = formatThemeFilters(filters, filterCount?.theme)
+  const dateFilters = formatDateFilters()
 
   return [themeFilters, dateFilters]
 }

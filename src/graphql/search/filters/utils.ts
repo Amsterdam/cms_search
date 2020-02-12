@@ -18,7 +18,7 @@ export function combineFilters(filters: Array<Filter>): Array<Filter> {
 
     if (matching) {
       // Next to a matching type, the Filters can also have options with matching IDs
-      const options = combineFilterOptions([...matching.options, ...cur.options])
+      const options = combineFilterOptions([...(matching?.options || []), ...(cur?.options || [])])
 
       // The matching fields for the Filter must be merged, just as the combined options
       return [

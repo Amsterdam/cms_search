@@ -9,9 +9,7 @@ jest.mock('../../graphql/search/cms/config', () => ({
 }))
 
 jest.mock('../../generated/drupal', () => ({
-  DrupalThemeFilterIDs: {
-    ['test-filter']: 41,
-  },
+  DRUPAL_THEME_FILTER_IDS: new Map([['test-filter', 41]]),
 }))
 
 describe('utils', () => {

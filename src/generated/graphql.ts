@@ -122,7 +122,7 @@ export type Filter = {
   __typename?: 'Filter'
   type: Scalars['String']
   label: Scalars['String']
-  options: Array<FilterOptions>
+  options?: Maybe<Array<FilterOptions>>
   filterType?: Maybe<Scalars['String']>
 }
 
@@ -456,7 +456,7 @@ export type FilterResolvers<
 > = {
   type?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  options?: Resolver<Array<ResolversTypes['FilterOptions']>, ParentType, ContextType>
+  options?: Resolver<Maybe<Array<ResolversTypes['FilterOptions']>>, ParentType, ContextType>
   filterType?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
 }
 
