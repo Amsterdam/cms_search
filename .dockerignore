@@ -1,13 +1,13 @@
-# ignore all...
-*
-
-# except a few
-!src
-!README.md
-!LICENSE
-!.env.*
-!package*.json
-!**/*.yml
-!tsconfig.json
-!custom.d.ts
-!cms_search
+.git
+node_modules
+npm-debug.log
+config
+coverage
+lib
+.env.*
+.gitignore
+.graphqlconfig
+.prettierrc
+Jenkinsfile
+jest.config.js
+tsconfig.jest.json
