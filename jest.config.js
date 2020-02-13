@@ -18,7 +18,7 @@ module.exports = {
   setupFiles: ['./config/setup-jest.js'],
   globals: {
     'ts-jest': {
-      tsConfig: 'tsconfig.json',
+      tsConfig: 'tsconfig.jest.json',
     },
   },
   testRegex: ['/__tests__/.*\\.(ts)$', '/*.test\\.(ts)$'],
