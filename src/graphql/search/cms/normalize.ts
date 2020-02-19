@@ -31,11 +31,9 @@ function getFormattedDate(date?: number | Date, year?: number, month?: number): 
    */
   if (!date && (year || month)) {
     year = year || 0
-
-    localeDate = new Date(
-      // Month (undefined or a string) - 1, check https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC
-      Date.UTC(year, Number(month) - 1 || 1, 1, 0, 0, 0),
-    )
+    // Month (undefined or a string) - 1, check https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC
+    const formattedMonth = typeof month === 'number' && month > 0 ? month - 1 : 0
+    localeDate = new Date(Date.UTC(year, formattedMonth, 1, 0, 0, 0))
   }
 
   const format = date ? 'D MMMM YYYY' : `${month ? 'MMMM ' : ''}${year ? 'YYYY' : ''}`
