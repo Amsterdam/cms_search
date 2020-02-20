@@ -1,3 +1,4 @@
+import queryString from 'querystring'
 import {
   DataSearchResult,
   QueryDataSearchArgs,
@@ -17,7 +18,7 @@ import getPageInfo from '../../utils/getPageInfo'
 
 const index = async (
   _: any,
-  { q: searchTerm, input }: QueryDataSearchArgs,
+  { q, input }: QueryDataSearchArgs,
   context: Context,
 ): Promise<DataSearchResult> => {
   let { page, limit } = input || {}
@@ -48,8 +49,9 @@ const index = async (
   // Get the results from the DataLoader
   const dataloaderResults: DataSearchResultType[] = await Promise.all(
     // Construct the keys e.g. the URLs that should be loaded or fetched
-    endpoints.map(async ({ endpoint, type, label, labelSingular }: any) => {
-      const key = `${endpoint}/?q=${searchTerm}${page ? `&page=${page}` : ''}`
+    endpoints.map(async ({ endpoint, type, params, label, labelSingular }: any) => {
+      const query = queryString.stringify({ q, page, ...(params || {}) })
+      const key = `${endpoint}/?${query}`
       const result = await loaders.data.load(key)
       const { status, value } = result
 

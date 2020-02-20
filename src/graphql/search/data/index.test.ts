@@ -14,6 +14,9 @@ jest.mock('./config', () => ({
       type: 'users',
       labelSingular: 'User',
       label: 'Users',
+      params: {
+        foo: 'var',
+      },
     },
     {
       endpoint: 'https://api.endpoint.com/posts',
@@ -58,7 +61,7 @@ describe('dataResolver', () => {
       jest.spyOn(normalize, 'normalizeResults').mockReset()
     })
 
-    it('with the search term', async () => {
+    it('with the search term, params and pagination', async () => {
       const mockDataLoader = jest.fn(() => ({ status: 200, foo: 'var' }))
 
       await dataResolver(
@@ -70,27 +73,9 @@ describe('dataResolver', () => {
       // No filters given so return all endpoints from the config
       expect(mockDataLoader).toHaveBeenCalledTimes(2)
       expect(mockDataLoader.mock.calls).toEqual([
-        [`https://api.endpoint.com/users/?q=${SEARCH_TERM}&page=1`],
+        [`https://api.endpoint.com/users/?q=${SEARCH_TERM}&page=1&foo=var`],
         [`https://api.endpoint.com/posts/?q=${SEARCH_TERM}&page=1`],
       ])
-
-      mockDataLoader.mockReset()
-    })
-
-    it('with the search term when there is pagination', async () => {
-      const mockDataLoader = jest.fn(() => ({ status: 200, foo: 'var' }))
-
-      await dataResolver(
-        '',
-        { q: SEARCH_TERM, input: { page: 12, filters: [TYPE] } },
-        { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: jest.fn() } } },
-      )
-
-      // Only return the endpoint for the given type
-      expect(mockDataLoader).toHaveBeenCalledTimes(1)
-      expect(mockDataLoader).toHaveBeenCalledWith(
-        `https://api.endpoint.com/users/?q=${SEARCH_TERM}&page=12`,
-      )
 
       mockDataLoader.mockReset()
     })
@@ -108,13 +93,13 @@ describe('dataResolver', () => {
       // Only return the endpoint for the given type
       expect(mockDataLoader).toHaveBeenCalledTimes(1)
       expect(mockDataLoader).toHaveBeenCalledWith(
-        `https://api.endpoint.com/users/?q=${SEARCH_TERM}&page=1`,
+        `https://api.endpoint.com/users/?q=${SEARCH_TERM}&page=1&foo=var`,
       )
 
       // Error thrown so call clear()
       expect(mockClear).toHaveBeenCalledTimes(1)
       expect(mockClear).toHaveBeenCalledWith(
-        `https://api.endpoint.com/users/?q=${SEARCH_TERM}&page=1`,
+        `https://api.endpoint.com/users/?q=${SEARCH_TERM}&page=1&foo=var`,
       )
 
       mockDataLoader.mockReset()
@@ -276,7 +261,7 @@ describe('dataResolver', () => {
 
       // And clear the cache
       expect(mockClear.mock.calls).toEqual([
-        [`https://api.endpoint.com/users/?q=${SEARCH_TERM}&page=1`],
+        [`https://api.endpoint.com/users/?q=${SEARCH_TERM}&page=1&foo=var`],
         [`https://api.endpoint.com/posts/?q=${SEARCH_TERM}&page=1`],
       ])
     })
