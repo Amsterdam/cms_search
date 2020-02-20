@@ -17,6 +17,7 @@ describe('normalize', () => {
       _display: 'display',
       type: 'type',
       type_adres: 'Hoofdadres',
+      subtype: '',
       vbo_status: '',
       random_field: 'random',
     }
@@ -30,6 +31,7 @@ describe('normalize', () => {
         label: 'display',
         random_field: 'random',
         type: 'type',
+        subtype: '',
       })
     })
 
@@ -48,6 +50,31 @@ describe('normalize', () => {
       }
 
       const output = normalizeResults(input)
+
+      expect(output).toMatchObject({
+        label: 'display (nevenadres)',
+      })
+    })
+
+    it('should return the normalized results if an item has a subtype that needs displauing', () => {
+      input = {
+        ...input,
+        type: 'openbare_ruimte',
+        subtype: 'ligplaats',
+      }
+
+      let output = normalizeResults(input)
+
+      expect(output).toMatchObject({
+        label: 'display (nevenadres) (ligplaats)',
+      })
+
+      input = {
+        ...input,
+        subtype: 'weg',
+      }
+
+      output = normalizeResults(input)
 
       expect(output).toMatchObject({
         label: 'display (nevenadres)',
