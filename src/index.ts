@@ -12,7 +12,7 @@ const app = express()
 app.use(cors())
 
 // Health check
-app.get(`${URL_PREFIX}/health`, (req, res) => res.send('Working!'))
+app.get(`${URL_PREFIX}/metrics`, (req, res) => res.send('Working!'))
 
 // GraphQL
 app.use(`${URL_PREFIX}/graphql`, GraphQLMiddleware)
