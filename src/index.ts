@@ -12,7 +12,8 @@ const app = express()
 app.use(cors())
 
 // Health check
-app.get(`${URL_PREFIX}/metrics`, (req, res) => res.send('Working!'))
+app.get('/metrics', (req, res) => res.send('Working!')) // Internal
+app.get(`${URL_PREFIX}/health`, (req, res) => res.send('Working!')) // External
 
 // GraphQL
 app.use(`${URL_PREFIX}/graphql`, GraphQLMiddleware)
