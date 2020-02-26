@@ -1,0 +1,887 @@
+[
+  {
+    "id": "onrzk",
+    "title": "Onroerende zaken",
+    "mapLayers": [
+      {
+        "id": "kdstrl"
+      },
+      {
+        "id": "kdsteg"
+      },
+      {
+        "id": "kdsterf"
+      },
+      {
+        "id": "gemeig"
+      },
+      {
+        "id": "gembep"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "gebind",
+    "title": "Gebiedsindeling",
+    "mapLayers": [
+      {
+        "id": "buurt"
+      },
+      {
+        "id": "bc"
+      },
+      {
+        "id": "sd"
+      },
+      {
+        "id": "bbn"
+      },
+      {
+        "id": "ggw"
+      },
+      {
+        "id": "ggr"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "hgte",
+    "title": "Hoogte",
+    "mapLayers": [
+      {
+        "id": "dtm"
+      },
+      {
+        "id": "dsm"
+      },
+      {
+        "id": "nap"
+      },
+      {
+        "id": "mbs"
+      },
+      {
+        "id": "mbz"
+      },
+      {
+        "id": "mbr"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "hist",
+    "title": "Historische kaarten",
+    "mapLayers": [
+      {
+        "id": "pw1909"
+      },
+      {
+        "id": "pw1943"
+      },
+      {
+        "id": "pw1943-2500"
+      },
+      {
+        "id": "pw1985"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "ov",
+    "title": "OV-net",
+    "mapLayers": [
+      {
+        "id": "sprln"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "milvk",
+    "title": "Milieuzones verkeer",
+    "mapLayers": [
+      {
+        "id": "mzb",
+        "title": "Bestelauto"
+      },
+      {
+        "id": "mzbs",
+        "title": "Brom- en snorfiets"
+      },
+      {
+        "id": "mzt",
+        "title": "Taxi"
+      },
+      {
+        "id": "mztc",
+        "title": "Touringcar"
+      },
+      {
+        "id": "mzva",
+        "title": "Vrachtauto"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "opldp",
+    "title": "Oplaadpunten",
+    "mapLayers": [
+      {
+        "id": "oplsnl",
+        "title": "Snel laden"
+      },
+      {
+        "id": "oplgwn",
+        "title": "Gewoon laden"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "parkvk",
+    "title": "Parkeervakken",
+    "mapLayers": [
+      {
+        "id": "pv",
+        "title": "Fiscale indelingen"
+      },
+      {
+        "id": "pvb",
+        "title": "Speciale bestemmingen"
+      },
+      {
+        "id": "pvrts"
+      },
+      {
+        "id": "pvrll"
+      },
+      {
+        "id": "pvrpr"
+      },
+      {
+        "id": "pvrf"
+      },
+      {
+        "id": "pvrpv"
+      },
+      {
+        "id": "pvrga"
+      },
+      {
+        "id": "pvrgk"
+      },
+      {
+        "id": "pvrsv"
+      },
+      {
+        "id": "pvrvh"
+      },
+      {
+        "id": "pvrbz"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "parkrn",
+    "title": "Parkeren",
+    "mapLayers": [
+      {
+        "id": "pv",
+        "title": "Fiscale indelingen"
+      },
+      {
+        "id": "pvb",
+        "title": "Speciale bestemmingen"
+      },
+      {
+        "id": "pvrts"
+      },
+      {
+        "id": "pvrll"
+      },
+      {
+        "id": "pvrpr"
+      },
+      {
+        "id": "pvrf"
+      },
+      {
+        "id": "pvrpv"
+      },
+      {
+        "id": "pvrga",
+        "title": "Gehandicaptenparkeerplaats algemeen"
+      },
+      {
+        "id": "pvrgk",
+        "title": "Gehandicaptenparkeerplaats kenteken"
+      },
+      {
+        "id": "pvrsv",
+        "title": "Parkeren specifieke voertuigcategorie"
+      },
+      {
+        "id": "pvrvh",
+        "title": "Parkeren vergunninghouders"
+      },
+      {
+        "id": "pvrbz",
+        "title": "Parkeren - blauwe zone"
+      },
+      {
+        "id": "pvrgeb"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "vrkr",
+    "title": "Verkeer - Routes",
+    "mapLayers": [
+      {
+        "id": "rtstx",
+        "title": "Taxi"
+      },
+      {
+        "id": "rtsvr",
+        "title": "Vrachtauto"
+      },
+      {
+        "id": "vezips"
+      },
+      {
+        "id": "mvw",
+        "title": "Risicozones"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "gembek",
+    "title": "Gemeentelijke bekendmakingen",
+    "mapLayers": [
+      {
+        "id": "bespla"
+      },
+      {
+        "id": "drahor"
+      },
+      {
+        "id": "evever"
+      },
+      {
+        "id": "exploi"
+      },
+      {
+        "id": "inspra"
+      },
+      {
+        "id": "kapver"
+      },
+      {
+        "id": "ligpla"
+      },
+      {
+        "id": "medede"
+      },
+      {
+        "id": "meldin"
+      },
+      {
+        "id": "omgver"
+      },
+      {
+        "id": "onttre"
+      },
+      {
+        "id": "optijd"
+      },
+      {
+        "id": "rectif"
+      },
+      {
+        "id": "speela"
+      },
+      {
+        "id": "splits"
+      },
+      {
+        "id": "terras"
+      },
+      {
+        "id": "verbes"
+      },
+      {
+        "id": "verreg"
+      },
+      {
+        "id": "overig"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "afvlc",
+    "title": "Afvalcontainers",
+    "mapLayers": [
+      {
+        "id": "wlorst"
+      },
+      {
+        "id": "wloppr"
+      },
+      {
+        "id": "wlogls"
+      },
+      {
+        "id": "wlopls"
+      },
+      {
+        "id": "wlotxtl"
+      },
+      {
+        "id": "wlokca"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "veilov",
+    "title": "Veiligheid- en overlast",
+    "mapLayers": [
+      {
+        "id": "oovoalg"
+      },
+      {
+        "id": "oovodlrs"
+      },
+      {
+        "id": "oovctg"
+      },
+      {
+        "id": "oovoalco"
+      },
+      {
+        "id": "oovorlv"
+      },
+      {
+        "id": "oovtig"
+      },
+      {
+        "id": "vwrk"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "culterf",
+    "title": "Cultureel erfgoed",
+    "mapLayers": [
+      {
+        "id": "mnmtn"
+      },
+      {
+        "id": "unesco"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "evnmt",
+    "title": "Evenementen",
+    "mapLayers": [
+      {
+        "id": "tcevt"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "bdmkw",
+    "title": "Bodemkwaliteit",
+    "mapLayers": [
+      {
+        "id": "mbgm"
+      },
+      {
+        "id": "mbgwm"
+      },
+      {
+        "id": "mbaig"
+      },
+      {
+        "id": "bros"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "explsvn",
+    "title": "Explosieven",
+    "mapLayers": [
+      {
+        "id": "exin",
+        "title": "Inslagen"
+      },
+      {
+        "id": "exvg",
+        "title": "Verdachte gebieden"
+      },
+      {
+        "id": "exgg",
+        "title": "Gevrijwaarde gebieden"
+      },
+      {
+        "id": "exuo",
+        "title": "Uitgevoerde CE-onderzoeken"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "riscz",
+    "title": "Risicozones",
+    "mapLayers": [
+      {
+        "id": "lpgris",
+        "title": "LPG-vulpunten"
+      },
+      {
+        "id": "lpgaf",
+        "title": "LPG-afleverzuilen"
+      },
+      {
+        "id": "lpgtank",
+        "title": "LPG-tanks"
+      },
+      {
+        "id": "lpgstat",
+        "title": "LPG-stations"
+      },
+      {
+        "id": "mvsw",
+        "title": "Spoorwegen"
+      },
+      {
+        "id": "mvvw",
+        "title": "Vaarwegen"
+      },
+      {
+        "id": "veilafs"
+      },
+      {
+        "id": "bedrris"
+      },
+      {
+        "id": "mvi"
+      },
+      {
+        "id": "bedrter"
+      },
+      {
+        "id": "mvabl",
+        "title": "Aardgasbuisleidingen"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "geldzn",
+    "title": "Geluidszones",
+    "mapLayers": [
+      {
+        "id": "gelind",
+        "title": "Industrie"
+      },
+      {
+        "id": "mgsw",
+        "title": "Spoorwegen"
+      },
+      {
+        "id": "mgpm",
+        "title": "Metro"
+      },
+      {
+        "id": "mgpsh"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "schphl",
+    "title": "Schiphol",
+    "mapLayers": [
+      {
+        "id": "mgpsh",
+        "title": "Ruimtelijke beperkingen"
+      },
+      {
+        "id": "mgth",
+        "title": "Maatgevende toetshoogte"
+      },
+      {
+        "id": "mthr",
+        "title": "Toetshoogte i.v.m. radar"
+      },
+      {
+        "id": "mgvvgsh",
+        "title": "Vogelvrijwaringsgebied"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "wnklgeb",
+    "title": "Winkelgebieden",
+    "mapLayers": [
+      {
+        "id": "recbel"
+      },
+      {
+        "id": "winkgeb"
+      },
+      {
+        "id": "biz"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "vstgn",
+    "title": "Vestigingen",
+    "mapLayers": [
+      {
+        "id": "bouw",
+        "title": "Bouw"
+      },
+      {
+        "id": "csr",
+        "title": "Cultuur, sport, recreatie"
+      },
+      {
+        "id": "fdvrog",
+        "title": "Financiële dienstv., verhuur van (on)roerend goed"
+      },
+      {
+        "id": "hvo",
+        "title": "Handel, vervoer, opslag"
+      },
+      {
+        "id": "hrc",
+        "title": "Horeca"
+      },
+      {
+        "id": "itc",
+        "title": "Informatie, telecommunicatie"
+      },
+      {
+        "id": "lb",
+        "title": "Landbouw"
+      },
+      {
+        "id": "ooz",
+        "title": "Overheid, onderwijs, zorg"
+      },
+      {
+        "id": "pd",
+        "title": "Persoonlijke dienstverlening"
+      },
+      {
+        "id": "pir",
+        "title": "Productie, installatie, reparatie"
+      },
+      {
+        "id": "zd",
+        "title": "Zakelijke dienstverlening"
+      },
+      {
+        "id": "ovrg",
+        "title": "Overige"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "themtaxi",
+    "title": "Themakaart: Taxi",
+    "mapLayers": [
+      {
+        "id": "bgt"
+      },
+      {
+        "id": "tar"
+      },
+      {
+        "id": "pvrts"
+      },
+      {
+        "id": "mzt"
+      },
+      {
+        "id": "oovtig"
+      },
+      {
+        "id": "vezips"
+      },
+      {
+        "id": "oplsnl"
+      },
+      {
+        "id": "oplgwn"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "ondrgd",
+    "title": "Ondergrond",
+    "mapLayers": [
+      {
+        "id": "mvabl"
+      },
+      {
+        "id": "exuo"
+      },
+      {
+        "id": "exgg"
+      },
+      {
+        "id": "exvg"
+      },
+      {
+        "id": "gembep"
+      },
+      {
+        "id": "lpgstat"
+      },
+      {
+        "id": "lpgtank"
+      },
+      {
+        "id": "lpgris"
+      },
+      {
+        "id": "lpgaf"
+      },
+      {
+        "id": "exin"
+      },
+      {
+        "id": "mbgm"
+      },
+      {
+        "id": "mbaig"
+      },
+      {
+        "id": "mbgwm"
+      },
+      {
+        "id": "mbz"
+      },
+      {
+        "id": "mbs"
+      },
+      {
+        "id": "mbr"
+      },
+      {
+        "id": "vezips"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "logistk",
+    "title": "Logistiek",
+    "mapLayers": [
+      {
+        "id": "rtsvr"
+      },
+      {
+        "id": "pvrll"
+      },
+      {
+        "id": "mzb"
+      },
+      {
+        "id": "mvw"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "pano",
+    "title": "Panoramabeelden",
+    "mapLayers": [
+      {
+        "id": "panobi"
+      },
+      {
+        "id": "panowoz"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  }
+]

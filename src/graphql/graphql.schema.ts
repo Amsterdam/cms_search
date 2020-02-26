@@ -140,12 +140,109 @@ const schema = gql`
     hasLimitedResults: Boolean
   }
 
+  type MetaInformation {
+    description: String
+    themes: [Float]
+    datasetIds: [Float]
+    thumbnail: String
+    date: String
+  }
+
+  interface MapLayer {
+    id: String
+    title: String
+    layers: [String]
+    url: String
+    params: String
+    external: Boolean
+    imageRule: String
+    iconUrl: String
+    type: String
+    detailUrl: String
+    detailItem: String
+    detailIsShape: Boolean
+  }
+
+  type MapLayerResult {
+    id: String!
+    title: String!
+    layers: [String!]
+    url: String!
+    params: String!
+    external: Boolean
+    legendItems: [LegendItemMapLayer]
+    imageRule: String
+    iconUrl: String
+    type: String
+    noDetail: Boolean
+    detailUrl: String
+    detailItem: String
+    detailIsShape: Boolean
+    authScope: String
+    meta: MetaInformation
+  }
+
+  type MapCollectionLayer implements MapLayer {
+    id: String!
+    title: String
+    layers: [String]
+    url: String
+    params: String
+    external: Boolean
+    legendItems: [LegendItemMapLayer]
+    imageRule: String
+    iconUrl: String
+    type: String
+    noDetail: Boolean
+    detailUrl: String
+    detailItem: String
+    detailIsShape: Boolean
+    minZoom: Float
+    maxZoom: Float
+    authScope: String
+    meta: MetaInformation
+  }
+
+  type LegendItemMapLayer implements MapLayer {
+    id: String
+    title: String
+    layers: [String]
+    url: String
+    params: String
+    external: Boolean
+    imageRule: String
+    iconUrl: String
+    type: String
+    noDetail: Boolean
+    detailUrl: String
+    detailItem: String
+    detailIsShape: Boolean
+    notSelectable: Boolean
+  }
+
+  type MapCollection {
+    id: String!
+    title: String!
+    mapLayers: [MapCollectionLayer!]!
+    meta: MetaInformation!
+  }
+
+  type MapCollectionSearchResult {
+    results: [MapCollection]
+  }
+
+  type MapLayerSearchResult {
+    results: [MapLayerResult]
+  }
+
   type Query {
     articleSearch(q: String, input: CMSSearchInput): CMSSearchResult
     dataSearch(q: String, input: DataSearchInput): DataSearchResult
     datasetSearch(q: String, input: DatasetSearchInput): DatasetSearchResult
     publicationSearch(q: String, input: CMSSearchInput): CMSSearchResult
     specialSearch(q: String, input: CMSSearchInput): CMSSearchResult
+    mapCollectionSearch: MapCollectionSearchResult
+    mapLayerSearch: MapLayerSearchResult
     filters: [Filter]
   }
 `

@@ -1,6 +1,7 @@
 import { articleSearch, publicationSearch, specialSearch } from './cms'
 import dataSearch from './data'
 import datasetSearch from './datasets'
+import mapCollectionSearch, { mapLayerSearch } from './map'
 import filters from './filters'
 
 export default {
@@ -10,6 +11,8 @@ export default {
     datasetSearch,
     publicationSearch,
     specialSearch,
+    mapCollectionSearch,
+    mapLayerSearch,
     filters,
   },
 }
