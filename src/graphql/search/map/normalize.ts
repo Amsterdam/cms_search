@@ -1,5 +1,5 @@
 import queryString, { ParsedUrlQueryInput } from 'querystring'
-import { MAX_ZOOM, MIN_ZOOM, MapLayerTypes } from './config'
+import { MAX_ZOOM, MIN_ZOOM, MapLayerType } from './config'
 import { MapCollection, MapCollectionLayer, LegendItemMapLayer } from '../../../generated/graphql'
 
 type InitialLegendItem = {
@@ -22,7 +22,7 @@ export function composeId(collectionId: string, id: string) {
 }
 
 export function findMapLayer(mapLayers: Array<InitialMapLayer>, id: string) {
-  return mapLayers.find(mapLayer => mapLayer.id === id)
+  return mapLayers.find(mapLayer => mapLayer.id === id) || null
 }
 
 export function normalizeLegendItems(
@@ -32,12 +32,12 @@ export function normalizeLegendItems(
 ) {
   return legendItems.map(legendItem => {
     const legendItemLayer = legendItem.id ? findMapLayer(mapLayers, legendItem.id) : null
-    const notSelectable = legendItem.notSelectable || !legendItem.id || false // legendItems with an id are always selectable, unless defined otherwise
+    const notSelectable = legendItem.notSelectable || !legendItem.id // legendItems with an id are always selectable, unless defined otherwise
     const params = legendItemLayer?.params || queryString.stringify(legendItem.params) // The field params is an object with unspecified content, it's stringefied here to make typing easier
 
     return {
       ...(legendItemLayer || legendItem), // If a matching mapLayer is found, this data should be used
-      ...(legendItem.type ? { type: MapLayerTypes[legendItem.type] } : {}), // Get the legendItem type from constants
+      ...(legendItem.type ? { type: MapLayerType[legendItem.type] } : {}), // Get the legendItem type from constants
       imageRule: legendItem.imageRule || legendItemLayer?.imageRule, // imageRule can be overwritter per collection and mapLayer
       title: legendItem.title || legendItemLayer?.title, // title can be overwritter per collection and mapLayer
       // The ID of the mapLayer when defined as legendItem, is a combination of the IDs of the mapLayer and the collection it's used in to prevent duplication
@@ -46,7 +46,7 @@ export function normalizeLegendItems(
       noDetail: !legendItem.detailUrl,
       params,
     }
-  }) as Array<LegendItemMapLayer>
+  })
 }
 
 export function normalizeMapLayers(mapLayers: Array<InitialMapLayer>) {
@@ -55,11 +55,11 @@ export function normalizeMapLayers(mapLayers: Array<InitialMapLayer>) {
 
     return {
       ...mapLayer,
-      ...(type ? { type: MapLayerTypes[type] } : {}), // Get the mapLayer type from constants
+      ...(type ? { type: MapLayerType[type] } : {}), // Get the mapLayer type from constants
       url: url || '', // Field is non-nullable
       params: queryString.stringify(params), // The field params is an object with unspecified content, it's stringefied here to make typing easier
     }
-  }) as Array<MapCollectionLayer>
+  })
 }
 
 export function composeMapCollections(
@@ -87,8 +87,6 @@ export function composeMapCollections(
           params,
         } = findMapLayer(mapLayers, id) || {}
 
-        // console.log(detailUrl || '');
-
         return {
           authScope,
           // The ID of the mapLayer, is a combination of the IDs of the mapLayer and the collection it's used in to prevent duplication
@@ -108,5 +106,5 @@ export function composeMapCollections(
         }
       }),
     }
-  }) as Array<MapCollection>
+  })
 }

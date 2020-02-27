@@ -1,4 +1,4 @@
-export enum MapLayerTypes {
+export enum MapLayerType {
   TMS = 'tms',
   WMS = 'wms',
 }
