@@ -3,7 +3,7 @@ import { MAX_ZOOM, MIN_ZOOM, MapLayerType } from './config'
 import { MapCollection, MapCollectionLayer, LegendItemMapLayer } from '../../../generated/graphql'
 
 type InitialLegendItem = {
-  params: ParsedUrlQueryInput
+  params?: ParsedUrlQueryInput
 } & LegendItemMapLayer
 
 type InitialMapLayer = {
@@ -29,17 +29,22 @@ export function normalizeLegendItems(
   collectionId: string,
   legendItems: Array<InitialLegendItem>,
   mapLayers: Array<InitialMapLayer>,
-) {
+): Array<LegendItemMapLayer> {
   return legendItems.map(legendItem => {
-    const legendItemLayer = legendItem.id ? findMapLayer(mapLayers, legendItem.id) : null
+    const {
+      params: mapLayerParams,
+      imageRule: mapLayerImageRule,
+      title: mapLayerTitle,
+      ...mapLayer
+    } = findMapLayer(mapLayers, legendItem.id || '') || {}
     const notSelectable = legendItem.notSelectable || !legendItem.id // legendItems with an id are always selectable, unless defined otherwise
-    const params = legendItemLayer?.params || queryString.stringify(legendItem.params) // The field params is an object with unspecified content, it's stringefied here to make typing easier
+    const params = queryString.stringify(mapLayerParams || legendItem.params) // The field params is an object with unspecified content, it's stringefied here to make typing easier
 
     return {
-      ...(legendItemLayer || legendItem), // If a matching mapLayer is found, this data should be used
-      ...(legendItem.type ? { type: MapLayerType[legendItem.type] } : {}), // Get the legendItem type from constants
-      imageRule: legendItem.imageRule || legendItemLayer?.imageRule, // imageRule can be overwritter per collection and mapLayer
-      title: legendItem.title || legendItemLayer?.title, // title can be overwritter per collection and mapLayer
+      ...(mapLayer || legendItem), // If a matching mapLayer is found, this data should be used
+      type: legendItem.type ? MapLayerType[legendItem.type] : null, // Get the legendItem type from constants
+      imageRule: legendItem.imageRule || mapLayerImageRule, // imageRule can be overwritter per collection and mapLayer
+      title: legendItem.title || mapLayerTitle, // title can be overwritter per collection and mapLayer
       // The ID of the mapLayer when defined as legendItem, is a combination of the IDs of the mapLayer and the collection it's used in to prevent duplication
       id: !notSelectable && legendItem.id ? composeId(collectionId, legendItem.id) : null, // Only selectable legendItems need an id
       notSelectable,
@@ -49,7 +54,7 @@ export function normalizeLegendItems(
   })
 }
 
-export function normalizeMapLayers(mapLayers: Array<InitialMapLayer>) {
+export function normalizeMapLayers(mapLayers: Array<InitialMapLayer>): Array<MapCollectionLayer> {
   return mapLayers.map(mapLayer => {
     const { url, type, params } = mapLayer
 
@@ -65,7 +70,7 @@ export function normalizeMapLayers(mapLayers: Array<InitialMapLayer>) {
 export function composeMapCollections(
   mapCollections: Array<InitialMapCollection>,
   mapLayers: Array<InitialMapLayer>,
-) {
+): Array<MapCollection> {
   return mapCollections.map(mapCollection => {
     // Normalize the mapLayers for this collection
     const collectionMapLayers = normalizeMapLayers(mapCollection.mapLayers)
@@ -74,9 +79,9 @@ export function composeMapCollections(
       ...mapCollection,
       mapLayers: collectionMapLayers.map(({ id, title }) => {
         const {
-          authScope,
+          authScope = null,
           layers,
-          legendItems,
+          legendItems = null,
           maxZoom = MAX_ZOOM,
           minZoom = MIN_ZOOM,
           detailUrl,
