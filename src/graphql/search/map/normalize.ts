@@ -37,11 +37,12 @@ export function normalizeLegendItems(
       title: mapLayerTitle,
       ...mapLayer
     } = findMapLayer(mapLayers, legendItem.id || '') || {}
+
     const notSelectable = legendItem.notSelectable || !legendItem.id // legendItems with an id are always selectable, unless defined otherwise
     const params = queryString.stringify(mapLayerParams || legendItem.params) // The field params is an object with unspecified content, it's stringefied here to make typing easier
 
     return {
-      ...(mapLayer || legendItem), // If a matching mapLayer is found, this data should be used
+      ...(Object.keys(mapLayer).length ? mapLayer : legendItem), // If a matching mapLayer is found, this data should be used
       type: legendItem.type ? MapLayerType[legendItem.type] : null, // Get the legendItem type from constants
       imageRule: legendItem.imageRule || mapLayerImageRule, // imageRule can be overwritter per collection and mapLayer
       title: legendItem.title || mapLayerTitle, // title can be overwritter per collection and mapLayer
