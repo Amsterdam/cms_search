@@ -6,7 +6,7 @@
     "url": "/maps/brk",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -19,7 +19,7 @@
     "url": "/maps/brk",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -32,7 +32,7 @@
     "url": "/maps/brk",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -48,7 +48,7 @@
     "url": "/maps/brk",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -68,7 +68,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -88,7 +88,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -108,7 +108,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -128,7 +128,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -148,7 +148,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -164,7 +164,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -184,7 +184,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -204,7 +204,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -224,7 +224,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -244,7 +244,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -264,7 +264,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -284,7 +284,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -301,7 +301,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -318,7 +318,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -331,7 +331,7 @@
     "title": "(voorlopige) aanwijzing WVG",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -344,7 +344,7 @@
     "title": "Wet bodembescherming",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen", "duurzaamheid-en-milieu"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -357,7 +357,7 @@
     "title": "Woningwet",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -370,7 +370,7 @@
     "title": "WABO bestuursdwang / dwangsom",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -383,7 +383,7 @@
     "title": "Sluiting o.b.v. Opiumwet",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen", "openbare-orde-en-veiligheid"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -396,7 +396,7 @@
     "title": "Sluiting v. woning/lokaal/erf",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -409,7 +409,7 @@
     "title": "Gemeentelijk monument",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen", "cultuur-en-recreatie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -422,7 +422,7 @@
     "title": "Exploitatieplan",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -435,7 +435,7 @@
     "title": "Vordering tot woonruimte",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -448,7 +448,7 @@
     "title": "Buurt",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "bestuur"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -461,7 +461,7 @@
     "title": "Wijk",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "bestuur"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -474,7 +474,7 @@
     "title": "Stadsdeel",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "bestuur"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -492,7 +492,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "bestuur"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -506,7 +506,7 @@
     "url": "/maps/gebieden",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "bestuur"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -523,7 +523,7 @@
     "url": "/maps/gebieden",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "bestuur"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -536,7 +536,7 @@
     "title": "Regie Gemeente Amsterdam",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "bestuur"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -549,7 +549,7 @@
     "title": "Regie Omgevingsdienst",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "bestuur"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -562,7 +562,7 @@
     "title": "Metrolijn",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -575,7 +575,7 @@
     "title": "Tramlijn",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -591,7 +591,7 @@
     "title": "Snellaadpunt (beschikbaar, ±15 min. geleden)",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -607,7 +607,7 @@
     "title": "Snellaadpunt (niet beschikbaar, ±15 min. geleden)",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -623,7 +623,7 @@
     "title": "Gewoon laadpunt (beschikbaar, ±15 min. geleden)",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -639,7 +639,7 @@
     "title": "Gewoon laadpunt (niet beschikbaar, ±15 min. geleden)",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -659,7 +659,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -680,7 +680,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -700,7 +700,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -720,7 +720,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -740,7 +740,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -760,7 +760,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -780,7 +780,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -800,7 +800,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -820,7 +820,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -840,7 +840,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -857,7 +857,7 @@
     "url": "/maps/parkeerzones_uitz",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -874,7 +874,7 @@
     "url": "/maps/parkeerzones",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -888,7 +888,7 @@
     "title": "Verbod lijnbusbaan",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -902,7 +902,7 @@
     "title": "Hoofdroutes taxi's",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -920,7 +920,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -938,7 +938,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -956,7 +956,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -974,7 +974,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -992,7 +992,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1010,7 +1010,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1028,7 +1028,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1046,7 +1046,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1064,7 +1064,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1082,7 +1082,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1100,7 +1100,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1118,7 +1118,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1136,7 +1136,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1154,7 +1154,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1172,7 +1172,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1190,7 +1190,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1208,7 +1208,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1226,7 +1226,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1244,7 +1244,7 @@
     "detailItem": "bekendmakingen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1262,7 +1262,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1280,7 +1280,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1298,7 +1298,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1316,7 +1316,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1334,7 +1334,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1352,7 +1352,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1395,7 +1395,14 @@
     "detailUrl": "geosearch/search/",
     "detailItem": "monument",
     "layers": ["monument_coordinaten_nopand"],
-    "title": "Monument (overige)"
+    "title": "Monument (overige)",
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
   },
   {
     "id": "mvlpgv106",
@@ -1472,7 +1479,14 @@
     "notSelectable": true,
     "url": "/maps/externeveiligheid",
     "layers": ["lpgtankplaatsgebondenrisico"],
-    "title": "Plaatsgebondenrisico (25/120 m)"
+    "title": "Plaatsgebondenrisico (25/120 m)",
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
   },
   {
     "id": "mvlpgtgrp",
@@ -1579,7 +1593,7 @@
     "title": "Vuurwerkopslag",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1592,7 +1606,7 @@
     "title": "Munitieopslag",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1605,7 +1619,7 @@
     "title": "Gasdrukregel- en meetstation",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1618,7 +1632,7 @@
     "title": "Sluis",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1631,7 +1645,7 @@
     "title": "Wachtplaats",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1644,7 +1658,7 @@
     "title": "Bunkerschip",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1690,7 +1704,7 @@
     "detailItem": "reclamebelasting",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1708,7 +1722,7 @@
     "detailItem": "reclamebelasting",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1726,7 +1740,7 @@
     "detailItem": "reclamebelasting",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1751,7 +1765,7 @@
     "title": "Kadastrale perceelsgrenzen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1794,7 +1808,7 @@
     "title": "Kadastrale eigenaren",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1813,7 +1827,7 @@
     "title": "Kadastrale erfpachtuitgevers",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1832,7 +1846,7 @@
     "title": "Gemeentelijk eigendom",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1873,7 +1887,7 @@
     "minZoom": 13,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1892,7 +1906,7 @@
     "title": "Gebiedsgericht werken",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1911,7 +1925,7 @@
     "title": "Grootstedelijke gebieden, projecten en belangen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -1972,7 +1986,7 @@
     "external": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2033,7 +2047,7 @@
     "external": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2075,7 +2089,7 @@
     "detailItem": "peilmerk",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "duurzaamheid-en-milieu", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2099,7 +2113,7 @@
     "detailItem": "meetbout",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2144,7 +2158,7 @@
     "detailItem": "meetbout",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2163,7 +2177,7 @@
     "url": "/maps/meetbouten",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2183,7 +2197,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2203,7 +2217,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2223,7 +2237,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2243,7 +2257,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2262,7 +2276,7 @@
     "title": "Spoorlijnen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2279,7 +2293,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2296,7 +2310,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2313,7 +2327,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2330,7 +2344,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2347,7 +2361,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2366,7 +2380,7 @@
     "title": "Oplaadpunten - Snel laden",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2385,7 +2399,7 @@
     "title": "Oplaadpunten - Gewoon laden",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2409,7 +2423,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2431,7 +2445,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2450,7 +2464,7 @@
     "title": "Parkeervergunninggebieden",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2469,7 +2483,7 @@
     "title": "Routes - Taxi",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2488,7 +2502,7 @@
     "url": "/maps/hoofdroutes",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2501,7 +2515,7 @@
     "url": "/maps/vezips",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2515,7 +2529,7 @@
     "url": "/maps/externeveiligheid",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2529,7 +2543,7 @@
     "imageRule": "Algemeen overlastgebied",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["openbare-orde-en-veiligheid", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2543,7 +2557,7 @@
     "imageRule": "Dealeroverlastgebied",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["openbare-orde-en-veiligheid", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2557,7 +2571,7 @@
     "url": "/maps/overlastgebieden",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["openbare-orde-en-veiligheid", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2571,7 +2585,7 @@
     "url": "/maps/overlastgebieden",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["openbare-orde-en-veiligheid", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2584,7 +2598,7 @@
     "url": "/maps/overlastgebieden",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["openbare-orde-en-veiligheid", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2598,7 +2612,7 @@
     "url": "/maps/overlastgebieden",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["openbare-orde-en-veiligheid", "wonen", "verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2625,7 +2639,7 @@
     "url": "/maps/vuurwerk",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["openbare-orde-en-veiligheid", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2645,7 +2659,7 @@
     "minZoom": 12,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["cultuur-en-recreatie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2667,7 +2681,7 @@
     "url": "/maps/gebieden",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["cultuur-en-recreatie", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2682,7 +2696,7 @@
     "detailItem": "evenementen",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["cultuur-en-recreatie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2710,7 +2724,7 @@
     "url": "/maps/bodem",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2737,7 +2751,7 @@
     "url": "/maps/bodem",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2765,7 +2779,7 @@
     "url": "/maps/bodem",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2780,7 +2794,7 @@
     "external": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2815,7 +2829,7 @@
     "detailItem": "bominslag",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2842,7 +2856,7 @@
     "url": "/maps/bommenkaart",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2856,7 +2870,7 @@
     "url": "/maps/bommenkaart",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2880,7 +2894,7 @@
     "url": "/maps/bommenkaart",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2902,7 +2916,7 @@
     "title": "LPG-vulpunten - Risicozones",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2921,7 +2935,7 @@
     "title": "LPG-afleverzuilen - Risicozones",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2943,7 +2957,7 @@
     "title": "LPG-tanks - Risicozones",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2962,7 +2976,7 @@
     "title": "LPG-stations - Risicozones",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2975,7 +2989,7 @@
     "url": "/maps/externeveiligheid",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -2988,7 +3002,7 @@
     "url": "/maps/externeveiligheid",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3019,7 +3033,7 @@
     "title": "Veiligheidsafstanden",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "economie-en-toerisme", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3038,7 +3052,7 @@
     "title": "Bedrijven - Bronnen en risicozones",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "economie-en-toerisme", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3052,7 +3066,7 @@
     "url": "/maps/externeveiligheid",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "economie-en-toerisme", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3071,75 +3085,7 @@
     "title": "Bedrijven - Terreingrenzen",
     "meta": {
       "description": null,
-      "themes": [],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
-    "id": "aardgas",
-    "title": "Aardgasleiding",
-    "layers": [
-      "milieu_veiligheid_aardgasbuisleidingen",
-      "milieu_veiligheid_aardgasbuisleidingen_legenda"
-    ],
-    "url": "/maps/externeveiligheid",
-    "meta": {
-      "description": null,
-      "themes": [],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
-    "id": "aardgaspr106",
-    "title": "Plaatsgebonden risico 10-6",
-    "layers": ["risicozonesaardgaspr106"],
-    "url": "/maps/externeveiligheid",
-    "meta": {
-      "description": null,
-      "themes": [],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
-    "id": "aardgas100let",
-    "layers": ["risicozonesaardgas100let"],
-    "title": "100% Letaliteitsafstand",
-    "url": "/maps/externeveiligheid",
-    "meta": {
-      "description": null,
-      "themes": [],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
-    "id": "aardgas1let",
-    "layers": ["risicozonesaardgas1let"],
-    "title": "1% Letaliteitsafstand",
-    "url": "/maps/externeveiligheid",
-    "meta": {
-      "description": null,
-      "themes": [],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
-    "id": "aardgasbel",
-    "layers": ["risicozonesbelemmeringenstrook"],
-    "title": "Belemmeringenstrook",
-    "url": "/maps/externeveiligheid",
-    "meta": {
-      "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "economie-en-toerisme", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3167,7 +3113,7 @@
     "title": "Aardgasbuisleidingen - Risicozones",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "openbare-orde-en-veiligheid", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3186,7 +3132,7 @@
     "title": "Industrie - Geluidszones",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3199,7 +3145,7 @@
     "url": "/maps/planologischegeluidszones",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3212,7 +3158,7 @@
     "url": "/maps/planologischegeluidszones",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3233,7 +3179,7 @@
     "url": "/maps/planologischezonesschiphol",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3275,7 +3221,7 @@
     "url": "/maps/planologischezonesschiphol",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3317,7 +3263,7 @@
     "url": "/maps/planologischezonesschiphol",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3331,7 +3277,7 @@
     "url": "/maps/planologischezonesschiphol",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3353,7 +3299,7 @@
     "title": "Reclamebelastingtarieven",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3392,7 +3338,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3409,7 +3355,7 @@
     "detailIsShape": true,
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3449,7 +3395,7 @@
     "detailItem": "bouw",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3483,7 +3429,7 @@
     "detailItem": "cultuur_sport_recreatie",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3517,7 +3463,7 @@
     "detailItem": "financiele_dienstverlening_verhuur",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3560,7 +3506,7 @@
     "detailItem": "handel_vervoer_opslag",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3603,7 +3549,7 @@
     "detailItem": "horeca",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3637,7 +3583,7 @@
     "detailItem": "informatie_telecommunicatie",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3677,7 +3623,7 @@
     "detailItem": "landbouw",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3708,7 +3654,7 @@
     "detailItem": "overheid_onderwijs_zorg",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3746,7 +3692,7 @@
     "detailItem": "persoonlijke_dienstverlening",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3778,7 +3724,7 @@
     "detailItem": "productie_installatie_reparatie",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3834,7 +3780,7 @@
     "detailItem": "zakelijke_dienstverlening",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3868,7 +3814,7 @@
     "detailItem": "overige",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3888,7 +3834,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3908,7 +3854,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3928,7 +3874,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3948,7 +3894,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3968,7 +3914,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -3988,7 +3934,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -4008,7 +3954,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -4028,7 +3974,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -4048,7 +3994,7 @@
     },
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -4083,7 +4029,7 @@
     "title": "Panoramabeelden",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -4114,7 +4060,7 @@
     "title": "Panoramabeelden - WOZ",
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null

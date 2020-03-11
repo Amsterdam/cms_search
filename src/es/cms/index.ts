@@ -41,7 +41,10 @@ export async function getCmsFromElasticSearch({
     }
   }, {})
 
-  const totalCount = countResults.type.reduce((acc: number, { count }: any) => acc + count, 0)
+  const totalCount: number = countResults.type.reduce(
+    (acc: number, { count }: any) => acc + count,
+    0,
+  )
 
   return {
     results: results.hits.hits,
