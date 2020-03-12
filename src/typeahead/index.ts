@@ -1,27 +1,48 @@
-import { getCmsFromElasticSearch, getValuesFromES } from '../es/cms'
-import { LABELS, CmsTypes } from '../graphql/search/cms/config'
+import { Request, Response } from 'express'
+import { isProduction } from '../util/environment'
+import { getCmsSuggestions } from './getCmsSuggestions'
+import { getMapSuggestions } from './getMapSuggestions'
 
-export default async ({ query }: any, res: any) => {
-  const { q = '' } = query
-  const types = [CmsTypes.Article, CmsTypes.Publication]
+export interface TypeAheadSuggestion {
+  label: string
+  total_results: number
+  content: TypeAheadSuggestionContent[]
+}
 
-  const { results, totalCount } = await getCmsFromElasticSearch({ q, types })
+export interface TypeAheadSuggestionContent {
+  _display: string
+  type: string
+  uri?: string
+}
 
-  const formattedResults: Array<any> = results.map(({ _source: result }: any) => {
-    const { title, field_short_title: shortTitle, type, uuid } = getValuesFromES(result) as any
+// The maximum amount of results per suggestion type.
+const MAX_RESULTS = 15
 
-    return {
-      _display: shortTitle || title,
-      uri: `${process.env.CMS_URL}/jsonapi/node/${type}/${uuid}`,
-      type,
-    }
-  })
+export default async (req: Request, res: Response) => {
+  const { q: query } = req.query
 
-  return res.send(
-    types.map(type => ({
-      total_resuls: totalCount,
-      label: LABELS[type],
-      content: formattedResults.filter(({ type: resultType }) => type === resultType),
-    })),
-  )
+  if (typeof query !== 'string') {
+    return handleError(res, new Error('Cannot retrieve suggestions, no query was specified.'))
+  }
+
+  try {
+    const suggestions = await Promise.all([
+      getCmsSuggestions(query, MAX_RESULTS),
+      getMapSuggestions(query, MAX_RESULTS),
+    ])
+
+    res.send(suggestions.flat().filter(suggestion => suggestion.total_results > 0))
+  } catch (error) {
+    return handleError(res, error)
+  }
+}
+
+function handleError(res: Response, error: Error) {
+  if (isProduction) {
+    res.status(500)
+  } else {
+    res.status(500).send(error)
+  }
+
+  console.error(error)
 }

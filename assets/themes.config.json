@@ -1,0 +1,50 @@
+[
+  {
+    "id": "werk-en-sociale-zekerheid",
+    "title": "Werk en sociale zekerheid"
+  },
+  {
+    "id": "bevolking",
+    "title": "Bevolking"
+  },
+  {
+    "id": "wonen",
+    "title": "Wonen"
+  },
+  {
+    "id": "ruimte-en-topografie",
+    "title": "Ruimte en topografie"
+  },
+  {
+    "id": "duurzaamheid-en-milieu",
+    "title": "Duurzaamheid en milieu"
+  },
+  {
+    "id": "economie-en-toerisme",
+    "title": "Economie en toerisme"
+  },
+  {
+    "id": "onderwijs-en-wetenschap",
+    "title": "Onderwijs en wetenschap"
+  },
+  {
+    "id": "bestuur",
+    "title": "Bestuur"
+  },
+  {
+    "id": "cultuur-en-recreatie",
+    "title": "Cultuur en recreatie"
+  },
+  {
+    "id": "openbare-orde-en-veiligheid",
+    "title": "Openbare orde en veiligheid"
+  },
+  {
+    "id": "verkeer",
+    "title": "Verkeer"
+  },
+  {
+    "id": "zorg-en-welzijn",
+    "title": "Zorg en welzijn"
+  }
+]
