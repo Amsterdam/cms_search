@@ -1,12 +1,12 @@
 import { TypeAheadSuggestion, TypeAheadSuggestionContent } from '.'
 import { getCmsFromElasticSearch, getValuesFromES } from '../es/cms'
-import { CmsTypes, LABELS } from '../graphql/search/cms/config'
+import { CmsType, LABELS } from '../graphql/search/cms/config'
 
 export async function getCmsSuggestions(
   query: string,
   limit: number,
 ): Promise<TypeAheadSuggestion[]> {
-  const types = [CmsTypes.Article, CmsTypes.Publication]
+  const types = [CmsType.Article, CmsType.Publication, CmsType.Collection]
   const { results, totalCount } = await getCmsFromElasticSearch({ q: query, types })
 
   const formattedResults = results.map(({ _source: result }) => {
