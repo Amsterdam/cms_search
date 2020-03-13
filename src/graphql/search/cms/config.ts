@@ -1,9 +1,10 @@
 import { FilterTypes } from '../../config'
 
-export enum CmsTypes {
+export enum CmsType {
   Article = 'article',
   Publication = 'publication',
   Special = 'special',
+  Collection = 'collection',
 }
 
 export const FILTERS = {
@@ -12,7 +13,8 @@ export const FILTERS = {
 }
 
 export const LABELS = {
-  [CmsTypes.Article]: 'Artikelen',
-  [CmsTypes.Publication]: 'Publicaties',
-  [CmsTypes.Special]: 'Specials',
+  [CmsType.Article]: 'Artikelen',
+  [CmsType.Publication]: 'Publicaties',
+  [CmsType.Special]: 'Specials',
+  [CmsType.Collection]: 'Dossiers',
 }

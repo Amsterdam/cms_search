@@ -1,10 +1,10 @@
-import { CmsSearchResult } from '../../../generated/graphql'
-import { CmsTypes } from './config'
-import getFormattedResults, { QueryCmsSearchArgs } from './normalize'
-import getCmsFilters from './filters'
 import { getCmsFromElasticSearch } from '../../../es/cms'
-import { DEFAULT_LIMIT, Context } from '../../config'
+import { CmsSearchResult } from '../../../generated/graphql'
+import { Context, DEFAULT_LIMIT } from '../../config'
 import getPageInfo from '../../utils/getPageInfo'
+import { CmsType } from './config'
+import getCmsFilters from './filters'
+import getFormattedResults, { QueryCmsSearchArgs } from './normalize'
 
 const cmsSearch = (type: string) => async (
   _: any,
@@ -44,10 +44,10 @@ const cmsSearch = (type: string) => async (
   }
 }
 
-const articleSearch = cmsSearch(CmsTypes.Article)
+const articleSearch = cmsSearch(CmsType.Article)
 
-const publicationSearch = cmsSearch(CmsTypes.Publication)
+const publicationSearch = cmsSearch(CmsType.Publication)
 
-const specialSearch = cmsSearch(CmsTypes.Special)
+const specialSearch = cmsSearch(CmsType.Special)
 
 export { articleSearch, publicationSearch, specialSearch }
