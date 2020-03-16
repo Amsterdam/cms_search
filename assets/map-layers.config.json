@@ -4065,5 +4065,29 @@
       "thumbnail": null,
       "date": null
     }
+  },
+  {
+    "id": "benb",
+    "layers": ["bb_quotum"],
+    "legendItems": [
+      {
+        "title": "Niet beschikbaar"
+      },
+      {
+        "title": "Beperkt beschikbaar"
+      },
+      {
+        "title": "Beschikbaar"
+      }
+    ],
+    "title": "Vergunningen B&B",
+    "url": "/maps/bb_quotum",
+    "meta": {
+      "description": null,
+      "themes": ["economie-en-toerisme"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
   }
 ]
