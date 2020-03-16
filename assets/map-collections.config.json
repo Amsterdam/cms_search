@@ -890,5 +890,21 @@
       "thumbnail": null,
       "date": null
     }
+  },
+  {
+    "id": "trsme",
+    "title": "Toerisme",
+    "mapLayers": [
+      {
+        "id": "benb"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
   }
 ]
