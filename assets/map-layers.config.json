@@ -3092,6 +3092,74 @@
     }
   },
   {
+    "id": "aardgas",
+    "title": "Aardgasleiding",
+    "layers": [
+      "milieu_veiligheid_aardgasbuisleidingen",
+      "milieu_veiligheid_aardgasbuisleidingen_legenda"
+    ],
+    "url": "/maps/externeveiligheid",
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "aardgaspr106",
+    "title": "Plaatsgebonden risico 10-6",
+    "layers": ["risicozonesaardgaspr106"],
+    "url": "/maps/externeveiligheid",
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "aardgas100let",
+    "layers": ["risicozonesaardgas100let"],
+    "title": "100% Letaliteitsafstand",
+    "url": "/maps/externeveiligheid",
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "aardgas1let",
+    "layers": ["risicozonesaardgas1let"],
+    "title": "1% Letaliteitsafstand",
+    "url": "/maps/externeveiligheid",
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "aardgasbel",
+    "layers": ["risicozonesbelemmeringenstrook"],
+    "title": "Belemmeringenstrook",
+    "url": "/maps/externeveiligheid",
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
     "id": "mvabl",
     "legendItems": [
       {
