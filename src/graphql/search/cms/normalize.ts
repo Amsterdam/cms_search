@@ -46,7 +46,6 @@ function getFormattedDate(date?: number | Date, year?: number, month?: number): 
   }
 
   const format = date ? 'D MMMM YYYY' : `${month ? 'MMMM ' : ''}${year ? 'YYYY' : ''}`
-
   return moment(localeDate).format(format)
 }
 
@@ -54,6 +53,7 @@ function getFormattedResults(results: any): Array<CmsSearchResultType> {
   return results.map(({ _source: result }: any) => {
     const {
       title,
+      created,
       field_short_title,
       field_slug,
       field_link,
@@ -71,6 +71,13 @@ function getFormattedResults(results: any): Array<CmsSearchResultType> {
       type,
     } = getValuesFromES(result) as any
 
+    const dateLocale =
+      field_publication_date === undefined &&
+      field_publication_year === undefined &&
+      field_publication_month === undefined
+        ? getFormattedDate(new Date(created * 1000))
+        : getFormattedDate(field_publication_date, field_publication_year, field_publication_month)
+
     return {
       id: uuid,
       label: field_short_title || title,
@@ -85,11 +92,7 @@ function getFormattedResults(results: any): Array<CmsSearchResultType> {
       intro: field_intro,
       teaser: field_teaser,
       link: field_link,
-      dateLocale: getFormattedDate(
-        field_publication_date,
-        field_publication_year,
-        field_publication_month,
-      ),
+      dateLocale,
     }
   })
 }
