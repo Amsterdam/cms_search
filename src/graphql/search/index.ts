@@ -1,4 +1,4 @@
-import { articleSearch, publicationSearch, specialSearch } from './cms'
+import { articleSearch, publicationSearch, specialSearch, collectionSearch } from './cms'
 import dataSearch from './data'
 import datasetSearch from './datasets'
 import mapCollectionSearch, { mapLayerSearch } from './map'
@@ -11,6 +11,7 @@ export default {
     datasetSearch,
     publicationSearch,
     specialSearch,
+    collectionSearch,
     mapCollectionSearch,
     mapLayerSearch,
     filters,

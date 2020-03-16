@@ -241,6 +241,7 @@ const schema = gql`
     datasetSearch(q: String, input: DatasetSearchInput): DatasetSearchResult
     publicationSearch(q: String, input: CMSSearchInput): CMSSearchResult
     specialSearch(q: String, input: CMSSearchInput): CMSSearchResult
+    collectionSearch(q: String, input: CMSSearchInput): CMSSearchResult
     mapCollectionSearch: MapCollectionSearchResult
     mapLayerSearch: MapLayerSearchResult
     filters: [Filter]

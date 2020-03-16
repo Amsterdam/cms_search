@@ -50,4 +50,6 @@ const publicationSearch = cmsSearch(CmsType.Publication)
 
 const specialSearch = cmsSearch(CmsType.Special)
 
-export { articleSearch, publicationSearch, specialSearch }
+const collectionSearch = cmsSearch(CmsType.Collection)
+
+export { articleSearch, publicationSearch, specialSearch, collectionSearch }
