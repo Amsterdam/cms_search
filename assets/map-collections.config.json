@@ -892,11 +892,11 @@
     }
   },
   {
-    "id": "trsme",
-    "title": "Toerisme",
+    "id": "enrgie",
+    "title": "Energie",
     "mapLayers": [
       {
-        "id": "benb"
+        "id": "aardgasvrij"
       }
     ],
     "meta": {

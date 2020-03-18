@@ -4135,24 +4135,77 @@
     }
   },
   {
-    "id": "benb",
-    "layers": ["bb_quotum"],
+    "id": "buurtinitiatieven",
+    "layers": ["buurtinitiatieven"],
+    "imageRule": "Buurtinitiatieven",
+    "title": "City Deal-buurt en particulier initatief"
+  },
+  {
+    "id": "buurten_kookgas",
+    "layers": ["buurten_kookgas"],
+    "imageRule": ">20% van warmteaansluitingen nog op kookgas",
+    "title": "Een aanzienlijk deel van warmteaansluitingen nog op kookgas"
+  },
+  {
+    "id": "aardgasvrij",
+    "layers": ["buurten", "buurtinitiatieven", "buurten_kookgas"],
     "legendItems": [
       {
-        "title": "Niet beschikbaar"
+        "id": "buurtinitiatieven",
+        "title": "Initiatief gestart",
+        "notSelectable": true
       },
       {
-        "title": "Beperkt beschikbaar"
+        "title": "All Electric",
+        "imageRule": "All Electric: gestaag aardgasvrij tussen 2020 en 2040"
       },
       {
-        "title": "Beschikbaar"
+        "title": "Duurzaam gasnet",
+        "imageRule": "Aardgasvrij gasnet: gestaag tot 70% gasbesparing tot 2040"
+      },
+      {
+        "title": "Warmtenet, al aangesloten",
+        "imageRule": "Al (bijna) volledig op het warmtenet"
+      },
+      {
+        "title": "Bronnet",
+        "imageRule": "Lokale bronnetten: gestaag aardgasvrij tussen 2020 en 2040"
+      },
+      {
+        "title": "Bronnet, 2020-2032",
+        "imageRule": "Lokale bronnetten en warmtenet: gestaag aardgasvrij tussen 2020 en 2032"
+      },
+      {
+        "title": "Warmtenet, 2020-2030",
+        "imageRule": "Warmtenetbuurt: gefaseerd aardgasvrij tussen 2020 en 2030"
+      },
+      {
+        "title": "Warmtenet, 2020-2032",
+        "imageRule": "Warmtenetbuurt: gefaseerd aardgasvrij tussen 2020 en 2032"
+      },
+      {
+        "title": "Warmtenet, vanaf 2030",
+        "imageRule": "Warmtenetbuurt: gefaseerd starten vanaf 2030"
+      },
+      {
+        "title": "Nieuwbouw & transformatie",
+        "imageRule": "Nieuwbouw- en transformatiegebied: volgt de fasering van de gebiedsontwikkeling"
+      },
+      {
+        "title": "Onbebouwd",
+        "imageRule": "Grotendeels onbebouwd"
+      },
+      {
+        "id": "buurten_kookgas",
+        "title": "Kookgas",
+        "notSelectable": true
       }
     ],
-    "title": "Vergunningen B&B",
-    "url": "/maps/bb_quotum",
+    "title": "Aardgasvrij",
+    "url": "/maps/aardgasvrij",
     "meta": {
       "description": null,
-      "themes": ["economie-en-toerisme"],
+      "themes": ["duurzaamheid-en-milieu", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
