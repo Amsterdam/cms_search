@@ -138,104 +138,87 @@ export type FilterOptions = {
   count?: Maybe<Scalars['Int']>
 }
 
-export type LegendItemMapLayer = MapLayer & {
-  __typename?: 'LegendItemMapLayer'
-  id?: Maybe<Scalars['String']>
+export type LegendItem = {
+  __typename?: 'LegendItem'
+  id?: Maybe<Scalars['ID']>
   title?: Maybe<Scalars['String']>
-  layers?: Maybe<Array<Maybe<Scalars['String']>>>
-  url?: Maybe<Scalars['String']>
-  params?: Maybe<Scalars['String']>
-  external?: Maybe<Scalars['Boolean']>
-  imageRule?: Maybe<Scalars['String']>
-  iconUrl?: Maybe<Scalars['String']>
   type?: Maybe<Scalars['String']>
-  noDetail?: Maybe<Scalars['Boolean']>
+  url?: Maybe<Scalars['String']>
   detailUrl?: Maybe<Scalars['String']>
   detailItem?: Maybe<Scalars['String']>
   detailIsShape?: Maybe<Scalars['Boolean']>
-  notSelectable?: Maybe<Scalars['Boolean']>
+  iconUrl?: Maybe<Scalars['String']>
+  imageRule?: Maybe<Scalars['String']>
+  minZoom?: Maybe<Scalars['Int']>
+  notSelectable: Scalars['Boolean']
+  external?: Maybe<Scalars['Boolean']>
+  bounds?: Maybe<Array<Array<Scalars['Float']>>>
+  authScope?: Maybe<Scalars['String']>
+  category?: Maybe<Scalars['String']>
+  legendType: LegendItemType
+}
+
+export enum LegendItemType {
+  MapLayer = 'MAP_LAYER',
+  Standalone = 'STANDALONE',
 }
 
 export type MapCollection = {
   __typename?: 'MapCollection'
-  id: Scalars['String']
+  id: Scalars['ID']
   title: Scalars['String']
-  mapLayers: Array<MapCollectionLayer>
-  meta: MetaInformation
-}
-
-export type MapCollectionLayer = MapLayer & {
-  __typename?: 'MapCollectionLayer'
-  id: Scalars['String']
-  title?: Maybe<Scalars['String']>
-  layers?: Maybe<Array<Maybe<Scalars['String']>>>
-  url?: Maybe<Scalars['String']>
-  params?: Maybe<Scalars['String']>
-  external?: Maybe<Scalars['Boolean']>
-  legendItems?: Maybe<Array<Maybe<LegendItemMapLayer>>>
-  imageRule?: Maybe<Scalars['String']>
-  iconUrl?: Maybe<Scalars['String']>
-  type?: Maybe<Scalars['String']>
-  noDetail?: Maybe<Scalars['Boolean']>
-  detailUrl?: Maybe<Scalars['String']>
-  detailItem?: Maybe<Scalars['String']>
-  detailIsShape?: Maybe<Scalars['Boolean']>
-  minZoom?: Maybe<Scalars['Float']>
-  maxZoom?: Maybe<Scalars['Float']>
-  authScope?: Maybe<Scalars['String']>
-  meta?: Maybe<MetaInformation>
+  mapLayers: Array<MapLayer>
+  meta: Meta
 }
 
 export type MapCollectionSearchResult = {
   __typename?: 'MapCollectionSearchResult'
-  results?: Maybe<Array<Maybe<MapCollection>>>
+  totalCount: Scalars['Int']
+  results: Array<MapCollection>
+  pageInfo: PageInfo
 }
 
 export type MapLayer = {
-  id?: Maybe<Scalars['String']>
-  title?: Maybe<Scalars['String']>
-  layers?: Maybe<Array<Maybe<Scalars['String']>>>
+  __typename?: 'MapLayer'
+  id: Scalars['ID']
+  title: Scalars['String']
+  type: Scalars['String']
+  layers?: Maybe<Array<Scalars['String']>>
   url?: Maybe<Scalars['String']>
   params?: Maybe<Scalars['String']>
-  external?: Maybe<Scalars['Boolean']>
-  imageRule?: Maybe<Scalars['String']>
-  iconUrl?: Maybe<Scalars['String']>
-  type?: Maybe<Scalars['String']>
   detailUrl?: Maybe<Scalars['String']>
   detailItem?: Maybe<Scalars['String']>
   detailIsShape?: Maybe<Scalars['Boolean']>
-}
-
-export type MapLayerResult = {
-  __typename?: 'MapLayerResult'
-  id: Scalars['String']
-  title: Scalars['String']
-  layers?: Maybe<Array<Scalars['String']>>
-  url: Scalars['String']
-  params: Scalars['String']
-  external?: Maybe<Scalars['Boolean']>
-  legendItems?: Maybe<Array<Maybe<LegendItemMapLayer>>>
-  imageRule?: Maybe<Scalars['String']>
   iconUrl?: Maybe<Scalars['String']>
-  type?: Maybe<Scalars['String']>
-  noDetail?: Maybe<Scalars['Boolean']>
-  detailUrl?: Maybe<Scalars['String']>
-  detailItem?: Maybe<Scalars['String']>
-  detailIsShape?: Maybe<Scalars['Boolean']>
+  imageRule?: Maybe<Scalars['String']>
+  minZoom?: Maybe<Scalars['Int']>
+  notSelectable?: Maybe<Scalars['Boolean']>
+  external?: Maybe<Scalars['Boolean']>
+  bounds?: Maybe<Array<Array<Scalars['Float']>>>
   authScope?: Maybe<Scalars['String']>
-  meta?: Maybe<MetaInformation>
+  category?: Maybe<Scalars['String']>
+  legendItems?: Maybe<Array<LegendItem>>
+  themes: Array<Theme>
+  meta: Meta
 }
 
 export type MapLayerSearchResult = {
   __typename?: 'MapLayerSearchResult'
-  results?: Maybe<Array<Maybe<MapLayerResult>>>
+  totalCount: Scalars['Int']
+  results: Array<MapLayer>
+  pageInfo: PageInfo
 }
 
-export type MetaInformation = {
-  __typename?: 'MetaInformation'
+export type MapSearchInput = {
+  limit?: Maybe<Scalars['Int']>
+  page?: Maybe<Scalars['Int']>
+}
+
+export type Meta = {
+  __typename?: 'Meta'
   description?: Maybe<Scalars['String']>
-  themes?: Maybe<Array<Maybe<Scalars['Float']>>>
-  datasetIds?: Maybe<Array<Maybe<Scalars['Float']>>>
+  themes: Array<Scalars['String']>
+  datasetIds?: Maybe<Array<Maybe<Scalars['Int']>>>
   thumbnail?: Maybe<Scalars['String']>
   date?: Maybe<Scalars['String']>
 }
@@ -255,8 +238,8 @@ export type Query = {
   publicationSearch?: Maybe<CmsSearchResult>
   specialSearch?: Maybe<CmsSearchResult>
   collectionSearch?: Maybe<CmsSearchResult>
-  mapCollectionSearch?: Maybe<MapCollectionSearchResult>
-  mapLayerSearch?: Maybe<MapLayerSearchResult>
+  mapCollectionSearch: MapCollectionSearchResult
+  mapLayerSearch: MapLayerSearchResult
   filters?: Maybe<Array<Maybe<Filter>>>
 }
 
@@ -290,7 +273,22 @@ export type QueryCollectionSearchArgs = {
   input?: Maybe<CmsSearchInput>
 }
 
-export type Results = DatasetSearchResultType | CmsSearchResultType | DataSearchResultType
+export type QueryMapCollectionSearchArgs = {
+  q?: Maybe<Scalars['String']>
+  input?: Maybe<MapSearchInput>
+}
+
+export type QueryMapLayerSearchArgs = {
+  q?: Maybe<Scalars['String']>
+  input?: Maybe<MapSearchInput>
+}
+
+export type Results =
+  | DatasetSearchResultType
+  | CmsSearchResultType
+  | DataSearchResultType
+  | MapLayer
+  | MapCollection
 
 export type SearchResult = {
   totalCount: Scalars['Int']
@@ -303,6 +301,12 @@ export type SearchResultType = {
   count: Scalars['Int']
   type?: Maybe<Scalars['String']>
   label?: Maybe<Scalars['String']>
+}
+
+export type Theme = {
+  __typename?: 'Theme'
+  id: Scalars['ID']
+  title: Scalars['String']
 }
 
 export type ResolverTypeWrapper<T> = Promise<T> | T
@@ -401,6 +405,8 @@ export type ResolversTypes = {
     | ResolversTypes['DatasetSearchResultType']
     | ResolversTypes['CMSSearchResultType']
     | ResolversTypes['DataSearchResultType']
+    | ResolversTypes['MapLayer']
+    | ResolversTypes['MapCollection']
   DatasetSearchResultType: ResolverTypeWrapper<DatasetSearchResultType>
   DatasetFormats: ResolverTypeWrapper<DatasetFormats>
   CMSSearchResultType: ResolverTypeWrapper<CmsSearchResultType>
@@ -409,23 +415,24 @@ export type ResolversTypes = {
   DataSearchResultType: ResolverTypeWrapper<DataSearchResultType>
   SearchResultType: ResolverTypeWrapper<SearchResultType>
   DataResult: ResolverTypeWrapper<DataResult>
+  MapLayer: ResolverTypeWrapper<MapLayer>
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>
+  Float: ResolverTypeWrapper<Scalars['Float']>
+  LegendItem: ResolverTypeWrapper<LegendItem>
+  LegendItemType: LegendItemType
+  Theme: ResolverTypeWrapper<Theme>
+  Meta: ResolverTypeWrapper<Meta>
+  MapCollection: ResolverTypeWrapper<MapCollection>
   Filter: ResolverTypeWrapper<Filter>
   FilterOptions: ResolverTypeWrapper<FilterOptions>
   PageInfo: ResolverTypeWrapper<PageInfo>
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>
   DataSearchInput: DataSearchInput
   DataSearchResult: ResolverTypeWrapper<DataSearchResult>
   DatasetSearchInput: DatasetSearchInput
   DatasetSearchResult: ResolverTypeWrapper<DatasetSearchResult>
+  MapSearchInput: MapSearchInput
   MapCollectionSearchResult: ResolverTypeWrapper<MapCollectionSearchResult>
-  MapCollection: ResolverTypeWrapper<MapCollection>
-  MapCollectionLayer: ResolverTypeWrapper<MapCollectionLayer>
-  MapLayer: ResolverTypeWrapper<MapLayer>
-  LegendItemMapLayer: ResolverTypeWrapper<LegendItemMapLayer>
-  Float: ResolverTypeWrapper<Scalars['Float']>
-  MetaInformation: ResolverTypeWrapper<MetaInformation>
   MapLayerSearchResult: ResolverTypeWrapper<MapLayerSearchResult>
-  MapLayerResult: ResolverTypeWrapper<MapLayerResult>
 }
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -444,6 +451,8 @@ export type ResolversParentTypes = {
     | ResolversParentTypes['DatasetSearchResultType']
     | ResolversParentTypes['CMSSearchResultType']
     | ResolversParentTypes['DataSearchResultType']
+    | ResolversParentTypes['MapLayer']
+    | ResolversParentTypes['MapCollection']
   DatasetSearchResultType: DatasetSearchResultType
   DatasetFormats: DatasetFormats
   CMSSearchResultType: CmsSearchResultType
@@ -452,23 +461,24 @@ export type ResolversParentTypes = {
   DataSearchResultType: DataSearchResultType
   SearchResultType: SearchResultType
   DataResult: DataResult
+  MapLayer: MapLayer
+  Boolean: Scalars['Boolean']
+  Float: Scalars['Float']
+  LegendItem: LegendItem
+  LegendItemType: LegendItemType
+  Theme: Theme
+  Meta: Meta
+  MapCollection: MapCollection
   Filter: Filter
   FilterOptions: FilterOptions
   PageInfo: PageInfo
-  Boolean: Scalars['Boolean']
   DataSearchInput: DataSearchInput
   DataSearchResult: DataSearchResult
   DatasetSearchInput: DatasetSearchInput
   DatasetSearchResult: DatasetSearchResult
+  MapSearchInput: MapSearchInput
   MapCollectionSearchResult: MapCollectionSearchResult
-  MapCollection: MapCollection
-  MapCollectionLayer: MapCollectionLayer
-  MapLayer: MapLayer
-  LegendItemMapLayer: LegendItemMapLayer
-  Float: Scalars['Float']
-  MetaInformation: MetaInformation
   MapLayerSearchResult: MapLayerSearchResult
-  MapLayerResult: MapLayerResult
 }
 
 export type CmsLinkResolvers<
@@ -610,24 +620,26 @@ export type FilterOptionsResolvers<
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
-export type LegendItemMapLayerResolvers<
+export type LegendItemResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes['LegendItemMapLayer'] = ResolversParentTypes['LegendItemMapLayer']
+  ParentType extends ResolversParentTypes['LegendItem'] = ResolversParentTypes['LegendItem']
 > = {
-  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  layers?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>
-  url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  params?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  external?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
-  imageRule?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  iconUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  noDetail?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
+  url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   detailUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   detailItem?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   detailIsShape?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
-  notSelectable?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
+  iconUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  imageRule?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  minZoom?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
+  notSelectable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
+  external?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
+  bounds?: Resolver<Maybe<Array<Array<ResolversTypes['Float']>>>, ParentType, ContextType>
+  authScope?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  category?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  legendType?: Resolver<ResolversTypes['LegendItemType'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
@@ -635,39 +647,10 @@ export type MapCollectionResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['MapCollection'] = ResolversParentTypes['MapCollection']
 > = {
-  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  mapLayers?: Resolver<Array<ResolversTypes['MapCollectionLayer']>, ParentType, ContextType>
-  meta?: Resolver<ResolversTypes['MetaInformation'], ParentType, ContextType>
-  __isTypeOf?: isTypeOfResolverFn<ParentType>
-}
-
-export type MapCollectionLayerResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['MapCollectionLayer'] = ResolversParentTypes['MapCollectionLayer']
-> = {
-  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  layers?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>
-  url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  params?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  external?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
-  legendItems?: Resolver<
-    Maybe<Array<Maybe<ResolversTypes['LegendItemMapLayer']>>>,
-    ParentType,
-    ContextType
-  >
-  imageRule?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  iconUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  noDetail?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
-  detailUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  detailItem?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  detailIsShape?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
-  minZoom?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>
-  maxZoom?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>
-  authScope?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  meta?: Resolver<Maybe<ResolversTypes['MetaInformation']>, ParentType, ContextType>
+  mapLayers?: Resolver<Array<ResolversTypes['MapLayer']>, ParentType, ContextType>
+  meta?: Resolver<ResolversTypes['Meta'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
@@ -675,7 +658,9 @@ export type MapCollectionSearchResultResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['MapCollectionSearchResult'] = ResolversParentTypes['MapCollectionSearchResult']
 > = {
-  results?: Resolver<Maybe<Array<Maybe<ResolversTypes['MapCollection']>>>, ParentType, ContextType>
+  totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  results?: Resolver<Array<ResolversTypes['MapCollection']>, ParentType, ContextType>
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
@@ -683,45 +668,26 @@ export type MapLayerResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['MapLayer'] = ResolversParentTypes['MapLayer']
 > = {
-  __resolveType: TypeResolveFn<'MapCollectionLayer' | 'LegendItemMapLayer', ParentType, ContextType>
-  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  layers?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>
+  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  type?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  layers?: Resolver<Maybe<Array<ResolversTypes['String']>>, ParentType, ContextType>
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   params?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  external?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
-  imageRule?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  iconUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   detailUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   detailItem?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   detailIsShape?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
-}
-
-export type MapLayerResultResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['MapLayerResult'] = ResolversParentTypes['MapLayerResult']
-> = {
-  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  layers?: Resolver<Maybe<Array<ResolversTypes['String']>>, ParentType, ContextType>
-  url?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  params?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  external?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
-  legendItems?: Resolver<
-    Maybe<Array<Maybe<ResolversTypes['LegendItemMapLayer']>>>,
-    ParentType,
-    ContextType
-  >
-  imageRule?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   iconUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  noDetail?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
-  detailUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  detailItem?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  detailIsShape?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
+  imageRule?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  minZoom?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
+  notSelectable?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
+  external?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
+  bounds?: Resolver<Maybe<Array<Array<ResolversTypes['Float']>>>, ParentType, ContextType>
   authScope?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  meta?: Resolver<Maybe<ResolversTypes['MetaInformation']>, ParentType, ContextType>
+  category?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  legendItems?: Resolver<Maybe<Array<ResolversTypes['LegendItem']>>, ParentType, ContextType>
+  themes?: Resolver<Array<ResolversTypes['Theme']>, ParentType, ContextType>
+  meta?: Resolver<ResolversTypes['Meta'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
@@ -729,17 +695,19 @@ export type MapLayerSearchResultResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['MapLayerSearchResult'] = ResolversParentTypes['MapLayerSearchResult']
 > = {
-  results?: Resolver<Maybe<Array<Maybe<ResolversTypes['MapLayerResult']>>>, ParentType, ContextType>
+  totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  results?: Resolver<Array<ResolversTypes['MapLayer']>, ParentType, ContextType>
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
-export type MetaInformationResolvers<
+export type MetaResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes['MetaInformation'] = ResolversParentTypes['MetaInformation']
+  ParentType extends ResolversParentTypes['Meta'] = ResolversParentTypes['Meta']
 > = {
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  themes?: Resolver<Maybe<Array<Maybe<ResolversTypes['Float']>>>, ParentType, ContextType>
-  datasetIds?: Resolver<Maybe<Array<Maybe<ResolversTypes['Float']>>>, ParentType, ContextType>
+  themes?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>
+  datasetIds?: Resolver<Maybe<Array<Maybe<ResolversTypes['Int']>>>, ParentType, ContextType>
   thumbnail?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   date?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
@@ -796,11 +764,17 @@ export type QueryResolvers<
     QueryCollectionSearchArgs
   >
   mapCollectionSearch?: Resolver<
-    Maybe<ResolversTypes['MapCollectionSearchResult']>,
+    ResolversTypes['MapCollectionSearchResult'],
     ParentType,
-    ContextType
+    ContextType,
+    QueryMapCollectionSearchArgs
   >
-  mapLayerSearch?: Resolver<Maybe<ResolversTypes['MapLayerSearchResult']>, ParentType, ContextType>
+  mapLayerSearch?: Resolver<
+    ResolversTypes['MapLayerSearchResult'],
+    ParentType,
+    ContextType,
+    QueryMapLayerSearchArgs
+  >
   filters?: Resolver<Maybe<Array<Maybe<ResolversTypes['Filter']>>>, ParentType, ContextType>
 }
 
@@ -809,7 +783,11 @@ export type ResultsResolvers<
   ParentType extends ResolversParentTypes['Results'] = ResolversParentTypes['Results']
 > = {
   __resolveType: TypeResolveFn<
-    'DatasetSearchResultType' | 'CMSSearchResultType' | 'DataSearchResultType',
+    | 'DatasetSearchResultType'
+    | 'CMSSearchResultType'
+    | 'DataSearchResultType'
+    | 'MapLayer'
+    | 'MapCollection',
     ParentType,
     ContextType
   >
@@ -840,6 +818,15 @@ export type SearchResultTypeResolvers<
   label?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
 }
 
+export type ThemeResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Theme'] = ResolversParentTypes['Theme']
+> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>
+  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  __isTypeOf?: isTypeOfResolverFn<ParentType>
+}
+
 export type Resolvers<ContextType = any> = {
   CMSLink?: CmsLinkResolvers<ContextType>
   CMSSearchResult?: CmsSearchResultResolvers<ContextType>
@@ -852,19 +839,18 @@ export type Resolvers<ContextType = any> = {
   DatasetSearchResultType?: DatasetSearchResultTypeResolvers<ContextType>
   Filter?: FilterResolvers<ContextType>
   FilterOptions?: FilterOptionsResolvers<ContextType>
-  LegendItemMapLayer?: LegendItemMapLayerResolvers<ContextType>
+  LegendItem?: LegendItemResolvers<ContextType>
   MapCollection?: MapCollectionResolvers<ContextType>
-  MapCollectionLayer?: MapCollectionLayerResolvers<ContextType>
   MapCollectionSearchResult?: MapCollectionSearchResultResolvers<ContextType>
-  MapLayer?: MapLayerResolvers
-  MapLayerResult?: MapLayerResultResolvers<ContextType>
+  MapLayer?: MapLayerResolvers<ContextType>
   MapLayerSearchResult?: MapLayerSearchResultResolvers<ContextType>
-  MetaInformation?: MetaInformationResolvers<ContextType>
+  Meta?: MetaResolvers<ContextType>
   PageInfo?: PageInfoResolvers<ContextType>
   Query?: QueryResolvers<ContextType>
   Results?: ResultsResolvers
   SearchResult?: SearchResultResolvers
   SearchResultType?: SearchResultTypeResolvers
+  Theme?: ThemeResolvers<ContextType>
 }
 
 /**

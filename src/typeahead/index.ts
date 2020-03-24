@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
-import { isProduction } from '../util/environment'
-import { getCmsSuggestions } from './getCmsSuggestions'
-import { getMapSuggestions } from './getMapSuggestions'
+import { getCmsSuggestions } from '../es/cms/typeahead'
+import { getMapSuggestions } from '../map/typeahead'
+import { isProduction } from '../utils/environment'
 
 export interface TypeAheadSuggestion {
   label: string
@@ -15,9 +15,6 @@ export interface TypeAheadSuggestionContent {
   uri?: string
 }
 
-// The maximum amount of results per suggestion type.
-const MAX_RESULTS = 15
-
 export default async (req: Request, res: Response) => {
   const { q: query } = req.query
 
@@ -26,10 +23,7 @@ export default async (req: Request, res: Response) => {
   }
 
   try {
-    const suggestions = await Promise.all([
-      getCmsSuggestions(query, MAX_RESULTS),
-      getMapSuggestions(query, MAX_RESULTS),
-    ])
+    const suggestions = await Promise.all([getCmsSuggestions(query), getMapSuggestions(query)])
 
     res.send(suggestions.flat().filter(suggestion => suggestion.total_results > 0))
   } catch (error) {

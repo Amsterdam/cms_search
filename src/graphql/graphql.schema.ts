@@ -2,7 +2,12 @@
 const gql = (input: any) => input
 
 const schema = gql`
-  union Results = DatasetSearchResultType | CMSSearchResultType | DataSearchResultType
+  union Results =
+      DatasetSearchResultType
+    | CMSSearchResultType
+    | DataSearchResultType
+    | MapLayer
+    | MapCollection
 
   interface SearchResult {
     totalCount: Int!
@@ -42,6 +47,11 @@ const schema = gql`
     filters: [FilterInput!]
   }
 
+  input MapSearchInput {
+    limit: Int
+    page: Int
+  }
+
   input FilterInput {
     type: String!
     values: [String!]!
@@ -65,6 +75,18 @@ const schema = gql`
     totalCount: Int!
     results: [CMSSearchResultType!]
     filters: [Filter!]
+    pageInfo: PageInfo!
+  }
+
+  type MapLayerSearchResult {
+    totalCount: Int!
+    results: [MapLayer!]!
+    pageInfo: PageInfo!
+  }
+
+  type MapCollectionSearchResult {
+    totalCount: Int!
+    results: [MapCollection!]!
     pageInfo: PageInfo!
   }
 
@@ -140,99 +162,71 @@ const schema = gql`
     hasLimitedResults: Boolean
   }
 
-  type MetaInformation {
+  type MapCollection {
+    id: ID!
+    title: String!
+    mapLayers: [MapLayer!]!
+    meta: Meta!
+  }
+
+  type MapLayer {
+    id: ID!
+    title: String!
+    type: String!
+    layers: [String!]
+    url: String
+    params: String
+    detailUrl: String
+    detailItem: String
+    detailIsShape: Boolean
+    iconUrl: String
+    imageRule: String
+    minZoom: Int
+    notSelectable: Boolean
+    external: Boolean
+    bounds: [[Float!]!]
+    authScope: String
+    category: String
+    legendItems: [LegendItem!]
+    themes: [Theme!]!
+    meta: Meta!
+  }
+
+  type Theme {
+    id: ID!
+    title: String!
+  }
+
+  type Meta {
     description: String
-    themes: [Float]
-    datasetIds: [Float]
+    themes: [String!]!
+    datasetIds: [Int]
     thumbnail: String
     date: String
   }
 
-  interface MapLayer {
-    id: String
-    title: String
-    layers: [String]
-    url: String
-    params: String
-    external: Boolean
-    imageRule: String
-    iconUrl: String
-    type: String
-    detailUrl: String
-    detailItem: String
-    detailIsShape: Boolean
+  enum LegendItemType {
+    MAP_LAYER
+    STANDALONE
   }
 
-  type MapLayerResult {
-    id: String!
-    title: String!
-    layers: [String!]
-    url: String!
-    params: String!
-    external: Boolean
-    legendItems: [LegendItemMapLayer]
-    imageRule: String
-    iconUrl: String
+  type LegendItem {
+    id: ID
+    title: String
     type: String
-    noDetail: Boolean
+    url: String
     detailUrl: String
     detailItem: String
     detailIsShape: Boolean
+    iconUrl: String
+    imageRule: String
+    minZoom: Int
+    notSelectable: Boolean!
+    external: Boolean
+    bounds: [[Float!]!]
     authScope: String
-    meta: MetaInformation
-  }
-
-  type MapCollectionLayer implements MapLayer {
-    id: String!
-    title: String
-    layers: [String]
-    url: String
-    params: String
-    external: Boolean
-    legendItems: [LegendItemMapLayer]
-    imageRule: String
-    iconUrl: String
-    type: String
-    noDetail: Boolean
-    detailUrl: String
-    detailItem: String
-    detailIsShape: Boolean
-    minZoom: Float
-    maxZoom: Float
-    authScope: String
-    meta: MetaInformation
-  }
-
-  type LegendItemMapLayer implements MapLayer {
-    id: String
-    title: String
-    layers: [String]
-    url: String
-    params: String
-    external: Boolean
-    imageRule: String
-    iconUrl: String
-    type: String
-    noDetail: Boolean
-    detailUrl: String
-    detailItem: String
-    detailIsShape: Boolean
-    notSelectable: Boolean
-  }
-
-  type MapCollection {
-    id: String!
-    title: String!
-    mapLayers: [MapCollectionLayer!]!
-    meta: MetaInformation!
-  }
-
-  type MapCollectionSearchResult {
-    results: [MapCollection]
-  }
-
-  type MapLayerSearchResult {
-    results: [MapLayerResult]
+    category: String
+    legendType: LegendItemType!
   }
 
   type Query {
@@ -242,8 +236,8 @@ const schema = gql`
     publicationSearch(q: String, input: CMSSearchInput): CMSSearchResult
     specialSearch(q: String, input: CMSSearchInput): CMSSearchResult
     collectionSearch(q: String, input: CMSSearchInput): CMSSearchResult
-    mapCollectionSearch: MapCollectionSearchResult
-    mapLayerSearch: MapLayerSearchResult
+    mapCollectionSearch(q: String, input: MapSearchInput): MapCollectionSearchResult!
+    mapLayerSearch(q: String, input: MapSearchInput): MapLayerSearchResult!
     filters: [Filter]
   }
 `

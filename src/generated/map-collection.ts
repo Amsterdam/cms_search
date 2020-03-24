@@ -1,4 +1,4 @@
-export interface MapCollection {
+export interface RawMapCollection {
   id: string
   title: string
   mapLayers: MapLayer[]
