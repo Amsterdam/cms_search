@@ -4210,5 +4210,75 @@
       "thumbnail": null,
       "date": null
     }
+  },
+  {
+    "id": "lood",
+    "layers": ["lood"],
+    "legendItems": [{ "title": "< 1960" }],
+    "params": {
+      "categorie": "ouder"
+    },
+    "title": "Panden ouder dan 1960",
+    "url": "/maps/lood",
+    "minZoom": 11,
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie", "wonen"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "bwjr",
+    "layers": ["pand leeftijden"],
+    "legendItems": [
+      {
+        "title": "onbekend"
+      },
+      {
+        "title": "< 1800"
+      },
+      {
+        "title": "1800-1850"
+      },
+      {
+        "title": "1850-1900"
+      },
+      {
+        "title": "1900-1930"
+      },
+      {
+        "title": "1930-1945"
+      },
+      {
+        "title": "1945-1960"
+      },
+      {
+        "title": "1960-1975"
+      },
+      {
+        "title": "1975-1985"
+      },
+      {
+        "title": "1985-1995"
+      },
+      {
+        "title": "1995-2005"
+      },
+      {
+        "title": ">= 2005"
+      }
+    ],
+    "title": "Panden naar bouwjaar",
+    "url": "/maps/bag",
+    "minZoom": 11,
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie", "wonen"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
   }
 ]
