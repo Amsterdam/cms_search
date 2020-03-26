@@ -4137,7 +4137,12 @@
   {
     "id": "lood",
     "layers": ["lood"],
-    "legendItems": [{ "title": "< 1960" }],
+    "legendItems": [
+      {
+        "imageRule": "< 1960",
+        "title": "Ouder dan 1960"
+      }
+    ],
     "params": {
       "categorie": "ouder"
     },
@@ -4157,10 +4162,11 @@
     "layers": ["pand leeftijden"],
     "legendItems": [
       {
-        "title": "onbekend"
+        "title": "Onbekend"
       },
       {
-        "title": "< 1800"
+        "imageRule": "< 1800",
+        "title": "Ouder dan 1800"
       },
       {
         "title": "1800-1850"
@@ -4190,7 +4196,8 @@
         "title": "1995-2005"
       },
       {
-        "title": ">= 2005"
+        "imageRule": ">= 2005",
+        "title": "2005 of nieuwer"
       }
     ],
     "title": "Panden naar bouwjaar",
