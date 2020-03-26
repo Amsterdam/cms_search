@@ -3,7 +3,7 @@ export interface MapLayer {
   title: string
   layers?: string[]
   url?: string
-  meta?: Meta
+  meta: Meta
   detailUrl?: string
   detailItem?: string
   detailIsShape?: boolean
@@ -25,7 +25,6 @@ export interface LegendItem {
   iconUrl?: string
   title?: string
   imageRule?: string
-  notSelectable?: boolean
 }
 
 export interface Meta {
