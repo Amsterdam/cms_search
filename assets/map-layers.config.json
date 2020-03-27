@@ -4148,7 +4148,6 @@
     },
     "title": "Panden ouder dan 1960",
     "url": "/maps/lood",
-    "minZoom": 11,
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
@@ -4202,7 +4201,6 @@
     ],
     "title": "Panden naar bouwjaar",
     "url": "/maps/bag",
-    "minZoom": 11,
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
