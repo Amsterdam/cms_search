@@ -16,6 +16,7 @@ export interface ComposedMapLayer extends Omit<RawMapLayer, 'params'> {
   legendItems?: MixedLegendItem[]
   minZoom: number
   maxZoom: number
+  noDetail: boolean
   params?: string
 }
 
@@ -24,9 +25,13 @@ enum LegendItemType {
   Standalone = 'STANDALONE',
 }
 
-export interface MapLayerLegendItem extends RawMapLayer {
+export interface MapLayerLegendItem extends Omit<RawMapLayer, 'params'> {
   legendType: LegendItemType.MapLayer
   notSelectable: boolean
+  minZoom: number
+  maxZoom: number
+  noDetail: boolean
+  params?: string
 }
 
 export interface StandaloneLegendItem extends LegendItem {
@@ -129,6 +134,7 @@ function composeMapLayer(
       : undefined,
     minZoom: layer.minZoom ?? DEFAULT_MIN_ZOOM,
     maxZoom: DEFAULT_MAX_ZOOM,
+    noDetail: !layer.detailUrl,
     params,
   }
 }
@@ -169,6 +175,10 @@ function normalizeLegendItems(
 
     // Merge the legend item with the map layer if found.
     if (legendItem.id && mapLayer) {
+      const params = mapLayer.params
+        ? querystring.stringify(mapLayer.params as ParsedUrlQueryInput)
+        : undefined
+
       return {
         ...mapLayer,
         legendType: LegendItemType.MapLayer,
@@ -178,6 +188,10 @@ function normalizeLegendItems(
         title: legendItem.title ?? mapLayer.title,
         // The ID of the map layer when defined as legend item, is a combination of the IDs of the map layer and the parent map layer it's used in to prevent duplication when it is selected.
         id: composeId(parentId, legendItem.id),
+        minZoom: mapLayer.minZoom ?? DEFAULT_MIN_ZOOM,
+        maxZoom: DEFAULT_MAX_ZOOM,
+        noDetail: !mapLayer.detailUrl,
+        params,
       }
     }
 
