@@ -143,6 +143,8 @@ export type LegendItem = {
   id?: Maybe<Scalars['ID']>
   title?: Maybe<Scalars['String']>
   type?: Maybe<Scalars['String']>
+  noDetail?: Maybe<Scalars['Boolean']>
+  layers?: Maybe<Array<Scalars['String']>>
   url?: Maybe<Scalars['String']>
   detailUrl?: Maybe<Scalars['String']>
   detailItem?: Maybe<Scalars['String']>
@@ -150,12 +152,14 @@ export type LegendItem = {
   iconUrl?: Maybe<Scalars['String']>
   imageRule?: Maybe<Scalars['String']>
   minZoom?: Maybe<Scalars['Int']>
+  maxZoom?: Maybe<Scalars['Int']>
   notSelectable: Scalars['Boolean']
   external?: Maybe<Scalars['Boolean']>
   bounds?: Maybe<Array<Array<Scalars['Float']>>>
   authScope?: Maybe<Scalars['String']>
   category?: Maybe<Scalars['String']>
   legendType: LegendItemType
+  params?: Maybe<Scalars['String']>
 }
 
 export enum LegendItemType {
@@ -183,6 +187,9 @@ export type MapLayer = {
   id: Scalars['ID']
   title: Scalars['String']
   type: Scalars['String']
+  noDetail: Scalars['Boolean']
+  minZoom: Scalars['Int']
+  maxZoom: Scalars['Int']
   layers?: Maybe<Array<Scalars['String']>>
   url?: Maybe<Scalars['String']>
   params?: Maybe<Scalars['String']>
@@ -191,7 +198,6 @@ export type MapLayer = {
   detailIsShape?: Maybe<Scalars['Boolean']>
   iconUrl?: Maybe<Scalars['String']>
   imageRule?: Maybe<Scalars['String']>
-  minZoom?: Maybe<Scalars['Int']>
   notSelectable?: Maybe<Scalars['Boolean']>
   external?: Maybe<Scalars['Boolean']>
   bounds?: Maybe<Array<Array<Scalars['Float']>>>
@@ -627,6 +633,8 @@ export type LegendItemResolvers<
   id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  noDetail?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
+  layers?: Resolver<Maybe<Array<ResolversTypes['String']>>, ParentType, ContextType>
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   detailUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   detailItem?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
@@ -634,12 +642,14 @@ export type LegendItemResolvers<
   iconUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   imageRule?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   minZoom?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
+  maxZoom?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
   notSelectable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
   external?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
   bounds?: Resolver<Maybe<Array<Array<ResolversTypes['Float']>>>, ParentType, ContextType>
   authScope?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   category?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   legendType?: Resolver<ResolversTypes['LegendItemType'], ParentType, ContextType>
+  params?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
@@ -671,6 +681,9 @@ export type MapLayerResolvers<
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   type?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  noDetail?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
+  minZoom?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  maxZoom?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   layers?: Resolver<Maybe<Array<ResolversTypes['String']>>, ParentType, ContextType>
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   params?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
@@ -679,7 +692,6 @@ export type MapLayerResolvers<
   detailIsShape?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
   iconUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   imageRule?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  minZoom?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
   notSelectable?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
   external?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
   bounds?: Resolver<Maybe<Array<Array<ResolversTypes['Float']>>>, ParentType, ContextType>

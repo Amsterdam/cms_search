@@ -173,6 +173,9 @@ const schema = gql`
     id: ID!
     title: String!
     type: String!
+    noDetail: Boolean!
+    minZoom: Int!
+    maxZoom: Int!
     layers: [String!]
     url: String
     params: String
@@ -181,7 +184,6 @@ const schema = gql`
     detailIsShape: Boolean
     iconUrl: String
     imageRule: String
-    minZoom: Int
     notSelectable: Boolean
     external: Boolean
     bounds: [[Float!]!]
@@ -210,10 +212,13 @@ const schema = gql`
     STANDALONE
   }
 
+  # TODO: Do not copy MapLayer fields here, make the map layer a separate field in the LegendItem.
   type LegendItem {
     id: ID
     title: String
     type: String
+    noDetail: Boolean
+    layers: [String!]
     url: String
     detailUrl: String
     detailItem: String
@@ -221,12 +226,14 @@ const schema = gql`
     iconUrl: String
     imageRule: String
     minZoom: Int
+    maxZoom: Int
     notSelectable: Boolean!
     external: Boolean
     bounds: [[Float!]!]
     authScope: String
     category: String
     legendType: LegendItemType!
+    params: String
   }
 
   type Query {
