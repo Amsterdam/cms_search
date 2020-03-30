@@ -1,6 +1,7 @@
-export interface MapLayer {
+export interface RawMapLayer {
   id: string
   title: string
+  type: string
   layers?: string[]
   url?: string
   meta: Meta
@@ -14,7 +15,6 @@ export interface MapLayer {
   notSelectable?: boolean
   legendItems?: LegendItem[]
   external?: boolean
-  type?: string
   bounds?: Array<number[]>
   authScope?: string
   category?: string
@@ -22,6 +22,7 @@ export interface MapLayer {
 
 export interface LegendItem {
   id?: string
+  notSelectable?: boolean
   iconUrl?: string
   title?: string
   imageRule?: string

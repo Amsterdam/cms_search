@@ -1,19 +1,25 @@
-import { articleSearch, publicationSearch, specialSearch, collectionSearch } from './cms'
+import { IResolvers } from 'graphql-tools'
+import { QueryResolvers, Resolvers } from '../../generated/graphql'
+import { mapCollectionSearch, mapLayerSearch } from '../../map/graphql'
+import { articleSearch, collectionSearch, publicationSearch, specialSearch } from './cms'
 import dataSearch from './data'
 import datasetSearch from './datasets'
-import mapCollectionSearch, { mapLayerSearch } from './map'
 import filters from './filters'
 
-export default {
-  Query: {
-    articleSearch,
-    dataSearch,
-    datasetSearch,
-    publicationSearch,
-    specialSearch,
-    collectionSearch,
-    mapCollectionSearch,
-    mapLayerSearch,
-    filters,
-  },
+const queryResolvers: QueryResolvers = {
+  articleSearch,
+  dataSearch,
+  datasetSearch,
+  publicationSearch,
+  specialSearch,
+  collectionSearch,
+  mapCollectionSearch,
+  mapLayerSearch,
+  filters,
 }
+
+const resolversMap: Resolvers = {
+  Query: queryResolvers,
+}
+
+export default resolversMap as IResolvers

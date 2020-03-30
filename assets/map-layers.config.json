@@ -2,6 +2,7 @@
   {
     "id": "bgem",
     "title": "Burgerlijke gemeente",
+    "type": "wms",
     "layers": ["burgerlijke_gemeente", "burgerlijke_gemeente_label"],
     "url": "/maps/brk",
     "meta": {
@@ -15,6 +16,7 @@
   {
     "id": "kgem",
     "title": "Kadastrale gemeente",
+    "type": "wms",
     "layers": ["kadastrale_gemeente", "kadastrale_gemeente_label"],
     "url": "/maps/brk",
     "meta": {
@@ -28,6 +30,7 @@
   {
     "id": "ksec",
     "title": "Kadastrale sectie",
+    "type": "wms",
     "layers": ["kadastrale_sectie", "kadastrale_sectie_label"],
     "url": "/maps/brk",
     "meta": {
@@ -41,6 +44,7 @@
   {
     "id": "kot",
     "title": "Kadastraal object",
+    "type": "wms",
     "layers": ["kadastraal_object", "kadastraal_object_label"],
     "detailUrl": "geosearch/search/",
     "detailItem": "kadastraal_object",
@@ -57,6 +61,7 @@
   {
     "id": "egga",
     "title": "Gemeente Amsterdam",
+    "type": "wms",
     "iconUrl": "/assets/images/map-legend/icon-egdm-cat-1.svg",
     "layers": ["eigendommen"],
     "params": {
@@ -77,6 +82,7 @@
   {
     "id": "egog",
     "title": "Overige gemeenten",
+    "type": "wms",
     "iconUrl": "/assets/images/map-legend/icon-egdm-cat-2.svg",
     "layers": ["eigendommen"],
     "params": {
@@ -97,6 +103,7 @@
   {
     "id": "egst",
     "title": "Staat",
+    "type": "wms",
     "iconUrl": "/assets/images/map-legend/icon-egdm-cat-3.svg",
     "layers": ["eigendommen"],
     "params": {
@@ -117,6 +124,7 @@
   {
     "id": "egpr",
     "title": "Provincies",
+    "type": "wms",
     "iconUrl": "/assets/images/map-legend/icon-egdm-cat-4.svg",
     "layers": ["eigendommen"],
     "params": {
@@ -137,6 +145,7 @@
   {
     "id": "egwa",
     "title": "Waterschappen",
+    "type": "wms",
     "iconUrl": "/assets/images/map-legend/icon-egdm-cat-5.svg",
     "layers": ["eigendommen"],
     "params": {
@@ -157,6 +166,7 @@
   {
     "id": "egwo",
     "title": "Woningbouwcorporaties",
+    "type": "wms",
     "iconUrl": "/assets/images/map-legend/icon-egdm-cat-6.svg",
     "layers": ["eigendommen"],
     "params": {
@@ -173,6 +183,7 @@
   {
     "id": "egve",
     "title": "Verenigingen van eigenaren",
+    "type": "wms",
     "iconUrl": "/assets/images/map-legend/icon-egdm-cat-7.svg",
     "layers": ["eigendommen"],
     "params": {
@@ -193,6 +204,7 @@
   {
     "id": "egsp",
     "title": "Spoorwegen/ProRail",
+    "type": "wms",
     "iconUrl": "/assets/images/map-legend/icon-egdm-cat-8.svg",
     "layers": ["eigendommen"],
     "params": {
@@ -213,6 +225,7 @@
   {
     "id": "egnnp",
     "title": "Overige niet-natuurlijke personen",
+    "type": "wms",
     "iconUrl": "/assets/images/map-legend/icon-egdm-cat-9.svg",
     "layers": ["eigendommen"],
     "params": {
@@ -233,6 +246,7 @@
   {
     "id": "egnp",
     "title": "Overige natuurlijke personen",
+    "type": "wms",
     "iconUrl": "/assets/images/map-legend/icon-egdm-cat-10.svg",
     "layers": ["eigendommen"],
     "params": {
@@ -253,6 +267,7 @@
   {
     "id": "efga",
     "title": "Gemeente Amsterdam",
+    "type": "wms",
     "iconUrl": "/assets/images/map-legend/icon-erf-cat-1.svg",
     "url": "/maps/erfpacht",
     "layers": ["erfpacht"],
@@ -273,6 +288,7 @@
   {
     "id": "efov",
     "title": "Overig",
+    "type": "wms",
     "iconUrl": "/assets/images/map-legend/icon-erf-cat-2.svg",
     "url": "/maps/erfpacht",
     "layers": ["erfpacht"],
@@ -293,6 +309,7 @@
   {
     "id": "vge",
     "title": "Volledig eigendom",
+    "type": "wms",
     "imageRule": "vastgoed",
     "url": "/maps/vastgoed",
     "layers": ["vastgoed_eigendom"],
@@ -310,6 +327,7 @@
   {
     "id": "vga",
     "title": "Appartementsrecht",
+    "type": "wms",
     "imageRule": "vastgoed",
     "url": "/maps/vastgoed",
     "layers": ["vastgoed_appartementsrecht"],
@@ -329,6 +347,7 @@
     "url": "/maps/wkpb",
     "layers": ["beperking-VV"],
     "title": "(voorlopige) aanwijzing WVG",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
@@ -342,6 +361,7 @@
     "url": "/maps/wkpb",
     "layers": ["beperking-KW"],
     "title": "Wet bodembescherming",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen", "duurzaamheid-en-milieu"],
@@ -355,6 +375,7 @@
     "url": "/maps/wkpb",
     "layers": ["beperking-WU"],
     "title": "Woningwet",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
@@ -368,6 +389,7 @@
     "url": "/maps/wkpb",
     "layers": ["beperking-OH"],
     "title": "WABO bestuursdwang / dwangsom",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
@@ -381,6 +403,7 @@
     "url": "/maps/wkpb",
     "layers": ["beperking-OS"],
     "title": "Sluiting o.b.v. Opiumwet",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen", "openbare-orde-en-veiligheid"],
@@ -394,6 +417,7 @@
     "url": "/maps/wkpb",
     "layers": ["beperking-GS"],
     "title": "Sluiting v. woning/lokaal/erf",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
@@ -407,6 +431,7 @@
     "url": "/maps/wkpb",
     "layers": ["beperking-GG"],
     "title": "Gemeentelijk monument",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen", "cultuur-en-recreatie"],
@@ -420,6 +445,7 @@
     "url": "/maps/wkpb",
     "layers": ["beperking-EP"],
     "title": "Exploitatieplan",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
@@ -433,6 +459,7 @@
     "url": "/maps/wkpb",
     "layers": ["beperking-HV"],
     "title": "Vordering tot woonruimte",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
@@ -446,6 +473,7 @@
     "url": "/maps/gebieden",
     "layers": ["buurt", "buurt_label"],
     "title": "Buurt",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "bestuur"],
@@ -459,6 +487,7 @@
     "url": "/maps/gebieden",
     "layers": ["buurtcombinatie", "buurtcombinatie_label"],
     "title": "Wijk",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "bestuur"],
@@ -472,6 +501,7 @@
     "url": "/maps/gebieden",
     "layers": ["stadsdeel", "stadsdeel_label"],
     "title": "Stadsdeel",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "bestuur"],
@@ -484,6 +514,7 @@
     "id": "bbn",
     "layers": ["bouwblok", "bouwblok_label"],
     "title": "Bouwblokken",
+    "type": "wms",
     "imageRule": "Bouwblok",
     "minZoom": 12,
     "url": "/maps/gebieden",
@@ -502,6 +533,7 @@
     "id": "ggwg",
     "layers": ["gebiedsgerichtwerken", "gebiedsgerichtwerken_label"],
     "title": "Gebiedsgerichtwerken-gebied",
+    "type": "wms",
     "minZoom": 6,
     "url": "/maps/gebieden",
     "meta": {
@@ -519,6 +551,7 @@
       "gebiedsgerichtwerkenpraktijkgebieden_label"
     ],
     "title": "Gebiedsgerichtwerken-praktijkgebied",
+    "type": "wms",
     "minZoom": 6,
     "url": "/maps/gebieden",
     "meta": {
@@ -534,6 +567,7 @@
     "url": "/maps/gebieden",
     "layers": ["grootstedelijk_regio_amsterdam"],
     "title": "Regie Gemeente Amsterdam",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "bestuur"],
@@ -547,6 +581,7 @@
     "url": "/maps/gebieden",
     "layers": ["grootstedelijk_regio_omgevingsdienst"],
     "title": "Regie Omgevingsdienst",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "bestuur"],
@@ -560,6 +595,7 @@
     "url": "/maps/trm",
     "layers": ["metrolijnen"],
     "title": "Metrolijn",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["verkeer"],
@@ -573,6 +609,7 @@
     "url": "/maps/trm",
     "layers": ["tramlijnen"],
     "title": "Tramlijn",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["verkeer"],
@@ -589,6 +626,7 @@
     "detailItem": "oplaadpunten",
     "layers": ["snel_beschikbaar"],
     "title": "Snellaadpunt (beschikbaar, ±15 min. geleden)",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer"],
@@ -605,6 +643,7 @@
     "detailItem": "oplaadpunten",
     "layers": ["snel_niet_beschikbaar"],
     "title": "Snellaadpunt (niet beschikbaar, ±15 min. geleden)",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer"],
@@ -621,6 +660,7 @@
     "detailItem": "oplaadpunten",
     "layers": ["normaal_beschikbaar"],
     "title": "Gewoon laadpunt (beschikbaar, ±15 min. geleden)",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer"],
@@ -637,6 +677,7 @@
     "detailItem": "oplaadpunten",
     "layers": ["normaal_niet_beschikbaar"],
     "title": "Gewoon laadpunt (niet beschikbaar, ±15 min. geleden)",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer"],
@@ -649,6 +690,7 @@
     "id": "pvrts",
     "layers": ["parkeervakken_reservering"],
     "title": "Taxistandplaats",
+    "type": "wms",
     "params": {
       "categorie": "taxistandplaats"
     },
@@ -669,6 +711,7 @@
     "id": "pvrll",
     "layers": ["parkeervakken_reservering"],
     "title": "Laden en lossen",
+    "type": "wms",
     "imageRule": "Laden lossen",
     "params": {
       "categorie": "laden_lossen"
@@ -690,6 +733,7 @@
     "id": "pvrpr",
     "layers": ["parkeervakken_reservering"],
     "title": "Kiss & Ride",
+    "type": "wms",
     "params": {
       "categorie": "kiss_ride"
     },
@@ -709,6 +753,7 @@
   {
     "id": "pvrf",
     "title": "Fiscaal",
+    "type": "wms",
     "layers": ["parkeervakken_reservering"],
     "params": {
       "categorie": "fiscaal"
@@ -729,6 +774,7 @@
   {
     "id": "pvrpv",
     "title": "Parkeerverbod",
+    "type": "wms",
     "layers": ["parkeervakken_reservering"],
     "params": {
       "categorie": "parkeerverbod"
@@ -749,6 +795,7 @@
   {
     "id": "pvrga",
     "title": "Gehandicaptenplaats algemeen",
+    "type": "wms",
     "layers": ["parkeervakken_reservering"],
     "params": {
       "categorie": "gehandicapten_algemeen"
@@ -769,6 +816,7 @@
   {
     "id": "pvrgk",
     "title": "Gehandicaptenplaats kenteken",
+    "type": "wms",
     "layers": ["parkeervakken_reservering"],
     "params": {
       "categorie": "gehandicapten_kenteken"
@@ -789,6 +837,7 @@
   {
     "id": "pvrsv",
     "title": "Specifieke voertuigcategorie",
+    "type": "wms",
     "layers": ["parkeervakken_reservering"],
     "params": {
       "categorie": "specifiek_voertuig"
@@ -809,6 +858,7 @@
   {
     "id": "pvrvh",
     "title": "Vergunninghouders",
+    "type": "wms",
     "layers": ["parkeervakken_reservering"],
     "params": {
       "categorie": "vergunning_houders"
@@ -829,6 +879,7 @@
   {
     "id": "pvrbz",
     "title": "Blauwe zone",
+    "type": "wms",
     "layers": ["parkeervakken_reservering"],
     "params": {
       "categorie": "blauwe_zone"
@@ -849,6 +900,7 @@
   {
     "id": "uitzpvg",
     "title": "Uitzondering parkeervergunninggebied",
+    "type": "wms",
     "imageRule": "Parkeerzones uitzonderingen",
     "layers": ["parkeerzones_uitz"],
     "detailItem": "parkeerzones_uitz",
@@ -866,6 +918,7 @@
   {
     "id": "pvg",
     "title": "Parkeervergunninggebied",
+    "type": "wms",
     "iconUrl": "/assets/images/map-legend/icon-parkeerzones.svg",
     "layers": ["parkeerzones"],
     "detailItem": "parkeerzones",
@@ -886,6 +939,7 @@
     "url": "/maps/hoofdroutes",
     "layers": ["busbaan_geen_taxi"],
     "title": "Verbod lijnbusbaan",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["verkeer"],
@@ -900,6 +954,7 @@
     "url": "/maps/hoofdroutes",
     "layers": ["taxiroutes"],
     "title": "Hoofdroutes taxi's",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["verkeer"],
@@ -911,6 +966,7 @@
   {
     "id": "bespla",
     "title": "Bestemmingsplan",
+    "type": "wms",
     "params": {
       "onderwerp": "bestemmingsplan"
     },
@@ -929,6 +985,7 @@
   {
     "id": "drahor",
     "title": "Drank- en horecavergunning",
+    "type": "wms",
     "params": {
       "onderwerp": "drank_en_horecavergunning"
     },
@@ -947,6 +1004,7 @@
   {
     "id": "evever",
     "title": "Evenementenvergunning",
+    "type": "wms",
     "params": {
       "onderwerp": "evenementenvergunning"
     },
@@ -965,6 +1023,7 @@
   {
     "id": "exploi",
     "title": "Exploitatievergunning",
+    "type": "wms",
     "params": {
       "onderwerp": "exploitatievergunning"
     },
@@ -983,6 +1042,7 @@
   {
     "id": "inspra",
     "title": "Inspraak",
+    "type": "wms",
     "params": {
       "onderwerp": "inspraak"
     },
@@ -1001,6 +1061,7 @@
   {
     "id": "kapver",
     "title": "Kapvergunning",
+    "type": "wms",
     "params": {
       "onderwerp": "kapvergunning"
     },
@@ -1019,6 +1080,7 @@
   {
     "id": "ligpla",
     "title": "Ligplaatsvergunning",
+    "type": "wms",
     "params": {
       "onderwerp": "ligplaatsvergunning"
     },
@@ -1037,6 +1099,7 @@
   {
     "id": "medede",
     "title": "Mededelingen",
+    "type": "wms",
     "params": {
       "onderwerp": "mededelingen"
     },
@@ -1055,6 +1118,7 @@
   {
     "id": "meldin",
     "title": "Meldingen",
+    "type": "wms",
     "params": {
       "onderwerp": "meldingen"
     },
@@ -1073,6 +1137,7 @@
   {
     "id": "omgver",
     "title": "Omgevingsvergunning",
+    "type": "wms",
     "params": {
       "onderwerp": "omgevingsvergunning"
     },
@@ -1091,6 +1156,7 @@
   {
     "id": "onttre",
     "title": "Onttrekkingsvergunning",
+    "type": "wms",
     "params": {
       "onderwerp": "onttrekkingsvergunning"
     },
@@ -1109,6 +1175,7 @@
   {
     "id": "optijd",
     "title": "Openingstijden",
+    "type": "wms",
     "params": {
       "onderwerp": "openingstijden"
     },
@@ -1127,6 +1194,7 @@
   {
     "id": "rectif",
     "title": "Rectificatie",
+    "type": "wms",
     "params": {
       "onderwerp": "rectificatie"
     },
@@ -1145,6 +1213,7 @@
   {
     "id": "speela",
     "title": "Speelautomatenvergunning",
+    "type": "wms",
     "params": {
       "onderwerp": "speelautomatenvergunning"
     },
@@ -1163,6 +1232,7 @@
   {
     "id": "splits",
     "title": "Splitsingsvergunning",
+    "type": "wms",
     "params": {
       "onderwerp": "splitsingsvergunning"
     },
@@ -1181,6 +1251,7 @@
   {
     "id": "terras",
     "title": "Terrasvergunning",
+    "type": "wms",
     "params": {
       "onderwerp": "terrasvergunning"
     },
@@ -1199,6 +1270,7 @@
   {
     "id": "verbes",
     "title": "Verkeersbesluit",
+    "type": "wms",
     "params": {
       "onderwerp": "verkeersbesluit"
     },
@@ -1217,6 +1289,7 @@
   {
     "id": "verreg",
     "title": "Verordeningen en reglementen",
+    "type": "wms",
     "params": {
       "onderwerp": "verordeningen_en_reglementen"
     },
@@ -1235,6 +1308,7 @@
   {
     "id": "overig",
     "title": "Overig",
+    "type": "wms",
     "params": {
       "onderwerp": "overig"
     },
@@ -1255,6 +1329,7 @@
     "url": "/maps/afval",
     "layers": ["rest_coordinaten"],
     "title": "Restafval",
+    "type": "wms",
     "imageRule": "Restcontainer",
     "params": {
       "width": 30,
@@ -1273,6 +1348,7 @@
     "url": "/maps/afval",
     "layers": ["papier_coordinaten"],
     "title": "Papier",
+    "type": "wms",
     "imageRule": "Papiercontainer",
     "params": {
       "width": 30,
@@ -1291,6 +1367,7 @@
     "url": "/maps/afval",
     "layers": ["glas_coordinaten"],
     "title": "Glas",
+    "type": "wms",
     "imageRule": "Glascontainer",
     "params": {
       "width": 30,
@@ -1309,6 +1386,7 @@
     "url": "/maps/afval",
     "layers": ["plastic_coordinaten"],
     "title": "Plastic",
+    "type": "wms",
     "imageRule": "Plasticcontainer",
     "params": {
       "width": 30,
@@ -1327,6 +1405,7 @@
     "url": "/maps/afval",
     "layers": ["textiel_coordinaten"],
     "title": "Textiel",
+    "type": "wms",
     "imageRule": "Textielcontainer",
     "params": {
       "width": 30,
@@ -1345,6 +1424,7 @@
     "url": "/maps/afval",
     "layers": ["gfe_coordinaten"],
     "title": "GFE",
+    "type": "wms",
     "imageRule": "Gfecontainer",
     "params": {
       "width": 30,
@@ -1364,6 +1444,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["lpgvulpuntplaatsgebondenrisico105"],
     "title": "Plaatsgebonden risico 10-5",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1380,6 +1461,7 @@
     "detailItem": "monument",
     "layers": ["monument_coordinaten"],
     "title": "Monument (pandgerelateerd)",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1396,6 +1478,7 @@
     "detailItem": "monument",
     "layers": ["monument_coordinaten_nopand"],
     "title": "Monument (overige)",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1410,6 +1493,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["lpgvulpuntplaatsgebondenrisico106"],
     "title": "Plaatsgebonden risico 10-6",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1424,6 +1508,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["lpgvulpuntinvloedsgebied"],
     "title": "Invloedsgebied groepsrisico",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1438,6 +1523,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["lpgafleverzuillocaties"],
     "title": "Locatie LPG-afleverzuil",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1452,6 +1538,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["lpgafleverzuilplaatsgebondenrisico"],
     "title": "Plaatsgebonden risico (15 m)",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1466,6 +1553,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["lpgtankligging"],
     "title": "Ligging LPG-tank",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1480,6 +1568,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["lpgtankplaatsgebondenrisico"],
     "title": "Plaatsgebondenrisico (25/120 m)",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1494,6 +1583,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["lpgtankinvloedsgebied", "lpgtankplaatsgebondenrisico", "lpgtankligging"],
     "title": "Invloedsgebied groepsrisico",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1508,6 +1598,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["lpgstationslocaties"],
     "title": "Locatie LPG-station",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1522,6 +1613,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["lpgstationcontouren", "lpgstationslocaties"],
     "title": "Contouren LPG-station",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1536,6 +1628,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["overigerisicobedrijfplaatsgebondenrisico106"],
     "title": "Plaatsgebonden risico 10-6",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1550,6 +1643,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["overigerisicobedrijfsbronnen"],
     "title": "Bron",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1564,6 +1658,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["overigerisicobedrijfslocaties"],
     "title": "Bedrijf",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1578,6 +1673,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["overigerisicobedrijfscontouren"],
     "title": "Terrein",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1591,6 +1687,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["milieu_veiligheid_vuurwerk"],
     "title": "Vuurwerkopslag",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
@@ -1604,6 +1701,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["milieu_veiligheid_munitie"],
     "title": "Munitieopslag",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
@@ -1617,6 +1715,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["milieu_veiligheid_gasdrukregel_meetstation"],
     "title": "Gasdrukregel- en meetstation",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
@@ -1630,6 +1729,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["milieu_veiligheid_sluis"],
     "title": "Sluis",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
@@ -1643,6 +1743,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["milieu_veiligheid_wachtplaats"],
     "title": "Wachtplaats",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
@@ -1656,6 +1757,7 @@
     "url": "/maps/externeveiligheid",
     "layers": ["milieu_veiligheid_bunkerschepen"],
     "title": "Bunkerschip",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
@@ -1670,6 +1772,7 @@
     "url": "/maps/planologischegeluidszones",
     "layers": ["gezoneerdindustrieterrein"],
     "title": "Gezoneerd industrieterrein",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1684,6 +1787,7 @@
     "url": "/maps/planologischegeluidszones",
     "layers": ["geluidzoneindustrieterrein"],
     "title": "Geluidzone industrieterrein",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": [],
@@ -1696,6 +1800,7 @@
     "id": "tariffA",
     "layers": ["reclamebelasting"],
     "title": "Tariefgebied A",
+    "type": "wms",
     "params": {
       "tarief": "A"
     },
@@ -1714,6 +1819,7 @@
     "id": "tariffB",
     "layers": ["reclamebelasting"],
     "title": "Tariefgebied B",
+    "type": "wms",
     "params": {
       "tarief": "B"
     },
@@ -1732,6 +1838,7 @@
     "id": "tariffC",
     "layers": ["reclamebelasting"],
     "title": "Tariefgebied C",
+    "type": "wms",
     "params": {
       "tarief": "C"
     },
@@ -1750,7 +1857,8 @@
     "id": "kdstrl",
     "legendItems": [
       {
-        "id": "bgem"
+        "id": "bgem",
+        "notSelectable": false
       },
       {
         "id": "kgem"
@@ -1763,6 +1871,7 @@
       }
     ],
     "title": "Kadastrale perceelsgrenzen",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
@@ -1806,6 +1915,7 @@
       }
     ],
     "title": "Kadastrale eigenaren",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
@@ -1825,6 +1935,7 @@
       }
     ],
     "title": "Kadastrale erfpachtuitgevers",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
@@ -1844,6 +1955,7 @@
       }
     ],
     "title": "Gemeentelijk eigendom",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
@@ -1884,6 +1996,7 @@
       }
     ],
     "title": "Gemeentelijke beperkingen (WKPB)",
+    "type": "wms",
     "minZoom": 13,
     "meta": {
       "description": null,
@@ -1904,6 +2017,7 @@
       }
     ],
     "title": "Gebiedsgericht werken",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
@@ -1923,6 +2037,7 @@
       }
     ],
     "title": "Grootstedelijke gebieden, projecten en belangen",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
@@ -1982,6 +2097,7 @@
     ],
     "minZoom": 10,
     "title": "Terreinmodel (DTM AHN)",
+    "type": "wms",
     "url": "https://geodata.nationaalgeoregister.nl/ahn3/wms?",
     "external": true,
     "meta": {
@@ -2043,6 +2159,7 @@
     ],
     "minZoom": 10,
     "title": "Oppervlaktemodel (DSM AHN)",
+    "type": "wms",
     "url": "https://geodata.nationaalgeoregister.nl/ahn3/wms?",
     "external": true,
     "meta": {
@@ -2084,6 +2201,7 @@
     ],
     "minZoom": 10,
     "title": "Normaal Amsterdams Peil (NAP)",
+    "type": "wms",
     "url": "/maps/nap",
     "detailUrl": "geosearch/search/",
     "detailItem": "peilmerk",
@@ -2108,6 +2226,7 @@
     ],
     "minZoom": 12,
     "title": "Meetbouten - Status",
+    "type": "wms",
     "url": "/maps/meetbouten",
     "detailUrl": "geosearch/search/",
     "detailItem": "meetbout",
@@ -2153,6 +2272,7 @@
     ],
     "minZoom": 12,
     "title": "Meetbouten - Zaksnelheid",
+    "type": "wms",
     "url": "/maps/meetbouten",
     "detailUrl": "geosearch/search/",
     "detailItem": "meetbout",
@@ -2174,6 +2294,7 @@
     ],
     "minZoom": 12,
     "title": "Meetbouten - Referentiepunten",
+    "type": "wms",
     "url": "/maps/meetbouten",
     "meta": {
       "description": null,
@@ -2186,7 +2307,7 @@
   {
     "id": "pw1909",
     "title": "1909 (1:1000, Dienst der Publieke Werken)",
-    "type": "TMS",
+    "type": "tms",
     "layers": ["publieke-werken"],
     "url": "https://{s}.data.amsterdam.nl/publieke-werken-1909-rd/{z}/{x}/{y}.png",
     "iconUrl": "https://acc.t3.data.amsterdam.nl/publieke-werken-1909-rd/9/235/272.png",
@@ -2206,7 +2327,7 @@
   {
     "id": "pw1943",
     "title": "1943 (1:1000, Dienst der Publieke Werken)",
-    "type": "TMS",
+    "type": "tms",
     "layers": ["publieke-werken"],
     "url": "https://{s}.data.amsterdam.nl/publieke-werken-1943-rd/{z}/{x}/{y}.png",
     "iconUrl": "https://acc.t2.data.amsterdam.nl/publieke-werken-1943-rd/9/236/272.png",
@@ -2226,7 +2347,7 @@
   {
     "id": "pw1943-2500",
     "title": "1943 (1:2500, Dienst der Publieke Werken)",
-    "type": "TMS",
+    "type": "tms",
     "layers": ["publieke-werken"],
     "url": "https://{s}.data.amsterdam.nl/publieke-werken-1943-2500-rd/{z}/{x}/{y}.png",
     "iconUrl": "https://acc.t4.data.amsterdam.nl/publieke-werken-1943-2500-rd/9/238/272.png",
@@ -2246,7 +2367,7 @@
   {
     "id": "pw1985",
     "title": "1985 (1:1000, Dienst der Publieke Werken)",
-    "type": "TMS",
+    "type": "tms",
     "layers": ["publieke-werken"],
     "url": "https://{s}.data.amsterdam.nl/publieke-werken-1985-rd/{z}/{x}/{y}.png",
     "iconUrl": "https://acc.t4.data.amsterdam.nl/publieke-werken-1985-rd/9/238/272.png",
@@ -2274,6 +2395,7 @@
       }
     ],
     "title": "Spoorlijnen",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["verkeer"],
@@ -2287,6 +2409,7 @@
     "layers": ["milieuzones"],
     "imageRule": "Bestelauto",
     "title": "Milieuzones - Bestelauto",
+    "type": "wms",
     "url": "/maps/milieuzones",
     "params": {
       "id": 63363
@@ -2304,6 +2427,7 @@
     "layers": ["milieuzones"],
     "imageRule": "Brom- en snorfiets",
     "title": "Milieuzones - Brom- en snorfiets",
+    "type": "wms",
     "url": "/maps/milieuzones",
     "params": {
       "id": 63324
@@ -2321,6 +2445,7 @@
     "layers": ["milieuzones"],
     "imageRule": "Taxi",
     "title": "Milieuzones - Taxi",
+    "type": "wms",
     "url": "/maps/milieuzones",
     "params": {
       "id": 63360
@@ -2338,6 +2463,7 @@
     "layers": ["milieuzones"],
     "imageRule": "Touringcar",
     "title": "Milieuzones - Touringcar",
+    "type": "wms",
     "url": "/maps/milieuzones",
     "params": {
       "id": 63361
@@ -2355,6 +2481,7 @@
     "layers": ["milieuzones"],
     "imageRule": "Vrachtauto",
     "title": "Milieuzones - Vrachtauto",
+    "type": "wms",
     "url": "/maps/milieuzones",
     "params": {
       "id": 63362
@@ -2378,6 +2505,7 @@
       }
     ],
     "title": "Oplaadpunten - Snel laden (> 50 Kw)",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer"],
@@ -2397,6 +2525,7 @@
       }
     ],
     "title": "Oplaadpunten - Gewoon laden",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer"],
@@ -2417,6 +2546,7 @@
       }
     ],
     "title": "Parkeervakken - Fiscale indelingen",
+    "type": "wms",
     "url": "/maps/parkeervakken",
     "detailUrl": "parkeervakken/geosearch/",
     "detailItem": "parkeervak",
@@ -2439,6 +2569,7 @@
     ],
     "minZoom": 11,
     "title": "Parkeervakken - Speciale bestemmingen",
+    "type": "wms",
     "url": "/maps/parkeervakken",
     "detailUrl": "parkeervakken/geosearch/",
     "detailItem": "parkeervak",
@@ -2462,6 +2593,7 @@
       }
     ],
     "title": "Parkeervergunninggebieden",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["verkeer", "ruimte-en-topografie"],
@@ -2481,6 +2613,7 @@
       }
     ],
     "title": "Routes - Taxi",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["verkeer", "ruimte-en-topografie"],
@@ -2499,6 +2632,7 @@
       }
     ],
     "title": "Routes - Vrachtauto",
+    "type": "wms",
     "url": "/maps/hoofdroutes",
     "meta": {
       "description": null,
@@ -2512,6 +2646,7 @@
     "id": "vezips",
     "layers": ["vezips"],
     "title": "Verzinkbare palen",
+    "type": "wms",
     "url": "/maps/vezips",
     "meta": {
       "description": null,
@@ -2526,6 +2661,7 @@
     "layers": ["risicozonesweg"],
     "imageRule": "Invloedsgebied wegen",
     "title": "Wegen - Risicozones",
+    "type": "wms",
     "url": "/maps/externeveiligheid",
     "meta": {
       "description": null,
@@ -2539,6 +2675,7 @@
     "id": "oovoalg",
     "layers": ["algemeen_overlastgebied", "algemeen_overlastgebied_label"],
     "title": "Algemene overlastgebieden",
+    "type": "wms",
     "url": "/maps/overlastgebieden",
     "imageRule": "Algemeen overlastgebied",
     "meta": {
@@ -2553,6 +2690,7 @@
     "id": "oovodlrs",
     "layers": ["dealeroverlastgebied", "dealeroverlastgebied_label"],
     "title": "Dealeroverlastgebieden",
+    "type": "wms",
     "url": "/maps/overlastgebieden",
     "imageRule": "Dealeroverlastgebied",
     "meta": {
@@ -2568,6 +2706,7 @@
     "layers": ["cameratoezichtgebied", "cameratoezichtgebied_label"],
     "imageRule": "Cameratoezichtgebied",
     "title": "Cameratoezichtgebieden",
+    "type": "wms",
     "url": "/maps/overlastgebieden",
     "meta": {
       "description": null,
@@ -2582,6 +2721,7 @@
     "layers": ["alcoholverbodsgebied", "alcoholverbodsgebied_label"],
     "imageRule": "Alcoholverbodsgebied",
     "title": "Alcoholverbodsgebieden",
+    "type": "wms",
     "url": "/maps/overlastgebieden",
     "meta": {
       "description": null,
@@ -2595,6 +2735,7 @@
     "id": "oovorlv",
     "layers": ["rondleidingverbodsgebieden", "rondleidingverbodsgebieden_label"],
     "title": "Rondleidingverbodsgebieden",
+    "type": "wms",
     "url": "/maps/overlastgebieden",
     "meta": {
       "description": null,
@@ -2609,6 +2750,7 @@
     "layers": ["taxi-standplaatsgebied", "taxi-standplaatsgebied_label"],
     "imageRule": "Taxi-standplaatsgebied",
     "title": "Omgeving taxistandplaatsen",
+    "type": "wms",
     "url": "/maps/overlastgebieden",
     "meta": {
       "description": null,
@@ -2636,6 +2778,7 @@
       }
     ],
     "title": "Vuurwerkvrije zones",
+    "type": "wms",
     "url": "/maps/vuurwerk",
     "meta": {
       "description": null,
@@ -2656,6 +2799,7 @@
       }
     ],
     "title": "Monumenten",
+    "type": "wms",
     "minZoom": 12,
     "meta": {
       "description": null,
@@ -2678,6 +2822,7 @@
     ],
     "minZoom": 10,
     "title": "Unesco werelderfgoedzones",
+    "type": "wms",
     "url": "/maps/gebieden",
     "meta": {
       "description": null,
@@ -2691,6 +2836,7 @@
     "id": "tcevt",
     "layers": ["evenementen"],
     "title": "Evenementen",
+    "type": "wms",
     "url": "/maps/evenementen",
     "detailUrl": "geosearch/evenementen/",
     "detailItem": "evenementen",
@@ -2721,6 +2867,7 @@
     ],
     "minZoom": 11,
     "title": "Grondmonsters",
+    "type": "wms",
     "url": "/maps/bodem",
     "meta": {
       "description": null,
@@ -2748,6 +2895,7 @@
       }
     ],
     "title": "Grondwatermonsters",
+    "type": "wms",
     "url": "/maps/bodem",
     "meta": {
       "description": null,
@@ -2776,6 +2924,7 @@
     ],
     "minZoom": 11,
     "title": "Grondmonsters asbest",
+    "type": "wms",
     "url": "/maps/bodem",
     "meta": {
       "description": null,
@@ -2790,6 +2939,7 @@
     "layers": ["cpt"],
     "iconUrl": "/assets/images/map-legend/icon-bro-sondering.png",
     "title": "Geotechnische sonderingen (CPT BRO)",
+    "type": "wms",
     "url": "https://geodata.nationaalgeoregister.nl/brocpt/wms?",
     "external": true,
     "meta": {
@@ -2824,6 +2974,7 @@
       }
     ],
     "title": "Explosieven - Inslagen",
+    "type": "wms",
     "url": "/maps/bommenkaart",
     "detailUrl": "geosearch/search/",
     "detailItem": "bominslag",
@@ -2853,6 +3004,7 @@
       }
     ],
     "title": "Explosieven - Verdachte gebieden",
+    "type": "wms",
     "url": "/maps/bommenkaart",
     "meta": {
       "description": null,
@@ -2867,6 +3019,7 @@
     "layers": ["gevrijwaarde_gebieden"],
     "imageRule": "Gevrijwaarde gebieden",
     "title": "Explosieven - Gevrijwaarde gebieden",
+    "type": "wms",
     "url": "/maps/bommenkaart",
     "meta": {
       "description": null,
@@ -2891,6 +3044,7 @@
       }
     ],
     "title": "Explosieven - Uitgevoerde CE-onderzoeken",
+    "type": "wms",
     "url": "/maps/bommenkaart",
     "meta": {
       "description": null,
@@ -2914,6 +3068,7 @@
       }
     ],
     "title": "LPG-vulpunten - Risicozones",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
@@ -2933,6 +3088,7 @@
       }
     ],
     "title": "LPG-afleverzuilen - Risicozones",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
@@ -2955,6 +3111,7 @@
       }
     ],
     "title": "LPG-tanks - Risicozones",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
@@ -2974,6 +3131,7 @@
       }
     ],
     "title": "LPG-stations - Risicozones",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
@@ -2986,6 +3144,7 @@
     "id": "mvsw",
     "layers": ["risicozonesspoorweg"],
     "title": "Spoorwegen - Risicozones",
+    "type": "wms",
     "url": "/maps/externeveiligheid",
     "meta": {
       "description": null,
@@ -2999,6 +3158,7 @@
     "id": "mvvw",
     "layers": ["risicozonesvaarweg"],
     "title": "Vaarwegen - Risicozones",
+    "type": "wms",
     "url": "/maps/externeveiligheid",
     "meta": {
       "description": null,
@@ -3031,6 +3191,7 @@
       }
     ],
     "title": "Veiligheidsafstanden",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "economie-en-toerisme", "ruimte-en-topografie"],
@@ -3050,6 +3211,7 @@
       }
     ],
     "title": "Bedrijven - Bronnen en risicozones",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "economie-en-toerisme", "ruimte-en-topografie"],
@@ -3063,6 +3225,7 @@
     "id": "mvi",
     "layers": ["overigerisicobedrijfinvloedsgebied"],
     "title": "Bedrijven - Invloedsgebieden",
+    "type": "wms",
     "url": "/maps/externeveiligheid",
     "meta": {
       "description": null,
@@ -3083,6 +3246,7 @@
       }
     ],
     "title": "Bedrijven - Terreingrenzen",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "economie-en-toerisme", "ruimte-en-topografie"],
@@ -3094,6 +3258,7 @@
   {
     "id": "aardgas",
     "title": "Aardgasleiding",
+    "type": "wms",
     "layers": [
       "milieu_veiligheid_aardgasbuisleidingen",
       "milieu_veiligheid_aardgasbuisleidingen_legenda"
@@ -3110,6 +3275,7 @@
   {
     "id": "aardgaspr106",
     "title": "Plaatsgebonden risico 10-6",
+    "type": "wms",
     "layers": ["risicozonesaardgaspr106"],
     "url": "/maps/externeveiligheid",
     "meta": {
@@ -3124,6 +3290,7 @@
     "id": "aardgas100let",
     "layers": ["risicozonesaardgas100let"],
     "title": "100% Letaliteitsafstand",
+    "type": "wms",
     "url": "/maps/externeveiligheid",
     "meta": {
       "description": null,
@@ -3137,6 +3304,7 @@
     "id": "aardgas1let",
     "layers": ["risicozonesaardgas1let"],
     "title": "1% Letaliteitsafstand",
+    "type": "wms",
     "url": "/maps/externeveiligheid",
     "meta": {
       "description": null,
@@ -3150,6 +3318,7 @@
     "id": "aardgasbel",
     "layers": ["risicozonesbelemmeringenstrook"],
     "title": "Belemmeringenstrook",
+    "type": "wms",
     "url": "/maps/externeveiligheid",
     "meta": {
       "description": null,
@@ -3179,6 +3348,7 @@
       }
     ],
     "title": "Aardgasbuisleidingen - Risicozones",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "openbare-orde-en-veiligheid", "ruimte-en-topografie"],
@@ -3198,6 +3368,7 @@
       }
     ],
     "title": "Industrie - Geluidszones",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "verkeer", "economie-en-toerisme"],
@@ -3210,6 +3381,7 @@
     "id": "mgsw",
     "layers": ["spoorwegen"],
     "title": "Spoorwegen - Geluidszones",
+    "type": "wms",
     "url": "/maps/planologischegeluidszones",
     "meta": {
       "description": null,
@@ -3223,6 +3395,7 @@
     "id": "mgpm",
     "layers": ["metro"],
     "title": "Metro - Geluidszones",
+    "type": "wms",
     "url": "/maps/planologischegeluidszones",
     "meta": {
       "description": null,
@@ -3244,6 +3417,7 @@
       }
     ],
     "title": "Schiphol - Ruimtelijke beperkingen",
+    "type": "wms",
     "url": "/maps/planologischezonesschiphol",
     "meta": {
       "description": null,
@@ -3286,6 +3460,7 @@
       }
     ],
     "title": "Schiphol - Maatgevende toetshoogte",
+    "type": "wms",
     "url": "/maps/planologischezonesschiphol",
     "meta": {
       "description": null,
@@ -3328,6 +3503,7 @@
       }
     ],
     "title": "Schiphol - Toetshoogte i.v.m. radar",
+    "type": "wms",
     "url": "/maps/planologischezonesschiphol",
     "meta": {
       "description": null,
@@ -3341,6 +3517,7 @@
     "id": "mgvvgsh",
     "layers": ["vogelvrijwaringsgebiedschiphol"],
     "title": "Schiphol - Vogelvrijwaringsgebied",
+    "type": "wms",
     "imageRule": "Vogelvrijwaringsgebied",
     "url": "/maps/planologischezonesschiphol",
     "meta": {
@@ -3365,6 +3542,7 @@
       }
     ],
     "title": "Reclamebelastingtarieven",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
@@ -3400,6 +3578,7 @@
       }
     ],
     "title": "Winkelgebieden",
+    "type": "wms",
     "url": "/maps/winkgeb",
     "detailUrl": "geosearch/winkgeb/",
     "detailItem": "winkgeb",
@@ -3416,6 +3595,7 @@
     "id": "biz",
     "layers": ["biz_polygons"],
     "title": "Bedrijfsinvesteringszones",
+    "type": "wms",
     "imageRule": "Bedrijfsinvesteringszone",
     "url": "/maps/biz",
     "detailUrl": "geosearch/biz/",
@@ -3458,6 +3638,7 @@
     ],
     "minZoom": 11,
     "title": "Vestigingen - Bouw",
+    "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
     "detailItem": "bouw",
@@ -3492,6 +3673,7 @@
     ],
     "minZoom": 11,
     "title": "Vestigingen - Cultuur, sport, recreatie",
+    "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
     "detailItem": "cultuur_sport_recreatie",
@@ -3526,6 +3708,7 @@
     ],
     "minZoom": 11,
     "title": "Vestigingen - Financiële dienstv., verhuur van (on)roerend goed",
+    "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
     "detailItem": "financiele_dienstverlening_verhuur",
@@ -3569,6 +3752,7 @@
     ],
     "minZoom": 11,
     "title": "Vestigingen - Handel, vervoer, opslag",
+    "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
     "detailItem": "handel_vervoer_opslag",
@@ -3612,6 +3796,7 @@
     ],
     "minZoom": 11,
     "title": "Vestigingen - Horeca",
+    "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
     "detailItem": "horeca",
@@ -3646,6 +3831,7 @@
     ],
     "minZoom": 11,
     "title": "Vestigingen - Informatie, telecommunicatie",
+    "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
     "detailItem": "informatie_telecommunicatie",
@@ -3686,6 +3872,7 @@
     ],
     "minZoom": 11,
     "title": "Vestigingen - Landbouw",
+    "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
     "detailItem": "landbouw",
@@ -3717,6 +3904,7 @@
     ],
     "minZoom": 11,
     "title": "Vestigingen - Overheid, onderwijs, zorg",
+    "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
     "detailItem": "overheid_onderwijs_zorg",
@@ -3755,6 +3943,7 @@
     ],
     "minZoom": 11,
     "title": "Vestigingen - Persoonlijke dienstverlening",
+    "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
     "detailItem": "persoonlijke_dienstverlening",
@@ -3787,6 +3976,7 @@
     ],
     "minZoom": 11,
     "title": "Vestigingen - Productie, installatie, reparatie",
+    "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
     "detailItem": "productie_installatie_reparatie",
@@ -3843,6 +4033,7 @@
     ],
     "minZoom": 11,
     "title": "Vestigingen - Zakelijke dienstverlening",
+    "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
     "detailItem": "zakelijke_dienstverlening",
@@ -3877,6 +4068,7 @@
     ],
     "minZoom": 11,
     "title": "Vestigingen - Overige",
+    "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
     "detailItem": "overige",
@@ -3893,6 +4085,7 @@
     "layers": ["panorama_new"],
     "minZoom": 11,
     "title": "Panoramabeelden - 2020 WOZ",
+    "type": "wms",
     "imageRule": "2020",
     "url": "/maps/panorama",
     "params": {
@@ -3914,6 +4107,7 @@
     "imageRule": "2020",
     "minZoom": 11,
     "title": "Panoramabeelden - 2020",
+    "type": "wms",
     "url": "/maps/panorama",
     "params": {
       "mission_year": 2020,
@@ -3933,6 +4127,7 @@
     "layers": ["panorama_new"],
     "minZoom": 11,
     "title": "Panoramabeelden - 2019 WOZ",
+    "type": "wms",
     "imageRule": "2019",
     "url": "/maps/panorama",
     "params": {
@@ -3954,6 +4149,7 @@
     "imageRule": "2019",
     "minZoom": 11,
     "title": "Panoramabeelden - 2019",
+    "type": "wms",
     "url": "/maps/panorama",
     "params": {
       "mission_year": 2019,
@@ -3973,6 +4169,7 @@
     "layers": ["panorama_new"],
     "minZoom": 11,
     "title": "Panoramabeelden - 2018 WOZ",
+    "type": "wms",
     "imageRule": "2018",
     "url": "/maps/panorama",
     "params": {
@@ -3994,6 +4191,7 @@
     "imageRule": "2018",
     "minZoom": 11,
     "title": "Panoramabeelden - 2018",
+    "type": "wms",
     "url": "/maps/panorama",
     "params": {
       "mission_year": 2018,
@@ -4013,6 +4211,7 @@
     "layers": ["panorama_new"],
     "minZoom": 11,
     "title": "Panoramabeelden - 2017 WOZ",
+    "type": "wms",
     "imageRule": "2017",
     "url": "/maps/panorama",
     "params": {
@@ -4034,6 +4233,7 @@
     "imageRule": "2017",
     "minZoom": 11,
     "title": "Panoramabeelden - 2017",
+    "type": "wms",
     "url": "/maps/panorama",
     "params": {
       "mission_year": 2017,
@@ -4054,6 +4254,7 @@
     "imageRule": "2016",
     "minZoom": 11,
     "title": "Panoramabeelden - 2016",
+    "type": "wms",
     "url": "/maps/panorama",
     "params": {
       "mission_year": 2016,
@@ -4095,6 +4296,7 @@
     ],
     "minZoom": 11,
     "title": "Panoramabeelden",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
@@ -4126,6 +4328,7 @@
     ],
     "minZoom": 11,
     "title": "Panoramabeelden - WOZ",
+    "type": "wms",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
@@ -4147,6 +4350,7 @@
       "categorie": "ouder"
     },
     "title": "Panden ouder dan 1960",
+    "type": "wms",
     "url": "/maps/lood",
     "meta": {
       "description": null,
@@ -4200,6 +4404,7 @@
       }
     ],
     "title": "Panden naar bouwjaar",
+    "type": "wms",
     "url": "/maps/bag",
     "meta": {
       "description": null,
