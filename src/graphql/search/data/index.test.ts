@@ -14,6 +14,7 @@ jest.mock('./config', () => ({
       type: 'users',
       labelSingular: 'User',
       label: 'Users',
+      searchParam: 'q',
       params: {
         foo: 'var',
       },
@@ -23,6 +24,7 @@ jest.mock('./config', () => ({
       type: 'posts',
       labelSingular: 'Post',
       label: 'Posts',
+      searchParam: 'query',
     },
   ],
   DATA_SEARCH_LIMIT: 12,
@@ -74,7 +76,7 @@ describe('dataResolver', () => {
       expect(mockDataLoader).toHaveBeenCalledTimes(2)
       expect(mockDataLoader.mock.calls).toEqual([
         [`https://api.endpoint.com/users/?q=${SEARCH_TERM}&page=1&foo=var`],
-        [`https://api.endpoint.com/posts/?q=${SEARCH_TERM}&page=1`],
+        [`https://api.endpoint.com/posts/?query=${SEARCH_TERM}&page=1`],
       ])
 
       mockDataLoader.mockReset()
@@ -164,8 +166,11 @@ describe('dataResolver', () => {
       // Called once for every endpoint
       expect(mockDataLoader).toHaveBeenCalledTimes(2)
 
-      // Then function normalizeResults will be called with the combination of DATA_SEARCH_ENDPOINTS and the result from the dataloader
-      expect(mockNormalizeResults.mock.calls).toEqual([[DATA], [DATA]])
+      // Then function normalizeResults will be called with the combination of DATA_SEARCH_ENDPOINTS and the result from the dataloader including the type
+      expect(mockNormalizeResults.mock.calls).toEqual([
+        [DATA, NORMALIZED[0].type],
+        [DATA, NORMALIZED[1].type],
+      ])
     })
 
     it('and handles pagination', async () => {
@@ -262,7 +267,7 @@ describe('dataResolver', () => {
       // And clear the cache
       expect(mockClear.mock.calls).toEqual([
         [`https://api.endpoint.com/users/?q=${SEARCH_TERM}&page=1&foo=var`],
-        [`https://api.endpoint.com/posts/?q=${SEARCH_TERM}&page=1`],
+        [`https://api.endpoint.com/posts/?query=${SEARCH_TERM}&page=1`],
       ])
     })
   })

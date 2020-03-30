@@ -10,6 +10,7 @@ import {
   DATA_SEARCH_MAX_RESULTS,
   DATA_SEARCH_LIMIT,
   DATA_SEARCH_FILTER,
+  DataSearchType,
 } from './config'
 import getFilters from './filters'
 import { Context } from '../../config'
@@ -29,7 +30,7 @@ const index = async (
   limit = page || !limit ? DATA_SEARCH_LIMIT : limit
   page = page || 1 // Get the page from the input, otherwise use the default
 
-  let endpoints: Array<Object> = []
+  let endpoints: Array<DataSearchType> = []
 
   // If there are filters in the request, not all endpoints should be called from DataLoader
   if (filterInput && filterInput.length > 0) {
@@ -49,8 +50,9 @@ const index = async (
   // Get the results from the DataLoader
   const dataloaderResults: DataSearchResultType[] = await Promise.all(
     // Construct the keys e.g. the URLs that should be loaded or fetched
-    endpoints.map(async ({ endpoint, type, params, label, labelSingular }: any) => {
-      const query = queryString.stringify({ q, page, ...(params || {}) })
+    endpoints.map(async ({ endpoint, type, searchParam, params, label, labelSingular }) => {
+      const query = queryString.stringify({ [searchParam]: q, page, ...(params || {}) })
+
       const key = `${endpoint}/?${query}`
       const result = await loaders.data.load(key)
       const { status, value } = result
@@ -76,7 +78,7 @@ const index = async (
         type,
         results:
           results.length > 0 // TODO: Add test to see if the corect number of results is returned
-            ? results.slice(0, limit).map((result: Object) => normalizeResults(result))
+            ? results.slice(0, limit).map((result: Object) => normalizeResults(result, type))
             : [],
       }
     }),
