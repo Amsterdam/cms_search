@@ -172,6 +172,7 @@
     "params": {
       "categorie": 6
     },
+    "url": "/maps/eigendommen",
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
