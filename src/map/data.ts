@@ -1,6 +1,6 @@
 import Fuse from 'fuse.js'
 import querystring, { ParsedUrlQueryInput } from 'querystring'
-import { Meta as CollectionMeta, RawMapCollection } from '../generated/map-collection'
+import { RawMapCollection } from '../generated/map-collection'
 import { LegendItem, RawMapLayer } from '../generated/map-layer'
 import { RawTheme } from '../generated/theme'
 
@@ -162,15 +162,9 @@ function composeMapCollections(
       }
     })
 
-    const meta: CollectionMeta = {
-      ...collection.meta,
-      thumbnail: new URL(collection.meta.thumbnail, process.env.CMS_URL).toString(),
-    }
-
     return {
       ...collection,
       mapLayers: collectionLayers,
-      meta,
       href: createMapCollectionHref(collection, layers),
     }
   })
