@@ -173,6 +173,7 @@ export type MapCollection = {
   title: Scalars['String']
   mapLayers: Array<MapLayer>
   meta: Meta
+  href: Scalars['String']
 }
 
 export type MapCollectionSearchResult = {
@@ -206,6 +207,7 @@ export type MapLayer = {
   legendItems?: Maybe<Array<LegendItem>>
   themes: Array<Theme>
   meta: Meta
+  href: Scalars['String']
 }
 
 export type MapLayerSearchResult = {
@@ -661,6 +663,7 @@ export type MapCollectionResolvers<
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   mapLayers?: Resolver<Array<ResolversTypes['MapLayer']>, ParentType, ContextType>
   meta?: Resolver<ResolversTypes['Meta'], ParentType, ContextType>
+  href?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
@@ -700,6 +703,7 @@ export type MapLayerResolvers<
   legendItems?: Resolver<Maybe<Array<ResolversTypes['LegendItem']>>, ParentType, ContextType>
   themes?: Resolver<Array<ResolversTypes['Theme']>, ParentType, ContextType>
   meta?: Resolver<ResolversTypes['Meta'], ParentType, ContextType>
+  href?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 

@@ -167,6 +167,7 @@ const schema = gql`
     title: String!
     mapLayers: [MapLayer!]!
     meta: Meta!
+    href: String!
   }
 
   type MapLayer {
@@ -192,6 +193,7 @@ const schema = gql`
     legendItems: [LegendItem!]
     themes: [Theme!]!
     meta: Meta!
+    href: String!
   }
 
   type Theme {
