@@ -78,15 +78,17 @@ const schema = gql`
     pageInfo: PageInfo!
   }
 
-  type MapLayerSearchResult {
+  type MapLayerSearchResult implements SearchResult {
     totalCount: Int!
     results: [MapLayer!]!
+    filters: [Filter!]
     pageInfo: PageInfo!
   }
 
-  type MapCollectionSearchResult {
+  type MapCollectionSearchResult implements SearchResult {
     totalCount: Int!
     results: [MapCollection!]!
+    filters: [Filter!]
     pageInfo: PageInfo!
   }
 
