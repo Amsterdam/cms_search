@@ -4363,7 +4363,7 @@
   },
   {
     "id": "bwjr",
-    "layers": ["pand leeftijden"],
+    "layers": ["bouwjaar"],
     "legendItems": [
       {
         "title": "Onbekend"

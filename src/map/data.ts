@@ -101,6 +101,8 @@ function composeMapLayer(
   themes: RawTheme[],
   collections: RawMapCollection[],
 ): ComposedMapLayer {
+  const parentLayer = findParentLayer(layer, layers)
+  const collection = findNearestCollection(parentLayer ?? layer, collections)
   const themeIds = layer.meta?.themes ?? []
   const params = layer.params
     ? querystring.stringify(layer.params as ParsedUrlQueryInput)
@@ -110,7 +112,7 @@ function composeMapLayer(
     ...layer,
     themes: filterBy(themes, 'id', themeIds),
     legendItems: layer.legendItems
-      ? normalizeLegendItems(layer.id, layer.legendItems, layers)
+      ? normalizeLegendItems(collection.id, layer.legendItems, layers)
       : undefined,
     minZoom: layer.minZoom ?? DEFAULT_MIN_ZOOM,
     maxZoom: DEFAULT_MAX_ZOOM,
@@ -126,7 +128,7 @@ function createMapLayerHref(
   collections: RawMapCollection[],
 ) {
   // Find parent layer if layer has no children.
-  const parentLayer = !layer.legendItems ? findParentLayer(layer, layers) : null
+  const parentLayer = findParentLayer(layer, layers)
   // Find the collection the layer belongs to.
   const collection = findNearestCollection(parentLayer ?? layer, collections)
 
@@ -157,7 +159,6 @@ function composeMapCollections(
         ...composeMapLayer(mapLayer, layers, themes, collections),
         // Overwrite fields from layer with collection layer fields where applicable.
         title: collectionLayer.title ?? mapLayer.title,
-        // The ID of the map layer when defined as a collection layer, is a combination of the IDs of the collection and the map layer to prevent duplication when it is selected.
         id: composeId(collection.id, mapLayer.id),
       }
     })
@@ -180,7 +181,7 @@ function createMapCollectionHref(collection: RawMapCollection, layers: RawMapLay
 }
 
 function normalizeLegendItems(
-  parentId: string,
+  collectionId: string,
   legendItems: LegendItem[],
   layers: RawMapLayer[],
 ): MixedLegendItem[] {
@@ -201,8 +202,7 @@ function normalizeLegendItems(
         // Overwrite fields from layer with legend fields where applicable.
         imageRule: legendItem.imageRule ?? mapLayer.imageRule,
         title: legendItem.title ?? mapLayer.title,
-        // The ID of the map layer when defined as legend item, is a combination of the IDs of the map layer and the parent map layer it's used in to prevent duplication when it is selected.
-        id: composeId(parentId, legendItem.id),
+        id: composeId(collectionId, legendItem.id),
         minZoom: mapLayer.minZoom ?? DEFAULT_MIN_ZOOM,
         maxZoom: DEFAULT_MAX_ZOOM,
         noDetail: !mapLayer.detailUrl,
@@ -269,7 +269,11 @@ function findNearestCollection(layer: RawMapLayer, mapCollections: RawMapCollect
     collection.mapLayers.some(({ id }) => id === layer.id),
   )
 
-  return match ?? null
+  if (!match) {
+    throw new Error(`Unable to find collection with for map layer with id ${layer.id}.`)
+  }
+
+  return match
 }
 
 /**
@@ -282,16 +286,18 @@ function findNearestCollection(layer: RawMapLayer, mapCollections: RawMapCollect
  * @param collection The collection the layer corresponds to.
  */
 function buildSelectionIds(collection: RawMapCollection, layer: RawMapLayer): string[] {
-  // If a layer has no legend items, return the combined id of the layer and the collection.
-  if (!layer.legendItems) {
-    return [`${collection.id}-${layer.id}`]
-  }
-
-  // Otherwise return the combined id of the legend items and the collection.
-  return layer.legendItems
+  const legendIds = (layer.legendItems ?? [])
     .map(item => item.id)
     .filter((id): id is string => !!id)
     .map(id => `${collection.id}-${id}`)
+
+  // If a layer has legend items with ids, return the combined id of the legend items and the collection.
+  if (legendIds.length > 0) {
+    return legendIds
+  }
+
+  // Otherwise return the combined id of the layer and the collection.
+  return [`${collection.id}-${layer.id}`]
 }
 
 function buildMapUrl(layerIds: string[], enabledLayers = layerIds) {
