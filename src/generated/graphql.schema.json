@@ -673,6 +673,16 @@
             "kind": "OBJECT",
             "name": "DatasetSearchResult",
             "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "MapCollectionSearchResult",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "MapLayerSearchResult",
+            "ofType": null
           }
         ]
       },
@@ -2811,6 +2821,26 @@
             "deprecationReason": null
           },
           {
+            "name": "filters",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Filter",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "pageInfo",
             "description": "",
             "args": [],
@@ -2828,7 +2858,13 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "SearchResult",
+            "ofType": null
+          }
+        ],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -2878,6 +2914,26 @@
             "deprecationReason": null
           },
           {
+            "name": "filters",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Filter",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "pageInfo",
             "description": "",
             "args": [],
@@ -2895,7 +2951,13 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "SearchResult",
+            "ofType": null
+          }
+        ],
         "enumValues": null,
         "possibleTypes": null
       },

@@ -38,6 +38,7 @@ export const mapCollectionSearch: ResolverFn<
   return {
     totalCount: results.length,
     results: paginatedResults,
+    filters: [],
     pageInfo: getPageInfo(results.length, page, limit),
   }
 }
@@ -54,6 +55,7 @@ export const mapLayerSearch: ResolverFn<MapLayerSearchResult, {}, any, QueryMapL
   return {
     totalCount: results.length,
     results: paginatedResults,
+    filters: [],
     pageInfo: getPageInfo(results.length, page, limit),
   }
 }

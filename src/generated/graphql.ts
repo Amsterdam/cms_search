@@ -176,10 +176,11 @@ export type MapCollection = {
   href: Scalars['String']
 }
 
-export type MapCollectionSearchResult = {
+export type MapCollectionSearchResult = SearchResult & {
   __typename?: 'MapCollectionSearchResult'
   totalCount: Scalars['Int']
   results: Array<MapCollection>
+  filters?: Maybe<Array<Filter>>
   pageInfo: PageInfo
 }
 
@@ -210,10 +211,11 @@ export type MapLayer = {
   href: Scalars['String']
 }
 
-export type MapLayerSearchResult = {
+export type MapLayerSearchResult = SearchResult & {
   __typename?: 'MapLayerSearchResult'
   totalCount: Scalars['Int']
   results: Array<MapLayer>
+  filters?: Maybe<Array<Filter>>
   pageInfo: PageInfo
 }
 
@@ -673,6 +675,7 @@ export type MapCollectionSearchResultResolvers<
 > = {
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   results?: Resolver<Array<ResolversTypes['MapCollection']>, ParentType, ContextType>
+  filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
@@ -713,6 +716,7 @@ export type MapLayerSearchResultResolvers<
 > = {
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   results?: Resolver<Array<ResolversTypes['MapLayer']>, ParentType, ContextType>
+  filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
@@ -814,7 +818,11 @@ export type SearchResultResolvers<
   ParentType extends ResolversParentTypes['SearchResult'] = ResolversParentTypes['SearchResult']
 > = {
   __resolveType: TypeResolveFn<
-    'CMSSearchResult' | 'DataSearchResult' | 'DatasetSearchResult',
+    | 'CMSSearchResult'
+    | 'DataSearchResult'
+    | 'DatasetSearchResult'
+    | 'MapCollectionSearchResult'
+    | 'MapLayerSearchResult',
     ParentType,
     ContextType
   >
