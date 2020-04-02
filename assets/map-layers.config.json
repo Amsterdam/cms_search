@@ -4414,5 +4414,71 @@
       "thumbnail": null,
       "date": null
     }
-  }
+  },
+  {
+    "id": "aardgasvrij",
+    "layers": ["buurten", "buurtinitiatieven", "buurten_kookgas"],
+    "legendItems": [
+      {
+        "id": "buurtinitiatieven",
+        "title": "Initiatief gestart",
+        "notSelectable": true
+      },
+      {
+        "title": "All Electric",
+        "imageRule": "All Electric: gestaag aardgasvrij tussen 2020 en 2040"
+      },
+      {
+        "title": "Duurzaam gasnet",
+        "imageRule": "Aardgasvrij gasnet: gestaag tot 70% gasbesparing tot 2040"
+      },
+      {
+        "title": "Warmtenet, al aangesloten",
+        "imageRule": "Al (bijna) volledig op het warmtenet"
+      },
+      {
+        "title": "Bronnet",
+        "imageRule": "Lokale bronnetten: gestaag aardgasvrij tussen 2020 en 2040"
+      },
+      {
+        "title": "Bronnet, 2020-2032",
+        "imageRule": "Lokale bronnetten en warmtenet: gestaag aardgasvrij tussen 2020 en 2032"
+      },
+      {
+        "title": "Warmtenet, 2020-2030",
+        "imageRule": "Warmtenetbuurt: gefaseerd aardgasvrij tussen 2020 en 2030"
+      },
+      {
+        "title": "Warmtenet, 2022-2032",
+        "imageRule": "Warmtenetbuurt: gefaseerd aardgasvrij tussen 2020 en 2032"
+      },
+      {
+        "title": "Warmtenet, vanaf 2030",
+        "imageRule": "Warmtenetbuurt: gefaseerd starten vanaf 2030"
+      },
+      {
+        "title": "Nieuwbouw & transformatie",
+        "imageRule": "Nieuwbouw- en transformatiegebied: volgt de fasering van de gebiedsontwikkeling"
+      },
+      {
+        "title": "Onbebouwd",
+        "imageRule": "Grotendeels onbebouwd"
+      },
+      {
+        "id": "buurten_kookgas",
+        "title": "Kookgas",
+        "notSelectable": true
+      }
+    ],
+    "title": "Aardgasvrij",
+    "url": "/maps/aardgasvrij",
+    "meta": {
+      "description": null,
+      "themes": ["duurzaamheid-en-milieu", "wonen"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  
 ]
