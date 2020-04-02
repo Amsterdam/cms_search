@@ -896,5 +896,21 @@
       "thumbnail": "sites/default/files/images/teaser-kaart-panorama.jpg",
       "date": null
     }
+  },
+  {
+    "id": "energie",
+    "title": "Energie",
+    "mapLayers": [
+      {
+        "id": "aardgasvrij"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": "sites/default/files/images/teaser-kaart-aardgas.jpg",
+      "date": null
+    }
   }
 ]
