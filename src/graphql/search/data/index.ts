@@ -1,21 +1,21 @@
 import queryString from 'querystring'
 import {
+  CombinedDataResult,
   DataSearchResult,
   QueryDataSearchArgs,
-  DataSearchResultType,
 } from '../../../generated/graphql'
-import { normalizeResults } from './normalize'
-import {
-  DATA_SEARCH_ENDPOINTS,
-  DATA_SEARCH_MAX_RESULTS,
-  DATA_SEARCH_LIMIT,
-  DATA_SEARCH_FILTER,
-  DataSearchType,
-} from './config'
-import getFilters from './filters'
 import { Context } from '../../config'
 import CustomError from '../../utils/CustomError'
 import getPageInfo from '../../utils/getPageInfo'
+import {
+  DataSearchType,
+  DATA_SEARCH_ENDPOINTS,
+  DATA_SEARCH_FILTER,
+  DATA_SEARCH_LIMIT,
+  DATA_SEARCH_MAX_RESULTS,
+} from './config'
+import getFilters from './filters'
+import { normalizeResults } from './normalize'
 
 const index = async (
   _: any,
@@ -44,7 +44,7 @@ const index = async (
   // If there are filters in the request, not all endpoints should be called from DataLoader
   if (filterInput && filterInput.length > 0) {
     const filterTypes =
-      filterInput.find(filter => filter.type === DATA_SEARCH_FILTER.type)?.values ?? []
+      filterInput.find((filter) => filter.type === DATA_SEARCH_FILTER.type)?.values ?? []
 
     endpoints = endpoints.filter(({ type }) => filterTypes.includes(type))
 
@@ -55,7 +55,7 @@ const index = async (
   }
 
   // Get the results from the DataLoader
-  const dataloaderResults: DataSearchResultType[] = await Promise.all(
+  const dataloaderResults: CombinedDataResult[] = await Promise.all(
     // Construct the keys e.g. the URLs that should be loaded or fetched
     endpoints.map(async ({ endpoint, type, searchParam, params, label, labelSingular }) => {
       const query = queryString.stringify({ [searchParam]: q, page, ...(params || {}) })

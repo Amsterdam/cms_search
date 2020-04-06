@@ -1,4 +1,6 @@
-import { combineFilters, combineFilterOptions } from './utils'
+import { Filter } from '../../../generated/graphql'
+import { FilterType } from '../../config'
+import { combineFilterOptions, combineFilters } from './utils'
 
 describe('utils', () => {
   const MOCK_FILTER_OPTIONS = [
@@ -37,8 +39,9 @@ describe('utils', () => {
   })
 
   describe('combineFilters', () => {
-    const MOCK_FILTER = [
+    const MOCK_FILTER: Filter[] = [
       {
+        filterType: FilterType.Radio,
         label: 'Test',
         type: 'test',
         options: [
@@ -57,9 +60,10 @@ describe('utils', () => {
     })
 
     it('or when multiple non-matching filters', () => {
-      const input = [
+      const input: Filter[] = [
         ...MOCK_FILTER,
         {
+          filterType: FilterType.Radio,
           label: 'Test 2',
           type: 'test-2',
           options: [

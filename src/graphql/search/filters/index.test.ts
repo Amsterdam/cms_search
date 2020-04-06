@@ -1,6 +1,8 @@
-import filters from './index'
+import { Filter } from '../../../generated/graphql'
+import { FilterType } from '../../config'
 import * as cmsFilters from '../cms/filters'
 import * as datasetsFilters from '../datasets/filters'
+import filters from './index'
 import * as utils from './utils'
 
 // Overwrite the DCAT_ENDPOINTS const to make testing clearer and decoupled from real data
@@ -17,8 +19,9 @@ describe('filters', () => {
   let mockCMSDataloader = jest.fn()
   let mockDatasetsDataloader = jest.fn()
 
-  const FILTERS = [
+  const FILTERS: Filter[] = [
     {
+      filterType: FilterType.Radio,
       type: 'test',
       label: 'Test',
       options: [{ id: 'test-option', label: 'Test option' }],

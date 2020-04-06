@@ -1,14 +1,21 @@
 import {
+  CombinedMapResult,
+  Filter,
   MapCollectionSearchResult,
   MapLayerSearchResult,
+  MapResult,
+  MapSearchInput,
+  MapSearchResult,
   QueryMapCollectionSearchArgs,
   QueryMapLayerSearchArgs,
+  QueryMapSearchArgs,
   ResolverFn,
 } from '../generated/graphql'
-import { DEFAULT_LIMIT } from '../graphql/config'
+import { DEFAULT_LIMIT, FilterType } from '../graphql/config'
 import getPageInfo from '../graphql/utils/getPageInfo'
 import fromFuseResult from '../utils/from-fuse-result'
 import paginate from '../utils/paginate'
+import { LABELS, MapType } from './config'
 import {
   createMapCollectionsFuse,
   createMapLayersFuse,
@@ -31,8 +38,7 @@ export const mapCollectionSearch: ResolverFn<
   any,
   QueryMapCollectionSearchArgs
 > = (_, { q: query, input }): MapCollectionSearchResult => {
-  const page = input?.page ?? 1
-  const limit = input?.limit ?? DEFAULT_LIMIT
+  const { page, limit } = parseInput(input)
   const results = query ? fromFuseResult(mapCollectionsFuse.search(query)) : getAllMapCollections()
   const paginatedResults = paginate(results, page, limit)
 
@@ -48,8 +54,7 @@ export const mapLayerSearch: ResolverFn<MapLayerSearchResult, {}, any, QueryMapL
   _,
   { q: query, input },
 ): MapLayerSearchResult => {
-  const page = input?.page ?? 1
-  const limit = input?.limit ?? DEFAULT_LIMIT
+  const { page, limit } = parseInput(input)
   const results = query ? fromFuseResult(mapLayersFuse.search(query)) : getAllMapLayers()
   const paginatedResults = paginate(results, page, limit)
 
@@ -61,4 +66,97 @@ export const mapLayerSearch: ResolverFn<MapLayerSearchResult, {}, any, QueryMapL
   }
 }
 
-export default mapCollectionSearch
+const MAP_TYPE_FILTER: Filter = {
+  type: 'map-type',
+  label: 'Types',
+  filterType: FilterType.Radio,
+  options: [
+    {
+      id: MapType.Layer,
+      label: LABELS.MAP_LAYERS,
+    },
+    {
+      id: MapType.Collection,
+      label: LABELS.MAP_COLLECTIONS,
+    },
+  ],
+}
+
+export const mapSearch: ResolverFn<MapSearchResult, {}, any, QueryMapSearchArgs> = (
+  _,
+  { q: query, input },
+) => {
+  const { page, limit, selectedType } = parseInput(input)
+  const results: CombinedMapResult[] = selectedType
+    ? [getCombinedResult(selectedType, query, input)]
+    : [
+        getCombinedResult(MapType.Layer, query, input),
+        getCombinedResult(MapType.Collection, query, input),
+      ]
+
+  const totalCount = results.reduce((acc, result) => acc + result.count, 0)
+
+  return {
+    totalCount,
+    results,
+    filters: [MAP_TYPE_FILTER],
+    pageInfo: getPageInfo(totalCount, page, limit),
+  }
+}
+
+function getCombinedResult(
+  type: MapType,
+  query?: string | null,
+  input?: MapSearchInput | null,
+): CombinedMapResult {
+  const { page, limit } = parseInput(input, type)
+  const results: MapResult[] = getResultsForType(type, query)
+  const paginatedResults = paginate(results, page, limit)
+
+  return {
+    type,
+    count: results.length,
+    label: getLabelForType(type),
+    results: paginatedResults,
+  }
+}
+
+function getResultsForType(type: MapType, query?: string | null) {
+  switch (type) {
+    case MapType.Layer:
+      return query ? fromFuseResult(mapLayersFuse.search(query)) : getAllMapLayers()
+    case MapType.Collection:
+      return query ? fromFuseResult(mapCollectionsFuse.search(query)) : getAllMapCollections()
+  }
+}
+
+function getLabelForType(type: MapType) {
+  switch (type) {
+    case MapType.Layer:
+      return LABELS.MAP_LAYERS
+    case MapType.Collection:
+      return LABELS.MAP_COLLECTIONS
+  }
+}
+
+function parseInput(input?: MapSearchInput | null, type?: MapType) {
+  const mapTypeOption = (input?.filters || []).find(({ type }) => type === MAP_TYPE_FILTER.type)
+  const mapType = mapTypeOption?.values[0] ?? null
+
+  return {
+    page: input?.page ?? 1,
+    limit: input?.limit ?? DEFAULT_LIMIT,
+    selectedType: mapType ? determineMapType(mapType) : null,
+  }
+}
+
+function determineMapType(type: string) {
+  switch (type) {
+    case MapType.Layer:
+      return MapType.Layer
+    case MapType.Collection:
+      return MapType.Collection
+  }
+
+  return null
+}

@@ -1,15 +1,15 @@
 import moment from 'moment'
-import { FILTERS } from './config'
+import { getValuesFromES } from '../../../es/cms'
+import { DRUPAL_THEME_FILTER_IDS } from '../../../generated/drupal'
 import {
-  CmsSearchResultType,
+  CmsResult,
+  Filter,
+  FilterOptions,
   QueryArticleSearchArgs,
   QueryPublicationSearchArgs,
   QuerySpecialSearchArgs,
-  Filter,
-  FilterOptions,
 } from '../../../generated/graphql'
-import { getValuesFromES } from '../../../es/cms'
-import { DRUPAL_THEME_FILTER_IDS } from '../../../generated/drupal'
+import { FILTERS } from './config'
 import { ThemeFilterCount } from './filters'
 
 export type QueryCmsSearchArgs =
@@ -49,7 +49,7 @@ function getFormattedDate(date?: number | Date, year?: number, month?: number): 
   return moment(localeDate).format(format)
 }
 
-function getFormattedResults(results: any): Array<CmsSearchResultType> {
+function getFormattedResults(results: any): Array<CmsResult> {
   return results.map(({ _source: result }: any) => {
     const {
       title,
