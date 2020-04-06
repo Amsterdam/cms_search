@@ -1,5 +1,5 @@
 import { Context } from '../../config'
-import getCmsFilters from '../cms/filters'
+import { getThemeFilters } from '../cms/filters'
 import { DCAT_ENDPOINTS } from '../datasets/config'
 import getDatasetsFilters from '../datasets/filters'
 import { combineFilters } from './utils'
@@ -11,7 +11,7 @@ export default async (_: any, {}, { loaders }: Context) => {
       `${process.env.CMS_URL}/jsonapi/taxonomy_term/themes`,
     )
 
-    const [cmsThemeFilters] = getCmsFilters(cmsThemeTaxonomy.value) // And construct the filters
+    const cmsThemeFilters = getThemeFilters(cmsThemeTaxonomy.value) // And construct the filters
 
     // Get the openapi taxonomy from the DataLoader
     const openApiTaxonomy: any = await loaders.datasets.load(DCAT_ENDPOINTS['openapi'])

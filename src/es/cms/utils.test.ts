@@ -1,9 +1,12 @@
-import { getThemeFilter } from './utils'
+import { getThemeFilter, getSubTypeFilter } from './utils'
 
 jest.mock('../../graphql/search/cms/config', () => ({
   FILTERS: {
     THEME: {
       type: 'test',
+    },
+    SUBTYPE: {
+      type: 'subtypeTest',
     },
   },
 }))
@@ -45,6 +48,39 @@ describe('utils', () => {
       ]
 
       expect(getThemeFilter(input)).toEqual(null)
+    })
+  })
+
+  describe('getSubTypeFilter', () => {
+    it('should return an object with the matched enum value from the config', () => {
+      const input = [
+        {
+          type: 'subtypeTest',
+          values: ['subtypeTest:test-filter'],
+        },
+      ]
+
+      expect(getSubTypeFilter(input)).toEqual([{ term: { field_special_type: 'test-filter' } }])
+    })
+
+    it('should return an empty array if there is no matched enum value from the config or when there are no values found in the filter', () => {
+      let input = [
+        {
+          type: 'test123',
+          values: ['test123:filter'],
+        },
+      ]
+
+      expect(getSubTypeFilter(input)).toEqual([])
+
+      input = [
+        {
+          type: 'subtypeTest',
+          values: [''],
+        },
+      ]
+
+      expect(getSubTypeFilter(input)).toEqual([])
     })
   })
 })

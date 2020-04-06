@@ -19,27 +19,23 @@ describe('filters', () => {
   let mockCMSDataloader = jest.fn()
   let mockDatasetsDataloader = jest.fn()
 
-  const FILTERS: Filter[] = [
-    {
-      filterType: FilterType.Radio,
-      type: 'test',
-      label: 'Test',
-      options: [{ id: 'test-option', label: 'Test option' }],
-    },
-  ]
+  const FILTER: Filter = {
+    filterType: FilterType.Radio,
+    type: 'test',
+    label: 'Test',
+    options: [{ id: 'test-option', label: 'Test option' }],
+  }
 
   beforeEach(() => {
-    mockGetCmsFilters = jest.spyOn(cmsFilters, 'default').mockReturnValueOnce(FILTERS)
-    mockGetDatasetsFilters = jest.spyOn(datasetsFilters, 'default').mockReturnValueOnce(FILTERS)
-    mockCombineFilters = jest
-      .spyOn(utils, 'combineFilters')
-      .mockReturnValueOnce([...FILTERS, ...FILTERS])
+    mockGetCmsFilters = jest.spyOn(cmsFilters, 'getThemeFilters').mockReturnValueOnce(FILTER)
+    mockGetDatasetsFilters = jest.spyOn(datasetsFilters, 'default').mockReturnValueOnce([FILTER])
+    mockCombineFilters = jest.spyOn(utils, 'combineFilters').mockReturnValueOnce([FILTER, FILTER])
 
     mockCMSDataloader = jest.fn(() => ({
-      value: FILTERS,
+      value: FILTER,
     }))
     mockDatasetsDataloader = jest.fn(() => ({
-      value: FILTERS,
+      value: FILTER,
     }))
   })
 
@@ -62,10 +58,10 @@ describe('filters', () => {
     await filters({}, {}, CONTEXT)
 
     expect(mockCMSDataloader).toHaveBeenCalled()
-    expect(mockGetCmsFilters).toHaveBeenCalledWith(FILTERS)
+    expect(mockGetCmsFilters).toHaveBeenCalledWith(FILTER)
 
     expect(mockDatasetsDataloader).toHaveBeenCalled()
-    expect(mockGetDatasetsFilters).toHaveBeenCalledWith(FILTERS)
+    expect(mockGetDatasetsFilters).toHaveBeenCalledWith(FILTER)
   })
 
   it('and return the output form the combineResults function', async () => {
@@ -79,9 +75,9 @@ describe('filters', () => {
 
     const output = await filters({}, {}, CONTEXT)
 
-    expect(mockCombineFilters).toHaveBeenCalledWith([...FILTERS, ...FILTERS])
+    expect(mockCombineFilters).toHaveBeenCalledWith([FILTER, FILTER])
 
-    expect(output).toEqual([...FILTERS, ...FILTERS])
+    expect(output).toEqual([FILTER, FILTER])
   })
 
   it('unless something goes wrong', async () => {

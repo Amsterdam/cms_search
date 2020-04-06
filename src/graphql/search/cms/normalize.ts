@@ -10,7 +10,7 @@ import {
   QuerySpecialSearchArgs,
 } from '../../../generated/graphql'
 import { FILTERS } from './config'
-import { ThemeFilterCount } from './filters'
+import { ThemeFilterCount, SubTypeFilterCount } from './filters'
 
 export type QueryCmsSearchArgs =
   | QueryArticleSearchArgs
@@ -26,6 +26,15 @@ export type JsonAPI = {
 type Attributes = {
   drupal_internal__tid: number
   name: string
+}
+
+export type ESFilters = {
+  key: string
+  doc_count: number
+}
+
+function getCapitalizedString(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
 function getFormattedDate(date?: number | Date, year?: number, month?: number): string {
@@ -103,7 +112,7 @@ function getThemeFilterOptions(
 ): Array<FilterOptions> {
   return result.data.map(({ attributes }) => {
     const id = attributes.drupal_internal__tid
-    const { count } = themeCount?.find(count => count.key === id) || {}
+    const { count } = themeCount?.find((count) => count.key === id) || {}
 
     const [key] = [...DRUPAL_THEME_FILTER_IDS].find(([, value]) => value === id) || []
 
@@ -142,6 +151,21 @@ function getDateFilterOptions(): Array<FilterOptions> {
   })
 }
 
+function getSubTypeFilterOptions(
+  filters: Array<ESFilters>,
+  subTypeCount?: Array<SubTypeFilterCount>,
+): Array<FilterOptions> {
+  return filters.map(({ key }) => {
+    const { count } = subTypeCount?.find((count) => count.key === key) || {}
+
+    return {
+      id: `${FILTERS['SUBTYPE'].type}:${key}`,
+      label: getCapitalizedString(key),
+      count: count || 0,
+    }
+  })
+}
+
 function formatThemeFilters(themeTaxonomy: JsonAPI, themeCount?: Array<ThemeFilterCount>): Filter {
   const { type, label, filterType } = FILTERS['THEME']
 
@@ -164,6 +188,26 @@ function formatDateFilters(): Filter {
   }
 }
 
+function formatSubTypeFilters(
+  filters: Array<ESFilters>,
+  subTypeCount?: Array<SubTypeFilterCount>,
+): Filter {
+  const { type, label, filterType } = FILTERS['SUBTYPE']
+
+  return {
+    type,
+    label,
+    filterType,
+    options: getSubTypeFilterOptions(filters, subTypeCount),
+  }
+}
+
 export default getFormattedResults
 
-export { getFormattedDate, getThemeFilterOptions, formatThemeFilters, formatDateFilters }
+export {
+  getFormattedDate,
+  getThemeFilterOptions,
+  formatThemeFilters,
+  formatDateFilters,
+  formatSubTypeFilters,
+}

@@ -1,6 +1,6 @@
 import { Client } from '@elastic/elasticsearch'
 import { SearchResponse } from 'elasticsearch'
-import cmsSchema, { ElasticSearchArgs } from './es.schema'
+import cmsSchema, { ElasticSearchArgs, getSubTypeValues } from './es.schema'
 import { DEFAULT_LIMIT } from '../../graphql/config'
 
 const CMS_ES_INDEX = 'elasticsearch_index_cms_articles_index'
@@ -14,6 +14,14 @@ export function ElasticSearchClient(body: object) {
   return client.search({ index: CMS_ES_INDEX, body: body })
 }
 
+export async function getCmsSubTypesFromElasticSearch(type: string, field: string) {
+  const { buckets } = await ElasticSearchClient(getSubTypeValues(type, field)).then(
+    (r) => r.body.aggregations[`unique_${field}`],
+  )
+
+  return buckets
+}
+
 export async function getCmsFromElasticSearch({
   q,
   limit,
@@ -21,13 +29,14 @@ export async function getCmsFromElasticSearch({
   types,
   filters,
   sort,
+  subType,
 }: ElasticSearchArgs) {
   limit = limit || DEFAULT_LIMIT
   from = from || 0
 
   const results: SearchResponse<any> = await ElasticSearchClient(
-    cmsSchema({ q, limit, from, types, filters, sort }),
-  ).then(r => r.body)
+    cmsSchema({ q, limit, from, types, filters, sort, subType }),
+  ).then((r) => r.body)
 
   const countResults: any = Object.entries(results.aggregations).reduce((acc, [key, value]) => {
     // @ts-ignore
@@ -49,7 +58,7 @@ export async function getCmsFromElasticSearch({
   return {
     results: results.hits.hits,
     totalCount,
-    filterCount: { theme: countResults.theme },
+    filterCount: { ...countResults },
   }
 }
 
