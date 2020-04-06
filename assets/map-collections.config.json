@@ -515,174 +515,6 @@
     }
   },
   {
-    "id": "bdmkw",
-    "title": "Bodemkwaliteit",
-    "mapLayers": [
-      {
-        "id": "mbgm"
-      },
-      {
-        "id": "mbgwm"
-      },
-      {
-        "id": "mbaig"
-      },
-      {
-        "id": "bros"
-      }
-    ],
-    "meta": {
-      "description": null,
-      "themes": [],
-      "datasetIds": [],
-      "thumbnail": "sites/default/files/images/teaser-kaart-bodemkwaliteit.jpg",
-      "date": null
-    }
-  },
-  {
-    "id": "explsvn",
-    "title": "Explosieven",
-    "mapLayers": [
-      {
-        "id": "exin",
-        "title": "Inslagen"
-      },
-      {
-        "id": "exvg",
-        "title": "Verdachte gebieden"
-      },
-      {
-        "id": "exgg",
-        "title": "Gevrijwaarde gebieden"
-      },
-      {
-        "id": "exuo",
-        "title": "Uitgevoerde CE-onderzoeken"
-      }
-    ],
-    "meta": {
-      "description": null,
-      "themes": [],
-      "datasetIds": [],
-      "thumbnail": "sites/default/files/images/teaser-kaart-explosieven.jpg",
-      "date": null
-    }
-  },
-  {
-    "id": "riscz",
-    "title": "Risicozones",
-    "mapLayers": [
-      {
-        "id": "lpgris",
-        "title": "LPG-vulpunten"
-      },
-      {
-        "id": "lpgaf",
-        "title": "LPG-afleverzuilen"
-      },
-      {
-        "id": "lpgtank",
-        "title": "LPG-tanks"
-      },
-      {
-        "id": "lpgstat",
-        "title": "LPG-stations"
-      },
-      {
-        "id": "mvsw",
-        "title": "Spoorwegen"
-      },
-      {
-        "id": "mvvw",
-        "title": "Vaarwegen"
-      },
-      {
-        "id": "mvw",
-        "title": "Wegen"
-      },
-      {
-        "id": "veilafs"
-      },
-      {
-        "id": "bedrris"
-      },
-      {
-        "id": "mvi"
-      },
-      {
-        "id": "bedrter"
-      },
-      {
-        "id": "mvabl",
-        "title": "Aardgasbuisleidingen"
-      }
-    ],
-    "meta": {
-      "description": null,
-      "themes": [],
-      "datasetIds": [],
-      "thumbnail": "sites/default/files/images/teaser-kaart-risicozones.jpg",
-      "date": null
-    }
-  },
-  {
-    "id": "geldzn",
-    "title": "Geluidszones",
-    "mapLayers": [
-      {
-        "id": "gelind",
-        "title": "Industrie"
-      },
-      {
-        "id": "mgsw",
-        "title": "Spoorwegen"
-      },
-      {
-        "id": "mgpm",
-        "title": "Metro"
-      },
-      {
-        "id": "mgpsh"
-      }
-    ],
-    "meta": {
-      "description": null,
-      "themes": [],
-      "datasetIds": [],
-      "thumbnail": "sites/default/files/images/teaser-kaart-geluidszones.jpg",
-      "date": null
-    }
-  },
-  {
-    "id": "schphl",
-    "title": "Schiphol",
-    "mapLayers": [
-      {
-        "id": "mgpsh",
-        "title": "Ruimtelijke beperkingen"
-      },
-      {
-        "id": "mgth",
-        "title": "Maatgevende toetshoogte"
-      },
-      {
-        "id": "mthr",
-        "title": "Toetshoogte i.v.m. radar"
-      },
-      {
-        "id": "mgvvgsh",
-        "title": "Vogelvrijwaringsgebied"
-      }
-    ],
-    "meta": {
-      "description": null,
-      "themes": [],
-      "datasetIds": [],
-      "thumbnail": "sites/default/files/images/teaser-kaart-schiphol.jpg",
-      "date": null
-    }
-  },
-  {
     "id": "wnklgeb",
     "title": "Winkelgebieden",
     "mapLayers": [
@@ -803,6 +635,34 @@
     }
   },
   {
+    "id": "logistk",
+    "title": "Logistiek",
+    "mapLayers": [
+      {
+        "id": "rtsvr"
+      },
+      {
+        "id": "pvrll"
+      },
+      {
+        "id": "mzb"
+      },
+      {
+        "id": "mvw"
+      },
+      {
+        "id": "mzva"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": "sites/default/files/images/teaser-kaart-logistiek.jpg",
+      "date": null
+    }
+  },
+  {
     "id": "ondrgd",
     "title": "Ondergrond",
     "mapLayers": [
@@ -867,30 +727,170 @@
     }
   },
   {
-    "id": "logistk",
-    "title": "Logistiek",
+    "id": "bdmkw",
+    "title": "Bodemkwaliteit",
     "mapLayers": [
       {
-        "id": "rtsvr"
+        "id": "mbgm"
       },
       {
-        "id": "pvrll"
+        "id": "mbgwm"
       },
       {
-        "id": "mzb"
+        "id": "mbaig"
       },
       {
-        "id": "mvw"
-      },
-      {
-        "id": "mzva"
+        "id": "bros"
       }
     ],
     "meta": {
       "description": null,
       "themes": [],
       "datasetIds": [],
-      "thumbnail": "sites/default/files/images/teaser-kaart-logistiek.jpg",
+      "thumbnail": "sites/default/files/images/teaser-kaart-bodemkwaliteit.jpg",
+      "date": null
+    }
+  },
+  {
+    "id": "explsvn",
+    "title": "Explosieven",
+    "mapLayers": [
+      {
+        "id": "exin",
+        "title": "Inslagen"
+      },
+      {
+        "id": "exvg",
+        "title": "Verdachte gebieden"
+      },
+      {
+        "id": "exgg",
+        "title": "Gevrijwaarde gebieden"
+      },
+      {
+        "id": "exuo",
+        "title": "Uitgevoerde CE-onderzoeken"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": "sites/default/files/images/teaser-kaart-explosieven.jpg",
+      "date": null
+    }
+  },
+  {
+    "id": "geldzn",
+    "title": "Geluidszones",
+    "mapLayers": [
+      {
+        "id": "gelind",
+        "title": "Industrie"
+      },
+      {
+        "id": "mgsw",
+        "title": "Spoorwegen"
+      },
+      {
+        "id": "mgpm",
+        "title": "Metro"
+      },
+      {
+        "id": "mgpsh"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": "sites/default/files/images/teaser-kaart-geluidszones.jpg",
+      "date": null
+    }
+  },
+  {
+    "id": "schphl",
+    "title": "Schiphol",
+    "mapLayers": [
+      {
+        "id": "mgpsh",
+        "title": "Ruimtelijke beperkingen"
+      },
+      {
+        "id": "mgth",
+        "title": "Maatgevende toetshoogte"
+      },
+      {
+        "id": "mthr",
+        "title": "Toetshoogte i.v.m. radar"
+      },
+      {
+        "id": "mgvvgsh",
+        "title": "Vogelvrijwaringsgebied"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": "sites/default/files/images/teaser-kaart-schiphol.jpg",
+      "date": null
+    }
+  },
+  {
+    "id": "riscz",
+    "title": "Risicozones",
+    "mapLayers": [
+      {
+        "id": "lpgris",
+        "title": "LPG-vulpunten"
+      },
+      {
+        "id": "lpgaf",
+        "title": "LPG-afleverzuilen"
+      },
+      {
+        "id": "lpgtank",
+        "title": "LPG-tanks"
+      },
+      {
+        "id": "lpgstat",
+        "title": "LPG-stations"
+      },
+      {
+        "id": "mvsw",
+        "title": "Spoorwegen"
+      },
+      {
+        "id": "mvvw",
+        "title": "Vaarwegen"
+      },
+      {
+        "id": "mvw",
+        "title": "Wegen"
+      },
+      {
+        "id": "veilafs"
+      },
+      {
+        "id": "bedrris"
+      },
+      {
+        "id": "mvi"
+      },
+      {
+        "id": "bedrter"
+      },
+      {
+        "id": "mvabl",
+        "title": "Aardgasbuisleidingen"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": [],
+      "datasetIds": [],
+      "thumbnail": "sites/default/files/images/teaser-kaart-risicozones.jpg",
       "date": null
     }
   },
