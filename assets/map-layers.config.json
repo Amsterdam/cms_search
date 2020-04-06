@@ -4343,14 +4343,28 @@
     "layers": ["buurtinitiatieven"],
     "imageRule": "Buurtinitiatieven",
     "title": "City Deal-buurt en particulier initatief",
-    "type": "wms"
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["duurzaamheid-en-milieu", "wonen"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
   },
   {
     "id": "buurten_kookgas",
     "layers": ["buurten_kookgas"],
     "imageRule": ">20% van warmteaansluitingen nog op kookgas",
     "title": "Een aanzienlijk deel van warmteaansluitingen nog op kookgas",
-    "type": "wms"
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["duurzaamheid-en-milieu", "wonen"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
   },
   {
     "id": "aardgasvrij",

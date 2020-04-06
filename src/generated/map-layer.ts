@@ -4,7 +4,7 @@ export interface RawMapLayer {
   type: string
   layers?: string[]
   url?: string
-  meta?: Meta
+  meta: Meta
   detailUrl?: string
   detailItem?: string
   detailIsShape?: boolean
