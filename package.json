@@ -5,7 +5,6 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
-    "prebuild": "npm run generate-drupal-types",
     "build": "tsc --build",
     "generate": "concurrently \"graphql-codegen --config ./src/codegen.yml\" \"npm run generate-drupal-types\" \"npm run generate-asset-types\"",
     "generate-drupal-types": "node scripts/generate-drupal-types.js",
@@ -15,7 +14,7 @@
     "generate-theme-type": "quicktype ./assets/themes.config.json --lang ts --top-level RawTheme --out ./src/generated/theme.ts --just-types --no-enums",
     "postinstall": "cp .env.development .env",
     "test": "npx jest",
-    "serve": "npm run build && node ./lib/",
+    "serve": "npm run generate-drupal-types && npm run build && node ./lib/",
     "start": "concurrently \"nodemon --transpile-only src/index.ts\" \"npm run generate -- --watch\""
   },
   "dependencies": {
