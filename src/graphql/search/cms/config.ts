@@ -1,4 +1,4 @@
-import { FilterTypes } from '../../config'
+import { FilterType } from '../../config'
 
 export enum CmsType {
   Article = 'article',
@@ -8,6 +8,6 @@ export enum CmsType {
 }
 
 export const FILTERS = {
-  THEME: { type: 'theme', label: "Thema's", filterType: FilterTypes.Checkbox },
-  DATE: { type: 'date', label: 'Publicatiedatum', filterType: FilterTypes.Select },
+  THEME: { type: 'theme', label: "Thema's", filterType: FilterType.Checkbox },
+  DATE: { type: 'date', label: 'Publicatiedatum', filterType: FilterType.Select },
 }

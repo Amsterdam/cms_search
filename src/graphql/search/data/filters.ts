@@ -1,12 +1,12 @@
-import { DATA_SEARCH_FILTER, DATA_SEARCH_ENDPOINTS, DataSearchType } from './config'
-import { FilterOptions, Filter, DataSearchResultType } from '../../../generated/graphql'
-import { FilterTypes } from '../../config'
+import { CombinedDataResult, Filter, FilterOptions } from '../../../generated/graphql'
+import { FilterType } from '../../config'
+import { DataSearchType, DATA_SEARCH_ENDPOINTS, DATA_SEARCH_FILTER } from './config'
 
-export default (results: DataSearchResultType[]): Array<Filter> => [
+export default (results: CombinedDataResult[]): Array<Filter> => [
   {
     type: DATA_SEARCH_FILTER.type,
     label: DATA_SEARCH_FILTER.label,
-    filterType: FilterTypes.Radio,
+    filterType: FilterType.Radio,
     options: DATA_SEARCH_ENDPOINTS.map(
       // Return all the available data types as filter options
       (result: DataSearchType): FilterOptions => {

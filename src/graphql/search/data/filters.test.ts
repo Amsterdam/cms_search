@@ -1,5 +1,6 @@
+import { CombinedDataResult } from '../../../generated/graphql'
+import { FilterType } from '../../config'
 import getFilters from './filters'
-import { FilterTypes } from '../../config'
 
 // Overwrite the DATA_SEARCH_FILTER const to make testing clearer and decoupled from real data
 jest.mock('./config', () => ({
@@ -28,7 +29,7 @@ describe('filters', () => {
         type: 'users',
         count: 12,
       },
-    ]
+    ] as CombinedDataResult[]
 
     const output = getFilters(input)
 
@@ -36,7 +37,7 @@ describe('filters', () => {
     expect(output).toEqual([
       {
         label: 'Filter 1',
-        filterType: FilterTypes.Radio,
+        filterType: FilterType.Radio,
         options: [
           { count: 12, id: 'users', label: 'Users' },
           { count: 0, id: 'posts', label: 'Posts' },

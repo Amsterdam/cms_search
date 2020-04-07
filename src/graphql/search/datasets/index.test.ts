@@ -1,9 +1,10 @@
-import datasetResolver from './index'
-import * as filters from './filters'
-import * as normalize from './normalize'
-import * as getPageInfo from '../../utils/getPageInfo'
+import { Filter } from '../../../generated/graphql'
+import { DEFAULT_LIMIT, FilterType } from '../../config'
 import CustomError from '../../utils/CustomError'
-import { DEFAULT_LIMIT } from '../../config'
+import * as getPageInfo from '../../utils/getPageInfo'
+import * as filters from './filters'
+import datasetResolver from './index'
+import * as normalize from './normalize'
 
 // Overwrite the DCAT_ENDPOINTS const to make testing clearer and decoupled from real data
 jest.mock('./config', () => ({
@@ -19,7 +20,9 @@ jest.mock('../../utils/CustomError')
 
 describe('datasetResolver', () => {
   const SEARCH_TERM = 'foo'
-  const FILTERS = [{ type: ' foo', id: 'foo', label: 'Foo', options: [] }]
+  const FILTERS: Filter[] = [
+    { filterType: FilterType.Radio, type: 'foo', label: 'Foo', options: [] },
+  ]
 
   const CONTEXT = {
     loaders: {

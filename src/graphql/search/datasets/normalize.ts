@@ -1,15 +1,15 @@
 import removeMd from 'remove-markdown'
 import { Filter, FilterInput } from '../../../generated/graphql'
+import { FilterType } from '../../config'
 import {
-  FileFormatFilterType,
   AggregationType,
-  MAX_INTRO_LENGTH,
-  PropertyType,
   CatalogFilterOptionsType,
-  properties,
   DCAT_ENDPOINTS,
+  FileFormatFilterType,
+  MAX_INTRO_LENGTH,
+  properties,
+  PropertyType,
 } from './config'
-import { FilterTypes } from '../../config'
 
 /**
  * @example
@@ -39,7 +39,7 @@ function arrayToObject(array: Array<{ label: string }>, keyField: string) {
  */
 function aggregateFileFormats(fileFormats: Array<string>): FileFormatFilterType {
   const result = fileFormats.reduce((aggregation: AggregationType, value) => {
-    const counter = aggregation.find(item => item.name === value)
+    const counter = aggregation.find((item) => item.name === value)
 
     if (counter) {
       counter.count += 1
@@ -162,13 +162,13 @@ function formatFilters(openApiData: any, facets?: Object): Array<Filter> {
     {
       type: properties.theme.type,
       label: "Thema's",
-      filterType: FilterTypes.Checkbox,
+      filterType: FilterType.Checkbox,
       options: getFacetOptions(dcatDocProperties['dcat:theme'].items, facets),
     },
     {
       type: properties.distributionType.type,
       label: 'Verschijningsvorm',
-      filterType: FilterTypes.Radio,
+      filterType: FilterType.Radio,
       options: getFacetOptions(distributionProperties['ams:distributionType'], facets),
     },
   ]

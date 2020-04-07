@@ -3,23 +3,25 @@ const gql = (input: any) => input
 
 const schema = gql`
   union Results =
-      DatasetSearchResultType
-    | CMSSearchResultType
-    | DataSearchResultType
+      DatasetResult
+    | CMSResult
+    | CombinedDataResult
     | MapLayer
     | MapCollection
+    | CombinedMapResult
 
   interface SearchResult {
     totalCount: Int!
+    # TODO: See if results can be made required.
     results: [Results!]
     filters: [Filter!]
     pageInfo: PageInfo!
   }
 
-  interface SearchResultType {
+  interface CombinedResult {
     count: Int!
-    type: String
-    label: String
+    type: String!
+    label: String!
   }
 
   input DataSearchInput {
@@ -50,6 +52,7 @@ const schema = gql`
   input MapSearchInput {
     limit: Int
     page: Int
+    filters: [FilterInput!]
   }
 
   input FilterInput {
@@ -59,21 +62,21 @@ const schema = gql`
 
   type DataSearchResult implements SearchResult {
     totalCount: Int!
-    results: [DataSearchResultType!]!
+    results: [CombinedDataResult!]!
     filters: [Filter!]
     pageInfo: PageInfo!
   }
 
   type DatasetSearchResult implements SearchResult {
     totalCount: Int!
-    results: [DatasetSearchResultType!]
+    results: [DatasetResult!]
     filters: [Filter!]
     pageInfo: PageInfo!
   }
 
   type CMSSearchResult implements SearchResult {
     totalCount: Int!
-    results: [CMSSearchResultType!]
+    results: [CMSResult!]
     filters: [Filter!]
     pageInfo: PageInfo!
   }
@@ -92,11 +95,18 @@ const schema = gql`
     pageInfo: PageInfo!
   }
 
+  type MapSearchResult implements SearchResult {
+    totalCount: Int!
+    results: [CombinedMapResult!]!
+    filters: [Filter!]
+    pageInfo: PageInfo!
+  }
+
   type Filter {
     type: String!
     label: String!
-    options: [FilterOptions!]
-    filterType: String
+    options: [FilterOptions!]!
+    filterType: String!
   }
 
   type FilterOptions {
@@ -109,7 +119,7 @@ const schema = gql`
     uri: String!
   }
 
-  type CMSSearchResultType {
+  type CMSResult {
     id: ID
     type: String!
     label: String
@@ -126,11 +136,46 @@ const schema = gql`
     link: CMSLink
   }
 
-  type DataSearchResultType implements SearchResultType {
-    count: Int!
+  # MapResult is a combination of MapLayer and MapCollection
+  type MapResult {
+    id: ID!
+    title: String!
+    mapLayers: [MapLayer!]
+    meta: Meta!
+    href: String!
     type: String
-    label: String
+    noDetail: Boolean
+    minZoom: Int
+    maxZoom: Int
+    layers: [String!]
+    url: String
+    params: String
+    detailUrl: String
+    detailItem: String
+    detailIsShape: Boolean
+    iconUrl: String
+    imageRule: String
+    notSelectable: Boolean
+    external: Boolean
+    bounds: [[Float!]!]
+    authScope: String
+    category: String
+    legendItems: [LegendItem!]
+    themes: [Theme!]
+  }
+
+  type CombinedDataResult implements CombinedResult {
+    count: Int!
+    type: String!
+    label: String!
     results: [DataResult!]
+  }
+
+  type CombinedMapResult implements CombinedResult {
+    count: Int!
+    type: String!
+    label: String!
+    results: [MapResult!]!
   }
 
   type DataResult {
@@ -142,7 +187,7 @@ const schema = gql`
     datasetdataset: String
   }
 
-  type DatasetSearchResultType {
+  type DatasetResult {
     header: String!
     description: String!
     teaser: String!
@@ -249,6 +294,7 @@ const schema = gql`
     collectionSearch(q: String, input: CMSSearchInput): CMSSearchResult
     mapCollectionSearch(q: String, input: MapSearchInput): MapCollectionSearchResult!
     mapLayerSearch(q: String, input: MapSearchInput): MapLayerSearchResult!
+    mapSearch(q: String, input: MapSearchInput): MapSearchResult!
     filters: [Filter]
   }
 `
