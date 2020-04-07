@@ -7,6 +7,7 @@ import {
 } from '../generated/graphql'
 import { DEFAULT_LIMIT } from '../graphql/config'
 import getPageInfo from '../graphql/utils/getPageInfo'
+import fromFuseResult from '../utils/from-fuse-result'
 import paginate from '../utils/paginate'
 import {
   createMapCollectionsFuse,
@@ -32,7 +33,7 @@ export const mapCollectionSearch: ResolverFn<
 > = (_, { q: query, input }): MapCollectionSearchResult => {
   const page = input?.page ?? 1
   const limit = input?.limit ?? DEFAULT_LIMIT
-  const results = query ? mapCollectionsFuse.search(query) : getAllMapCollections()
+  const results = query ? fromFuseResult(mapCollectionsFuse.search(query)) : getAllMapCollections()
   const paginatedResults = paginate(results, page, limit)
 
   return {
@@ -49,7 +50,7 @@ export const mapLayerSearch: ResolverFn<MapLayerSearchResult, {}, any, QueryMapL
 ): MapLayerSearchResult => {
   const page = input?.page ?? 1
   const limit = input?.limit ?? DEFAULT_LIMIT
-  const results = query ? mapLayersFuse.search(query) : getAllMapLayers()
+  const results = query ? fromFuseResult(mapLayersFuse.search(query)) : getAllMapLayers()
   const paginatedResults = paginate(results, page, limit)
 
   return {
