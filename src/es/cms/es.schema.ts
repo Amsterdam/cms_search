@@ -1,14 +1,38 @@
 import { CmsSearchInput } from '../../generated/graphql'
-import { getSearchQuery, getThemeFilter, getDateFilter } from './utils'
+import { getSearchQuery, getThemeFilter, getDateFilter, getSubTypeFilter } from './utils'
 
 export type ElasticSearchArgs = {
   q: string | null | undefined
   from?: number
+  subType?: string
 } & CmsSearchInput
 
-export default ({ q, limit, from, types = null, filters, sort }: ElasticSearchArgs) => {
+export const getSubTypeValues = (type: string, field: string) => {
+  return {
+    query: {
+      bool: {
+        must: [
+          {
+            terms: {
+              type: [type],
+            },
+          },
+        ],
+      },
+    },
+    size: 9999,
+    aggs: {
+      [`unique_${field}`]: {
+        terms: { field },
+      },
+    },
+  }
+}
+
+export default ({ q, limit, from, types = null, filters, sort, subType }: ElasticSearchArgs) => {
   let shouldQuery: Array<object> = []
   let dateFilter: Array<object> = []
+  let subTypeFilter: Array<object> = []
   let sorting: Array<object | string> = ['_score'] // default sorting on score
 
   let themeFilter: Object | null = null
@@ -20,6 +44,7 @@ export default ({ q, limit, from, types = null, filters, sort }: ElasticSearchAr
   if (filters && filters.length > 0) {
     dateFilter = getDateFilter(types, filters)
     themeFilter = getThemeFilter(filters)
+    subTypeFilter = getSubTypeFilter(filters)
   }
 
   if (sort) {
@@ -56,7 +81,7 @@ export default ({ q, limit, from, types = null, filters, sort }: ElasticSearchAr
         should: shouldQuery,
         filter: {
           bool: {
-            must: [...dateFilter],
+            must: [...dateFilter, ...subTypeFilter],
           },
         },
         minimum_should_match: shouldQuery.length > 0 ? 1 : 0, // At least one of the should rules must match
@@ -82,6 +107,25 @@ export default ({ q, limit, from, types = null, filters, sort }: ElasticSearchAr
           },
         },
       },
+      ...(subType // Get the count for subType as well if a field is provided
+        ? {
+            subType: {
+              filter: {
+                bool: {
+                  // No filters are set, but this is added to maintain consistency
+                  must: [],
+                },
+              },
+              aggs: {
+                count: {
+                  terms: {
+                    field: subType,
+                  },
+                },
+              },
+            },
+          }
+        : {}),
       theme: {
         filter: {
           bool: {

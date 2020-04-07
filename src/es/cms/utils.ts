@@ -81,7 +81,7 @@ function getSearchQuery(q: string) {
             },
           ],
           should: terms
-            .filter(shouldTerm => shouldTerm !== term)
+            .filter((shouldTerm) => shouldTerm !== term)
             .map((shouldTerm: string) => {
               return {
                 term: {
@@ -100,20 +100,20 @@ function getSearchQuery(q: string) {
 
 // Constructs the ES query to filter on theme
 function getThemeFilter(filters: Array<FilterInput>) {
-  const themeFilter = filters.find(filter => filter.type === FILTERS['THEME'].type)
+  const themeFilter = filters.find((filter) => filter.type === FILTERS['THEME'].type)
 
   if (!themeFilter) {
     return null
   }
 
-  const themeFilterValues = themeFilter.values.map(value => {
+  const themeFilterValues = themeFilter.values.map((value) => {
     const filterKey = value.split(':').pop()
     const [, id] = [...DRUPAL_THEME_FILTER_IDS].find(([key]) => key === filterKey) || []
 
     return id || null
   })
 
-  if (!themeFilterValues.some(filterValue => filterValue === null)) {
+  if (!themeFilterValues.some((filterValue) => filterValue === null)) {
     return {
       terms: { field_theme_id: themeFilterValues },
     }
@@ -124,7 +124,7 @@ function getThemeFilter(filters: Array<FilterInput>) {
 
 // Constructs the ES query to filter on date
 function getDateFilter(types: Array<string> | null, filters: Array<FilterInput>) {
-  const dateFilter = filters.find(filter => filter.type === FILTERS['DATE'].type)
+  const dateFilter = filters.find((filter) => filter.type === FILTERS['DATE'].type)
 
   if (dateFilter && dateFilter.values) {
     return dateFilter.values.map((value: any) => {
@@ -178,4 +178,27 @@ function getDateFilter(types: Array<string> | null, filters: Array<FilterInput>)
   return []
 }
 
-export { getSearchQuery, getThemeFilter, getDateFilter }
+// Constructs the ES query to filter on subtype
+function getSubTypeFilter(filters: Array<FilterInput>) {
+  const subTypeFilter = filters.find((filter) => filter.type === FILTERS['SUBTYPE'].type)
+
+  if (subTypeFilter && subTypeFilter.values) {
+    return subTypeFilter.values
+      .flatMap((value) => {
+        let filterValue = value.split(':').pop()
+
+        if (filterValue) {
+          return {
+            term: { field_special_type: filterValue },
+          }
+        }
+
+        return []
+      })
+      .flat()
+  }
+
+  return []
+}
+
+export { getSearchQuery, getThemeFilter, getDateFilter, getSubTypeFilter }
