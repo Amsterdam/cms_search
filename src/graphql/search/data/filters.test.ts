@@ -1,5 +1,4 @@
-import { CombinedDataResult } from '../../../generated/graphql'
-import { FilterType } from '../../config'
+import { CombinedDataResult, FilterType } from '../../../generated/graphql'
 import getFilters from './filters'
 
 // Overwrite the DATA_SEARCH_FILTER const to make testing clearer and decoupled from real data

@@ -1,6 +1,5 @@
 import removeMd from 'remove-markdown'
-import { Filter, FilterInput } from '../../../generated/graphql'
-import { FilterType } from '../../config'
+import { Filter, FilterInput, FilterType } from '../../../generated/graphql'
 import {
   AggregationType,
   CatalogFilterOptionsType,

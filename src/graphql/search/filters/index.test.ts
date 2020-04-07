@@ -1,5 +1,4 @@
-import { Filter } from '../../../generated/graphql'
-import { FilterType } from '../../config'
+import { Filter, FilterType } from '../../../generated/graphql'
 import * as cmsFilters from '../cms/filters'
 import * as datasetsFilters from '../datasets/filters'
 import filters from './index'

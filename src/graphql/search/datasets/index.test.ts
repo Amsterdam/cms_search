@@ -1,5 +1,5 @@
-import { Filter } from '../../../generated/graphql'
-import { DEFAULT_LIMIT, FilterType } from '../../config'
+import { Filter, FilterType } from '../../../generated/graphql'
+import { DEFAULT_LIMIT } from '../../config'
 import CustomError from '../../utils/CustomError'
 import * as getPageInfo from '../../utils/getPageInfo'
 import * as filters from './filters'

@@ -1,6 +1,7 @@
 import {
   CombinedMapResult,
   Filter,
+  FilterType,
   MapCollectionSearchResult,
   MapLayerSearchResult,
   MapResult,
@@ -11,7 +12,7 @@ import {
   QueryMapSearchArgs,
   ResolverFn,
 } from '../generated/graphql'
-import { DEFAULT_LIMIT, FilterType } from '../graphql/config'
+import { DEFAULT_LIMIT } from '../graphql/config'
 import getPageInfo from '../graphql/utils/getPageInfo'
 import fromFuseResult from '../utils/from-fuse-result'
 import paginate from '../utils/paginate'

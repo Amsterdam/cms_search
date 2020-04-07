@@ -138,7 +138,7 @@ export type Filter = {
   type: Scalars['String']
   label: Scalars['String']
   options: Array<FilterOptions>
-  filterType: Scalars['String']
+  filterType: FilterType
 }
 
 export type FilterInput = {
@@ -151,6 +151,12 @@ export type FilterOptions = {
   id: Scalars['String']
   label: Scalars['String']
   count?: Maybe<Scalars['Int']>
+}
+
+export enum FilterType {
+  Radio = 'RADIO',
+  Checkbox = 'CHECKBOX',
+  Select = 'SELECT',
 }
 
 export type LegendItem = {
@@ -498,6 +504,7 @@ export type ResolversTypes = {
   MapResult: ResolverTypeWrapper<MapResult>
   Filter: ResolverTypeWrapper<Filter>
   FilterOptions: ResolverTypeWrapper<FilterOptions>
+  FilterType: FilterType
   PageInfo: ResolverTypeWrapper<PageInfo>
   DataSearchInput: DataSearchInput
   DataSearchResult: ResolverTypeWrapper<DataSearchResult>
@@ -554,6 +561,7 @@ export type ResolversParentTypes = {
   MapResult: MapResult
   Filter: Filter
   FilterOptions: FilterOptions
+  FilterType: FilterType
   PageInfo: PageInfo
   DataSearchInput: DataSearchInput
   DataSearchResult: DataSearchResult
@@ -707,7 +715,7 @@ export type FilterResolvers<
   type?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   options?: Resolver<Array<ResolversTypes['FilterOptions']>, ParentType, ContextType>
-  filterType?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  filterType?: Resolver<ResolversTypes['FilterType'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 

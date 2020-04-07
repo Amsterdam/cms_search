@@ -1,4 +1,4 @@
-import { FilterType } from '../../config'
+import { FilterType } from '../../../generated/graphql'
 
 export enum CmsType {
   Article = 'article',

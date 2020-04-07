@@ -1,5 +1,4 @@
-import { Filter } from '../../../generated/graphql'
-import { FilterType } from '../../config'
+import { Filter, FilterType } from '../../../generated/graphql'
 import { combineFilterOptions, combineFilters } from './utils'
 
 describe('utils', () => {

@@ -1,5 +1,4 @@
-import { Filter, FilterInput } from '../../../generated/graphql'
-import { FilterType } from '../../config'
+import { Filter, FilterInput, FilterType } from '../../../generated/graphql'
 import CustomError from '../../utils/CustomError'
 import * as getPageInfo from '../../utils/getPageInfo'
 import * as filters from './filters'

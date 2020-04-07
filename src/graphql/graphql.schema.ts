@@ -102,11 +102,17 @@ const schema = gql`
     pageInfo: PageInfo!
   }
 
+  enum FilterType {
+    RADIO
+    CHECKBOX
+    SELECT
+  }
+
   type Filter {
     type: String!
     label: String!
     options: [FilterOptions!]!
-    filterType: String!
+    filterType: FilterType!
   }
 
   type FilterOptions {

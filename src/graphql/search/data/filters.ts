@@ -1,5 +1,4 @@
-import { CombinedDataResult, Filter, FilterOptions } from '../../../generated/graphql'
-import { FilterType } from '../../config'
+import { CombinedDataResult, Filter, FilterOptions, FilterType } from '../../../generated/graphql'
 import { DataSearchType, DATA_SEARCH_ENDPOINTS, DATA_SEARCH_FILTER } from './config'
 
 export default (results: CombinedDataResult[]): Array<Filter> => [
