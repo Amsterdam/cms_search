@@ -105,11 +105,11 @@ const schema = gql`
   type Filter {
     type: String!
     label: String!
-    options: [FilterOptions!]!
+    options: [FilterOption!]!
     filterType: String!
   }
 
-  type FilterOptions {
+  type FilterOption {
     id: String!
     label: String!
     count: Int
@@ -161,7 +161,7 @@ const schema = gql`
     authScope: String
     category: String
     legendItems: [LegendItem!]
-    themes: [Theme!]
+    themes: [Theme!]!
   }
 
   type CombinedDataResult implements CombinedResult {

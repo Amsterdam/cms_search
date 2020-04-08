@@ -1,13 +1,13 @@
-import { Filter, FilterOptions } from '../../../generated/graphql'
+import { Filter, FilterOption } from '../../../generated/graphql'
 
 // Combine filter options and return the new filteroptions
-export function combineFilterOptions(options: Array<FilterOptions>) {
+export function combineFilterOptions(options: Array<FilterOption>) {
   return options.reduce((acc, cur) => {
     if (!acc.some(({ id }) => id === cur.id)) {
       return [...acc, cur] // Add the non-matching ID to the options array
     }
     return acc
-  }, [] as Array<FilterOptions>)
+  }, [] as Array<FilterOption>)
 }
 
 // Combine filters and return the new filter(s)

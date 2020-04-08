@@ -1,3 +1,4 @@
+import { THEME_FILTER } from '../../../map/graphql'
 import { Context } from '../../config'
 import { getThemeFilters } from '../cms/filters'
 import { DCAT_ENDPOINTS } from '../datasets/config'
@@ -17,7 +18,7 @@ export default async (_: any, {}, { loaders }: Context) => {
     const openApiTaxonomy: any = await loaders.datasets.load(DCAT_ENDPOINTS['openapi'])
     const [datasetsThemeFilters] = getDatasetsFilters(openApiTaxonomy.value)
 
-    return combineFilters([cmsThemeFilters, datasetsThemeFilters])
+    return combineFilters([cmsThemeFilters, datasetsThemeFilters, THEME_FILTER])
   } catch (e) {
     return e
   }
