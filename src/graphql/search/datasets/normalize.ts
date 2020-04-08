@@ -160,16 +160,16 @@ function formatFilters(openApiData: any, facets?: Object): Array<Filter> {
 
   return [
     {
+      type: properties.distributionType.type,
+      label: 'Soorten',
+      filterType: FilterType.Radio,
+      options: getFacetOptions(distributionProperties['ams:distributionType'], facets),
+    },
+    {
       type: properties.theme.type,
       label: "Thema's",
       filterType: FilterType.Checkbox,
       options: getFacetOptions(dcatDocProperties['dcat:theme'].items, facets),
-    },
-    {
-      type: properties.distributionType.type,
-      label: 'Verschijningsvorm',
-      filterType: FilterType.Radio,
-      options: getFacetOptions(distributionProperties['ams:distributionType'], facets),
     },
   ]
 }
