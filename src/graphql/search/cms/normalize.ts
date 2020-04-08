@@ -155,15 +155,17 @@ function getSubTypeFilterOptions(
   filters: Array<ESFilters>,
   subTypeCount?: Array<SubTypeFilterCount>,
 ): Array<FilterOptions> {
-  return filters.map(({ key }) => {
-    const { count } = subTypeCount?.find((count) => count.key === key) || {}
+  return filters
+    .sort((a, b) => a.key.localeCompare(b.key)) // Alphabetically sort the options
+    .map(({ key }) => {
+      const { count } = subTypeCount?.find((count) => count.key === key) || {}
 
-    return {
-      id: `${FILTERS['SUBTYPE'].type}:${key}`,
-      label: getCapitalizedString(key),
-      count: count || 0,
-    }
-  })
+      return {
+        id: `${FILTERS['SUBTYPE'].type}:${key}`,
+        label: getCapitalizedString(key),
+        count: count || 0,
+      }
+    })
 }
 
 function formatThemeFilters(themeTaxonomy: JsonAPI, themeCount?: Array<ThemeFilterCount>): Filter {

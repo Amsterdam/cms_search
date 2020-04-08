@@ -68,7 +68,7 @@ export const mapLayerSearch: ResolverFn<MapLayerSearchResult, {}, any, QueryMapL
 
 const MAP_TYPE_FILTER: Filter = {
   type: 'map-type',
-  label: 'Types',
+  label: 'Soorten',
   filterType: FilterType.Radio,
   options: [
     {

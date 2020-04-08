@@ -55,7 +55,7 @@ const cmsSearch = (type: string) => async (
     totalCount,
     results: formattedResults.filter(({ type: resultType }) => type === resultType),
     pageInfo: getPageInfo(totalCount, page, limit), // Get the page info details
-    filters: [themeFilters, dateFilters, ...(subTypeFilters ? [subTypeFilters] : [])],
+    filters: [...(subTypeFilters ? [subTypeFilters] : []), themeFilters, dateFilters],
   }
 }
 

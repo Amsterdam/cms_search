@@ -8,7 +8,7 @@ export enum CmsType {
 }
 
 export const FILTERS = {
-  SUBTYPE: { type: 'subType', label: 'Types', filterType: FilterType.Radio },
+  SUBTYPE: { type: 'subType', label: 'Soorten', filterType: FilterType.Radio },
   THEME: { type: 'theme', label: "Thema's", filterType: FilterType.Checkbox },
   DATE: { type: 'date', label: 'Publicatiedatum', filterType: FilterType.Select },
 }
