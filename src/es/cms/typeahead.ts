@@ -1,18 +1,14 @@
 import { getCmsFromElasticSearch, getValuesFromES } from '.'
-import { CmsType } from '../../graphql/search/cms/config'
+import { CmsType, CMS_TYPE_LABELS } from '../../graphql/search/cms/config'
 import { TypeAheadSuggestion, TypeAheadSuggestionContent } from '../../typeahead'
 import { DEFAULT_LIMIT } from '../../typeahead/config'
 
-const LABELS = {
-  [CmsType.Article]: 'Artikelen',
-  [CmsType.Publication]: 'Publicaties',
-  [CmsType.Special]: 'Specials',
-  [CmsType.Collection]: 'Dossiers',
-}
-
-export async function getCmsSuggestions(query: string): Promise<TypeAheadSuggestion[]> {
-  const types = [CmsType.Article, CmsType.Publication, CmsType.Collection]
-  const { results, totalCount } = await getCmsFromElasticSearch({ q: query, types })
+export async function getCmsSuggestion(type: CmsType, query: string): Promise<TypeAheadSuggestion> {
+  const { results, totalCount } = await getCmsFromElasticSearch({
+    q: query,
+    types: [type],
+    limit: DEFAULT_LIMIT,
+  })
 
   const formattedResults = results.map(({ _source: result }) => {
     const { title, field_short_title: shortTitle, type, uuid } = getValuesFromES(result) as any
@@ -24,9 +20,9 @@ export async function getCmsSuggestions(query: string): Promise<TypeAheadSuggest
     } as TypeAheadSuggestionContent
   })
 
-  return types.map(type => ({
-    label: LABELS[type],
+  return {
+    label: CMS_TYPE_LABELS[type],
     total_results: totalCount,
-    content: formattedResults.filter(result => result.type === type).slice(0, DEFAULT_LIMIT),
-  }))
+    content: formattedResults,
+  }
 }

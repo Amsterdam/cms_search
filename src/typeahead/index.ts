@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
-import { getCmsSuggestions } from '../es/cms/typeahead'
-import { getMapSuggestions } from '../map/typeahead'
+import { getCmsSuggestion } from '../es/cms/typeahead'
+import { CmsType } from '../graphql/search/cms/config'
+import { getMapCollectionSuggestion, getMapLayerSuggestion } from '../map/typeahead'
 import { isProduction } from '../utils/environment'
 
 export interface TypeAheadSuggestion {
@@ -22,20 +23,37 @@ export default async (req: Request, res: Response) => {
     return handleError(res, new Error('Cannot retrieve suggestions, no query was specified.'))
   }
 
-  try {
-    const suggestions = await Promise.all([getCmsSuggestions(query), getMapSuggestions(query)])
+  const results = await Promise.allSettled([
+    getMapLayerSuggestion(query),
+    getMapCollectionSuggestion(query),
+    getCmsSuggestion(CmsType.Article, query),
+    getCmsSuggestion(CmsType.Publication, query),
+    getCmsSuggestion(CmsType.Collection, query),
+  ])
 
-    res.send(suggestions.flat().filter(suggestion => suggestion.total_results > 0))
-  } catch (error) {
-    return handleError(res, error)
-  }
+  results
+    .filter((result): result is PromiseRejectedResult => result.status === 'rejected')
+    .forEach((result) =>
+      console.error('Unable to retrieve typeahead result, reason:', result.reason),
+    )
+
+  const response = results
+    .filter(
+      (result): result is PromiseFulfilledResult<TypeAheadSuggestion> =>
+        result.status === 'fulfilled' && result.value.total_results > 0,
+    )
+    .map((result) => result.value)
+
+  res.send(response)
 }
 
-function handleError(res: Response, error: Error) {
+function handleError(res: Response, error: Error, status?: number) {
+  status = status ?? 500
+
   if (isProduction) {
-    res.status(500)
+    res.status(status)
   } else {
-    res.status(500).send(error)
+    res.status(status).send(error)
   }
 
   console.error(error)
