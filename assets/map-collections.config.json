@@ -27,7 +27,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-onroerende-zaken.jpg",
       "date": null
@@ -58,7 +58,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "bestuur"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-gebiedsindeling.jpg",
       "date": null
@@ -89,7 +89,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-hoogte.jpg",
       "date": null
@@ -148,7 +148,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-parkeren.jpg",
       "date": null
@@ -164,7 +164,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-aardgas.jpg",
       "date": null
@@ -189,7 +189,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-historisch.jpg",
       "date": null
@@ -205,7 +205,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-ov-net.jpg",
       "date": null
@@ -238,7 +238,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-milieuzones-verkeer.jpg",
       "date": null
@@ -259,7 +259,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-oplaadpunten.jpg",
       "date": null
@@ -310,7 +310,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-parkeervakken.jpg",
       "date": null
@@ -338,7 +338,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-verkeer-routes.jpg",
       "date": null
@@ -408,7 +408,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-bekendmakingen.jpg",
       "date": null
@@ -439,7 +439,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-afvalcontainers.jpg",
       "date": null
@@ -473,7 +473,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["openbare-orde-en-veiligheid", "wonen"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-veiligheid-overlast.jpg",
       "date": null
@@ -492,7 +492,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["cultuur-en-recreatie", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-cultureel-erfgoed.jpg",
       "date": null
@@ -508,7 +508,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["cultuur-en-recreatie"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-evenementen.jpg",
       "date": null
@@ -530,7 +530,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-winkelgebieden.jpg",
       "date": null
@@ -591,7 +591,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["economie-en-toerisme"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-vestigingen.jpg",
       "date": null
@@ -628,7 +628,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-taxi.jpg",
       "date": null
@@ -656,7 +656,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["verkeer"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-logistiek.jpg",
       "date": null
@@ -720,7 +720,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "openbare-orde-en-veiligheid", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-ondergrond.jpg",
       "date": null
@@ -745,7 +745,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-bodemkwaliteit.jpg",
       "date": null
@@ -774,7 +774,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "openbare-orde-en-veiligheid", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-explosieven.jpg",
       "date": null
@@ -802,7 +802,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-geluidszones.jpg",
       "date": null
@@ -831,7 +831,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-schiphol.jpg",
       "date": null
@@ -888,7 +888,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-risicozones.jpg",
       "date": null
@@ -907,7 +907,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": [],
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-panorama.jpg",
       "date": null

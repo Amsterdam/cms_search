@@ -12,7 +12,7 @@ export interface MapLayer {
 
 export interface Meta {
   description: null
-  themes: any[]
+  themes: string[]
   datasetIds: any[]
   thumbnail: string
   date: null
