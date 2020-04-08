@@ -52,7 +52,7 @@ const composedMapCollections = composeMapCollections(rawMapCollections, rawMapLa
 
 const commonOptions = {
   shouldSort: true,
-  threshold: 0.3,
+  threshold: 0.2,
 }
 
 /**
@@ -92,7 +92,7 @@ function composeMapLayers(
   themes: RawTheme[],
   collections: RawMapCollection[],
 ): ComposedMapLayer[] {
-  return layers.map(layer => composeMapLayer(layer, layers, themes, collections))
+  return layers.map((layer) => composeMapLayer(layer, layers, themes, collections))
 }
 
 function composeMapLayer(
@@ -151,8 +151,8 @@ function composeMapCollections(
   layers: RawMapLayer[],
   themes: RawTheme[],
 ): ComposedMapCollection[] {
-  return collections.map(collection => {
-    const collectionLayers: ComposedMapLayer[] = collection.mapLayers.map(collectionLayer => {
+  return collections.map((collection) => {
+    const collectionLayers: ComposedMapLayer[] = collection.mapLayers.map((collectionLayer) => {
       const mapLayer = findBy(layers, 'id', collectionLayer.id)
 
       return {
@@ -173,8 +173,8 @@ function composeMapCollections(
 
 function createMapCollectionHref(collection: RawMapCollection, layers: RawMapLayer[]) {
   const layerIds = collection.mapLayers
-    .map(layer => findBy(layers, 'id', layer.id))
-    .map(layer => buildSelectionIds(collection, layer))
+    .map((layer) => findBy(layers, 'id', layer.id))
+    .map((layer) => buildSelectionIds(collection, layer))
     .flat()
 
   return buildMapUrl(layerIds)
@@ -185,7 +185,7 @@ function normalizeLegendItems(
   legendItems: LegendItem[],
   layers: RawMapLayer[],
 ): MixedLegendItem[] {
-  return legendItems.map(legendItem => {
+  return legendItems.map((legendItem) => {
     const mapLayer = legendItem.id ? findBy(layers, 'id', legendItem.id) : null
     const notSelectable = legendItem.notSelectable || !legendItem.id // Legend items with an id are always selectable, unless specified otherwise.
 
@@ -220,7 +220,7 @@ function normalizeLegendItems(
 }
 
 function findBy<T, K extends keyof T>(items: T[], key: K, value: T[K]) {
-  const match = items.find(item => item[key] === value)
+  const match = items.find((item) => item[key] === value)
 
   if (!match) {
     throw new Error('Unable to find matching item.')
@@ -230,7 +230,7 @@ function findBy<T, K extends keyof T>(items: T[], key: K, value: T[K]) {
 }
 
 function filterBy<T, K extends keyof T>(items: T[], key: K, values: T[K][]) {
-  const matches = items.filter(item => values.includes(item[key]))
+  const matches = items.filter((item) => values.includes(item[key]))
 
   if (matches.length !== values.length) {
     throw new Error('Unable to find all matching items.')
@@ -251,7 +251,7 @@ function composeId(parentId: string, childId: string) {
  * @param mapLayers The layers to find the parent layer in.
  */
 function findParentLayer(childLayer: RawMapLayer, mapLayers: RawMapLayer[]) {
-  const match = mapLayers.find(layer =>
+  const match = mapLayers.find((layer) =>
     (layer.legendItems ?? []).some(({ id }) => id === childLayer.id),
   )
 
@@ -265,7 +265,7 @@ function findParentLayer(childLayer: RawMapLayer, mapLayers: RawMapLayer[]) {
  * @param mapCollections The collections to search.
  */
 function findNearestCollection(layer: RawMapLayer, mapCollections: RawMapCollection[]) {
-  const match = mapCollections.find(collection =>
+  const match = mapCollections.find((collection) =>
     collection.mapLayers.some(({ id }) => id === layer.id),
   )
 
@@ -287,9 +287,9 @@ function findNearestCollection(layer: RawMapLayer, mapCollections: RawMapCollect
  */
 function buildSelectionIds(collection: RawMapCollection, layer: RawMapLayer): string[] {
   const legendIds = (layer.legendItems ?? [])
-    .map(item => item.id)
+    .map((item) => item.id)
     .filter((id): id is string => !!id)
-    .map(id => `${collection.id}-${id}`)
+    .map((id) => `${collection.id}-${id}`)
 
   // If a layer has legend items with ids, return the combined id of the legend items and the collection.
   if (legendIds.length > 0) {
@@ -302,7 +302,7 @@ function buildSelectionIds(collection: RawMapCollection, layer: RawMapLayer): st
 
 function buildMapUrl(layerIds: string[], enabledLayers = layerIds) {
   const serializedSelection = layerIds
-    .map(id => `${id}:${enabledLayers.includes(id) ? '1' : '0'}`)
+    .map((id) => `${id}:${enabledLayers.includes(id) ? '1' : '0'}`)
     .join('|')
   const searchParams = new URLSearchParams({
     modus: 'kaart',
