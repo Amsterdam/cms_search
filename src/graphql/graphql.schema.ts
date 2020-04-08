@@ -213,6 +213,7 @@ const schema = gql`
     id: ID!
     title: String!
     mapLayers: [MapLayer!]!
+    themes: [Theme!]!
     meta: Meta!
     href: String!
   }
@@ -251,7 +252,7 @@ const schema = gql`
   type Meta {
     description: String
     themes: [String!]!
-    datasetIds: [Int]
+    datasetIds: [Int!]
     thumbnail: String
     date: String
   }

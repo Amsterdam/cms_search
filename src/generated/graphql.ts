@@ -188,6 +188,7 @@ export type MapCollection = {
   id: Scalars['ID']
   title: Scalars['String']
   mapLayers: Array<MapLayer>
+  themes: Array<Theme>
   meta: Meta
   href: Scalars['String']
 }
@@ -282,7 +283,7 @@ export type Meta = {
   __typename?: 'Meta'
   description?: Maybe<Scalars['String']>
   themes: Array<Scalars['String']>
-  datasetIds?: Maybe<Array<Maybe<Scalars['Int']>>>
+  datasetIds?: Maybe<Array<Scalars['Int']>>
   thumbnail?: Maybe<Scalars['String']>
   date?: Maybe<Scalars['String']>
 }
@@ -758,6 +759,7 @@ export type MapCollectionResolvers<
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   mapLayers?: Resolver<Array<ResolversTypes['MapLayer']>, ParentType, ContextType>
+  themes?: Resolver<Array<ResolversTypes['Theme']>, ParentType, ContextType>
   meta?: Resolver<ResolversTypes['Meta'], ParentType, ContextType>
   href?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
@@ -863,7 +865,7 @@ export type MetaResolvers<
 > = {
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   themes?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>
-  datasetIds?: Resolver<Maybe<Array<Maybe<ResolversTypes['Int']>>>, ParentType, ContextType>
+  datasetIds?: Resolver<Maybe<Array<ResolversTypes['Int']>>, ParentType, ContextType>
   thumbnail?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   date?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
