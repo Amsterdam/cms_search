@@ -92,17 +92,28 @@ function composeMapLayers(
   themes: RawTheme[],
   collections: RawMapCollection[],
 ): ComposedMapLayer[] {
-  return layers.map((layer) => composeMapLayer(layer, layers, themes, collections))
+  return layers.map((layer) => {
+    // Find parent layer if layer has no children.
+    const parentLayer = findParentLayer(layer, layers)
+    // Find the collection the layer belongs to.
+    const collection = findNearestCollection(parentLayer ?? layer, collections)
+
+    if (!collection) {
+      throw new Error(
+        `Unable to find collection with for map layer with id ${(parentLayer ?? layer).id}.`,
+      )
+    }
+
+    return composeMapLayer(layer, layers, themes, collection.id)
+  })
 }
 
 function composeMapLayer(
   layer: RawMapLayer,
   layers: RawMapLayer[],
   themes: RawTheme[],
-  collections: RawMapCollection[],
+  collectionId: string,
 ): ComposedMapLayer {
-  const parentLayer = findParentLayer(layer, layers)
-  const collection = findNearestCollection(parentLayer ?? layer, collections)
   const themeIds = layer.meta?.themes ?? []
   const params = layer.params
     ? querystring.stringify(layer.params as ParsedUrlQueryInput)
@@ -112,36 +123,24 @@ function composeMapLayer(
     ...layer,
     themes: filterBy(themes, 'id', themeIds),
     legendItems: layer.legendItems
-      ? normalizeLegendItems(collection.id, layer.legendItems, layers)
+      ? normalizeLegendItems(collectionId, layer.legendItems, layers)
       : undefined,
     minZoom: layer.minZoom ?? DEFAULT_MIN_ZOOM,
     maxZoom: DEFAULT_MAX_ZOOM,
     noDetail: !layer.detailUrl,
     params,
-    href: createMapLayerHref(layer, layers, collections),
+    href: createMapLayerHref(layer, layers, collectionId),
   }
 }
 
-function createMapLayerHref(
-  layer: RawMapLayer,
-  layers: RawMapLayer[],
-  collections: RawMapCollection[],
-) {
+function createMapLayerHref(layer: RawMapLayer, layers: RawMapLayer[], collectionId: string) {
   // Find parent layer if layer has no children.
   const parentLayer = findParentLayer(layer, layers)
-  // Find the collection the layer belongs to.
-  const collection = findNearestCollection(parentLayer ?? layer, collections)
-
-  if (!collection) {
-    throw new Error(
-      `Unable to find collection with for map layer with id ${(parentLayer ?? layer).id}.`,
-    )
-  }
 
   // Build the selection for the parent layer or the layer itself.
-  const layerIds = buildSelectionIds(collection, parentLayer ?? layer)
+  const layerIds = buildSelectionIds(collectionId, parentLayer ?? layer)
   // If there is a parent layer only the child has to be enabled, otherwise all layers.
-  const enabledLayers = parentLayer ? buildSelectionIds(collection, layer) : layerIds
+  const enabledLayers = parentLayer ? buildSelectionIds(collectionId, layer) : layerIds
 
   return buildMapUrl(layerIds, enabledLayers)
 }
@@ -154,9 +153,8 @@ function composeMapCollections(
   return collections.map((collection) => {
     const collectionLayers: ComposedMapLayer[] = collection.mapLayers.map((collectionLayer) => {
       const mapLayer = findBy(layers, 'id', collectionLayer.id)
-
       return {
-        ...composeMapLayer(mapLayer, layers, themes, collections),
+        ...composeMapLayer(mapLayer, layers, themes, collection.id),
         // Overwrite fields from layer with collection layer fields where applicable.
         title: collectionLayer.title ?? mapLayer.title,
         id: composeId(collection.id, mapLayer.id),
@@ -174,7 +172,7 @@ function composeMapCollections(
 function createMapCollectionHref(collection: RawMapCollection, layers: RawMapLayer[]) {
   const layerIds = collection.mapLayers
     .map((layer) => findBy(layers, 'id', layer.id))
-    .map((layer) => buildSelectionIds(collection, layer))
+    .map((layer) => buildSelectionIds(collection.id, layer))
     .flat()
 
   return buildMapUrl(layerIds)
@@ -285,11 +283,11 @@ function findNearestCollection(layer: RawMapLayer, mapCollections: RawMapCollect
  * @param layer The layer of which to build the selection.
  * @param collection The collection the layer corresponds to.
  */
-function buildSelectionIds(collection: RawMapCollection, layer: RawMapLayer): string[] {
+function buildSelectionIds(collectionId: string, layer: RawMapLayer): string[] {
   const legendIds = (layer.legendItems ?? [])
     .map((item) => item.id)
     .filter((id): id is string => !!id)
-    .map((id) => `${collection.id}-${id}`)
+    .map((id) => `${collectionId}-${id}`)
 
   // If a layer has legend items with ids, return the combined id of the legend items and the collection.
   if (legendIds.length > 0) {
@@ -297,7 +295,7 @@ function buildSelectionIds(collection: RawMapCollection, layer: RawMapLayer): st
   }
 
   // Otherwise return the combined id of the layer and the collection.
-  return [`${collection.id}-${layer.id}`]
+  return [`${collectionId}-${layer.id}`]
 }
 
 function buildMapUrl(layerIds: string[], enabledLayers = layerIds) {
