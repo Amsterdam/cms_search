@@ -153,6 +153,7 @@ export type FilterOptions = {
   count?: Maybe<Scalars['Int']>
 }
 
+/** TODO: Do not copy MapLayer fields here, make the map layer a separate field in the LegendItem. */
 export type LegendItem = {
   __typename?: 'LegendItem'
   id?: Maybe<Scalars['ID']>
@@ -234,6 +235,7 @@ export type MapLayerSearchResult = SearchResult & {
   pageInfo: PageInfo
 }
 
+/** MapResult is a combination of MapLayer and MapCollection */
 export type MapResult = {
   __typename?: 'MapResult'
   id: Scalars['ID']
@@ -361,6 +363,7 @@ export type Results =
 
 export type SearchResult = {
   totalCount: Scalars['Int']
+  /** TODO: See if results can be made required. */
   results?: Maybe<Array<Results>>
   filters?: Maybe<Array<Filter>>
   pageInfo: PageInfo
