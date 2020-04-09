@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { getValuesFromES } from '../../../es/cms'
+import { getValuesFromES, ThemeFilterCount, SubTypeFilterCount } from '../../../es/cms'
 import { DRUPAL_THEME_FILTER_IDS } from '../../../generated/drupal'
 import {
   CmsResult,
@@ -10,7 +10,6 @@ import {
   QuerySpecialSearchArgs,
 } from '../../../generated/graphql'
 import { FILTERS } from './config'
-import { ThemeFilterCount, SubTypeFilterCount } from './filters'
 
 export type QueryCmsSearchArgs =
   | QueryArticleSearchArgs
