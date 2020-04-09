@@ -1,5 +1,6 @@
 import { Filter } from '../../../generated/graphql'
 import { FilterType } from '../../config'
+import { FILTERS } from '../cms/config'
 import * as cmsFilters from '../cms/filters'
 import * as datasetsFilters from '../datasets/filters'
 import filters from './index'
@@ -9,6 +10,13 @@ import * as utils from './utils'
 jest.mock('../datasets/config', () => ({
   DCAT_ENDPOINTS: {
     openapi: 'https://api.endpoint.com/openapi',
+  },
+}))
+
+jest.mock('../../../map/graphql', () => ({
+  THEME_FILTER: {
+    ...FILTERS.THEME,
+    options: [],
   },
 }))
 
@@ -74,8 +82,12 @@ describe('filters', () => {
     }
 
     const output = await filters({}, {}, CONTEXT)
+    const themeFilter = {
+      ...FILTERS.THEME,
+      options: [],
+    }
 
-    expect(mockCombineFilters).toHaveBeenCalledWith([FILTER, FILTER])
+    expect(mockCombineFilters).toHaveBeenCalledWith([FILTER, FILTER, themeFilter])
 
     expect(output).toEqual([FILTER, FILTER])
   })

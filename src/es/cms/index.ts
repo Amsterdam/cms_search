@@ -17,8 +17,8 @@ export type CmsElasticSearchResult = {
   results: Array<CmsElasticSearchFields>
   totalCount: number
   filterCount: {
-    theme: ThemeFilterCount
-    subType: SubTypeFilterCount
+    theme: Array<ThemeFilterCount>
+    subType: Array<SubTypeFilterCount>
   }
 }
 

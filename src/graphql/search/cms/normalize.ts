@@ -4,7 +4,7 @@ import { DRUPAL_THEME_FILTER_IDS } from '../../../generated/drupal'
 import {
   CmsResult,
   Filter,
-  FilterOptions,
+  FilterOption,
   QueryArticleSearchArgs,
   QueryPublicationSearchArgs,
   QuerySpecialSearchArgs,
@@ -108,7 +108,7 @@ function getFormattedResults(results: any): Array<CmsResult> {
 function getThemeFilterOptions(
   result: JsonAPI,
   themeCount?: Array<ThemeFilterCount>,
-): Array<FilterOptions> {
+): Array<FilterOption> {
   return result.data.map(({ attributes }) => {
     const id = attributes.drupal_internal__tid
     const { count } = themeCount?.find((count) => count.key === id) || {}
@@ -127,7 +127,7 @@ function getThemeFilterOptions(
   })
 }
 
-function getDateFilterOptions(): Array<FilterOptions> {
+function getDateFilterOptions(): Array<FilterOption> {
   const nrYears = 22
   const currentYear = new Date().getFullYear()
 
@@ -153,7 +153,7 @@ function getDateFilterOptions(): Array<FilterOptions> {
 function getSubTypeFilterOptions(
   filters: Array<ESFilters>,
   subTypeCount?: Array<SubTypeFilterCount>,
-): Array<FilterOptions> {
+): Array<FilterOption> {
   return filters
     .sort((a, b) => a.key.localeCompare(b.key)) // Alphabetically sort the options
     .map(({ key }) => {

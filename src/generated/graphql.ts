@@ -137,7 +137,7 @@ export type Filter = {
   __typename?: 'Filter'
   type: Scalars['String']
   label: Scalars['String']
-  options: Array<FilterOptions>
+  options: Array<FilterOption>
   filterType: Scalars['String']
 }
 
@@ -146,13 +146,14 @@ export type FilterInput = {
   values: Array<Scalars['String']>
 }
 
-export type FilterOptions = {
+export type FilterOption = {
   __typename?: 'FilterOptions'
   id: Scalars['String']
   label: Scalars['String']
   count?: Maybe<Scalars['Int']>
 }
 
+/** TODO: Do not copy MapLayer fields here, make the map layer a separate field in the LegendItem. */
 export type LegendItem = {
   __typename?: 'LegendItem'
   id?: Maybe<Scalars['ID']>
@@ -187,6 +188,7 @@ export type MapCollection = {
   id: Scalars['ID']
   title: Scalars['String']
   mapLayers: Array<MapLayer>
+  themes: Array<Theme>
   meta: Meta
   href: Scalars['String']
 }
@@ -234,6 +236,7 @@ export type MapLayerSearchResult = SearchResult & {
   pageInfo: PageInfo
 }
 
+/** MapResult is a combination of MapLayer and MapCollection */
 export type MapResult = {
   __typename?: 'MapResult'
   id: Scalars['ID']
@@ -259,7 +262,7 @@ export type MapResult = {
   authScope?: Maybe<Scalars['String']>
   category?: Maybe<Scalars['String']>
   legendItems?: Maybe<Array<LegendItem>>
-  themes?: Maybe<Array<Theme>>
+  themes: Array<Theme>
 }
 
 export type MapSearchInput = {
@@ -280,7 +283,7 @@ export type Meta = {
   __typename?: 'Meta'
   description?: Maybe<Scalars['String']>
   themes: Array<Scalars['String']>
-  datasetIds?: Maybe<Array<Maybe<Scalars['Int']>>>
+  datasetIds?: Maybe<Array<Scalars['Int']>>
   thumbnail?: Maybe<Scalars['String']>
   date?: Maybe<Scalars['String']>
 }
@@ -361,6 +364,7 @@ export type Results =
 
 export type SearchResult = {
   totalCount: Scalars['Int']
+  /** TODO: See if results can be made required. */
   results?: Maybe<Array<Results>>
   filters?: Maybe<Array<Filter>>
   pageInfo: PageInfo
@@ -497,7 +501,7 @@ export type ResolversTypes = {
   CombinedMapResult: ResolverTypeWrapper<CombinedMapResult>
   MapResult: ResolverTypeWrapper<MapResult>
   Filter: ResolverTypeWrapper<Filter>
-  FilterOptions: ResolverTypeWrapper<FilterOptions>
+  FilterOptions: ResolverTypeWrapper<FilterOption>
   PageInfo: ResolverTypeWrapper<PageInfo>
   DataSearchInput: DataSearchInput
   DataSearchResult: ResolverTypeWrapper<DataSearchResult>
@@ -553,7 +557,7 @@ export type ResolversParentTypes = {
   CombinedMapResult: CombinedMapResult
   MapResult: MapResult
   Filter: Filter
-  FilterOptions: FilterOptions
+  FilterOptions: FilterOption
   PageInfo: PageInfo
   DataSearchInput: DataSearchInput
   DataSearchResult: DataSearchResult
@@ -755,6 +759,7 @@ export type MapCollectionResolvers<
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   mapLayers?: Resolver<Array<ResolversTypes['MapLayer']>, ParentType, ContextType>
+  themes?: Resolver<Array<ResolversTypes['Theme']>, ParentType, ContextType>
   meta?: Resolver<ResolversTypes['Meta'], ParentType, ContextType>
   href?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
@@ -860,7 +865,7 @@ export type MetaResolvers<
 > = {
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   themes?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>
-  datasetIds?: Resolver<Maybe<Array<Maybe<ResolversTypes['Int']>>>, ParentType, ContextType>
+  datasetIds?: Resolver<Maybe<Array<ResolversTypes['Int']>>, ParentType, ContextType>
   thumbnail?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   date?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>

@@ -8,6 +8,7 @@ const DEFAULT_MIN_ZOOM = 8
 const DEFAULT_MAX_ZOOM = 16
 
 export interface ComposedMapCollection extends RawMapCollection {
+  themes: RawTheme[]
   mapLayers: ComposedMapLayer[]
   href: string
 }
@@ -70,6 +71,13 @@ export function getAllMapLayers() {
 }
 
 /**
+ * Gets a list of all themes.
+ */
+export function getAllThemes() {
+  return rawThemes
+}
+
+/**
  * Creates a Fuse instance that can be used to search the map collections.
  *
  * @param keys The keys of the fields to match.
@@ -114,14 +122,13 @@ function composeMapLayer(
   themes: RawTheme[],
   collectionId: string,
 ): ComposedMapLayer {
-  const themeIds = layer.meta?.themes ?? []
   const params = layer.params
     ? querystring.stringify(layer.params as ParsedUrlQueryInput)
     : undefined
 
   return {
     ...layer,
-    themes: filterBy(themes, 'id', themeIds),
+    themes: filterBy(themes, 'id', layer.meta.themes),
     legendItems: layer.legendItems
       ? normalizeLegendItems(collectionId, layer.legendItems, layers)
       : undefined,
@@ -163,6 +170,7 @@ function composeMapCollections(
 
     return {
       ...collection,
+      themes: filterBy(themes, 'id', collection.meta.themes),
       mapLayers: collectionLayers,
       href: createMapCollectionHref(collection, layers),
     }
