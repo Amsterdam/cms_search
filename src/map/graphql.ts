@@ -1,6 +1,7 @@
 import {
   CombinedMapResult,
   Filter,
+  FilterInput,
   MapCollectionSearchResult,
   MapLayerSearchResult,
   MapResult,
@@ -11,7 +12,9 @@ import {
   QueryMapSearchArgs,
   ResolverFn,
 } from '../generated/graphql'
+import { RawTheme } from '../generated/theme'
 import { DEFAULT_LIMIT, FilterType } from '../graphql/config'
+import { FILTERS } from '../graphql/search/cms/config'
 import getPageInfo from '../graphql/utils/getPageInfo'
 import fromFuseResult from '../utils/from-fuse-result'
 import paginate from '../utils/paginate'
@@ -21,6 +24,7 @@ import {
   createMapLayersFuse,
   getAllMapCollections,
   getAllMapLayers,
+  getAllThemes,
 } from './data'
 
 const mapCollectionsFuse = createMapCollectionsFuse([
@@ -31,40 +35,6 @@ const mapCollectionsFuse = createMapCollectionsFuse([
 ])
 
 const mapLayersFuse = createMapLayersFuse(['title', 'meta.description', 'themes.title'])
-
-export const mapCollectionSearch: ResolverFn<
-  MapCollectionSearchResult,
-  {},
-  any,
-  QueryMapCollectionSearchArgs
-> = (_, { q: query, input }): MapCollectionSearchResult => {
-  const { page, limit } = parseInput(input)
-  const results = query ? fromFuseResult(mapCollectionsFuse.search(query)) : getAllMapCollections()
-  const paginatedResults = paginate(results, page, limit)
-
-  return {
-    totalCount: results.length,
-    results: paginatedResults,
-    filters: [],
-    pageInfo: getPageInfo(results.length, page, limit),
-  }
-}
-
-export const mapLayerSearch: ResolverFn<MapLayerSearchResult, {}, any, QueryMapLayerSearchArgs> = (
-  _,
-  { q: query, input },
-): MapLayerSearchResult => {
-  const { page, limit } = parseInput(input)
-  const results = query ? fromFuseResult(mapLayersFuse.search(query)) : getAllMapLayers()
-  const paginatedResults = paginate(results, page, limit)
-
-  return {
-    totalCount: results.length,
-    results: paginatedResults,
-    filters: [],
-    pageInfo: getPageInfo(results.length, page, limit),
-  }
-}
 
 const MAP_TYPE_FILTER: Filter = {
   type: 'map-type',
@@ -80,6 +50,54 @@ const MAP_TYPE_FILTER: Filter = {
       label: LABELS.MAP_COLLECTIONS,
     },
   ],
+}
+
+export const THEME_FILTER: Filter = {
+  ...FILTERS.THEME,
+  options: getAllThemes().map((theme) => ({
+    id: `theme:${theme.id}`,
+    label: theme.title,
+  })),
+}
+
+export const mapCollectionSearch: ResolverFn<
+  MapCollectionSearchResult,
+  {},
+  any,
+  QueryMapCollectionSearchArgs
+> = (_, { q: query, input }): MapCollectionSearchResult => {
+  const { page, limit, filters } = parseInput(input)
+  const results = filterResults(
+    query ? fromFuseResult(mapCollectionsFuse.search(query)) : getAllMapCollections(),
+    filters,
+  )
+  const paginatedResults = paginate(results, page, limit)
+
+  return {
+    totalCount: results.length,
+    results: paginatedResults,
+    filters: [THEME_FILTER],
+    pageInfo: getPageInfo(results.length, page, limit),
+  }
+}
+
+export const mapLayerSearch: ResolverFn<MapLayerSearchResult, {}, any, QueryMapLayerSearchArgs> = (
+  _,
+  { q: query, input },
+): MapLayerSearchResult => {
+  const { page, limit, filters } = parseInput(input)
+  const results = filterResults(
+    query ? fromFuseResult(mapLayersFuse.search(query)) : getAllMapLayers(),
+    filters,
+  )
+  const paginatedResults = paginate(results, page, limit)
+
+  return {
+    totalCount: results.length,
+    results: paginatedResults,
+    filters: [THEME_FILTER],
+    pageInfo: getPageInfo(results.length, page, limit),
+  }
 }
 
 export const mapSearch: ResolverFn<MapSearchResult, {}, any, QueryMapSearchArgs> = (
@@ -99,7 +117,7 @@ export const mapSearch: ResolverFn<MapSearchResult, {}, any, QueryMapSearchArgs>
   return {
     totalCount,
     results,
-    filters: [MAP_TYPE_FILTER],
+    filters: [MAP_TYPE_FILTER, THEME_FILTER],
     pageInfo: getPageInfo(totalCount, page, limit),
   }
 }
@@ -109,8 +127,8 @@ function getCombinedResult(
   query?: string | null,
   input?: MapSearchInput | null,
 ): CombinedMapResult {
-  const { page, limit } = parseInput(input, type)
-  const results: MapResult[] = getResultsForType(type, query)
+  const { page, limit, filters } = parseInput(input)
+  const results = filterResults(getResultsForType(type, query) as MapResult[], filters)
   const paginatedResults = paginate(results, page, limit)
 
   return {
@@ -139,7 +157,7 @@ function getLabelForType(type: MapType) {
   }
 }
 
-function parseInput(input?: MapSearchInput | null, type?: MapType) {
+function parseInput(input?: MapSearchInput | null) {
   const mapTypeOption = (input?.filters || []).find(({ type }) => type === MAP_TYPE_FILTER.type)
   const mapType = mapTypeOption?.values[0] ?? null
 
@@ -147,6 +165,7 @@ function parseInput(input?: MapSearchInput | null, type?: MapType) {
     page: input?.page ?? 1,
     limit: input?.limit ?? DEFAULT_LIMIT,
     selectedType: mapType ? determineMapType(mapType) : null,
+    filters: input?.filters ?? [],
   }
 }
 
@@ -159,4 +178,22 @@ function determineMapType(type: string) {
   }
 
   return null
+}
+
+interface Filterable {
+  themes: RawTheme[]
+}
+
+function filterResults<T extends Filterable>(results: T[], filters: FilterInput[]) {
+  const themeFilter = filters.find(({ type }) => type === FILTERS.THEME.type)
+
+  if (!themeFilter) {
+    return results
+  }
+
+  const themeIds = themeFilter.values
+    .map((id) => id.split(':').pop())
+    .filter((id): id is string => typeof id === 'string')
+
+  return results.filter((result) => result.themes.some(({ id }) => themeIds.includes(id)))
 }

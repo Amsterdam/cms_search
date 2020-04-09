@@ -137,7 +137,7 @@ export type Filter = {
   __typename?: 'Filter'
   type: Scalars['String']
   label: Scalars['String']
-  options: Array<FilterOptions>
+  options: Array<FilterOption>
   filterType: Scalars['String']
 }
 
@@ -146,7 +146,7 @@ export type FilterInput = {
   values: Array<Scalars['String']>
 }
 
-export type FilterOptions = {
+export type FilterOption = {
   __typename?: 'FilterOptions'
   id: Scalars['String']
   label: Scalars['String']
@@ -262,7 +262,7 @@ export type MapResult = {
   authScope?: Maybe<Scalars['String']>
   category?: Maybe<Scalars['String']>
   legendItems?: Maybe<Array<LegendItem>>
-  themes?: Maybe<Array<Theme>>
+  themes: Array<Theme>
 }
 
 export type MapSearchInput = {
@@ -501,7 +501,7 @@ export type ResolversTypes = {
   CombinedMapResult: ResolverTypeWrapper<CombinedMapResult>
   MapResult: ResolverTypeWrapper<MapResult>
   Filter: ResolverTypeWrapper<Filter>
-  FilterOptions: ResolverTypeWrapper<FilterOptions>
+  FilterOptions: ResolverTypeWrapper<FilterOption>
   PageInfo: ResolverTypeWrapper<PageInfo>
   DataSearchInput: DataSearchInput
   DataSearchResult: ResolverTypeWrapper<DataSearchResult>
@@ -557,7 +557,7 @@ export type ResolversParentTypes = {
   CombinedMapResult: CombinedMapResult
   MapResult: MapResult
   Filter: Filter
-  FilterOptions: FilterOptions
+  FilterOptions: FilterOption
   PageInfo: PageInfo
   DataSearchInput: DataSearchInput
   DataSearchResult: DataSearchResult

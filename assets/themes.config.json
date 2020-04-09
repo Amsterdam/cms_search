@@ -1,19 +1,15 @@
 [
   {
-    "id": "werk-en-sociale-zekerheid",
-    "title": "Werk en sociale zekerheid"
+    "id": "bestuur",
+    "title": "Bestuur"
   },
   {
     "id": "bevolking",
     "title": "Bevolking"
   },
   {
-    "id": "wonen",
-    "title": "Wonen"
-  },
-  {
-    "id": "ruimte-en-topografie",
-    "title": "Ruimte en topografie"
+    "id": "cultuur-en-recreatie",
+    "title": "Cultuur en recreatie"
   },
   {
     "id": "duurzaamheid-en-milieu",
@@ -28,20 +24,24 @@
     "title": "Onderwijs en wetenschap"
   },
   {
-    "id": "bestuur",
-    "title": "Bestuur"
-  },
-  {
-    "id": "cultuur-en-recreatie",
-    "title": "Cultuur en recreatie"
-  },
-  {
     "id": "openbare-orde-en-veiligheid",
     "title": "Openbare orde en veiligheid"
   },
   {
+    "id": "ruimte-en-topografie",
+    "title": "Ruimte en topografie"
+  },
+  {
     "id": "verkeer",
     "title": "Verkeer"
+  },
+  {
+    "id": "werk-en-sociale-zekerheid",
+    "title": "Werk en sociale zekerheid"
+  },
+  {
+    "id": "wonen",
+    "title": "Wonen"
   },
   {
     "id": "zorg-en-welzijn",

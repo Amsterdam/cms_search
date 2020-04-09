@@ -71,6 +71,13 @@ export function getAllMapLayers() {
 }
 
 /**
+ * Gets a list of all themes.
+ */
+export function getAllThemes() {
+  return rawThemes
+}
+
+/**
  * Creates a Fuse instance that can be used to search the map collections.
  *
  * @param keys The keys of the fields to match.
