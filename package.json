@@ -48,7 +48,7 @@
     "@graphql-codegen/typescript-resolvers": "^1.13.2",
     "@types/jest": "^25.2.1",
     "concurrently": "^5.0.2",
-    "husky": "^4.0.9",
+    "husky": "^4.2.5",
     "jest": "^25.3.0",
     "lint-staged": "^10.1.2",
     "nodemon": "^2.0.2",
