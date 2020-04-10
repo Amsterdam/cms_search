@@ -3,6 +3,29 @@ import { SearchResponse } from 'elasticsearch'
 import cmsSchema, { ElasticSearchArgs, getSubTypeValues } from './es.schema'
 import { DEFAULT_LIMIT } from '../../graphql/config'
 
+export type ThemeFilterCount = {
+  key: number
+  count: number
+}
+
+export type SubTypeFilterCount = {
+  key: string
+  count: number
+}
+
+export type CmsElasticSearchResult = {
+  results: Array<CmsElasticSearchFields>
+  totalCount: number
+  filterCount: {
+    theme: Array<ThemeFilterCount>
+    subType: Array<SubTypeFilterCount>
+  }
+}
+
+export type CmsElasticSearchFields = {
+  _source: any
+}
+
 const CMS_ES_INDEX = 'elasticsearch_index_cms_articles_index'
 
 const client = new Client({
@@ -30,7 +53,7 @@ export async function getCmsFromElasticSearch({
   filters,
   sort,
   subType,
-}: ElasticSearchArgs) {
+}: ElasticSearchArgs): Promise<CmsElasticSearchResult> {
   limit = limit || DEFAULT_LIMIT
   from = from || 0
 

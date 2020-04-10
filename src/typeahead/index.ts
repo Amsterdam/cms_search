@@ -26,6 +26,7 @@ export default async (req: Request, res: Response) => {
   const results = await Promise.allSettled([
     getMapLayerSuggestion(query),
     getMapCollectionSuggestion(query),
+    getCmsSuggestion(CmsType.Special, query),
     getCmsSuggestion(CmsType.Article, query),
     getCmsSuggestion(CmsType.Publication, query),
     getCmsSuggestion(CmsType.Collection, query),

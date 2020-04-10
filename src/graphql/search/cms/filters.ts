@@ -1,14 +1,5 @@
 import { JsonAPI, formatThemeFilters, formatDateFilters, formatSubTypeFilters } from './normalize'
-
-export type ThemeFilterCount = {
-  key: number
-  count: number
-}
-
-export type SubTypeFilterCount = {
-  key: string
-  count: number
-}
+import { ThemeFilterCount, SubTypeFilterCount } from '../../../es/cms'
 
 export const getThemeFilters = (filters: JsonAPI, filterCount?: Array<ThemeFilterCount>) =>
   formatThemeFilters(filters, filterCount)
