@@ -53,7 +53,8 @@ const composedMapCollections = composeMapCollections(rawMapCollections, rawMapLa
 
 const commonOptions = {
   shouldSort: true,
-  threshold: 0.2,
+  threshold: 0.3,
+  findAllMatches: true,
 }
 
 /**
@@ -116,7 +117,7 @@ function composeMapLayers(
   })
 }
 
-function composeMapLayer(
+export function composeMapLayer(
   layer: RawMapLayer,
   layers: RawMapLayer[],
   themes: RawTheme[],
@@ -126,8 +127,12 @@ function composeMapLayer(
     ? querystring.stringify(layer.params as ParsedUrlQueryInput)
     : undefined
 
+  // Find parent layer if layer has no children.
+  const parentLayer = findParentLayer(layer, layers)
+
   return {
     ...layer,
+    title: parentLayer?.title ? `${parentLayer.title} - ${layer.title}` : layer.title,
     themes: filterBy(themes, 'id', layer.meta.themes),
     legendItems: layer.legendItems
       ? normalizeLegendItems(collectionId, layer.legendItems, layers)
@@ -163,6 +168,7 @@ function composeMapCollections(
       return {
         ...composeMapLayer(mapLayer, layers, themes, collection.id),
         // Overwrite fields from layer with collection layer fields where applicable.
+        imageRule: mapLayer.imageRule ?? mapLayer.title, // !important: the title is used as imageRule, if the title is overriden from the collection the title or imageRule from the maplayer must be used
         title: collectionLayer.title ?? mapLayer.title,
         id: composeId(collection.id, mapLayer.id),
       }

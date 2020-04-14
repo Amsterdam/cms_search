@@ -753,7 +753,8 @@
   },
   {
     "id": "pvrf",
-    "title": "Fiscaal",
+    "title": "Parkeervakken - Fiscaal",
+    "imageRule": "Fiscaal",
     "type": "wms",
     "layers": ["parkeervakken_reservering"],
     "params": {
@@ -879,7 +880,8 @@
   },
   {
     "id": "pvrbz",
-    "title": "Blauwe zone",
+    "title": "Parkeervakken - Blauwe zone",
+    "imageRule": "Blauwe zone",
     "type": "wms",
     "layers": ["parkeervakken_reservering"],
     "params": {
@@ -1042,7 +1044,8 @@
   },
   {
     "id": "inspra",
-    "title": "Inspraak",
+    "title": "Gemeentelijke bekendmakingen - Inspraak",
+    "imageRule": "Inspraak",
     "type": "wms",
     "params": {
       "onderwerp": "inspraak"
@@ -1194,7 +1197,8 @@
   },
   {
     "id": "rectif",
-    "title": "Rectificatie",
+    "title": "Gemeentelijke bekendmakingen - Rectificatie",
+    "imageRule": "Rectificatie",
     "type": "wms",
     "params": {
       "onderwerp": "rectificatie"
@@ -1308,7 +1312,8 @@
   },
   {
     "id": "overig",
-    "title": "Overig",
+    "title": "Gemeentelijke bekendmakingen - Overig",
+    "imageRule": "Overig",
     "type": "wms",
     "params": {
       "onderwerp": "overig"
@@ -2505,7 +2510,7 @@
         "id": "slpnb"
       }
     ],
-    "title": "Oplaadpunten - Snel laden (> 50 Kw)",
+    "title": "Snel laden (> 50 Kw)",
     "type": "wms",
     "meta": {
       "description": null,
@@ -2525,7 +2530,7 @@
         "id": "nlpnb"
       }
     ],
-    "title": "Oplaadpunten - Gewoon laden",
+    "title": "Gewoon laden",
     "type": "wms",
     "meta": {
       "description": null,
