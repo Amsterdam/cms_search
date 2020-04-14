@@ -53,7 +53,7 @@ const composedMapCollections = composeMapCollections(rawMapCollections, rawMapLa
 
 const commonOptions = {
   shouldSort: true,
-  threshold: 0.3,
+  threshold: 0.4,
   findAllMatches: true,
 }
 
