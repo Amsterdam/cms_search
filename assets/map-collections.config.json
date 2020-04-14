@@ -117,7 +117,8 @@
         "id": "pvrpr"
       },
       {
-        "id": "pvrf"
+        "id": "pvrf",
+        "title": "Parkeren - Fiscaal"
       },
       {
         "id": "pvrpv"
@@ -287,7 +288,8 @@
         "id": "pvrpr"
       },
       {
-        "id": "pvrf"
+        "id": "pvrf",
+        "title": "Parkeervakken - Fiscaal"
       },
       {
         "id": "pvrpv"
@@ -305,7 +307,8 @@
         "id": "pvrvh"
       },
       {
-        "id": "pvrbz"
+        "id": "pvrbz",
+        "title": "Parkeervakken - Blauwe zone"
       }
     ],
     "meta": {
@@ -361,7 +364,8 @@
         "id": "exploi"
       },
       {
-        "id": "inspra"
+        "id": "inspra",
+        "title": "Inspraak"
       },
       {
         "id": "kapver"
@@ -385,7 +389,8 @@
         "id": "optijd"
       },
       {
-        "id": "rectif"
+        "id": "rectif",
+        "title": "Rectificatie"
       },
       {
         "id": "speela"
@@ -403,7 +408,8 @@
         "id": "verreg"
       },
       {
-        "id": "overig"
+        "id": "overig",
+        "title": "Overig"
       }
     ],
     "meta": {
@@ -620,10 +626,12 @@
         "id": "vezips"
       },
       {
-        "id": "oplsnl"
+        "id": "oplsnl",
+        "title": "Oplaadpunten - Snel laden"
       },
       {
-        "id": "oplgwn"
+        "id": "oplgwn",
+        "title": "Oplaadpunten - Gewoon laden"
       }
     ],
     "meta": {
