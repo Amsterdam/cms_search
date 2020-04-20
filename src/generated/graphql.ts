@@ -147,7 +147,7 @@ export type FilterInput = {
 }
 
 export type FilterOption = {
-  __typename?: 'FilterOptions'
+  __typename?: 'FilterOption'
   id: Scalars['String']
   label: Scalars['String']
   count?: Maybe<Scalars['Int']>
@@ -501,7 +501,7 @@ export type ResolversTypes = {
   CombinedMapResult: ResolverTypeWrapper<CombinedMapResult>
   MapResult: ResolverTypeWrapper<MapResult>
   Filter: ResolverTypeWrapper<Filter>
-  FilterOptions: ResolverTypeWrapper<FilterOption>
+  FilterOption: ResolverTypeWrapper<FilterOption>
   PageInfo: ResolverTypeWrapper<PageInfo>
   DataSearchInput: DataSearchInput
   DataSearchResult: ResolverTypeWrapper<DataSearchResult>
@@ -557,7 +557,7 @@ export type ResolversParentTypes = {
   CombinedMapResult: CombinedMapResult
   MapResult: MapResult
   Filter: Filter
-  FilterOptions: FilterOption
+  FilterOption: FilterOption
   PageInfo: PageInfo
   DataSearchInput: DataSearchInput
   DataSearchResult: DataSearchResult
@@ -710,14 +710,14 @@ export type FilterResolvers<
 > = {
   type?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  options?: Resolver<Array<ResolversTypes['FilterOptions']>, ParentType, ContextType>
+  options?: Resolver<Array<ResolversTypes['FilterOption']>, ParentType, ContextType>
   filterType?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
-export type FilterOptionsResolvers<
+export type FilterOptionResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes['FilterOptions'] = ResolversParentTypes['FilterOptions']
+  ParentType extends ResolversParentTypes['FilterOption'] = ResolversParentTypes['FilterOption']
 > = {
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>
@@ -844,7 +844,7 @@ export type MapResultResolvers<
   authScope?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   category?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   legendItems?: Resolver<Maybe<Array<ResolversTypes['LegendItem']>>, ParentType, ContextType>
-  themes?: Resolver<Maybe<Array<ResolversTypes['Theme']>>, ParentType, ContextType>
+  themes?: Resolver<Array<ResolversTypes['Theme']>, ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
@@ -1000,7 +1000,7 @@ export type Resolvers<ContextType = any> = {
   DatasetResult?: DatasetResultResolvers<ContextType>
   DatasetSearchResult?: DatasetSearchResultResolvers<ContextType>
   Filter?: FilterResolvers<ContextType>
-  FilterOptions?: FilterOptionsResolvers<ContextType>
+  FilterOption?: FilterOptionResolvers<ContextType>
   LegendItem?: LegendItemResolvers<ContextType>
   MapCollection?: MapCollectionResolvers<ContextType>
   MapCollectionSearchResult?: MapCollectionSearchResultResolvers<ContextType>
