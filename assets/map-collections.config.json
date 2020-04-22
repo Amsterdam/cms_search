@@ -335,6 +335,9 @@
         "id": "vezips"
       },
       {
+        "id": "fiets"
+      },
+      {
         "id": "mvw",
         "title": "Risicozones"
       }
@@ -918,6 +921,23 @@
       "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-panorama.jpg",
+      "date": null
+    }
+  },
+  {
+    "id": "grex",
+    "title": "Grondexploitaties",
+    "mapLayers": [
+      {
+        "id": "grex",
+        "title": "Projecten"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie", "wonen"],
+      "datasetIds": [],
+      "thumbnail": "",
       "date": null
     }
   }
