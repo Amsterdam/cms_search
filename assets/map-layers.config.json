@@ -4513,5 +4513,50 @@
       "thumbnail": null,
       "date": null
     }
+  },
+  {
+    "authScope": "HR/R",
+    "id": "grex",
+    "layers": ["grex"],
+    "legendItems": [
+      {
+        "imageRule": "Actueel",
+        "title": "Planstatus actueel",
+        "params": {
+          "categorie": "actueel"
+        }
+      },
+      {
+        "imageRule": "Toekomstig",
+        "title": "Planstatus toekomstig",
+        "params": {
+          "categorie": "toekomstig"
+        }
+      }
+    ],
+    "title": "Grondexploitaties - Projecten",
+    "type": "wms",
+    "url": "/maps/grex",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie", "wonen"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "fiets",
+    "layers": ["fietspaaltjes"],
+    "title": "Fietspaaltjes",
+    "type": "wms",
+    "url": "/maps/fietspaaltjes",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie", "verkeer", "openbare-orde-en-veiligheid"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
   }
 ]
