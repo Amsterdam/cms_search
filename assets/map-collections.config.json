@@ -937,7 +937,7 @@
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
       "datasetIds": [],
-      "thumbnail": "",
+      "thumbnail": "sites/default/files/images/thumbnail-kaarten.jpg",
       "date": null
     }
   }
