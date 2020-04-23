@@ -344,7 +344,7 @@
     ],
     "meta": {
       "description": null,
-      "themes": ["verkeer", "ruimte-en-topografie"],
+      "themes": ["verkeer", "ruimte-en-topografie", "openbare-orde-en-veiligheid"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-verkeer-routes.jpg",
       "date": null
