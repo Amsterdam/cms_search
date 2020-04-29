@@ -2316,7 +2316,7 @@
     "type": "tms",
     "layers": ["publieke-werken"],
     "url": "https://{s}.data.amsterdam.nl/publieke-werken-1909-rd/{z}/{x}/{y}.png",
-    "iconUrl": "https://acc.t3.data.amsterdam.nl/publieke-werken-1909-rd/9/235/272.png",
+    "iconUrl": "https://t3.data.amsterdam.nl/publieke-werken-1909-rd/9/235/272.png",
     "external": true,
     "bounds": [
       [52.3361, 4.84049],
@@ -2336,7 +2336,7 @@
     "type": "tms",
     "layers": ["publieke-werken"],
     "url": "https://{s}.data.amsterdam.nl/publieke-werken-1943-rd/{z}/{x}/{y}.png",
-    "iconUrl": "https://acc.t2.data.amsterdam.nl/publieke-werken-1943-rd/9/236/272.png",
+    "iconUrl": "https://t2.data.amsterdam.nl/publieke-werken-1943-rd/9/236/272.png",
     "external": true,
     "bounds": [
       [52.3292, 4.8382],
@@ -2356,7 +2356,7 @@
     "type": "tms",
     "layers": ["publieke-werken"],
     "url": "https://{s}.data.amsterdam.nl/publieke-werken-1943-2500-rd/{z}/{x}/{y}.png",
-    "iconUrl": "https://acc.t4.data.amsterdam.nl/publieke-werken-1943-2500-rd/9/238/272.png",
+    "iconUrl": "https://t4.data.amsterdam.nl/publieke-werken-1943-2500-rd/9/238/272.png",
     "external": true,
     "bounds": [
       [52.2815, 4.7287],
@@ -2376,7 +2376,7 @@
     "type": "tms",
     "layers": ["publieke-werken"],
     "url": "https://{s}.data.amsterdam.nl/publieke-werken-1985-rd/{z}/{x}/{y}.png",
-    "iconUrl": "https://acc.t4.data.amsterdam.nl/publieke-werken-1985-rd/9/238/272.png",
+    "iconUrl": "https://t4.data.amsterdam.nl/publieke-werken-1985-rd/9/238/272.png",
     "external": true,
     "bounds": [
       [52.2756, 4.74026],
