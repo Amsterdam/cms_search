@@ -13,7 +13,7 @@ export interface ComposedMapCollection extends RawMapCollection {
   href: string
 }
 
-export interface ComposedMapLayer extends Omit<RawMapLayer, 'params'> {
+export interface ComposedMapLayer extends Omit<RawMapLayer, 'legendItems' | 'params'> {
   themes: RawTheme[]
   legendItems?: MixedLegendItem[]
   minZoom: number
@@ -37,9 +37,10 @@ export interface MapLayerLegendItem extends Omit<RawMapLayer, 'params'> {
   params?: string
 }
 
-export interface StandaloneLegendItem extends LegendItem {
+export interface StandaloneLegendItem extends Omit<LegendItem, 'params'> {
   legendType: LegendItemType.Standalone
   notSelectable: boolean
+  params?: string
 }
 
 type MixedLegendItem = MapLayerLegendItem | StandaloneLegendItem
@@ -223,10 +224,15 @@ function normalizeLegendItems(
     }
 
     // Otherwise use the plain legend item.
+    const params = legendItem.params
+      ? querystring.stringify((legendItem.params as unknown) as ParsedUrlQueryInput)
+      : undefined
+
     return {
       ...legendItem,
       legendType: LegendItemType.Standalone,
       notSelectable,
+      params,
     }
   })
 }

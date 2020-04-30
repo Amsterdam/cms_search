@@ -9,7 +9,7 @@ export interface RawMapLayer {
   detailItem?: string
   detailIsShape?: boolean
   iconUrl?: string
-  params?: Params
+  params?: RawMapLayerParams
   imageRule?: string
   minZoom?: number
   notSelectable?: boolean
@@ -26,6 +26,11 @@ export interface LegendItem {
   iconUrl?: string
   title?: string
   imageRule?: string
+  params?: LegendItemParams
+}
+
+export interface LegendItemParams {
+  categorie: string
 }
 
 export interface Meta {
@@ -36,7 +41,7 @@ export interface Meta {
   date: null
 }
 
-export interface Params {
+export interface RawMapLayerParams {
   categorie?: number | string
   onderwerp?: string
   width?: number
