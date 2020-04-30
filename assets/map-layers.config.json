@@ -4515,7 +4515,6 @@
     }
   },
   {
-    "authScope": "HR/R",
     "id": "grex",
     "layers": ["grex"],
     "legendItems": [
