@@ -47,7 +47,9 @@
     "type": "wms",
     "layers": ["kadastraal_object", "kadastraal_object_label"],
     "detailUrl": "geosearch/search/",
-    "detailItem": "kadastraal_object",
+    "detailParams": {
+      "item": "kadastraal_object"
+    },
     "detailIsShape": true,
     "url": "/maps/brk",
     "meta": {
@@ -69,7 +71,9 @@
     },
     "url": "/maps/eigendommen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "kadastraal_object",
+    "detailParams": {
+      "item": "kadastraal_object"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -90,7 +94,9 @@
     },
     "url": "/maps/eigendommen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "kadastraal_object",
+    "detailParams": {
+      "item": "kadastraal_object"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -111,7 +117,9 @@
     },
     "url": "/maps/eigendommen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "kadastraal_object",
+    "detailParams": {
+      "item": "kadastraal_object"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -132,7 +140,9 @@
     },
     "url": "/maps/eigendommen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "kadastraal_object",
+    "detailParams": {
+      "item": "kadastraal_object"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -153,7 +163,9 @@
     },
     "url": "/maps/eigendommen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "kadastraal_object",
+    "detailParams": {
+      "item": "kadastraal_object"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -192,7 +204,9 @@
     },
     "url": "/maps/eigendommen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "kadastraal_object",
+    "detailParams": {
+      "item": "kadastraal_object"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -213,7 +227,9 @@
     },
     "url": "/maps/eigendommen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "kadastraal_object",
+    "detailParams": {
+      "item": "kadastraal_object"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -234,7 +250,9 @@
     },
     "url": "/maps/eigendommen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "kadastraal_object",
+    "detailParams": {
+      "item": "kadastraal_object"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -255,7 +273,9 @@
     },
     "url": "/maps/eigendommen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "kadastraal_object",
+    "detailParams": {
+      "item": "kadastraal_object"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -276,7 +296,9 @@
       "categorie": 1
     },
     "detailUrl": "geosearch/search/",
-    "detailItem": "kadastraal_object",
+    "detailParams": {
+      "item": "kadastraal_object"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -297,7 +319,9 @@
       "categorie": 2
     },
     "detailUrl": "geosearch/search/",
-    "detailItem": "kadastraal_object",
+    "detailParams": {
+      "item": "kadastraal_object"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -315,7 +339,9 @@
     "url": "/maps/vastgoed",
     "layers": ["vastgoed_eigendom"],
     "detailUrl": "geosearch/vastgoed/",
-    "detailItem": "vastgoed",
+    "detailParams": {
+      "item": "vastgoed"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -333,7 +359,9 @@
     "url": "/maps/vastgoed",
     "layers": ["vastgoed_appartementsrecht"],
     "detailUrl": "geosearch/vastgoed/",
-    "detailItem": "vastgoed",
+    "detailParams": {
+      "item": "vastgoed"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -520,7 +548,9 @@
     "minZoom": 12,
     "url": "/maps/gebieden",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bouwblok",
+    "detailParams": {
+      "item": "bouwblok"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -624,7 +654,9 @@
     "imageRule": "Snel beschikbaar",
     "url": "/maps/oplaadpunten",
     "detailUrl": "geosearch/search/",
-    "detailItem": "oplaadpunten",
+    "detailParams": {
+      "item": "oplaadpunten"
+    },
     "layers": ["snel_beschikbaar"],
     "title": "Snellaadpunt (beschikbaar, ±15 min. geleden)",
     "type": "wms",
@@ -641,7 +673,9 @@
     "imageRule": "Snel niet beschikbaar",
     "url": "/maps/oplaadpunten",
     "detailUrl": "geosearch/search/",
-    "detailItem": "oplaadpunten",
+    "detailParams": {
+      "item": "oplaadpunten"
+    },
     "layers": ["snel_niet_beschikbaar"],
     "title": "Snellaadpunt (niet beschikbaar, ±15 min. geleden)",
     "type": "wms",
@@ -658,7 +692,9 @@
     "imageRule": "Normaal beschikbaar",
     "url": "/maps/oplaadpunten",
     "detailUrl": "geosearch/search/",
-    "detailItem": "oplaadpunten",
+    "detailParams": {
+      "item": "oplaadpunten"
+    },
     "layers": ["normaal_beschikbaar"],
     "title": "Gewoon laadpunt (beschikbaar, ±15 min. geleden)",
     "type": "wms",
@@ -675,7 +711,9 @@
     "imageRule": "Normaal niet beschikbaar",
     "url": "/maps/oplaadpunten",
     "detailUrl": "geosearch/search/",
-    "detailItem": "oplaadpunten",
+    "detailParams": {
+      "item": "oplaadpunten"
+    },
     "layers": ["normaal_niet_beschikbaar"],
     "title": "Gewoon laadpunt (niet beschikbaar, ±15 min. geleden)",
     "type": "wms",
@@ -698,7 +736,9 @@
     "url": "/maps/parkeervakken",
     "minZoom": 11,
     "detailUrl": "parkeervakken/geosearch/",
-    "detailItem": "parkeervak",
+    "detailParams": {
+      "item": "parkeervak"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -720,7 +760,9 @@
     "url": "/maps/parkeervakken",
     "minZoom": 11,
     "detailUrl": "parkeervakken/geosearch/",
-    "detailItem": "parkeervak",
+    "detailParams": {
+      "item": "parkeervak"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -741,7 +783,9 @@
     "url": "/maps/parkeervakken",
     "minZoom": 11,
     "detailUrl": "parkeervakken/geosearch/",
-    "detailItem": "parkeervak",
+    "detailParams": {
+      "item": "parkeervak"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -763,7 +807,9 @@
     "minZoom": 11,
     "url": "/maps/parkeervakken",
     "detailUrl": "parkeervakken/geosearch/",
-    "detailItem": "parkeervak",
+    "detailParams": {
+      "item": "parkeervak"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -784,7 +830,9 @@
     "minZoom": 11,
     "url": "/maps/parkeervakken",
     "detailUrl": "parkeervakken/geosearch/",
-    "detailItem": "parkeervak",
+    "detailParams": {
+      "item": "parkeervak"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -805,7 +853,9 @@
     "minZoom": 11,
     "url": "/maps/parkeervakken",
     "detailUrl": "parkeervakken/geosearch/",
-    "detailItem": "parkeervak",
+    "detailParams": {
+      "item": "parkeervak"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -826,7 +876,9 @@
     "minZoom": 11,
     "url": "/maps/parkeervakken",
     "detailUrl": "parkeervakken/geosearch/",
-    "detailItem": "parkeervak",
+    "detailParams": {
+      "item": "parkeervak"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -847,7 +899,9 @@
     "minZoom": 11,
     "url": "/maps/parkeervakken",
     "detailUrl": "parkeervakken/geosearch/",
-    "detailItem": "parkeervak",
+    "detailParams": {
+      "item": "parkeervak"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -868,7 +922,9 @@
     "minZoom": 11,
     "url": "/maps/parkeervakken",
     "detailUrl": "parkeervakken/geosearch/",
-    "detailItem": "parkeervak",
+    "detailParams": {
+      "item": "parkeervak"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -890,7 +946,9 @@
     "minZoom": 11,
     "url": "/maps/parkeervakken",
     "detailUrl": "parkeervakken/geosearch/",
-    "detailItem": "parkeervak",
+    "detailParams": {
+      "item": "parkeervak"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -906,7 +964,9 @@
     "type": "wms",
     "imageRule": "Parkeerzones uitzonderingen",
     "layers": ["parkeerzones_uitz"],
-    "detailItem": "parkeerzones_uitz",
+    "detailParams": {
+      "item": "parkeerzones_uitz"
+    },
     "detailUrl": "geosearch/parkeerzones_uitz/",
     "detailIsShape": true,
     "url": "/maps/parkeerzones_uitz",
@@ -924,7 +984,9 @@
     "type": "wms",
     "iconUrl": "/assets/images/map-legend/icon-parkeerzones.svg",
     "layers": ["parkeerzones"],
-    "detailItem": "parkeerzones",
+    "detailParams": {
+      "item": "parkeerzones"
+    },
     "detailUrl": "geosearch/parkeerzones/",
     "detailIsShape": true,
     "url": "/maps/parkeerzones",
@@ -976,7 +1038,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -995,7 +1059,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme"],
@@ -1014,7 +1080,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme"],
@@ -1033,7 +1101,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -1053,7 +1123,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -1072,7 +1144,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -1091,7 +1165,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -1110,7 +1186,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -1129,7 +1207,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -1148,7 +1228,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -1167,7 +1249,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -1186,7 +1270,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -1206,7 +1292,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -1225,7 +1313,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -1244,7 +1334,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -1263,7 +1355,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -1282,7 +1376,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -1301,7 +1397,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -1321,7 +1419,9 @@
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bekendmakingen",
+    "detailParams": {
+      "item": "bekendmakingen"
+    },
     "meta": {
       "description": null,
       "themes": ["bestuur", "economie-en-toerisme", "wonen"],
@@ -1464,7 +1564,9 @@
     "notSelectable": true,
     "url": "/maps/monumenten",
     "detailUrl": "geosearch/search/",
-    "detailItem": "monument",
+    "detailParams": {
+      "item": "monument"
+    },
     "layers": ["monument_coordinaten"],
     "title": "Monument (pandgerelateerd)",
     "type": "wms",
@@ -1481,7 +1583,9 @@
     "notSelectable": true,
     "url": "/maps/monumenten",
     "detailUrl": "geosearch/search/",
-    "detailItem": "monument",
+    "detailParams": {
+      "item": "monument"
+    },
     "layers": ["monument_coordinaten_nopand"],
     "title": "Monument (overige)",
     "type": "wms",
@@ -1812,7 +1916,9 @@
     },
     "url": "/maps/reclame",
     "detailUrl": "geosearch/reclamebelasting/",
-    "detailItem": "reclamebelasting",
+    "detailParams": {
+      "item": "reclamebelasting"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
@@ -1831,7 +1937,9 @@
     },
     "url": "/maps/reclame",
     "detailUrl": "geosearch/reclamebelasting/",
-    "detailItem": "reclamebelasting",
+    "detailParams": {
+      "item": "reclamebelasting"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
@@ -1850,7 +1958,9 @@
     },
     "url": "/maps/reclame",
     "detailUrl": "geosearch/reclamebelasting/",
-    "detailItem": "reclamebelasting",
+    "detailParams": {
+      "item": "reclamebelasting"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
@@ -2210,7 +2320,9 @@
     "type": "wms",
     "url": "/maps/nap",
     "detailUrl": "geosearch/search/",
-    "detailItem": "peilmerk",
+    "detailParams": {
+      "item": "peilmerk"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "duurzaamheid-en-milieu", "wonen"],
@@ -2235,7 +2347,9 @@
     "type": "wms",
     "url": "/maps/meetbouten",
     "detailUrl": "geosearch/search/",
-    "detailItem": "meetbout",
+    "detailParams": {
+      "item": "meetbout"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
@@ -2281,7 +2395,9 @@
     "type": "wms",
     "url": "/maps/meetbouten",
     "detailUrl": "geosearch/search/",
-    "detailItem": "meetbout",
+    "detailParams": {
+      "item": "meetbout"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
@@ -2555,7 +2671,9 @@
     "type": "wms",
     "url": "/maps/parkeervakken",
     "detailUrl": "parkeervakken/geosearch/",
-    "detailItem": "parkeervak",
+    "detailParams": {
+      "item": "parkeervak"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -2578,7 +2696,9 @@
     "type": "wms",
     "url": "/maps/parkeervakken",
     "detailUrl": "parkeervakken/geosearch/",
-    "detailItem": "parkeervak",
+    "detailParams": {
+      "item": "parkeervak"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -2845,7 +2965,9 @@
     "type": "wms",
     "url": "/maps/evenementen",
     "detailUrl": "geosearch/evenementen/",
-    "detailItem": "evenementen",
+    "detailParams": {
+      "item": "evenementen"
+    },
     "meta": {
       "description": null,
       "themes": ["cultuur-en-recreatie"],
@@ -2983,7 +3105,9 @@
     "type": "wms",
     "url": "/maps/bommenkaart",
     "detailUrl": "geosearch/search/",
-    "detailItem": "bominslag",
+    "detailParams": {
+      "item": "bominslag"
+    },
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"],
@@ -3587,7 +3711,9 @@
     "type": "wms",
     "url": "/maps/winkgeb",
     "detailUrl": "geosearch/winkgeb/",
-    "detailItem": "winkgeb",
+    "detailParams": {
+      "item": "winkgeb"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -3605,7 +3731,9 @@
     "imageRule": "Bedrijfsinvesteringszone",
     "url": "/maps/biz",
     "detailUrl": "geosearch/biz/",
-    "detailItem": "biz",
+    "detailParams": {
+      "item": "biz"
+    },
     "detailIsShape": true,
     "meta": {
       "description": null,
@@ -3647,7 +3775,9 @@
     "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
-    "detailItem": "bouw",
+    "detailParams": {
+      "item": "bouw"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
@@ -3682,7 +3812,9 @@
     "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
-    "detailItem": "cultuur_sport_recreatie",
+    "detailParams": {
+      "item": "cultuur_sport_recreatie"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
@@ -3717,7 +3849,9 @@
     "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
-    "detailItem": "financiele_dienstverlening_verhuur",
+    "detailParams": {
+      "item": "financiele_dienstverlening_verhuur"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
@@ -3761,7 +3895,9 @@
     "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
-    "detailItem": "handel_vervoer_opslag",
+    "detailParams": {
+      "item": "handel_vervoer_opslag"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
@@ -3805,7 +3941,9 @@
     "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
-    "detailItem": "horeca",
+    "detailParams": {
+      "item": "horeca"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
@@ -3840,7 +3978,9 @@
     "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
-    "detailItem": "informatie_telecommunicatie",
+    "detailParams": {
+      "item": "informatie_telecommunicatie"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
@@ -3881,7 +4021,9 @@
     "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
-    "detailItem": "landbouw",
+    "detailParams": {
+      "item": "landbouw"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
@@ -3913,7 +4055,9 @@
     "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
-    "detailItem": "overheid_onderwijs_zorg",
+    "detailParams": {
+      "item": "overheid_onderwijs_zorg"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
@@ -3952,7 +4096,9 @@
     "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
-    "detailItem": "persoonlijke_dienstverlening",
+    "detailParams": {
+      "item": "persoonlijke_dienstverlening"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
@@ -3985,7 +4131,9 @@
     "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
-    "detailItem": "productie_installatie_reparatie",
+    "detailParams": {
+      "item": "productie_installatie_reparatie"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
@@ -4042,7 +4190,9 @@
     "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
-    "detailItem": "zakelijke_dienstverlening",
+    "detailParams": {
+      "item": "zakelijke_dienstverlening"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
@@ -4077,7 +4227,9 @@
     "type": "wms",
     "url": "/maps/handelsregister",
     "detailUrl": "handelsregister/geosearch/",
-    "detailItem": "overige",
+    "detailParams": {
+      "item": "overige"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
@@ -4550,6 +4702,10 @@
     "title": "Fietspaaltjes",
     "type": "wms",
     "url": "/maps/fietspaaltjes",
+    "detailUrl": "geosearch/search/",
+    "detailParams": {
+      "datasets": "fietspaaltjes"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "verkeer", "openbare-orde-en-veiligheid"],

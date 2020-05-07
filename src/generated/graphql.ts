@@ -171,7 +171,7 @@ export type MapResult = {
   url?: Maybe<Scalars['String']>
   params?: Maybe<Scalars['String']>
   detailUrl?: Maybe<Scalars['String']>
-  detailItem?: Maybe<Scalars['String']>
+  detailParams?: Maybe<DetailParams>
   detailIsShape?: Maybe<Scalars['Boolean']>
   iconUrl?: Maybe<Scalars['String']>
   imageRule?: Maybe<Scalars['String']>
@@ -257,7 +257,7 @@ export type MapLayer = {
   url?: Maybe<Scalars['String']>
   params?: Maybe<Scalars['String']>
   detailUrl?: Maybe<Scalars['String']>
-  detailItem?: Maybe<Scalars['String']>
+  detailParams?: Maybe<DetailParams>
   detailIsShape?: Maybe<Scalars['Boolean']>
   iconUrl?: Maybe<Scalars['String']>
   imageRule?: Maybe<Scalars['String']>
@@ -287,6 +287,12 @@ export type Meta = {
   date?: Maybe<Scalars['String']>
 }
 
+export type DetailParams = {
+  __typename?: 'DetailParams'
+  item?: Maybe<Scalars['String']>
+  datasets?: Maybe<Scalars['String']>
+}
+
 export enum LegendItemType {
   MapLayer = 'MAP_LAYER',
   Standalone = 'STANDALONE',
@@ -302,7 +308,7 @@ export type LegendItem = {
   layers?: Maybe<Array<Scalars['String']>>
   url?: Maybe<Scalars['String']>
   detailUrl?: Maybe<Scalars['String']>
-  detailItem?: Maybe<Scalars['String']>
+  detailParams?: Maybe<DetailParams>
   detailIsShape?: Maybe<Scalars['Boolean']>
   iconUrl?: Maybe<Scalars['String']>
   imageRule?: Maybe<Scalars['String']>
@@ -508,6 +514,7 @@ export type ResolversTypes = {
   MapLayer: ResolverTypeWrapper<MapLayer>
   Theme: ResolverTypeWrapper<Theme>
   Meta: ResolverTypeWrapper<Meta>
+  DetailParams: ResolverTypeWrapper<DetailParams>
   LegendItemType: LegendItemType
   LegendItem: ResolverTypeWrapper<LegendItem>
   Query: ResolverTypeWrapper<{}>
@@ -564,6 +571,7 @@ export type ResolversParentTypes = {
   MapLayer: MapLayer
   Theme: Theme
   Meta: Meta
+  DetailParams: DetailParams
   LegendItemType: LegendItemType
   LegendItem: LegendItem
   Query: {}
@@ -748,7 +756,7 @@ export type MapResultResolvers<
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   params?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   detailUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  detailItem?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  detailParams?: Resolver<Maybe<ResolversTypes['DetailParams']>, ParentType, ContextType>
   detailIsShape?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
   iconUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   imageRule?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
@@ -862,7 +870,7 @@ export type MapLayerResolvers<
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   params?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   detailUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  detailItem?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  detailParams?: Resolver<Maybe<ResolversTypes['DetailParams']>, ParentType, ContextType>
   detailIsShape?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
   iconUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   imageRule?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
@@ -899,6 +907,15 @@ export type MetaResolvers<
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
+export type DetailParamsResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['DetailParams'] = ResolversParentTypes['DetailParams']
+> = {
+  item?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  datasets?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  __isTypeOf?: isTypeOfResolverFn<ParentType>
+}
+
 export type LegendItemResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['LegendItem'] = ResolversParentTypes['LegendItem']
@@ -910,7 +927,7 @@ export type LegendItemResolvers<
   layers?: Resolver<Maybe<Array<ResolversTypes['String']>>, ParentType, ContextType>
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   detailUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  detailItem?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  detailParams?: Resolver<Maybe<ResolversTypes['DetailParams']>, ParentType, ContextType>
   detailIsShape?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
   iconUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   imageRule?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
@@ -1012,6 +1029,7 @@ export type Resolvers<ContextType = any> = {
   MapLayer?: MapLayerResolvers<ContextType>
   Theme?: ThemeResolvers<ContextType>
   Meta?: MetaResolvers<ContextType>
+  DetailParams?: DetailParamsResolvers<ContextType>
   LegendItem?: LegendItemResolvers<ContextType>
   Query?: QueryResolvers<ContextType>
 }

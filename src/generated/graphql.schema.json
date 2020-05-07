@@ -1674,12 +1674,12 @@
             "deprecationReason": null
           },
           {
-            "name": "detailItem",
+            "name": "detailParams",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "OBJECT",
+              "name": "DetailParams",
               "ofType": null
             },
             "isDeprecated": false,
@@ -2652,12 +2652,12 @@
             "deprecationReason": null
           },
           {
-            "name": "detailItem",
+            "name": "detailParams",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "OBJECT",
+              "name": "DetailParams",
               "ofType": null
             },
             "isDeprecated": false,
@@ -2992,6 +2992,41 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "DetailParams",
+        "description": null,
+        "fields": [
+          {
+            "name": "item",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "datasets",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "ENUM",
         "name": "LegendItemType",
         "description": null,
@@ -3112,12 +3147,12 @@
             "deprecationReason": null
           },
           {
-            "name": "detailItem",
+            "name": "detailParams",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "OBJECT",
+              "name": "DetailParams",
               "ofType": null
             },
             "isDeprecated": false,
