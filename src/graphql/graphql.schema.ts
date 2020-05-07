@@ -151,7 +151,7 @@ const schema = gql`
     url: String
     params: String
     detailUrl: String
-    detailItem: String
+    detailParams: DetailParams
     detailIsShape: Boolean
     iconUrl: String
     imageRule: String
@@ -229,7 +229,7 @@ const schema = gql`
     url: String
     params: String
     detailUrl: String
-    detailItem: String
+    detailParams: DetailParams
     detailIsShape: Boolean
     iconUrl: String
     imageRule: String
@@ -257,6 +257,11 @@ const schema = gql`
     date: String
   }
 
+  type DetailParams {
+    item: String
+    datasets: String
+  }
+
   enum LegendItemType {
     MAP_LAYER
     STANDALONE
@@ -271,7 +276,7 @@ const schema = gql`
     layers: [String!]
     url: String
     detailUrl: String
-    detailItem: String
+    detailParams: DetailParams
     detailIsShape: Boolean
     iconUrl: String
     imageRule: String

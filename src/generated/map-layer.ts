@@ -6,7 +6,7 @@ export interface RawMapLayer {
   url?: string
   meta: Meta
   detailUrl?: string
-  detailItem?: string
+  detailParams?: DetailParams
   detailIsShape?: boolean
   iconUrl?: string
   params?: RawMapLayerParams
@@ -18,6 +18,11 @@ export interface RawMapLayer {
   bounds?: Array<number[]>
   authScope?: string
   category?: string
+}
+
+export interface DetailParams {
+  item?: string
+  datasets?: string
 }
 
 export interface LegendItem {
