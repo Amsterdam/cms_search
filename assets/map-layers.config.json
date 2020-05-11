@@ -4688,6 +4688,10 @@
     "title": "Grondexploitaties - Projecten",
     "type": "wms",
     "url": "/maps/grex",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "grex,projecten"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie", "wonen"],
@@ -4702,7 +4706,7 @@
     "title": "Fietspaaltjes",
     "type": "wms",
     "url": "/maps/fietspaaltjes",
-    "detailUrl": "geosearch/search/",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "fietspaaltjes"
     },
