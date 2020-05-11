@@ -3274,6 +3274,7 @@
     "id": "mvsw",
     "layers": ["risicozonesspoorweg"],
     "title": "Spoorwegen - Risicozones",
+    "imageRule": "invloedsgebied spoorwegen",
     "type": "wms",
     "url": "/maps/externeveiligheid",
     "meta": {
@@ -3288,6 +3289,7 @@
     "id": "mvvw",
     "layers": ["risicozonesvaarweg"],
     "title": "Vaarwegen - Risicozones",
+    "imageRule": "invloedsgebied vaarwegen",
     "type": "wms",
     "url": "/maps/externeveiligheid",
     "meta": {
@@ -3355,6 +3357,7 @@
     "id": "mvi",
     "layers": ["overigerisicobedrijfinvloedsgebied"],
     "title": "Bedrijven - Invloedsgebieden",
+    "imageRule": "invloedsgebied",
     "type": "wms",
     "url": "/maps/externeveiligheid",
     "meta": {
