@@ -2769,6 +2769,51 @@
     }
   },
   {
+    "id": "rtsgs",
+    "imageRule": "Gevaarlijke stoffen",
+    "layers": ["gevaarlijke_stoffen"],
+    "title": "Routes gevaarlijke stoffen",
+    "type": "wms",
+    "url": "/maps/hoofdroutes",
+    "meta": {
+      "description": null,
+      "themes": ["verkeer", "ruimte-en-topografie", "openbare-orde-en-veiligheid"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "rtstgs",
+    "imageRule": "Tunnels gevaarlijke stoffen",
+    "layers": ["tunnels"],
+    "title": "Tunnels gevaarlijke stoffen",
+    "type": "wms",
+    "url": "/maps/hoofdroutes",
+    "meta": {
+      "description": null,
+      "themes": ["verkeer", "ruimte-en-topografie", "openbare-orde-en-veiligheid"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "rtsur",
+    "imageRule": "U routes",
+    "layers": ["u_routes"],
+    "title": "U-routes",
+    "type": "wms",
+    "url": "/maps/hoofdroutes",
+    "meta": {
+      "description": null,
+      "themes": ["verkeer", "ruimte-en-topografie", "openbare-orde-en-veiligheid"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
     "id": "vezips",
     "layers": ["vezips"],
     "title": "Verzinkbare palen",
