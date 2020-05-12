@@ -2750,14 +2750,36 @@
   },
   {
     "id": "rtsvr",
-    "layers": ["vrachtroutes"],
     "legendItems": [
       {
-        "imageRule": "Vrachtroutes",
-        "title": "Vrachtauto 7,5t-route"
+        "id": "rtsvr75"
+      },
+      {
+        "id": "rtsgs"
+      },
+      {
+        "id": "rtstgs"
+      },
+      {
+        "id": "rtsur"
       }
     ],
     "title": "Routes - Vrachtauto",
+    "type": "wms",
+    "url": "/maps/hoofdroutes",
+    "meta": {
+      "description": null,
+      "themes": ["verkeer", "ruimte-en-topografie", "openbare-orde-en-veiligheid"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "rtsvr75",
+    "imageRule": "Vrachtroutes",
+    "layers": ["vrachtroutes"],
+    "title": "Vrachtauto 7,5t-route",
     "type": "wms",
     "url": "/maps/hoofdroutes",
     "meta": {
