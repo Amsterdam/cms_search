@@ -4568,7 +4568,6 @@
   {
     "id": "buurtinitiatieven",
     "layers": ["buurtinitiatieven"],
-    "imageRule": "Buurtinitiatieven",
     "title": "City Deal-buurt en particulier initatief",
     "type": "wms",
     "meta": {
@@ -4582,7 +4581,6 @@
   {
     "id": "buurten_kookgas",
     "layers": ["buurten_kookgas"],
-    "imageRule": ">20% van warmteaansluitingen nog op kookgas",
     "title": "Een aanzienlijk deel van warmteaansluitingen nog op kookgas",
     "type": "wms",
     "meta": {
@@ -4603,44 +4601,34 @@
         "notSelectable": true
       },
       {
-        "title": "All Electric",
-        "imageRule": "All Electric: gestaag aardgasvrij tussen 2020 en 2040"
+        "title": "All Electric"
       },
       {
-        "title": "Duurzaam gasnet",
-        "imageRule": "Aardgasvrij gasnet: gestaag tot 70% gasbesparing tot 2040"
+        "title": "Duurzaam gasnet"
       },
       {
-        "title": "Warmtenet, al aangesloten",
-        "imageRule": "Al (bijna) volledig op het warmtenet"
+        "title": "Warmtenet, al aangesloten"
       },
       {
-        "title": "Bronnet",
-        "imageRule": "Lokale bronnetten: gestaag aardgasvrij tussen 2020 en 2040"
+        "title": "Bronnet"
       },
       {
-        "title": "Bronnet, 2020-2032",
-        "imageRule": "Lokale bronnetten en warmtenet: gestaag aardgasvrij tussen 2020 en 2032"
+        "title": "Bronnet, 2020-2032"
       },
       {
-        "title": "Warmtenet, 2020-2030",
-        "imageRule": "Warmtenetbuurt: gefaseerd aardgasvrij tussen 2020 en 2030"
+        "title": "Warmtenet, 2020-2030"
       },
       {
-        "title": "Warmtenet, 2022-2032",
-        "imageRule": "Warmtenetbuurt: gefaseerd aardgasvrij tussen 2020 en 2032"
+        "title": "Warmtenet, 2022-2032"
       },
       {
-        "title": "Warmtenet, vanaf 2030",
-        "imageRule": "Warmtenetbuurt: gefaseerd starten vanaf 2030"
+        "title": "Warmtenet, vanaf 2030"
       },
       {
-        "title": "Nieuwbouw & transformatie",
-        "imageRule": "Nieuwbouw- en transformatiegebied: volgt de fasering van de gebiedsontwikkeling"
+        "title": "Nieuwbouw & transformatie"
       },
       {
-        "title": "Onbebouwd",
-        "imageRule": "Grotendeels onbebouwd"
+        "title": "Onbebouwd"
       },
       {
         "id": "buurten_kookgas",
