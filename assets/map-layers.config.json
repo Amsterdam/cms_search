@@ -3581,6 +3581,7 @@
     "id": "mgsw",
     "layers": ["spoorwegen"],
     "title": "Spoorwegen - Geluidszones",
+    "imageRule": "Geluidszone spoorwegen",
     "type": "wms",
     "url": "/maps/planologischegeluidszones",
     "meta": {
@@ -3595,6 +3596,7 @@
     "id": "mgpm",
     "layers": ["metro"],
     "title": "Metro - Geluidszones",
+    "imageRule": "Geluidszone metro",
     "type": "wms",
     "url": "/maps/planologischegeluidszones",
     "meta": {
