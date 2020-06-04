@@ -3017,6 +3017,10 @@
     "title": "Unesco werelderfgoedzones",
     "type": "wms",
     "url": "/maps/gebieden",
+    "detailUrl": "geosearch/search/",
+    "detailParams": {
+      "item": "unesco"
+    },
     "meta": {
       "description": null,
       "themes": ["cultuur-en-recreatie", "ruimte-en-topografie"],
@@ -3203,6 +3207,10 @@
     "title": "Explosieven - Verdachte gebieden",
     "type": "wms",
     "url": "/maps/bommenkaart",
+    "detailUrl": "geosearch/search/",
+    "detailParams": {
+      "item": "verdachtgebied"
+    },
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"],
@@ -3218,6 +3226,10 @@
     "title": "Explosieven - Gevrijwaarde gebieden",
     "type": "wms",
     "url": "/maps/bommenkaart",
+    "detailUrl": "geosearch/search/",
+    "detailParams": {
+      "item": "gevrijwaardgebied"
+    },
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"],
@@ -3243,6 +3255,10 @@
     "title": "Explosieven - Uitgevoerde CE-onderzoeken",
     "type": "wms",
     "url": "/maps/bommenkaart",
+    "detailUrl": "geosearch/search/",
+    "detailParams": {
+      "item": "uitgevoerdonderzoek"
+    },
     "meta": {
       "description": null,
       "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"],
