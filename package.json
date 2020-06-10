@@ -42,7 +42,7 @@
     "typescript": "^3.9.5"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^1.15.1",
+    "@graphql-codegen/cli": "^1.15.2",
     "@graphql-codegen/introspection": "^1.15.1",
     "@graphql-codegen/typescript": "^1.15.1",
     "@graphql-codegen/typescript-resolvers": "^1.15.1",
