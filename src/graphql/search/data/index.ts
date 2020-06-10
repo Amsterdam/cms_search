@@ -33,9 +33,9 @@ const index = async (
   let endpoints: Array<DataSearchType> = DATA_SEARCH_ENDPOINTS
 
   // Only endpoints that expect a query in this format should be used
-  endpoints = endpoints.filter(({ queryFormat, ...endpoint }) => {
-    if (queryFormat) {
-      return !!q?.match(queryFormat) ? endpoint : null
+  endpoints = endpoints.filter(({ queryMatcher, ...endpoint }) => {
+    if (queryMatcher) {
+      return !!q?.match(queryMatcher) ? endpoint : null
     }
 
     return endpoint
@@ -57,38 +57,43 @@ const index = async (
   // Get the results from the DataLoader
   const dataloaderResults: CombinedDataResult[] = await Promise.all(
     // Construct the keys e.g. the URLs that should be loaded or fetched
-    endpoints.map(async ({ endpoint, type, searchParam, params, label, labelSingular }) => {
-      const query = queryString.stringify({ [searchParam]: q, page, ...(params || {}) })
+    endpoints.map(
+      async ({ endpoint, type, searchParam, queryFormatter, params, label, labelSingular }) => {
+        // Remove search parameter prefixes
+        q = queryFormatter ? q?.replace(queryFormatter, '') : q
 
-      const key = `${endpoint}/?${query}`
-      const result = await loaders.data.load(key)
-      const { status, value } = result
+        const query = queryString.stringify({ [searchParam]: q, page, ...(params || {}) })
 
-      // If an error is thrown, delete the key from the cache and throw an error
-      if (status === 'rejected') {
-        loaders.data.clear(key)
+        const key = `${endpoint}/?${query}`
+        const result = await loaders.data.load(key)
+        const { status, value } = result
+
+        // If an error is thrown, delete the key from the cache and throw an error
+        if (status === 'rejected') {
+          loaders.data.clear(key)
+
+          return {
+            count: 0,
+            label: label,
+            type,
+            results: new CustomError(result.reason, type, label), // GraphQL can handle Error as response on nullable types and will return `null` for the field and places the Error in the `errors` field, extending the error to handle this will break the autogeneration of types
+          }
+        }
+
+        // The Promise resolved, so return the valid Data
+        const { results = [], count } = value || {}
 
         return {
-          count: 0,
-          label: label,
+          count: count || 0,
+          label: count === 1 ? labelSingular : label,
           type,
-          results: new CustomError(result.reason, type, label), // GraphQL can handle Error as response on nullable types and will return `null` for the field and places the Error in the `errors` field, extending the error to handle this will break the autogeneration of types
+          results:
+            results.length > 0 // TODO: Add test to see if the corect number of results is returned
+              ? results.slice(0, limit).map((result: Object) => normalizeResults(result, type))
+              : [],
         }
-      }
-
-      // The Promise resolved, so return the valid Data
-      const { results = [], count } = value || {}
-
-      return {
-        count: count || 0,
-        label: count === 1 ? labelSingular : label,
-        type,
-        results:
-          results.length > 0 // TODO: Add test to see if the corect number of results is returned
-            ? results.slice(0, limit).map((result: Object) => normalizeResults(result, type))
-            : [],
-      }
-    }),
+      },
+    ),
   )
 
   // Get the count of each individual type to calculate the total count for all types
