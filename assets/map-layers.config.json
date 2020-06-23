@@ -4793,5 +4793,55 @@
       "thumbnail": null,
       "date": null
     }
+  },
+  {
+    "id": "vergkvh",
+    "layers": ["omzettingen_quotum"],
+    "title": "Vergunningen kamerverhuur",
+    "type": "wms",
+    "url": "/maps/omzettingen_quotum",
+    "legendItems": [
+      {
+        "title": "Niet beschikbaar"
+      },
+      {
+        "title": "Beperkt beschikbaar"
+      },
+      {
+        "title": "Beschikbaar"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": ["bestuur", "wonen"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "vergbnb",
+    "layers": ["bb_quotum"],
+    "title": "Vergunningen B&B",
+    "type": "wms",
+    "url": "/maps/bb_quotum",
+    "legendItems": [
+      {
+        "title": "Niet beschikbaar"
+      },
+      {
+        "title": "Beperkt beschikbaar"
+      },
+      {
+        "title": "Beschikbaar"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": ["bestuur", "wonen"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
   }
 ]
