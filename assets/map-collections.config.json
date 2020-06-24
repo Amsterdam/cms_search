@@ -968,33 +968,5 @@
       "thumbnail": "sites/default/files/images/thumbnail-kaarten.jpg",
       "date": null
     }
-  },
-  {
-    "id": "bel",
-    "title": "Belastingen",
-    "mapLayers": [
-      {
-        "id": "precarw"
-      },
-      {
-        "id": "precarbv"
-      },
-      {
-        "id": "precarpv"
-      },
-      {
-        "id": "precart"
-      },
-      {
-        "id": "recbel"
-      }
-    ],
-    "meta": {
-      "description": null,
-      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
-      "datasetIds": [],
-      "thumbnail": "sites/default/files/images/thumbnail-kaarten.jpg",
-      "date": null
-    }
   }
 ]
