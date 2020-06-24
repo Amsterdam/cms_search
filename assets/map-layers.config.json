@@ -4822,7 +4822,7 @@
   {
     "id": "vergbnb",
     "layers": ["bb_quotum"],
-    "title": "Vergunningen B&B",
+    "title": "Vergunningen Bed & Breakfast",
     "type": "wms",
     "url": "/maps/bb_quotum",
     "legendItems": [
