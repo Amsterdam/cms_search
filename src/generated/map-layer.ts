@@ -32,10 +32,13 @@ export interface LegendItem {
   title?: string
   imageRule?: string
   params?: LegendItemParams
+  type?: string
+  url?: string
 }
 
 export interface LegendItemParams {
-  categorie: string
+  categorie?: string
+  tariefgebied?: string
 }
 
 export interface Meta {
