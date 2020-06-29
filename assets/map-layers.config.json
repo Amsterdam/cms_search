@@ -2812,6 +2812,10 @@
     "title": "Tunnels gevaarlijke stoffen",
     "type": "wms",
     "url": "/maps/hoofdroutes",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "hoofdroutes/tunnels_gevaarlijke_stoffen"
+    },
     "meta": {
       "description": null,
       "themes": ["verkeer", "ruimte-en-topografie", "openbare-orde-en-veiligheid"],
