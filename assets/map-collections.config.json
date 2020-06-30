@@ -124,24 +124,20 @@
         "id": "pvrpv"
       },
       {
-        "id": "pvrga",
-        "title": "Gehandicaptenparkeerplaats algemeen"
+        "id": "pvrga"
       },
       {
-        "id": "pvrgk",
-        "title": "Gehandicaptenparkeerplaats kenteken"
+        "id": "pvrgk"
       },
       {
-        "id": "pvrsv",
-        "title": "Parkeren specifieke voertuigcategorie"
+        "id": "pvrsv"
       },
       {
-        "id": "pvrvh",
-        "title": "Parkeren vergunninghouders"
+        "id": "pvrvh"
       },
       {
         "id": "pvrbz",
-        "title": "Parkeren - blauwe zone"
+        "title": "Blauwe zone"
       },
       {
         "id": "pvrgeb"
@@ -263,59 +259,6 @@
       "themes": ["duurzaamheid-en-milieu", "verkeer"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/teaser-kaart-oplaadpunten.jpg",
-      "date": null
-    }
-  },
-  {
-    "id": "parkvk",
-    "title": "Parkeervakken",
-    "mapLayers": [
-      {
-        "id": "pv",
-        "title": "Fiscale indelingen"
-      },
-      {
-        "id": "pvb",
-        "title": "Speciale bestemmingen"
-      },
-      {
-        "id": "pvrts"
-      },
-      {
-        "id": "pvrll"
-      },
-      {
-        "id": "pvrpr"
-      },
-      {
-        "id": "pvrf",
-        "title": "Parkeervakken - Fiscaal"
-      },
-      {
-        "id": "pvrpv"
-      },
-      {
-        "id": "pvrga"
-      },
-      {
-        "id": "pvrgk"
-      },
-      {
-        "id": "pvrsv"
-      },
-      {
-        "id": "pvrvh"
-      },
-      {
-        "id": "pvrbz",
-        "title": "Parkeervakken - Blauwe zone"
-      }
-    ],
-    "meta": {
-      "description": null,
-      "themes": ["verkeer", "ruimte-en-topografie"],
-      "datasetIds": [],
-      "thumbnail": "sites/default/files/images/teaser-kaart-parkeervakken.jpg",
       "date": null
     }
   },
