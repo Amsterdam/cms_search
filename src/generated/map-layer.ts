@@ -59,4 +59,5 @@ export interface RawMapLayerParams {
   mission_year?: number
   mission_type?: string
   scale?: number
+  tijdvak?: string
 }
