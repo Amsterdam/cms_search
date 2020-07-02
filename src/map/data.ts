@@ -4,7 +4,7 @@ import { RawMapCollection } from '../generated/map-collection'
 import { LegendItem, RawMapLayer } from '../generated/map-layer'
 import { RawTheme } from '../generated/theme'
 
-const DEFAULT_MIN_ZOOM = 8
+const DEFAULT_MIN_ZOOM = 7
 const DEFAULT_MAX_ZOOM = 16
 
 export interface ComposedMapCollection extends RawMapCollection {
