@@ -152,6 +152,28 @@
     }
   },
   {
+    "id": "tvkprkrn",
+    "title": "Parkeren - tijdvakken",
+    "mapLayers": [
+      {
+        "id": "taxi_tijdvkn"
+      },
+      {
+        "id": "laden_lossen_tijdvkn"
+      },
+      {
+        "id": "kiss_ride_tijdvkn"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": ["verkeer"],
+      "datasetIds": [],
+      "thumbnail": "sites/default/files/images/thumbnail-kaarten.jpg",
+      "date": null
+    }
+  },
+  {
     "id": "energie",
     "title": "Energie",
     "mapLayers": [
@@ -907,28 +929,6 @@
     "meta": {
       "description": null,
       "themes": ["bestuur", "wonen"],
-      "datasetIds": [],
-      "thumbnail": "sites/default/files/images/thumbnail-kaarten.jpg",
-      "date": null
-    }
-  },
-  {
-    "id": "tvkprkrn",
-    "title": "Tijdvakken parkeren",
-    "mapLayers": [
-      {
-        "id": "taxi_tijdvkn"
-      },
-      {
-        "id": "laden_lossen_tijdvkn"
-      },
-      {
-        "id": "kiss_ride_tijdvkn"
-      }
-    ],
-    "meta": {
-      "description": null,
-      "themes": ["verkeer"],
       "datasetIds": [],
       "thumbnail": "sites/default/files/images/thumbnail-kaarten.jpg",
       "date": null
