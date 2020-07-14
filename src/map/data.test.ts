@@ -1,8 +1,10 @@
 import { composeMapLayer } from './data'
+import { RawMapLayer } from '../generated/map-layer'
+import { Theme } from '../generated/graphql'
 
 describe('map data', () => {
   describe('should compose the maplayers', () => {
-    const MOCK_LAYER = {
+    const MOCK_LAYER: RawMapLayer = {
       id: '1',
       title: 'foo',
       type: 'TYPE',
@@ -15,7 +17,7 @@ describe('map data', () => {
       },
     }
 
-    const MOCK_PARENT_LAYER = {
+    const MOCK_PARENT_LAYER: RawMapLayer = {
       id: '1',
       title: 'parent',
       type: 'TYPE',
@@ -29,7 +31,7 @@ describe('map data', () => {
       },
     }
 
-    const MOCK_THEME = {
+    const MOCK_THEME: Theme = {
       id: '2',
       title: 'foo_theme',
     }
@@ -38,7 +40,8 @@ describe('map data', () => {
 
     it('and sets the theme meta', () => {
       const output = composeMapLayer(MOCK_LAYER, [MOCK_LAYER], [MOCK_THEME], MOCK_COLLECTION_ID)
-      expect(output.themes[0]).toBe(MOCK_THEME)
+
+      expect(output.meta.themes[0]).toBe(MOCK_THEME)
     })
 
     it('and sets the title', () => {

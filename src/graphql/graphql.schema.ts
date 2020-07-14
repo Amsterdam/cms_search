@@ -161,7 +161,6 @@ const schema = gql`
     authScope: String
     category: String
     legendItems: [LegendItem!]
-    themes: [Theme!]!
   }
 
   type CombinedDataResult implements CombinedResult {
@@ -213,7 +212,6 @@ const schema = gql`
     id: ID!
     title: String!
     mapLayers: [MapLayer!]!
-    themes: [Theme!]!
     meta: Meta!
     href: String!
   }
@@ -238,11 +236,12 @@ const schema = gql`
     bounds: [[Float!]!]
     authScope: String
     category: String
-    legendItems: [LegendItem!]
-    themes: [Theme!]!
+    legendItems: [MapLayerLegendItem!]
     meta: Meta!
     href: String!
   }
+
+  union MapLayerLegendItem = MapLayer | LegendItem
 
   type Theme {
     id: ID!
@@ -251,7 +250,7 @@ const schema = gql`
 
   type Meta {
     description: String
-    themes: [String!]!
+    themes: [Theme!]!
     datasetIds: [Int!]
     thumbnail: String
     date: String
@@ -262,33 +261,11 @@ const schema = gql`
     datasets: String
   }
 
-  enum LegendItemType {
-    MAP_LAYER
-    STANDALONE
-  }
-
-  # TODO: Do not copy MapLayer fields here, make the map layer a separate field in the LegendItem.
   type LegendItem {
-    id: ID
-    title: String
-    type: String
-    noDetail: Boolean
-    layers: [String!]
-    url: String
-    detailUrl: String
-    detailParams: DetailParams
-    detailIsShape: Boolean
+    title: String!
     iconUrl: String
     imageRule: String
-    minZoom: Int
-    maxZoom: Int
     notSelectable: Boolean!
-    external: Boolean
-    bounds: [[Float!]!]
-    authScope: String
-    category: String
-    legendType: LegendItemType!
-    params: String
   }
 
   type Query {

@@ -1,13 +1,9 @@
-import {
-  ComposedMapCollection,
-  ComposedMapLayer,
-  createMapCollectionsFuse,
-  createMapLayersFuse,
-} from '../map/data'
+import { createMapCollectionsFuse, createMapLayersFuse } from '../map/data'
 import { TypeAheadSuggestion, TypeAheadSuggestionContent } from '../typeahead'
 import { DEFAULT_LIMIT } from '../typeahead/config'
 import fromFuseResult from '../utils/from-fuse-result'
 import { LABELS, MapType } from './config'
+import { MapLayer, MapCollection } from '../generated/graphql'
 
 const mapCollectionsFuse = createMapCollectionsFuse(['title'])
 const mapLayersFuse = createMapLayersFuse(['title'])
@@ -34,7 +30,7 @@ export async function getMapCollectionSuggestion(query: string): Promise<TypeAhe
   }
 }
 
-function mapCollectionToContent(collection: ComposedMapCollection): TypeAheadSuggestionContent {
+function mapCollectionToContent(collection: MapCollection): TypeAheadSuggestionContent {
   return {
     _display: collection.title,
     type: MapType.Collection,
@@ -42,7 +38,7 @@ function mapCollectionToContent(collection: ComposedMapCollection): TypeAheadSug
   }
 }
 
-function mapLayerToContent(layer: ComposedMapLayer): TypeAheadSuggestionContent {
+function mapLayerToContent(layer: MapLayer): TypeAheadSuggestionContent {
   return {
     _display: layer.title,
     type: MapType.Layer,
@@ -50,6 +46,6 @@ function mapLayerToContent(layer: ComposedMapLayer): TypeAheadSuggestionContent 
   }
 }
 
-function isSelectable(layer: ComposedMapLayer) {
+function isSelectable(layer: MapLayer) {
   return layer.notSelectable === undefined || !layer.notSelectable
 }

@@ -4751,18 +4751,12 @@
     "layers": ["grex"],
     "legendItems": [
       {
-        "imageRule": "Actueel",
-        "title": "Planstatus actueel",
-        "params": {
-          "categorie": "actueel"
-        }
+        "imageRule": "actueel",
+        "title": "Planstatus actueel"
       },
       {
-        "imageRule": "Toekomstig",
-        "title": "Planstatus toekomstig",
-        "params": {
-          "categorie": "toekomstig"
-        }
+        "imageRule": "toekomstig",
+        "title": "Planstatus toekomstig"
       }
     ],
     "title": "Grondexploitaties - Projecten",
@@ -4849,27 +4843,15 @@
     }
   },
   {
-    "id": "precarw",
-    "title": "Precario woonschepen",
+    "id": "precarwa",
+    "title": "Tariefgebied A",
     "layers": ["precariobelastinggebieden_woonschepen"],
     "type": "wms",
     "url": "/maps/precariobelastingen",
-    "legendItems": [
-      {
-        "title": "Tariefgebied A",
-        "imageRule": "tariefgebied_A",
-        "params": {
-          "tariefgebied": "A"
-        }
-      },
-      {
-        "title": "Tariefgebied B",
-        "imageRule": "tariefgebied_B",
-        "params": {
-          "tariefgebied": "B"
-        }
-      }
-    ],
+    "imageRule": "tariefgebied_A",
+    "params": {
+      "tariefgebied": "A"
+    },
     "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "precariobelasting/woonschepen"
@@ -4884,20 +4866,58 @@
     }
   },
   {
-    "id": "precarbv",
-    "title": "Precario bedrijfsvaartuigen",
+    "id": "precarwb",
+    "title": "Tariefgebied B",
+    "layers": ["precariobelastinggebieden_woonschepen"],
+    "type": "wms",
+    "url": "/maps/precariobelastingen",
+    "imageRule": "tariefgebied_B",
+    "params": {
+      "tariefgebied": "B"
+    },
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "precariobelasting/woonschepen"
+    },
+    "detailIsShape": true,
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie", "verkeer", "openbare-orde-en-veiligheid"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "precarw",
+    "title": "Precario woonschepen",
+    "type": "wms",
+    "legendItems": [
+      {
+        "id": "precarwa"
+      },
+      {
+        "id": "precarwb"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie", "verkeer", "openbare-orde-en-veiligheid"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "precarbva",
+    "title": "Tariefgebied A",
+    "imageRule": "tariefgebied_A",
     "type": "wms",
     "url": "/maps/precariobelastingen",
     "layers": ["precariobelastinggebieden_bedrijfsvaartuigen"],
-    "legendItems": [
-      {
-        "title": "Tariefgebied A",
-        "imageRule": "tariefgebied_A",
-        "params": {
-          "tariefgebied": "A"
-        }
-      }
-    ],
+    "params": {
+      "tariefgebied": "A"
+    },
     "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "precariobelasting/bedrijfsvaartuigen"
@@ -4912,30 +4932,150 @@
     }
   },
   {
-    "id": "precarpv",
-    "title": "Precario passagiersvaartuigen",
+    "id": "precarbv",
+    "title": "Precario bedrijfsvaartuigen",
+    "type": "wms",
+    "legendItems": [
+      {
+        "id": "precarbva"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie", "verkeer", "openbare-orde-en-veiligheid"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "precarpv1",
+    "title": "Tariefgebied 1",
     "type": "wms",
     "url": "/maps/precariobelastingen",
     "layers": ["precariobelastinggebieden_passagiersvaartuigen"],
-    "legendItems": [
-      {
-        "title": "Tariefgebied 1",
-        "imageRule": "tariefgebied_1",
-        "params": {
-          "tariefgebied": "1"
-        }
-      },
-      {
-        "title": "Tariefgebied 2",
-        "imageRule": "tariefgebied_2",
-        "params": {
-          "tariefgebied": "2"
-        }
-      }
-    ],
+    "imageRule": "tariefgebied_1",
+    "params": {
+      "tariefgebied": "1"
+    },
     "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "precariobelasting/passagiersvaartuigen"
+    },
+    "detailIsShape": true,
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie", "verkeer", "openbare-orde-en-veiligheid"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "precarpv2",
+    "title": "Tariefgebied 2",
+    "type": "wms",
+    "url": "/maps/precariobelastingen",
+    "layers": ["precariobelastinggebieden_passagiersvaartuigen"],
+    "imageRule": "tariefgebied_2",
+    "params": {
+      "tariefgebied": "2"
+    },
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "precariobelasting/passagiersvaartuigen"
+    },
+    "detailIsShape": true,
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie", "verkeer", "openbare-orde-en-veiligheid"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "precarpv",
+    "title": "Precario passagiersvaartuigen",
+    "type": "wms",
+    "legendItems": [
+      {
+        "id": "precarpv1"
+      },
+      {
+        "id": "precarpv2"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie", "verkeer", "openbare-orde-en-veiligheid"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "precarta",
+    "title": "Tariefgebied A",
+    "layers": ["precariobelastinggebieden_terrassen"],
+    "type": "wms",
+    "url": "/maps/precariobelastingen",
+    "imageRule": "tariefgebied_A",
+    "params": {
+      "tariefgebied": "A"
+    },
+
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "precariobelasting/terrassen"
+    },
+    "detailIsShape": true,
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie", "verkeer", "openbare-orde-en-veiligheid"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "precartb",
+    "title": "Tariefgebied B",
+    "layers": ["precariobelastinggebieden_terrassen"],
+    "type": "wms",
+    "url": "/maps/precariobelastingen",
+    "imageRule": "tariefgebied_B",
+    "params": {
+      "tariefgebied": "B"
+    },
+
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "precariobelasting/terrassen"
+    },
+    "detailIsShape": true,
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie", "verkeer", "openbare-orde-en-veiligheid"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "precartc",
+    "title": "Tariefgebied C",
+    "layers": ["precariobelastinggebieden_terrassen"],
+    "type": "wms",
+    "url": "/maps/precariobelastingen",
+    "imageRule": "tariefgebied_C",
+    "params": {
+      "tariefgebied": "C"
+    },
+
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "precariobelasting/terrassen"
     },
     "detailIsShape": true,
     "meta": {
@@ -4954,31 +5094,13 @@
     "url": "/maps/precariobelastingen",
     "legendItems": [
       {
-        "title": "Tariefgebied A",
-        "imageRule": "tariefgebied_A",
-        "type": "wms",
-        "url": "/maps/precariobelastingen",
-        "params": {
-          "tariefgebied": "A"
-        }
+        "id": "precarta"
       },
       {
-        "title": "Tariefgebied B",
-        "imageRule": "tariefgebied_B",
-        "type": "wms",
-        "url": "/maps/precariobelastingen",
-        "params": {
-          "tariefgebied": "B"
-        }
+        "id": "precartb"
       },
       {
-        "title": "Tariefgebied C",
-        "imageRule": "tariefgebied_C",
-        "type": "wms",
-        "url": "/maps/precariobelastingen",
-        "params": {
-          "tariefgebied": "C"
-        }
+        "id": "precartc"
       }
     ],
     "detailUrl": "geosearch/",

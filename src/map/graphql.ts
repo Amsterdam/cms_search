@@ -12,7 +12,7 @@ import {
   QueryMapSearchArgs,
   ResolverFn,
 } from '../generated/graphql'
-import { RawTheme } from '../generated/theme'
+import { Theme } from '../generated/theme'
 import { DEFAULT_LIMIT, FilterType } from '../graphql/config'
 import { FILTERS } from '../graphql/search/cms/config'
 import getPageInfo from '../graphql/utils/getPageInfo'
@@ -31,10 +31,10 @@ const mapCollectionsFuse = createMapCollectionsFuse([
   'title',
   'mapLayers.title',
   'mapLayers.meta.description',
-  'mapLayers.themes.title',
+  'mapLayers.meta.themes.title',
 ])
 
-const mapLayersFuse = createMapLayersFuse(['title', 'meta.description', 'themes.title'])
+const mapLayersFuse = createMapLayersFuse(['title', 'meta.description', 'meta.themes.title'])
 
 const MAP_TYPE_FILTER: Filter = {
   type: 'map-type',
@@ -181,7 +181,9 @@ function determineMapType(type: string) {
 }
 
 interface Filterable {
-  themes: RawTheme[]
+  meta: {
+    themes: Theme[]
+  }
 }
 
 function filterResults<T extends Filterable>(results: T[], filters: FilterInput[]) {
@@ -195,5 +197,5 @@ function filterResults<T extends Filterable>(results: T[], filters: FilterInput[
     .map((id) => id.split(':').pop())
     .filter((id): id is string => typeof id === 'string')
 
-  return results.filter((result) => result.themes.some(({ id }) => themeIds.includes(id)))
+  return results.filter((result) => result.meta.themes.some(({ id }) => themeIds.includes(id)))
 }
