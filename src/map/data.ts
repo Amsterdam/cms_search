@@ -1,56 +1,19 @@
 import Fuse from 'fuse.js'
 import querystring, { ParsedUrlQueryInput } from 'querystring'
 import { RawMapCollection } from '../generated/map-collection'
-import { LegendItem, RawMapLayer } from '../generated/map-layer'
-import { RawTheme } from '../generated/theme'
+import { LegendItem as RawLegendItem, RawMapLayer } from '../generated/map-layer'
+import { Theme } from '../generated/theme'
+import { MapLayer, MapCollection, MapLayerLegendItem } from '../generated/graphql'
 
 const DEFAULT_MIN_ZOOM = 7
 const DEFAULT_MAX_ZOOM = 16
 
-export interface ComposedMapCollection extends RawMapCollection {
-  themes: RawTheme[]
-  mapLayers: ComposedMapLayer[]
-  href: string
-}
-
-export interface ComposedMapLayer extends Omit<RawMapLayer, 'legendItems' | 'params'> {
-  themes: RawTheme[]
-  legendItems?: MixedLegendItem[]
-  minZoom: number
-  maxZoom: number
-  noDetail: boolean
-  params?: string
-  href: string
-}
-
-enum LegendItemType {
-  MapLayer = 'MAP_LAYER',
-  Standalone = 'STANDALONE',
-}
-
-export interface MapLayerLegendItem extends Omit<RawMapLayer, 'params'> {
-  legendType: LegendItemType.MapLayer
-  notSelectable: boolean
-  minZoom: number
-  maxZoom: number
-  noDetail: boolean
-  params?: string
-}
-
-export interface StandaloneLegendItem extends Omit<LegendItem, 'params'> {
-  legendType: LegendItemType.Standalone
-  notSelectable: boolean
-  params?: string
-}
-
-type MixedLegendItem = MapLayerLegendItem | StandaloneLegendItem
-
 const rawMapCollections: RawMapCollection[] = require('../../assets/map-collections.config.json')
 const rawMapLayers: RawMapLayer[] = require('../../assets/map-layers.config.json')
-const rawThemes: RawTheme[] = require('../../assets/themes.config.json')
+const themes: Theme[] = require('../../assets/themes.config.json')
 
-const composedMapLayers = composeMapLayers(rawMapLayers, rawThemes, rawMapCollections)
-const composedMapCollections = composeMapCollections(rawMapCollections, rawMapLayers, rawThemes)
+const composedMapLayers = composeMapLayers(rawMapLayers, themes, rawMapCollections)
+const composedMapCollections = composeMapCollections(rawMapCollections, rawMapLayers, themes)
 
 const commonOptions = {
   shouldSort: true,
@@ -76,7 +39,7 @@ export function getAllMapLayers() {
  * Gets a list of all themes.
  */
 export function getAllThemes() {
-  return rawThemes
+  return themes
 }
 
 /**
@@ -99,9 +62,9 @@ export function createMapLayersFuse(keys: string[]) {
 
 function composeMapLayers(
   layers: RawMapLayer[],
-  themes: RawTheme[],
+  themes: Theme[],
   collections: RawMapCollection[],
-): ComposedMapLayer[] {
+): MapLayer[] {
   return layers.map((layer) => {
     // Find parent layer if layer has no children.
     const parentLayer = findParentLayer(layer, layers)
@@ -121,9 +84,9 @@ function composeMapLayers(
 export function composeMapLayer(
   layer: RawMapLayer,
   layers: RawMapLayer[],
-  themes: RawTheme[],
+  themes: Theme[],
   collectionId: string,
-): ComposedMapLayer {
+): MapLayer {
   const params = layer.params
     ? querystring.stringify(layer.params as ParsedUrlQueryInput)
     : undefined
@@ -134,15 +97,19 @@ export function composeMapLayer(
   return {
     ...layer,
     title: parentLayer?.title ? `${parentLayer.title} - ${layer.title}` : layer.title,
-    themes: filterBy(themes, 'id', layer.meta.themes),
     legendItems: layer.legendItems
-      ? normalizeLegendItems(collectionId, layer.legendItems, layers)
+      ? layer.legendItems.map((legendItem) => normalizeLegendItem(collectionId, legendItem, layers))
       : undefined,
     minZoom: layer.minZoom ?? DEFAULT_MIN_ZOOM,
     maxZoom: DEFAULT_MAX_ZOOM,
     noDetail: !layer.detailUrl,
+    notSelectable: layer.notSelectable || false,
     params,
     href: createMapLayerHref(layer, layers, collectionId),
+    meta: {
+      ...layer.meta,
+      themes: filterBy(themes, 'id', layer.meta.themes),
+    },
   }
 }
 
@@ -161,10 +128,10 @@ function createMapLayerHref(layer: RawMapLayer, layers: RawMapLayer[], collectio
 function composeMapCollections(
   collections: RawMapCollection[],
   layers: RawMapLayer[],
-  themes: RawTheme[],
-): ComposedMapCollection[] {
+  themes: Theme[],
+): MapCollection[] {
   return collections.map((collection) => {
-    const collectionLayers: ComposedMapLayer[] = collection.mapLayers.map((collectionLayer) => {
+    const collectionLayers: MapLayer[] = collection.mapLayers.map((collectionLayer) => {
       const mapLayer = findBy(layers, 'id', collectionLayer.id)
       return {
         ...composeMapLayer(mapLayer, layers, themes, collection.id),
@@ -177,9 +144,12 @@ function composeMapCollections(
 
     return {
       ...collection,
-      themes: filterBy(themes, 'id', collection.meta.themes),
       mapLayers: collectionLayers,
       href: createMapCollectionHref(collection, layers),
+      meta: {
+        ...collection.meta,
+        themes: filterBy(themes, 'id', collection.meta.themes),
+      },
     }
   })
 }
@@ -193,48 +163,48 @@ function createMapCollectionHref(collection: RawMapCollection, layers: RawMapLay
   return buildMapUrl(layerIds)
 }
 
-function normalizeLegendItems(
+function normalizeLegendItem(
   collectionId: string,
-  legendItems: LegendItem[],
+  legendItem: RawLegendItem,
   layers: RawMapLayer[],
-): MixedLegendItem[] {
-  return legendItems.map((legendItem) => {
-    const mapLayer = legendItem.id ? findBy(layers, 'id', legendItem.id) : null
-    const notSelectable = legendItem.notSelectable || !legendItem.id // Legend items with an id are always selectable, unless specified otherwise.
+): MapLayerLegendItem {
+  const mapLayer = legendItem.id ? findBy(layers, 'id', legendItem.id) : null
 
-    // Merge the legend item with the map layer if found.
-    if (legendItem.id && mapLayer) {
-      const params = mapLayer.params
-        ? querystring.stringify(mapLayer.params as ParsedUrlQueryInput)
-        : undefined
-
-      return {
-        ...mapLayer,
-        legendType: LegendItemType.MapLayer,
-        notSelectable,
-        // Overwrite fields from layer with legend fields where applicable.
-        imageRule: legendItem.imageRule ?? mapLayer.imageRule,
-        title: legendItem.title ?? mapLayer.title,
-        id: composeId(collectionId, legendItem.id),
-        minZoom: mapLayer.minZoom ?? DEFAULT_MIN_ZOOM,
-        maxZoom: DEFAULT_MAX_ZOOM,
-        noDetail: !mapLayer.detailUrl,
-        params,
-      }
-    }
-
-    // Otherwise use the plain legend item.
-    const params = legendItem.params
-      ? querystring.stringify((legendItem.params as unknown) as ParsedUrlQueryInput)
+  // Return a MapLayer if an ID is specified
+  if (legendItem.id && mapLayer) {
+    const params = mapLayer.params
+      ? querystring.stringify(mapLayer.params as ParsedUrlQueryInput)
       : undefined
 
     return {
-      ...legendItem,
-      legendType: LegendItemType.Standalone,
-      notSelectable,
+      __typename: 'MapLayer', // Set the typename to handle inline fragments for union type MapLayerLegendItem
+      // Set these fields hardcoded to prevent type errors
+      type: mapLayer.type,
+      url: mapLayer.url,
+      layers: mapLayer.layers,
+      iconUrl: mapLayer.iconUrl,
+      notSelectable: legendItem.notSelectable || mapLayer.notSelectable || false,
+      // Overwrite fields from layer with legend fields where applicable.
+      imageRule: legendItem.imageRule ?? mapLayer.imageRule,
+      title: legendItem.title ?? mapLayer.title,
+      id: composeId(collectionId, legendItem.id),
+      minZoom: mapLayer.minZoom ?? DEFAULT_MIN_ZOOM,
+      maxZoom: DEFAULT_MAX_ZOOM,
+      noDetail: !mapLayer.detailUrl,
       params,
+      href: createMapLayerHref(mapLayer, layers, collectionId),
+      meta: {
+        themes: filterBy(themes, 'id', mapLayer.meta.themes),
+      },
     }
-  })
+  }
+
+  // Otherwise return the plain legendItem
+  return {
+    __typename: 'LegendItem', // Set the typename to handle inline fragments for union type MapLayerLegendItem
+    title: legendItem?.title || '',
+    notSelectable: true,
+  }
 }
 
 function findBy<T, K extends keyof T>(items: T[], key: K, value: T[K]) {

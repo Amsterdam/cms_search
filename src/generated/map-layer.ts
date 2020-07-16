@@ -9,7 +9,7 @@ export interface RawMapLayer {
   detailParams?: DetailParams
   detailIsShape?: boolean
   iconUrl?: string
-  params?: RawMapLayerParams
+  params?: Params
   imageRule?: string
   minZoom?: number
   notSelectable?: boolean
@@ -31,14 +31,6 @@ export interface LegendItem {
   iconUrl?: string
   title?: string
   imageRule?: string
-  params?: LegendItemParams
-  type?: string
-  url?: string
-}
-
-export interface LegendItemParams {
-  categorie?: string
-  tariefgebied?: string
 }
 
 export interface Meta {
@@ -49,7 +41,7 @@ export interface Meta {
   date: null
 }
 
-export interface RawMapLayerParams {
+export interface Params {
   categorie?: number | string
   onderwerp?: string
   width?: number
@@ -59,4 +51,5 @@ export interface RawMapLayerParams {
   mission_year?: number
   mission_type?: string
   scale?: number
+  tariefgebied?: string
 }

@@ -1,4 +1,4 @@
-export interface RawTheme {
+export interface Theme {
   id: string
   title: string
 }

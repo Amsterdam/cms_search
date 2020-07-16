@@ -20,8 +20,9 @@ Currently the Elastic Search index for Drupal is not in a backup and cannot yet 
 
 The json files for collections and layers can be found [here](./assets/map-collections.config.json) and [here](./assets/map-layers.config.json).
 Make sure you know to which collection you should add the layers. If the collection already exist,
-simply add an object with an `id` to the `mapLayers` array. This `id` can be made up, and should correspond to the `id` of the layer
-you're about to add. If the collection doesn't exist, read the instructions below.
+simply add an object with an `id` to the `mapLayers` array. This `id` can be made up, and should correspond to the `id` of the layer you're about to add. If the collection doesn't exist, read the instructions below.
+
+### Map layer without instance API
 
 Now that we added an `id` to the collection, we have to add the layer. Open [map-layers.config.json](./assets/map-layers.config.json) and add the following to the array:
 
@@ -59,6 +60,39 @@ Now that we added an `id` to the collection, we have to add the layer. Open [map
 - _legendItems_ - an array of objects containing a `title`, that will be displayed in the frontend but can also be used to retrieve the image for the legend from the mapserver (checkout the corresponding `.map` file in [this repo](https://github.com/Amsterdam/mapserver/))
   If the title doesn't match the title used in the .map file (for editorial purposes), the imageRule field can be used to define the legend icon, that should correspond the legend in the `.map` file.
 - _meta.themes_ - these should contain the id's of [themes.config.json](./assets/themes.config.json).
+
+### Map layer with an instance API
+
+When the map layer comes with an instance API, the configuration must be extended with several other fields:
+
+```json
+{
+  "id": "someid",
+  "layers": ["some_layer"],
+  "title": "My Layer",
+  "type": "wms",
+  "url": "/maps/some_layer",
+  "legendItems": [
+    // ...
+  ],
+  "detailUrl": "/instance/api",
+  "detailParams": {
+    "param1": "some_layer"
+  },
+  "detailIsShape": true,
+  "meta": {
+    "description": null,
+    "themes": ["foo", "bar"],
+    "datasetIds": [],
+    "thumbnail": null,
+    "date": null
+  }
+}
+```
+
+- _detailUrl_ - url to the instance API
+- _detailParams_ - object containing params to get the detail information from the instance API
+- _detailIsShape_ - (optional) used to define if the detail information contains a shape, this set the radius to search the instance API to 0
 
 ## How to add a map collection
 

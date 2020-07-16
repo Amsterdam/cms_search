@@ -21,6 +21,12 @@ const queryResolvers: QueryResolvers = {
 
 const resolversMap: Resolvers = {
   Query: queryResolvers,
+  // resolveType is used by GraphQL to handle inline fragments that determine which fields must be returned for this type
+  MapLayerLegendItem: {
+    __resolveType(obj) {
+      return obj.__typename ?? 'LegendItem' // a typename must always be returned
+    },
+  },
 }
 
 export default resolversMap as IResolvers
