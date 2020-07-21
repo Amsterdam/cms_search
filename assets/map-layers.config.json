@@ -735,9 +735,9 @@
     },
     "url": "/maps/parkeervakken",
     "minZoom": 11,
-    "detailUrl": "parkeervakken/geosearch/",
+    "detailUrl": "geosearch/",
     "detailParams": {
-      "item": "parkeervak"
+      "datasets": "parkeervakken/parkeervakken"
     },
     "detailIsShape": true,
     "meta": {
@@ -759,9 +759,9 @@
     },
     "url": "/maps/parkeervakken",
     "minZoom": 11,
-    "detailUrl": "parkeervakken/geosearch/",
+    "detailUrl": "geosearch/",
     "detailParams": {
-      "item": "parkeervak"
+      "datasets": "parkeervakken/parkeervakken"
     },
     "detailIsShape": true,
     "meta": {
@@ -782,9 +782,9 @@
     },
     "url": "/maps/parkeervakken",
     "minZoom": 11,
-    "detailUrl": "parkeervakken/geosearch/",
+    "detailUrl": "geosearch/",
     "detailParams": {
-      "item": "parkeervak"
+      "datasets": "parkeervakken/parkeervakken"
     },
     "detailIsShape": true,
     "meta": {
@@ -806,9 +806,9 @@
     },
     "minZoom": 11,
     "url": "/maps/parkeervakken",
-    "detailUrl": "parkeervakken/geosearch/",
+    "detailUrl": "geosearch/",
     "detailParams": {
-      "item": "parkeervak"
+      "datasets": "parkeervakken/parkeervakken"
     },
     "detailIsShape": true,
     "meta": {
@@ -829,9 +829,9 @@
     },
     "minZoom": 11,
     "url": "/maps/parkeervakken",
-    "detailUrl": "parkeervakken/geosearch/",
+    "detailUrl": "geosearch/",
     "detailParams": {
-      "item": "parkeervak"
+      "datasets": "parkeervakken/parkeervakken"
     },
     "detailIsShape": true,
     "meta": {
@@ -852,9 +852,9 @@
     },
     "minZoom": 11,
     "url": "/maps/parkeervakken",
-    "detailUrl": "parkeervakken/geosearch/",
+    "detailUrl": "geosearch/",
     "detailParams": {
-      "item": "parkeervak"
+      "datasets": "parkeervakken/parkeervakken"
     },
     "detailIsShape": true,
     "meta": {
@@ -875,9 +875,9 @@
     },
     "minZoom": 11,
     "url": "/maps/parkeervakken",
-    "detailUrl": "parkeervakken/geosearch/",
+    "detailUrl": "geosearch/",
     "detailParams": {
-      "item": "parkeervak"
+      "datasets": "parkeervakken/parkeervakken"
     },
     "detailIsShape": true,
     "meta": {
@@ -898,9 +898,9 @@
     },
     "minZoom": 11,
     "url": "/maps/parkeervakken",
-    "detailUrl": "parkeervakken/geosearch/",
+    "detailUrl": "geosearch/",
     "detailParams": {
-      "item": "parkeervak"
+      "datasets": "parkeervakken/parkeervakken"
     },
     "detailIsShape": true,
     "meta": {
@@ -921,9 +921,9 @@
     },
     "minZoom": 11,
     "url": "/maps/parkeervakken",
-    "detailUrl": "parkeervakken/geosearch/",
+    "detailUrl": "geosearch/",
     "detailParams": {
-      "item": "parkeervak"
+      "datasets": "parkeervakken/parkeervakken"
     },
     "detailIsShape": true,
     "meta": {
@@ -945,9 +945,9 @@
     },
     "minZoom": 11,
     "url": "/maps/parkeervakken",
-    "detailUrl": "parkeervakken/geosearch/",
+    "detailUrl": "geosearch/",
     "detailParams": {
-      "item": "parkeervak"
+      "datasets": "parkeervakken/parkeervakken"
     },
     "detailIsShape": true,
     "meta": {
@@ -2669,9 +2669,9 @@
     "title": "Parkeervakken - Fiscale indelingen",
     "type": "wms",
     "url": "/maps/parkeervakken",
-    "detailUrl": "parkeervakken/geosearch/",
+    "detailUrl": "geosearch/",
     "detailParams": {
-      "item": "parkeervak"
+      "datasets": "parkeervakken/parkeervakken"
     },
     "detailIsShape": true,
     "meta": {
@@ -2694,9 +2694,9 @@
     "title": "Parkeervakken - Speciale bestemmingen",
     "type": "wms",
     "url": "/maps/parkeervakken",
-    "detailUrl": "parkeervakken/geosearch/",
+    "detailUrl": "geosearch/",
     "detailParams": {
-      "item": "parkeervak"
+      "datasets": "parkeervakken/parkeervakken"
     },
     "detailIsShape": true,
     "meta": {
