@@ -27,10 +27,10 @@ export interface DetailParams {
 
 export interface LegendItem {
   id?: string
-  notSelectable?: boolean
   iconUrl?: string
   title?: string
   imageRule?: string
+  notSelectable?: boolean
 }
 
 export interface Meta {
