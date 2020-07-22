@@ -157,6 +157,9 @@
     "mapLayers": [
       {
         "id": "aardgasvrij"
+      },
+      {
+        "id": "bouwstrm"
       }
     ],
     "meta": {
