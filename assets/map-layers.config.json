@@ -5114,5 +5114,23 @@
       "thumbnail": null,
       "date": null
     }
+  },
+  {
+    "id": "bouwstrm",
+    "title": "Bouwstroompunten",
+    "layers": ["bouwstroompunten"],
+    "type": "wms",
+    "url": "/maps/energie",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "bouwstroompunten/bouwstroompunten"
+    },
+    "meta": {
+      "description": null,
+      "themes": ["duurzaamheid-en-milieu", "wonen"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
   }
 ]
