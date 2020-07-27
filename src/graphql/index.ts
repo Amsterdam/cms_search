@@ -1,14 +1,14 @@
-import graphqlHTTP from 'express-graphql'
-import resolvers from './search'
-import typeDefs from './graphql.schema'
+import { graphqlHTTP } from 'express-graphql'
 import { makeExecutableSchema } from 'graphql-tools'
+import typeDefs from './graphql.schema'
+import resolvers from './search'
 import createDataLoader from './utils/createDataLoader'
 
 const schema = `
   ${typeDefs}
 `
 
-export default graphqlHTTP(async req => ({
+export default graphqlHTTP((req) => ({
   schema: makeExecutableSchema({
     typeDefs: schema,
     resolvers,
