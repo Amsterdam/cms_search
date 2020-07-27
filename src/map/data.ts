@@ -204,6 +204,7 @@ function normalizeLegendItem(
     __typename: 'LegendItem', // Set the typename to handle inline fragments for union type MapLayerLegendItem
     title: legendItem?.title || '',
     imageRule: legendItem.imageRule,
+    iconUrl: legendItem.iconUrl,
     notSelectable: true,
   }
 }
