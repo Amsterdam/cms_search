@@ -402,7 +402,7 @@
   },
   {
     "id": "veilov",
-    "title": "Veiligheid- en overlast",
+    "title": "Veiligheid en overlast",
     "mapLayers": [
       {
         "id": "oovoalg"
@@ -424,6 +424,9 @@
       },
       {
         "id": "vwrk"
+      },
+      {
+        "id": "cov19mtrgln"
       }
     ],
     "meta": {
