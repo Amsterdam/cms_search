@@ -44,7 +44,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^1.17.6",
     "@graphql-codegen/introspection": "^1.17.4",
-    "@graphql-codegen/typescript": "^1.17.4",
+    "@graphql-codegen/typescript": "^1.17.6",
     "@graphql-codegen/typescript-resolvers": "^1.17.6",
     "@types/jest": "^26.0.7",
     "concurrently": "^5.2.0",
