@@ -959,6 +959,28 @@
     }
   },
   {
+    "id": "pvrvw",
+    "layers": ["parkeervakken_tijdvakken_vrachtwagens"],
+    "title": "Vrachtwagens",
+    "type": "wms",
+    "url": "/maps/parkeervakken",
+    "params": {
+      "tijdvak": "00:00:00_23:59:00"
+    },
+    "imageRule": "tijdvak_00:00_23:59",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "parkeervakken/parkeervakken"
+    },
+    "meta": {
+      "description": null,
+      "themes": ["verkeer"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
     "id": "uitzpvg",
     "title": "Uitzondering parkeervergunninggebied",
     "type": "wms",
