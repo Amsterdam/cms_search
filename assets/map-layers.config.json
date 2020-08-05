@@ -5141,6 +5141,9 @@
       },
       {
         "id": "cov19strtart"
+      },
+      {
+        "id": "cov19mndmvrpl"
       }
     ],
     "title": "COVID-19 maatregelen",
@@ -5174,6 +5177,21 @@
     "layers": ["COVID19_alcoholverkoopverbod"],
     "title": "Alcoholverkoopverbod tot 1-9-2020",
     "imageRule": "COVID19_alcoholverkoopverbod",
+    "type": "wms",
+    "url": "/maps/overlastgebieden",
+    "meta": {
+      "description": null,
+      "themes": ["openbare-orde-en-veiligheid", "zorg-en-welzijn"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "cov19mndmvrpl",
+    "layers": ["COVID19_mondmaskerverplichting"],
+    "title": "Mondmaskerverplichting",
+    "imageRule": "COVID19_mondmaskerverplichting",
     "type": "wms",
     "url": "/maps/overlastgebieden",
     "meta": {
