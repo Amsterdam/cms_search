@@ -5212,7 +5212,7 @@
   {
     "id": "cov19mndmvrpl",
     "layers": ["COVID19_mondmaskerverplichting"],
-    "title": "Mondmaskerverplichting",
+    "title": "Mondmaskerverplichting tot 31-08-2020",
     "imageRule": "COVID19_mondmaskerverplichting",
     "type": "wms",
     "url": "/maps/overlastgebieden",
