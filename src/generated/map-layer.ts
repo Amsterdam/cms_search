@@ -43,6 +43,7 @@ export interface Meta {
 
 export interface Params {
   categorie?: number | string
+  tijdvak?: string
   onderwerp?: string
   width?: number
   height?: number
