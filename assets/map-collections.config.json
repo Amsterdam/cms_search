@@ -155,6 +155,28 @@
     }
   },
   {
+    "id": "cov19",
+    "title": "COVID-19 maatregelen",
+    "mapLayers": [
+      {
+        "id": "cov19alcvrkp"
+      },
+      {
+        "id": "cov19strtart"
+      },
+      {
+        "id": "cov19mndmvrpl"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": ["openbare-orde-en-veiligheid", "zorg-en-welzijn"],
+      "datasetIds": [],
+      "thumbnail": "sites/default/files/images/thumbnail-kaarten.jpg",
+      "date": null
+    }
+  },
+  {
     "id": "energie",
     "title": "Energie",
     "mapLayers": [
@@ -427,9 +449,6 @@
       },
       {
         "id": "vwrk"
-      },
-      {
-        "id": "cov19mtrgln"
       }
     ],
     "meta": {
