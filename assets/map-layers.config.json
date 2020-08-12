@@ -5199,5 +5199,20 @@
       "thumbnail": null,
       "date": null
     }
+  },
+  {
+    "id": "cov19gebver",
+    "layers": ["COVID19_gebiedsverbodparken"],
+    "title": "Gebiedsverbod van 21.00 tot 07.00 uur",
+    "imageRule": "COVID19_gebiedsverbodparken",
+    "type": "wms",
+    "url": "/maps/overlastgebieden",
+    "meta": {
+      "description": null,
+      "themes": ["openbare-orde-en-veiligheid", "zorg-en-welzijn"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
   }
 ]
