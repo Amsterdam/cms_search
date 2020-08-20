@@ -1,7 +1,6 @@
 import { Client } from '@elastic/elasticsearch'
-import { SearchResponse } from 'elasticsearch'
-import cmsSchema, { ElasticSearchArgs, getSubTypeValues } from './es.schema'
 import { DEFAULT_LIMIT } from '../../graphql/config'
+import cmsSchema, { ElasticSearchArgs, getSubTypeValues } from './es.schema'
 
 export type ThemeFilterCount = {
   key: number
@@ -57,7 +56,7 @@ export async function getCmsFromElasticSearch({
   limit = limit || DEFAULT_LIMIT
   from = from || 0
 
-  const results: SearchResponse<any> = await ElasticSearchClient(
+  const results = await ElasticSearchClient(
     cmsSchema({ q, limit, from, types, filters, sort, subType }),
   ).then((r) => r.body)
 
