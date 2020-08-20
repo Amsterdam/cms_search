@@ -5157,11 +5157,15 @@
   },
   {
     "id": "cov19strtart",
-    "layers": ["COVID19_straatartiestenverbod"],
-    "title": "Straatartiestverbod tot 1-9-2020",
-    "imageRule": "COVID19_straatartiestenverbod",
+    "layers": ["straatartiestenverbod"],
+    "title": "Straatartiestverbod",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "covid_19/straatartiestverbod"
+    },
+    "imageRule": "straatartiestenverbod",
     "type": "wms",
-    "url": "/maps/overlastgebieden",
+    "url": "/maps/covid19",
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "zorg-en-welzijn"],
@@ -5172,11 +5176,15 @@
   },
   {
     "id": "cov19alcvrkp",
-    "layers": ["COVID19_alcoholverkoopverbod"],
-    "title": "Alcoholverkoopverbod tot 1-9-2020",
-    "imageRule": "COVID19_alcoholverkoopverbod",
+    "layers": ["alcoholverkoopverbodgebied"],
+    "title": "Alcoholverkoopverbod",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "covid_19/alcoholverkoopverbod"
+    },
+    "imageRule": "alcoholverkoopverbod",
     "type": "wms",
-    "url": "/maps/overlastgebieden",
+    "url": "/maps/covid19",
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "zorg-en-welzijn"],
@@ -5187,11 +5195,14 @@
   },
   {
     "id": "cov19mndmvrpl",
-    "layers": ["COVID19_mondmaskerverplichting"],
-    "title": "Mondmaskerverplichting tot 31-08-2020",
-    "imageRule": "COVID19_mondmaskerverplichting",
+    "layers": ["mondmaskerverplichting"],
+    "title": "Mondmaskerverplichting",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "covid_19/mondmaskerverplichting"
+    },
     "type": "wms",
-    "url": "/maps/overlastgebieden",
+    "url": "/maps/covid19",
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "zorg-en-welzijn"],
@@ -5202,11 +5213,33 @@
   },
   {
     "id": "cov19gebver",
-    "layers": ["COVID19_gebiedsverbodparken"],
-    "title": "Gebiedsverbod van 21.00 tot 07.00 uur",
-    "imageRule": "COVID19_gebiedsverbodparken",
+    "layers": ["gebiedsverbodparken"],
+    "title": "Gebiedsverbod",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "covid_19/verbodparken"
+    },
+    "imageRule": "gebiedsverbodparken",
     "type": "wms",
-    "url": "/maps/overlastgebieden",
+    "url": "/maps/covid19",
+    "meta": {
+      "description": null,
+      "themes": ["openbare-orde-en-veiligheid", "zorg-en-welzijn"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "cov19aanleg",
+    "layers": ["aanlegverbod"],
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "covid_19/aanlegverbod"
+    },
+    "title": "Aanlegverbod",
+    "type": "wms",
+    "url": "/maps/covid19",
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "zorg-en-welzijn"],
