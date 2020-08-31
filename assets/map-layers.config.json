@@ -800,7 +800,7 @@
     "title": "Parkeervakken - Fiscaal",
     "imageRule": "Fiscaal",
     "type": "wms",
-    "layers": ["parkeervakken_reservering"],
+    "layers": ["parkeervakken_reservering", "alle_parkeervakken", "parkeervakken_label"],
     "params": {
       "categorie": "fiscaal"
     },
