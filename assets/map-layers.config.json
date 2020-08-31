@@ -5194,50 +5194,14 @@
     }
   },
   {
-    "id": "cov19mndmvrpl",
-    "layers": ["mondmaskerverplichting"],
-    "title": "Mondmaskerverplichting",
-    "detailUrl": "geosearch/",
-    "detailParams": {
-      "datasets": "covid_19/mondmaskerverplichting"
-    },
-    "type": "wms",
-    "url": "/maps/covid19",
-    "meta": {
-      "description": null,
-      "themes": ["openbare-orde-en-veiligheid", "zorg-en-welzijn"],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
     "id": "cov19gebver",
-    "layers": ["gebiedsverbodparken"],
+    "layers": ["gebiedsverbod"],
     "title": "Gebiedsverbod",
     "detailUrl": "geosearch/",
     "detailParams": {
-      "datasets": "covid_19/verbodparken"
+      "datasets": "covid_19/gebiedsverbod"
     },
-    "imageRule": "gebiedsverbodparken",
-    "type": "wms",
-    "url": "/maps/covid19",
-    "meta": {
-      "description": null,
-      "themes": ["openbare-orde-en-veiligheid", "zorg-en-welzijn"],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
-    "id": "cov19aanleg",
-    "layers": ["aanlegverbod"],
-    "detailUrl": "geosearch/",
-    "detailParams": {
-      "datasets": "covid_19/aanlegverbod"
-    },
-    "title": "Aanlegverbod",
+    "imageRule": "gebiedsverbod",
     "type": "wms",
     "url": "/maps/covid19",
     "meta": {
