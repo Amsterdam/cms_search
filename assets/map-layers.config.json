@@ -2679,7 +2679,7 @@
   },
   {
     "id": "pv",
-    "layers": ["alle_parkeervakken", "parkeervakken_label"],
+    "layers": ["alle_parkeervakken", "parkeervakken_label", "parkeervakken_reservering"],
     "legendItems": [
       {
         "title": "Fiscaal"
