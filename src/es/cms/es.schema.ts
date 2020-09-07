@@ -59,6 +59,7 @@ export default ({ q, limit, from, types = null, filters, sort, subType }: Elasti
           { field_publication_date: { order } },
           { field_publication_year: { order } },
           { field_publication_month: { order } },
+          { created: { order } },
         ]
         break
 
