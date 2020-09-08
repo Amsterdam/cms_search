@@ -1596,18 +1596,6 @@
             "deprecationReason": null
           },
           {
-            "name": "maxZoom",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "layers",
             "description": null,
             "args": [],
@@ -2517,22 +2505,6 @@
           },
           {
             "name": "minZoom",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "maxZoom",
             "description": null,
             "args": [],
             "type": {

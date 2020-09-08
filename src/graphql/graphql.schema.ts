@@ -146,7 +146,6 @@ const schema = gql`
     type: String
     noDetail: Boolean
     minZoom: Int
-    maxZoom: Int
     layers: [String!]
     url: String
     params: String
@@ -222,7 +221,6 @@ const schema = gql`
     type: String!
     noDetail: Boolean!
     minZoom: Int!
-    maxZoom: Int!
     layers: [String!]
     url: String
     params: String

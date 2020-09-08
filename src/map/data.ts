@@ -1,12 +1,11 @@
 import Fuse from 'fuse.js'
 import querystring, { ParsedUrlQueryInput } from 'querystring'
+import { MapCollection, MapLayer, MapLayerLegendItem } from '../generated/graphql'
 import { RawMapCollection } from '../generated/map-collection'
 import { LegendItem as RawLegendItem, RawMapLayer } from '../generated/map-layer'
 import { Theme } from '../generated/theme'
-import { MapLayer, MapCollection, MapLayerLegendItem } from '../generated/graphql'
 
 const DEFAULT_MIN_ZOOM = 7
-const DEFAULT_MAX_ZOOM = 16
 
 const rawMapCollections: RawMapCollection[] = require('../../assets/map-collections.config.json')
 const rawMapLayers: RawMapLayer[] = require('../../assets/map-layers.config.json')
@@ -101,7 +100,6 @@ export function composeMapLayer(
       ? layer.legendItems.map((legendItem) => normalizeLegendItem(collectionId, legendItem, layers))
       : undefined,
     minZoom: layer.minZoom ?? DEFAULT_MIN_ZOOM,
-    maxZoom: DEFAULT_MAX_ZOOM,
     noDetail: !layer.detailUrl,
     notSelectable: layer.notSelectable || false,
     params,
@@ -189,7 +187,6 @@ function normalizeLegendItem(
       title: legendItem.title ?? mapLayer.title,
       id: composeId(collectionId, legendItem.id),
       minZoom: mapLayer.minZoom ?? DEFAULT_MIN_ZOOM,
-      maxZoom: DEFAULT_MAX_ZOOM,
       noDetail: !mapLayer.detailUrl,
       params,
       href: createMapLayerHref(mapLayer, layers, collectionId),
