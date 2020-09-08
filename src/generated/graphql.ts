@@ -1,6 +1,6 @@
 import { GraphQLResolveInfo } from 'graphql'
 export type Maybe<T> = T | null
-export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] }
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } &
   { [P in K]-?: NonNullable<T[P]> }
@@ -168,7 +168,6 @@ export type MapResult = {
   type?: Maybe<Scalars['String']>
   noDetail?: Maybe<Scalars['Boolean']>
   minZoom?: Maybe<Scalars['Int']>
-  maxZoom?: Maybe<Scalars['Int']>
   layers?: Maybe<Array<Scalars['String']>>
   url?: Maybe<Scalars['String']>
   params?: Maybe<Scalars['String']>
@@ -252,7 +251,6 @@ export type MapLayer = {
   type: Scalars['String']
   noDetail: Scalars['Boolean']
   minZoom: Scalars['Int']
-  maxZoom: Scalars['Int']
   layers?: Maybe<Array<Scalars['String']>>
   url?: Maybe<Scalars['String']>
   params?: Maybe<Scalars['String']>
@@ -743,7 +741,6 @@ export type MapResultResolvers<
   type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   noDetail?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
   minZoom?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
-  maxZoom?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
   layers?: Resolver<Maybe<Array<ResolversTypes['String']>>, ParentType, ContextType>
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   params?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
@@ -855,7 +852,6 @@ export type MapLayerResolvers<
   type?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   noDetail?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
   minZoom?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
-  maxZoom?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   layers?: Resolver<Maybe<Array<ResolversTypes['String']>>, ParentType, ContextType>
   url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   params?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
@@ -989,9 +985,9 @@ export type QueryResolvers<
 }
 
 export type Resolvers<ContextType = any> = {
-  Results?: ResultsResolvers
-  SearchResult?: SearchResultResolvers
-  CombinedResult?: CombinedResultResolvers
+  Results?: ResultsResolvers<ContextType>
+  SearchResult?: SearchResultResolvers<ContextType>
+  CombinedResult?: CombinedResultResolvers<ContextType>
   DataSearchResult?: DataSearchResultResolvers<ContextType>
   DatasetSearchResult?: DatasetSearchResultResolvers<ContextType>
   CMSSearchResult?: CmsSearchResultResolvers<ContextType>
@@ -1011,7 +1007,7 @@ export type Resolvers<ContextType = any> = {
   PageInfo?: PageInfoResolvers<ContextType>
   MapCollection?: MapCollectionResolvers<ContextType>
   MapLayer?: MapLayerResolvers<ContextType>
-  MapLayerLegendItem?: MapLayerLegendItemResolvers
+  MapLayerLegendItem?: MapLayerLegendItemResolvers<ContextType>
   Theme?: ThemeResolvers<ContextType>
   Meta?: MetaResolvers<ContextType>
   DetailParams?: DetailParamsResolvers<ContextType>
