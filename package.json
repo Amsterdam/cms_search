@@ -36,7 +36,7 @@
     "graphql-playground-middleware-express": "^1.7.21",
     "graphql-tools": "^6.2.3",
     "lru_map": "^0.4.0",
-    "moment": "^2.28.0",
+    "moment": "^2.29.0",
     "node-fetch": "^2.6.1",
     "remove-markdown": "^0.3.0",
     "typescript": "^3.9.7"
