@@ -45,7 +45,7 @@
     "@graphql-codegen/cli": "^1.17.8",
     "@graphql-codegen/introspection": "^1.17.8",
     "@graphql-codegen/typescript": "^1.17.9",
-    "@graphql-codegen/typescript-resolvers": "^1.17.9",
+    "@graphql-codegen/typescript-resolvers": "^1.17.10",
     "@types/jest": "^26.0.14",
     "concurrently": "^5.3.0",
     "husky": "^4.3.0",
