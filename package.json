@@ -33,7 +33,7 @@
     "express-graphql": "^0.11.0",
     "fuse.js": "^6.4.2",
     "graphql": "^15.3.0",
-    "graphql-playground-middleware-express": "^1.7.21",
+    "graphql-playground-middleware-express": "^1.7.22",
     "graphql-tools": "^6.2.4",
     "lru_map": "^0.4.0",
     "moment": "^2.29.1",
