@@ -34,7 +34,7 @@
     "fuse.js": "^6.4.2",
     "graphql": "^15.3.0",
     "graphql-playground-middleware-express": "^1.7.22",
-    "graphql-tools": "^6.2.4",
+    "graphql-tools": "^7.0.0",
     "lru_map": "^0.4.1",
     "moment": "^2.29.1",
     "node-fetch": "^2.6.1",
