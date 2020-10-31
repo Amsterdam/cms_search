@@ -119,6 +119,21 @@ export type MapSearchResult = SearchResult & {
   pageInfo: PageInfo
 }
 
+export type Covid19ResultItem = {
+  __typename?: 'Covid19ResultItem'
+  totalReported: Scalars['Int']
+  hospitalAdmission: Scalars['Int']
+  deceased: Scalars['Int']
+  municipalityCode: Scalars['String']
+  municipalityName: Scalars['String']
+  date: Scalars['String']
+}
+
+export type Covid19Result = {
+  __typename?: 'Covid19Result'
+  result?: Maybe<Array<Covid19ResultItem>>
+}
+
 export type Filter = {
   __typename?: 'Filter'
   type: Scalars['String']
@@ -311,6 +326,7 @@ export type Query = {
   mapCollectionSearch: MapCollectionSearchResult
   mapLayerSearch: MapLayerSearchResult
   mapSearch: MapSearchResult
+  covid19MunicipalityCumulative: Covid19Result
   filters?: Maybe<Array<Maybe<Filter>>>
 }
 
@@ -357,6 +373,11 @@ export type QueryMapLayerSearchArgs = {
 export type QueryMapSearchArgs = {
   q?: Maybe<Scalars['String']>
   input?: Maybe<MapSearchInput>
+}
+
+export type QueryCovid19MunicipalityCumulativeArgs = {
+  municipalityName: Scalars['String']
+  dates: Array<Scalars['String']>
 }
 
 export type ResolverTypeWrapper<T> = Promise<T> | T
@@ -434,8 +455,9 @@ export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
   info: GraphQLResolveInfo,
 ) => Maybe<TTypes> | Promise<Maybe<TTypes>>
 
-export type IsTypeOfResolverFn<T = {}> = (
+export type IsTypeOfResolverFn<T = {}, TContext = {}> = (
   obj: T,
+  context: TContext,
   info: GraphQLResolveInfo,
 ) => boolean | Promise<boolean>
 
@@ -480,6 +502,8 @@ export type ResolversTypes = {
   MapLayerSearchResult: ResolverTypeWrapper<MapLayerSearchResult>
   MapCollectionSearchResult: ResolverTypeWrapper<MapCollectionSearchResult>
   MapSearchResult: ResolverTypeWrapper<MapSearchResult>
+  Covid19ResultItem: ResolverTypeWrapper<Covid19ResultItem>
+  Covid19Result: ResolverTypeWrapper<Covid19Result>
   Filter: ResolverTypeWrapper<Filter>
   FilterOption: ResolverTypeWrapper<FilterOption>
   CMSLink: ResolverTypeWrapper<CmsLink>
@@ -541,6 +565,8 @@ export type ResolversParentTypes = {
   MapLayerSearchResult: MapLayerSearchResult
   MapCollectionSearchResult: MapCollectionSearchResult
   MapSearchResult: MapSearchResult
+  Covid19ResultItem: Covid19ResultItem
+  Covid19Result: Covid19Result
   Filter: Filter
   FilterOption: FilterOption
   CMSLink: CmsLink
@@ -621,7 +647,7 @@ export type DataSearchResultResolvers<
   results?: Resolver<Array<ResolversTypes['CombinedDataResult']>, ParentType, ContextType>
   filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type DatasetSearchResultResolvers<
@@ -632,7 +658,7 @@ export type DatasetSearchResultResolvers<
   results?: Resolver<Maybe<Array<ResolversTypes['DatasetResult']>>, ParentType, ContextType>
   filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type CmsSearchResultResolvers<
@@ -643,7 +669,7 @@ export type CmsSearchResultResolvers<
   results?: Resolver<Maybe<Array<ResolversTypes['CMSResult']>>, ParentType, ContextType>
   filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type MapLayerSearchResultResolvers<
@@ -654,7 +680,7 @@ export type MapLayerSearchResultResolvers<
   results?: Resolver<Array<ResolversTypes['MapLayer']>, ParentType, ContextType>
   filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type MapCollectionSearchResultResolvers<
@@ -665,7 +691,7 @@ export type MapCollectionSearchResultResolvers<
   results?: Resolver<Array<ResolversTypes['MapCollection']>, ParentType, ContextType>
   filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type MapSearchResultResolvers<
@@ -676,7 +702,28 @@ export type MapSearchResultResolvers<
   results?: Resolver<Array<ResolversTypes['CombinedMapResult']>, ParentType, ContextType>
   filters?: Resolver<Maybe<Array<ResolversTypes['Filter']>>, ParentType, ContextType>
   pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
+}
+
+export type Covid19ResultItemResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Covid19ResultItem'] = ResolversParentTypes['Covid19ResultItem']
+> = {
+  totalReported?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  hospitalAdmission?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  deceased?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  municipalityCode?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  municipalityName?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  date?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
+}
+
+export type Covid19ResultResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Covid19Result'] = ResolversParentTypes['Covid19Result']
+> = {
+  result?: Resolver<Maybe<Array<ResolversTypes['Covid19ResultItem']>>, ParentType, ContextType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type FilterResolvers<
@@ -687,7 +734,7 @@ export type FilterResolvers<
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   options?: Resolver<Array<ResolversTypes['FilterOption']>, ParentType, ContextType>
   filterType?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type FilterOptionResolvers<
@@ -697,7 +744,7 @@ export type FilterOptionResolvers<
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   count?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type CmsLinkResolvers<
@@ -705,7 +752,7 @@ export type CmsLinkResolvers<
   ParentType extends ResolversParentTypes['CMSLink'] = ResolversParentTypes['CMSLink']
 > = {
   uri?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type CmsResultResolvers<
@@ -726,7 +773,7 @@ export type CmsResultResolvers<
   teaser?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   dateLocale?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   link?: Resolver<Maybe<ResolversTypes['CMSLink']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type MapResultResolvers<
@@ -755,7 +802,7 @@ export type MapResultResolvers<
   authScope?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   category?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   legendItems?: Resolver<Maybe<Array<ResolversTypes['LegendItem']>>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type CombinedDataResultResolvers<
@@ -766,7 +813,7 @@ export type CombinedDataResultResolvers<
   type?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   results?: Resolver<Maybe<Array<ResolversTypes['DataResult']>>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type CombinedMapResultResolvers<
@@ -777,7 +824,7 @@ export type CombinedMapResultResolvers<
   type?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   results?: Resolver<Array<ResolversTypes['MapResult']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type DataResultResolvers<
@@ -790,7 +837,7 @@ export type DataResultResolvers<
   subtype?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   endpoint?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   datasetdataset?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type DatasetResultResolvers<
@@ -809,7 +856,7 @@ export type DatasetResultResolvers<
     ParentType,
     ContextType
   >
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type DatasetFormatsResolvers<
@@ -818,7 +865,7 @@ export type DatasetFormatsResolvers<
 > = {
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type PageInfoResolvers<
@@ -828,7 +875,7 @@ export type PageInfoResolvers<
   hasNextPage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
   totalPages?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   hasLimitedResults?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type MapCollectionResolvers<
@@ -840,7 +887,7 @@ export type MapCollectionResolvers<
   mapLayers?: Resolver<Array<ResolversTypes['MapLayer']>, ParentType, ContextType>
   meta?: Resolver<ResolversTypes['Meta'], ParentType, ContextType>
   href?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type MapLayerResolvers<
@@ -872,7 +919,7 @@ export type MapLayerResolvers<
   >
   meta?: Resolver<ResolversTypes['Meta'], ParentType, ContextType>
   href?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type MapLayerLegendItemResolvers<
@@ -888,7 +935,7 @@ export type ThemeResolvers<
 > = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type MetaResolvers<
@@ -900,7 +947,7 @@ export type MetaResolvers<
   datasetIds?: Resolver<Maybe<Array<ResolversTypes['Int']>>, ParentType, ContextType>
   thumbnail?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   date?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type DetailParamsResolvers<
@@ -909,7 +956,7 @@ export type DetailParamsResolvers<
 > = {
   item?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   datasets?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type LegendItemResolvers<
@@ -920,7 +967,7 @@ export type LegendItemResolvers<
   iconUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   imageRule?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   notSelectable?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType>
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
 export type QueryResolvers<
@@ -981,6 +1028,12 @@ export type QueryResolvers<
     ContextType,
     RequireFields<QueryMapSearchArgs, never>
   >
+  covid19MunicipalityCumulative?: Resolver<
+    ResolversTypes['Covid19Result'],
+    ParentType,
+    ContextType,
+    RequireFields<QueryCovid19MunicipalityCumulativeArgs, 'municipalityName' | 'dates'>
+  >
   filters?: Resolver<Maybe<Array<Maybe<ResolversTypes['Filter']>>>, ParentType, ContextType>
 }
 
@@ -994,6 +1047,8 @@ export type Resolvers<ContextType = any> = {
   MapLayerSearchResult?: MapLayerSearchResultResolvers<ContextType>
   MapCollectionSearchResult?: MapCollectionSearchResultResolvers<ContextType>
   MapSearchResult?: MapSearchResultResolvers<ContextType>
+  Covid19ResultItem?: Covid19ResultItemResolvers<ContextType>
+  Covid19Result?: Covid19ResultResolvers<ContextType>
   Filter?: FilterResolvers<ContextType>
   FilterOption?: FilterOptionResolvers<ContextType>
   CMSLink?: CmsLinkResolvers<ContextType>

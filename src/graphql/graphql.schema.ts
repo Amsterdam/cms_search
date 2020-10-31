@@ -102,6 +102,19 @@ const schema = gql`
     pageInfo: PageInfo!
   }
 
+  type Covid19ResultItem {
+    totalReported: Int!
+    hospitalAdmission: Int!
+    deceased: Int!
+    municipalityCode: String!
+    municipalityName: String!
+    date: String!
+  }
+
+  type Covid19Result {
+    result: [Covid19ResultItem!]
+  }
+
   type Filter {
     type: String!
     label: String!
@@ -276,6 +289,7 @@ const schema = gql`
     mapCollectionSearch(q: String, input: MapSearchInput): MapCollectionSearchResult!
     mapLayerSearch(q: String, input: MapSearchInput): MapLayerSearchResult!
     mapSearch(q: String, input: MapSearchInput): MapSearchResult!
+    covid19MunicipalityCumulative(municipalityName: String!, dates: [String!]!): Covid19Result!
     filters: [Filter]
   }
 `

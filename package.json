@@ -37,6 +37,7 @@
     "graphql-tools": "^6.2.4",
     "lru_map": "^0.4.1",
     "moment": "^2.29.1",
+    "node-cache": "^5.1.2",
     "node-fetch": "^2.6.1",
     "remove-markdown": "^0.3.0",
     "typescript": "^3.9.7"

@@ -5,6 +5,7 @@ import { articleSearch, collectionSearch, publicationSearch, specialSearch } fro
 import dataSearch from './data'
 import datasetSearch from './datasets'
 import filters from './filters'
+import { covid19MunicipalityCumulative } from '../other/rivm'
 
 const queryResolvers: QueryResolvers = {
   articleSearch,
@@ -17,6 +18,7 @@ const queryResolvers: QueryResolvers = {
   mapLayerSearch,
   mapSearch,
   filters,
+  covid19MunicipalityCumulative,
 }
 
 const resolversMap: Resolvers = {

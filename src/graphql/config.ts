@@ -12,6 +12,10 @@ export type Context = {
       load: Function
       clear: Function
     }
+    rivm: {
+      load: Function
+      clear: Function
+    }
   }
 }
 
