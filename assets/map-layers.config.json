@@ -1427,7 +1427,7 @@
     "layers": ["pmd_coordinaten"],
     "title": "PMD",
     "type": "wms",
-    "imageRule": "BMPcontainer",
+    "imageRule": "PMDcontainer",
     "params": {
       "width": 30,
       "height": 30
