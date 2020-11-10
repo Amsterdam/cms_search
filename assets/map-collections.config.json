@@ -423,6 +423,31 @@
     }
   },
   {
+    "id": "lpfstnd",
+    "title": "Loopafstand afvalcontainers",
+    "mapLayers": [
+      {
+        "id": "lpfstndrest"
+      },
+      {
+        "id": "lpfstndplastic"
+      },
+      {
+        "id": "lpfstndpapier"
+      },
+      {
+        "id": "lpfstndtextiel"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": "sites/default/files/images/teaser-kaart-afvalcontainers.jpg",
+      "date": null
+    }
+  },
+  {
     "id": "veilov",
     "title": "Veiligheid en overlast",
     "mapLayers": [
