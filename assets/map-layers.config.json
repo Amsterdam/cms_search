@@ -2062,6 +2062,570 @@
     }
   },
   {
+    "id": "lpfstnd__rest_0_30",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand rest"],
+    "title": "<= 30 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__rest_30_90",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand rest"],
+    "title": "30 - 90 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__rest_90_120",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand rest"],
+    "title": "90 - 120 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__rest_120_150",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand rest"],
+    "title": "120 - 150 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__rest_150_210",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand rest"],
+    "title": "150 - 210 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__rest_210_1000",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand rest"],
+    "title": "210 - 1000 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__rest_1000",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand rest"],
+    "title": "> 1000 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstndrest",
+    "url": "/maps/afval",
+    "title": "Rest",
+    "legendItems": [
+      {
+        "id": "lpfstnd__rest_0_30"
+      },
+      {
+        "id": "lpfstnd__rest_30_90"
+      },
+      {
+        "id": "lpfstnd__rest_90_120"
+      },
+      {
+        "id": "lpfstnd__rest_120_150"
+      },
+      {
+        "id": "lpfstnd__rest_150_210"
+      },
+      {
+        "id": "lpfstnd__rest_210_1000"
+      },
+      {
+        "id": "lpfstnd__rest_1000"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__plastic_0_30",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand plastic"],
+    "title": "<= 30 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__plastic_30_90",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand plastic"],
+    "title": "30 - 90 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__plastic_90_120",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand plastic"],
+    "title": "90 - 120 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__plastic_120_150",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand plastic"],
+    "title": "120 - 150 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__plastic_150_210",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand plastic"],
+    "title": "150 - 210 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__plastic_210_1000",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand plastic"],
+    "title": "210 - 1000 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__plastic_1000",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand plastic"],
+    "title": "> 1000 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstndplastic",
+    "url": "/maps/afval",
+    "title": "Plastic",
+    "legendItems": [
+      {
+        "id": "lpfstnd__plastic_0_30"
+      },
+      {
+        "id": "lpfstnd__plastic_30_90"
+      },
+      {
+        "id": "lpfstnd__plastic_90_120"
+      },
+      {
+        "id": "lpfstnd__plastic_120_150"
+      },
+      {
+        "id": "lpfstnd__plastic_150_210"
+      },
+      {
+        "id": "lpfstnd__plastic_210_1000"
+      },
+      {
+        "id": "lpfstnd__plastic_1000"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__papier_0_30",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand papier"],
+    "title": "<= 30 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__papier_30_90",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand papier"],
+    "title": "30 - 90 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__papier_90_120",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand papier"],
+    "title": "90 - 120 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__papier_120_150",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand papier"],
+    "title": "120 - 150 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__papier_150_210",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand papier"],
+    "title": "150 - 210 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__papier_210_1000",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand papier"],
+    "title": "210 - 1000 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__papier_1000",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand papier"],
+    "title": "> 1000 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstndpapier",
+    "url": "/maps/afval",
+    "title": "Papier",
+    "legendItems": [
+      {
+        "id": "lpfstnd__papier_0_30"
+      },
+      {
+        "id": "lpfstnd__papier_30_90"
+      },
+      {
+        "id": "lpfstnd__papier_90_120"
+      },
+      {
+        "id": "lpfstnd__papier_120_150"
+      },
+      {
+        "id": "lpfstnd__papier_150_210"
+      },
+      {
+        "id": "lpfstnd__papier_210_1000"
+      },
+      {
+        "id": "lpfstnd__papier_1000"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__textiel_0_90",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand textiel"],
+    "title": "<= 90 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__textiel_90_180",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand textiel"],
+    "title": "90 - 180 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__textiel_180_350",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand textiel"],
+    "title": "180 - 350 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__textiel_350_370",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand textiel"],
+    "title": "350 - 370 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__textiel_370_480",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand textiel"],
+    "title": "370 - 480 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__textiel_480_1000",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand textiel"],
+    "title": "480 - 1000 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstnd__textiel_1000",
+    "url": "/maps/afval",
+    "notSelectable": true,
+    "layers": ["pand loopafstand textiel"],
+    "title": "> 1000 m",
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "lpfstndtextiel",
+    "url": "/maps/afval",
+    "title": "Textiel",
+    "legendItems": [
+      {
+        "id": "lpfstnd__textiel_0_90"
+      },
+      {
+        "id": "lpfstnd__textiel_90_180"
+      },
+      {
+        "id": "lpfstnd__textiel_180_350"
+      },
+      {
+        "id": "lpfstnd__textiel_350_370"
+      },
+      {
+        "id": "lpfstnd__textiel_370_480"
+      },
+      {
+        "id": "lpfstnd__textiel_480_1000"
+      },
+      {
+        "id": "lpfstnd__textiel_1000"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
     "id": "mvlpgv105",
     "notSelectable": true,
     "url": "/maps/externeveiligheid",
