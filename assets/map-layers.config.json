@@ -1384,6 +1384,82 @@
     }
   },
   {
+    "id": "wlobrood",
+    "url": "/maps/afval",
+    "layers": ["brood_coordinaten"],
+    "title": "Brood",
+    "type": "wms",
+    "imageRule": "Broodcontainer",
+    "params": {
+      "width": 30,
+      "height": 30
+    },
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "wlogrof",
+    "url": "/maps/afval",
+    "layers": ["grof_coordinaten"],
+    "title": "Grof",
+    "type": "wms",
+    "imageRule": "Grofcontainer",
+    "params": {
+      "width": 30,
+      "height": 30
+    },
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "wlopmd",
+    "url": "/maps/afval",
+    "layers": ["pmd_coordinaten"],
+    "title": "PMD",
+    "type": "wms",
+    "imageRule": "BMPcontainer",
+    "params": {
+      "width": 30,
+      "height": 30
+    },
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "wloonbekend",
+    "url": "/maps/afval",
+    "layers": ["onbekend_coordinaten"],
+    "title": "Onbekend",
+    "type": "wms",
+    "imageRule": "Onbekendcontainer",
+    "params": {
+      "width": 30,
+      "height": 30
+    },
+    "meta": {
+      "description": null,
+      "themes": ["wonen", "duurzaamheid-en-milieu"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
     "id": "wlopls",
     "url": "/maps/afval",
     "layers": ["plastic_coordinaten"],
