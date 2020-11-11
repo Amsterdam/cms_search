@@ -12,8 +12,8 @@ export interface RawMapLayer {
   params?: Params
   imageRule?: string
   minZoom?: number
-  legendItems?: LegendItem[]
   notSelectable?: boolean
+  legendItems?: LegendItem[]
   external?: boolean
   bounds?: Array<number[]>
   authScope?: string
@@ -26,9 +26,9 @@ export interface DetailParams {
 }
 
 export interface LegendItem {
-  title?: string
   id?: string
   iconUrl?: string
+  title?: string
   imageRule?: string
   notSelectable?: boolean
 }
