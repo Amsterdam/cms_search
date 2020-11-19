@@ -13,8 +13,8 @@ export default graphqlHTTP((req) => ({
     typeDefs: schema,
     resolvers,
     resolverValidationOptions: {
-      requireResolversForResolveType: false,
-      requireResolversForArgs: false,
+      requireResolversForResolveType: 'ignore',
+      requireResolversForArgs: 'ignore',
     },
   }),
   context: {
