@@ -86,8 +86,11 @@ describe('dataResolver', () => {
     })
 
     it('with the search term and clears key from cache when an error occurs', async () => {
-      const mockDataLoader = jest.fn(() => ({ status: 'rejected', reason: Error('error') })) // Dataloader returns error as the Promise was rejected
-      const mockClear = jest.fn(() => true)
+      const mockDataLoader = jest.fn<any, [string]>(() => ({
+        status: 'rejected',
+        reason: Error('error'),
+      })) // Dataloader returns error as the Promise was rejected
+      const mockClear = jest.fn<any, [string]>(() => true)
 
       await dataResolver(
         '',
