@@ -3,12 +3,16 @@ version: '3.8'
 services:
   elasticsearch:
     image: amsterdam/elasticsearch6
-    command: elasticsearch -Ehttp.host=0.0.0.0 -Etransport.host=localhost
+    command: elasticsearch -Ehttp.host=0.0.0.0 -Etransport.host=127.0.0.1
     ports:
       - '9200:9200'
       - '9300:9300'
+    volumes:
+      - "~/.ssh/datapunt.key:/root/.ssh/datapunt.key"
 
   cms_search:
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
     build: .
     ports:
       - '8080:8080'
@@ -18,4 +22,4 @@ services:
       - DATAPUNT_API_URL=${DATAPUNT_API_URL:-https://api.data.amsterdam.nl/}
     depends_on:
       - elasticsearch
-    env_file: ./.env.development
+    env_file: .env.development

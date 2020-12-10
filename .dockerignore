@@ -3,7 +3,9 @@
 
 ## Allow specific files and folders
 !assets
+!custom.d.ts
 !data
 !package*.json
 !scripts
 !src
+!tsconfig.json

@@ -6,9 +6,6 @@
 help: ## show this help screen
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-build_nocache: ## Build the container by pulling the image from source instead from cache
-	docker-compose build --pull --no-cache
-
 build: ## build Docker Compose images
 	docker-compose build
 
@@ -25,5 +22,5 @@ status: ## show Docker Compose process list
 
 rebuild: stop build start status ## stop running containers, build and start them
 
-shell: ## execute command on container. Usage: make CONTAINER=database shell
-	docker-compose exec sh
+shell: ## execute command on container
+	docker-compose exec cms_search sh
