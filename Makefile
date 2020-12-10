@@ -9,7 +9,7 @@ help: ## show this help screen
 build: ## build Docker Compose images
 	docker-compose build
 
-start: ## start single Docker Compose service in detached mode. Run make update after starting the container to flush Drupal cache
+start: ## start single Docker Compose service in detached mode
 	docker-compose up
 
 stop: ## stop Docker Compose
