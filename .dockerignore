@@ -1,13 +1,9 @@
-.git
-node_modules
-npm-debug.log
-config
-coverage
-lib
-.env.*
-.gitignore
-.graphqlconfig
-.prettierrc
-Jenkinsfile
-jest.config.js
-tsconfig.jest.json
+## Ignore everything by default
+*
+
+## Allow specific files and folders
+!assets
+!data
+!package*.json
+!scripts
+!src
