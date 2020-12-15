@@ -5024,24 +5024,5 @@
       "thumbnail": null,
       "date": null
     }
-  },
-  {
-    "id": "cov19gebver",
-    "layers": ["gebiedsverbod"],
-    "title": "Gebiedsverbod",
-    "detailUrl": "geosearch/",
-    "detailParams": {
-      "datasets": "covid_19/gebiedsverbod"
-    },
-    "imageRule": "gebiedsverbod",
-    "type": "wms",
-    "url": "/maps/covid19",
-    "meta": {
-      "description": null,
-      "themes": ["openbare-orde-en-veiligheid", "zorg-en-welzijn"],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
   }
 ]
