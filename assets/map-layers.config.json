@@ -2811,34 +2811,6 @@
     }
   },
   {
-    "id": "vwrk",
-    "layers": ["vuurwerk"],
-    "legendItems": [
-      {
-        "title": "Parken",
-        "imageRule": "Vuurwerkvrije zone (Park)"
-      },
-      {
-        "title": "Omgeving ziekenhuizen",
-        "imageRule": "Vuurwerkvrije zone (Ziekenhuis)"
-      },
-      {
-        "title": "Omgeving dierenverblijven",
-        "imageRule": "Vuurwerkvrije zone (Dierinstelling)"
-      }
-    ],
-    "title": "Vuurwerkvrije zones",
-    "type": "wms",
-    "url": "/maps/vuurwerk",
-    "meta": {
-      "description": null,
-      "themes": ["openbare-orde-en-veiligheid", "wonen"],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
     "id": "mnmtn",
     "legendItems": [
       {
