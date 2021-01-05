@@ -4177,6 +4177,27 @@
     }
   },
   {
+    "id": "pano2021bi",
+    "layers": ["panorama_new"],
+    "imageRule": "2021",
+    "minZoom": 11,
+    "title": "Panoramabeelden - 2021",
+    "type": "wms",
+    "url": "/maps/panorama",
+    "params": {
+      "mission_year": 2021,
+      "mission_type": "bi",
+      "scale": 800
+    },
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
     "id": "pano2020bi",
     "layers": ["panorama_new"],
     "imageRule": "2020",
@@ -4348,6 +4369,10 @@
     "id": "panobi",
     "layers": ["panorama_new"],
     "legendItems": [
+      {
+        "id": "pano2021bi",
+        "title": "2021"
+      },
       {
         "id": "pano2020bi",
         "title": "2020"
