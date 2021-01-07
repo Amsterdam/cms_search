@@ -51,7 +51,7 @@
     "husky": "^4.3.6",
     "jest": "^25.5.4",
     "lint-staged": "^10.5.3",
-    "nodemon": "^2.0.6",
+    "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "quicktype": "^15.0.258",
     "ts-jest": "^25.5.1",
