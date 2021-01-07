@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+import * as Sentry from '@sentry/node'
 import { PORT, URL_PREFIX } from './config'
 import express from 'express'
 import expressPlayground from 'graphql-playground-middleware-express'
@@ -7,7 +8,12 @@ import cors from 'cors'
 import GraphQLMiddleware from './graphql'
 import TypeAheadMiddleWare from './typeahead'
 
+Sentry.init({ dsn: 'https://faaffe3ccc10486492cae5436114c4b5@sentry.data.amsterdam.nl/52' })
+
 const app = express()
+
+// The request handler must be the first middleware on the app
+app.use(Sentry.Handlers.requestHandler())
 
 app.use(cors())
 
@@ -21,6 +27,9 @@ app.get(`${URL_PREFIX}/playground`, expressPlayground({ endpoint: `${URL_PREFIX}
 
 // TypeAhead
 app.get(`${URL_PREFIX}/typeahead`, TypeAheadMiddleWare)
+
+// The error handler must be before any other error middleware and after all controllers
+app.use(Sentry.Handlers.errorHandler())
 
 app.listen(PORT)
 

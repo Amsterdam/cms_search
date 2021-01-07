@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "@elastic/elasticsearch": "^7.10.0",
+    "@sentry/node": "^5.29.2",
+    "@sentry/types": "^5.29.2",
     "@types/cors": "^2.8.9",
     "@types/elasticsearch": "^5.0.37",
     "@types/express": "^4.17.9",
