@@ -1,6 +1,5 @@
 import { Filter, FilterInput } from '../../../generated/graphql'
 import { FilterType } from '../../config'
-import CustomError from '../../utils/CustomError'
 import * as getPageInfo from '../../utils/getPageInfo'
 import * as filters from './filters'
 import dataResolver from './index'
@@ -44,11 +43,12 @@ describe('dataResolver', () => {
     { filterType: FilterType.Radio, type: 'foo', label: 'Foo', options: [] },
   ]
 
-  const CONTEXT = {
+  const CONTEXT: any = {
     loaders: {
       cms: { load: jest.fn, clear: jest.fn() },
       data: { load: jest.fn, clear: jest.fn() },
       datasets: { load: jest.fn, clear: jest.fn() },
+      openAPI: { load: jest.fn, clear: jest.fn() },
     },
   }
 
@@ -231,13 +231,15 @@ describe('dataResolver', () => {
       const output = await dataResolver(
         '',
         { q: SEARCH_TERM },
-        { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: jest.fn() } } },
+        {
+          loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: jest.fn() } },
+        },
       )
 
       // This is a combined results of the return of the normalizeResults function and the DATA_SEARCH_ENDPOINTS constant
       const RESULTS = [
-        { count: 1, type: 'users', label: 'User', results: [NORMALIZED[0]] },
-        { count: 1, type: 'posts', label: 'Post', results: [NORMALIZED[1]] },
+        { count: 1, type: 'users', label: 'User', results: [NORMALIZED[0]], status: 'fulfilled' },
+        { count: 1, type: 'posts', label: 'Post', results: [NORMALIZED[1]], status: 'fulfilled' },
       ]
 
       expect(mockGetFilters).toHaveBeenCalledWith(RESULTS)
@@ -266,9 +268,6 @@ describe('dataResolver', () => {
         { q: SEARCH_TERM },
         { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: mockClear } } },
       )
-
-      // The result contains a status code with an error, so call CustomError
-      expect(CustomError).toHaveBeenCalled()
 
       // And clear the cache
       expect(mockClear.mock.calls).toEqual([

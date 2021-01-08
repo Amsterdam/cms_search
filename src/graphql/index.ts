@@ -23,6 +23,7 @@ export default graphqlHTTP((req) => ({
       cms: createDataLoader(''),
       data: createDataLoader(req.headers.authorization || ''),
       datasets: createDataLoader(''),
+      openAPI: createDataLoader(''),
     },
   },
 }))

@@ -1,6 +1,5 @@
 import { DatasetSearchResult, QueryDatasetSearchArgs } from '../../../generated/graphql'
-import { getDatasetsEndpoint, normalizeDatasets } from './normalize'
-import getFilters from './filters'
+import { formatFilters, getDatasetsEndpoint, normalizeDatasets } from './normalize'
 import getPageInfo from '../../utils/getPageInfo'
 import CustomError from '../../utils/CustomError'
 import { DCAT_ENDPOINTS } from './config'
@@ -23,39 +22,33 @@ export default async (
   // Constructs the url to retrieve the datasets
   const datasetsUrl = getDatasetsEndpoint(q, from, limit, filterInput || [])
 
-  let results: any = []
-  let filters: any = []
-  let totalCount = 0
-
   // Get the results from the DataLoader
-  let [datasets, openApiResults]: any = await Promise.all([
+  let [datasets, openApiResults] = await Promise.all([
     await loaders.datasets.load(datasetsUrl),
-    await loaders.datasets.load(DCAT_ENDPOINTS['openapi']),
+    await loaders.openAPI.load(DCAT_ENDPOINTS['openapi']),
   ])
 
-  // If an error is thrown, delete the key from the cache and throw an error
-  if (datasets.status === 'rejected' || openApiResults.status === 'rejected') {
-    loaders.datasets.clear(datasets.status === 'rejected' ? datasetsUrl : DCAT_ENDPOINTS['openapi'])
+  // If a status is rejected, delete the key from the cache and throw an error
+  if (datasets.status === 'rejected') {
+    loaders.datasets.clear(datasetsUrl)
 
-    results = new CustomError(
-      datasets.status === 'rejected' ? datasets.reason : openApiResults.reason,
-      'datasets',
-      'Datasets',
-    )
-  } else {
-    // Otherwise normalize the results
-    results = normalizeDatasets(datasets.value['dcat:dataset'], openApiResults.value)
-    // Get the available filters and merge with the results to get a count
-    filters = getFilters(openApiResults.value, datasets.value['ams:facet_info'])
-    // Get the totalCount value
-    totalCount = datasets.value['void:documents']
+    throw new CustomError(datasets.reason, 'datasets', 'Datasets')
+  }
+
+  if (openApiResults.status === 'rejected') {
+    loaders.datasets.clear(DCAT_ENDPOINTS['openapi'])
+
+    throw new CustomError(openApiResults.reason, 'openapi', 'OpenAPI')
   }
 
   return {
-    totalCount,
-    results,
+    // Get the totalCount value
+    totalCount: datasets.value['void:documents'],
+    // Otherwise normalize the results
+    results: normalizeDatasets(datasets.value['dcat:dataset'], openApiResults.value),
     // Get the page info details
-    pageInfo: getPageInfo(totalCount, page, limit),
-    filters,
+    pageInfo: getPageInfo(datasets.value['void:documents'], page, limit),
+    // Get the available filters and merge with the results to get a count
+    filters: formatFilters(openApiResults.value, datasets.value['ams:facet_info']),
   }
 }
