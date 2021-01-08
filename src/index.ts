@@ -8,7 +8,10 @@ import cors from 'cors'
 import GraphQLMiddleware from './graphql'
 import TypeAheadMiddleWare from './typeahead'
 
-Sentry.init({ dsn: process.env.SENTRY_DSN })
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  environment: process.env.SENTRY_ENVIRONMENT,
+})
 
 const app = express()
 
