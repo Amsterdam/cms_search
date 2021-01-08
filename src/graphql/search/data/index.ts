@@ -5,7 +5,6 @@ import {
   QueryDataSearchArgs,
 } from '../../../generated/graphql'
 import { Context } from '../../config'
-import CustomError from '../../utils/CustomError'
 import getPageInfo from '../../utils/getPageInfo'
 import {
   DataSearchType,
@@ -35,10 +34,12 @@ const index = async (
   // Only endpoints that expect a query in this format should be used
   endpoints = endpoints.filter(({ queryMatcher, ...endpoint }) => {
     if (queryMatcher) {
-      return !!q?.match(queryMatcher) ? endpoint : null
+      return !!q?.match(queryMatcher) && endpoint.endpoint
     }
 
-    return endpoint
+    // Since the endpoints are stored in env's (check config.ts), the endpoint theoretically might not exist.
+    // This will make sure undefined endpoints will be filtered out.
+    return endpoint.endpoint
   })
 
   // If there are filters in the request, not all endpoints should be called from DataLoader
@@ -66,29 +67,31 @@ const index = async (
 
         const key = `${endpoint}/?${query}`
         const result = await loaders.data.load(key)
-        const { status, value } = result
 
         // If an error is thrown, delete the key from the cache and throw an error
-        if (status === 'rejected') {
+        if (result.status === 'rejected') {
           loaders.data.clear(key)
 
           return {
             count: 0,
-            label: label,
+            label,
             type,
-            results: new CustomError(result.reason, type, label), // GraphQL can handle Error as response on nullable types and will return `null` for the field and places the Error in the `errors` field, extending the error to handle this will break the autogeneration of types
+            results: [],
+            reason: result.reason,
+            status: result.status,
           }
         }
 
         // The Promise resolved, so return the valid Data
-        const { results = [], count } = value || {}
+        const { results = [], count } = result.value || {}
 
         return {
           count: count || 0,
           label: count === 1 ? labelSingular : label,
           type,
+          status: result.status,
           results:
-            results.length > 0 // TODO: Add test to see if the corect number of results is returned
+            results.length > 0 && limit // TODO: Add test to see if the correct number of results is returned
               ? results.slice(0, limit).map((result: Object) => normalizeResults(result, type))
               : [],
         }
@@ -101,7 +104,7 @@ const index = async (
     dataloaderResults.reduce((acc: number, { count }: { count: number }) => acc + count, 0) || 0
 
   // IMPORTANT: The data APIs currently return a maximum of 1000 results
-  const hasLimitedResults = !!(totalCount > DATA_SEARCH_MAX_RESULTS)
+  const hasLimitedResults = totalCount > DATA_SEARCH_MAX_RESULTS
 
   const pageInfo = {
     // Get the page info details

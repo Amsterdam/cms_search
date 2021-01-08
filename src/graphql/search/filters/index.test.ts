@@ -2,7 +2,6 @@ import { Filter } from '../../../generated/graphql'
 import { FilterType } from '../../config'
 import { FILTERS } from '../cms/config'
 import * as cmsFilters from '../cms/filters'
-import * as datasetsFilters from '../datasets/filters'
 import filters from './index'
 import * as utils from './utils'
 
@@ -22,10 +21,10 @@ jest.mock('../../../map/graphql', () => ({
 
 describe('filters', () => {
   let mockGetCmsFilters: jest.SpyInstance<any>
-  let mockGetDatasetsFilters: jest.SpyInstance<any>
   let mockCombineFilters: jest.SpyInstance<any>
   let mockCMSDataloader = jest.fn()
   let mockDatasetsDataloader = jest.fn()
+  let mockOpenAPIDataloader = jest.fn()
 
   const FILTER: Filter = {
     filterType: FilterType.Radio,
@@ -36,30 +35,32 @@ describe('filters', () => {
 
   beforeEach(() => {
     mockGetCmsFilters = jest.spyOn(cmsFilters, 'getThemeFilters').mockReturnValueOnce(FILTER)
-    mockGetDatasetsFilters = jest.spyOn(datasetsFilters, 'default').mockReturnValueOnce([FILTER])
     mockCombineFilters = jest.spyOn(utils, 'combineFilters').mockReturnValueOnce([FILTER, FILTER])
 
     mockCMSDataloader = jest.fn(() => ({
+      status: 'fulfilled',
       value: FILTER,
     }))
     mockDatasetsDataloader = jest.fn(() => ({
+      status: 'fulfilled',
       value: FILTER,
     }))
   })
 
   afterEach(() => {
     mockGetCmsFilters.mockReset()
-    mockGetDatasetsFilters.mockReset()
     mockCMSDataloader.mockReset()
     mockDatasetsDataloader.mockReset()
+    mockOpenAPIDataloader.mockReset()
   })
 
   it('should retrieve the filters from the dataloaders', async () => {
-    const CONTEXT = {
+    const CONTEXT: any = {
       loaders: {
         cms: { load: mockCMSDataloader, clear: jest.fn() },
         data: { load: jest.fn, clear: jest.fn() },
         datasets: { load: mockDatasetsDataloader, clear: jest.fn() },
+        openAPI: { load: mockOpenAPIDataloader, clear: jest.fn() },
       },
     }
 
@@ -69,15 +70,15 @@ describe('filters', () => {
     expect(mockGetCmsFilters).toHaveBeenCalledWith(FILTER)
 
     expect(mockDatasetsDataloader).toHaveBeenCalled()
-    expect(mockGetDatasetsFilters).toHaveBeenCalledWith(FILTER)
   })
 
   it('and return the output form the combineResults function', async () => {
-    const CONTEXT = {
+    const CONTEXT: any = {
       loaders: {
         cms: { load: mockCMSDataloader, clear: jest.fn() },
         data: { load: jest.fn, clear: jest.fn() },
         datasets: { load: mockDatasetsDataloader, clear: jest.fn() },
+        openAPI: { load: mockOpenAPIDataloader, clear: jest.fn() },
       },
     }
 
@@ -92,24 +93,24 @@ describe('filters', () => {
     expect(output).toEqual([FILTER, FILTER])
   })
 
-  it('unless something goes wrong', async () => {
-    const ERROR = new Error('something went wrong')
-
-    const CONTEXT = {
+  it.only('unless something goes wrong', async () => {
+    const CONTEXT: any = {
       loaders: {
         cms: {
-          load: jest.fn(() => {
-            throw ERROR
-          }),
+          load: jest.fn(() => ({
+            status: 'rejected',
+            reason: 'some reason but this will not be used by CustomError',
+          })),
           clear: jest.fn(),
         },
         data: { load: jest.fn, clear: jest.fn() },
         datasets: { load: mockDatasetsDataloader, clear: jest.fn() },
+        openAPI: { load: mockOpenAPIDataloader, clear: jest.fn() },
       },
     }
 
-    const output = await filters({}, {}, CONTEXT)
-
-    expect(output).toEqual(ERROR)
+    await expect(filters({}, {}, CONTEXT)).rejects.toThrow(
+      'Something went wrong while requesting CMS Theme Taxonomy',
+    )
   })
 })

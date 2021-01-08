@@ -12,6 +12,7 @@
     "sourceMap": true,
     "allowJs": false,
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,

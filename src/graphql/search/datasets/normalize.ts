@@ -10,6 +10,7 @@ import {
   properties,
   PropertyType,
 } from './config'
+import { RootObject as OpenAPI } from '../../../fixtures/openapi/types'
 
 /**
  * @example
@@ -155,7 +156,7 @@ function getFacetOptions(property: PropertyType, facets?: Object) {
   }))
 }
 
-function formatFilters(openApiData: any, facets?: Object): Array<Filter> {
+function formatFilters(openApiData: OpenAPI, facets?: Object): Array<Filter> {
   const { dcatDocProperties, distributionProperties } = getProperties(openApiData)
 
   return [

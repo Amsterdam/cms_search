@@ -167,6 +167,8 @@ const schema = gql`
     type: String!
     label: String!
     results: [DataResult!]
+    reason: String
+    status: String
   }
 
   type CombinedMapResult implements CombinedResult {
