@@ -6,7 +6,7 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc --build",
-    "generate": "concurrently \"graphql-codegen --config ./src/codegen.yml\" \"npm run generate-drupal-types\" \"npm run generate-asset-types\"",
+    "generate": "graphql-codegen --config ./src/codegen.yml && npm run generate-drupal-types && npm run generate-asset-types",
     "generate-drupal-types": "node scripts/generate-drupal-types.js",
     "generate-asset-types": "concurrently \"npm run generate-map-layer-type\" \"npm run generate-map-collection-type\" \"npm run generate-theme-type\"",
     "generate-map-layer-type": "quicktype ./assets/map-layers.config.json --lang ts --top-level RawMapLayer --out ./src/generated/map-layer.ts --just-types --no-enums",
