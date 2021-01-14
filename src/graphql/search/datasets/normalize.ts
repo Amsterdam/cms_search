@@ -213,10 +213,10 @@ function getDatasetsEndpoint(
     }),
     {},
   )
-
   const urlQuery = new URLSearchParams(query).toString()
 
-  return `${DCAT_ENDPOINTS['datasets']}?${urlQuery}`
+  // We need to decode the urlQuery because API cannot handle encoded characters
+  return `${DCAT_ENDPOINTS['datasets']}?${decodeURIComponent(urlQuery)}`
 }
 
 export {
