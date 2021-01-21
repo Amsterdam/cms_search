@@ -32,14 +32,10 @@ const index = async (
   let endpoints: Array<DataSearchType> = DATA_SEARCH_ENDPOINTS
 
   // Only endpoints that expect a query in this format should be used
-  endpoints = endpoints.filter(({ queryMatcher, ...endpoint }) => {
-    if (queryMatcher) {
-      return !!q?.match(queryMatcher) && endpoint.endpoint
-    }
-
+  endpoints = endpoints.filter(({ endpoint }) => {
     // Since the endpoints are stored in env's (check config.ts), the endpoint theoretically might not exist.
     // This will make sure undefined endpoints will be filtered out.
-    return endpoint.endpoint
+    return endpoint
   })
 
   // If there are filters in the request, not all endpoints should be called from DataLoader
@@ -58,45 +54,40 @@ const index = async (
   // Get the results from the DataLoader
   const dataloaderResults: CombinedDataResult[] = await Promise.all(
     // Construct the keys e.g. the URLs that should be loaded or fetched
-    endpoints.map(
-      async ({ endpoint, type, searchParam, queryFormatter, params, label, labelSingular }) => {
-        // Remove search parameter prefixes
-        q = queryFormatter ? q?.replace(queryFormatter, '') : q
+    endpoints.map(async ({ endpoint, type, searchParam, params, label, labelSingular }) => {
+      const query = queryString.stringify({ [searchParam]: q, page, ...(params || {}) })
 
-        const query = queryString.stringify({ [searchParam]: q, page, ...(params || {}) })
+      const key = `${endpoint}/?${query}`
+      const result = await loaders.data.load(key)
 
-        const key = `${endpoint}/?${query}`
-        const result = await loaders.data.load(key)
-
-        // If an error is thrown, delete the key from the cache and throw an error
-        if (result.status === 'rejected') {
-          loaders.data.clear(key)
-
-          return {
-            count: 0,
-            label,
-            type,
-            results: [],
-            reason: result.reason,
-            status: result.status,
-          }
-        }
-
-        // The Promise resolved, so return the valid Data
-        const { results = [], count } = result.value || {}
+      // If an error is thrown, delete the key from the cache and throw an error
+      if (result.status === 'rejected') {
+        loaders.data.clear(key)
 
         return {
-          count: count || 0,
-          label: count === 1 ? labelSingular : label,
+          count: 0,
+          label,
           type,
+          results: [],
+          reason: result.reason,
           status: result.status,
-          results:
-            results.length > 0 && limit // TODO: Add test to see if the correct number of results is returned
-              ? results.slice(0, limit).map((result: Object) => normalizeResults(result, type))
-              : [],
         }
-      },
-    ),
+      }
+
+      // The Promise resolved, so return the valid Data
+      const { results = [], count } = result.value || {}
+
+      return {
+        count: count || 0,
+        label: count === 1 ? labelSingular : label,
+        type,
+        status: result.status,
+        results:
+          results.length > 0 && limit // TODO: Add test to see if the correct number of results is returned
+            ? results.slice(0, limit).map((result: Object) => normalizeResults(result, type))
+            : [],
+      }
+    }),
   )
 
   // Get the count of each individual type to calculate the total count for all types

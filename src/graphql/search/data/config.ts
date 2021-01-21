@@ -4,8 +4,6 @@ export type DataSearchType = {
   label: string
   labelSingular: string
   searchParam: string
-  queryFormatter?: RegExp
-  queryMatcher?: RegExp
   params?: {
     subtype: string
   }
@@ -122,16 +120,6 @@ export const DATA_SEARCH_ENDPOINTS: Array<DataSearchType> = [
     labelSingular: 'Bouw- en omgevingsdossier',
     label: 'Bouw- en omgevingsdossiers',
     searchParam: 'dossier',
-    queryMatcher: /^[A-Z]{2,3}\d/,
-  },
-  {
-    endpoint: SEARCH_ENDPOINTS[DataType.ConstructionFiles],
-    type: DataType.ConstructionFiles,
-    labelSingular: 'Bouw- en omgevingsdossier',
-    label: 'Bouw- en omgevingsdossiers',
-    searchParam: 'olo_liaan_nummer',
-    queryMatcher: /^OLO\d/,
-    queryFormatter: /^OLO/,
   },
 ]
 
