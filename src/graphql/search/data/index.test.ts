@@ -275,5 +275,29 @@ describe('dataResolver', () => {
         [`https://api.endpoint.com/posts/?query=${SEARCH_TERM}&page=1`],
       ])
     })
+
+    it('returns a limited amount of results', async () => {
+      const promiseResults = ['foo', 'bar', 'baz']
+      mockDataLoader = jest.fn(() => ({
+        status: 'fulfilled',
+        value: {
+          results: promiseResults,
+        },
+      }))
+
+      const mockClear = jest.fn()
+
+      await dataResolver(
+        '',
+        { q: SEARCH_TERM, input: { limit: 1 } },
+        { loaders: { ...CONTEXT.loaders, data: { load: mockDataLoader, clear: mockClear } } },
+      )
+
+      expect(mockNormalizeResults).toHaveBeenCalledTimes(2)
+      expect(mockNormalizeResults.mock.calls).toEqual([
+        ['foo', 'users'],
+        ['foo', 'posts'],
+      ])
+    })
   })
 })

@@ -83,7 +83,7 @@ const index = async (
         type,
         status: result.status,
         results:
-          results.length > 0 && limit // TODO: Add test to see if the correct number of results is returned
+          results.length > 0 && limit
             ? results.slice(0, limit).map((result: Object) => normalizeResults(result, type))
             : [],
       }
