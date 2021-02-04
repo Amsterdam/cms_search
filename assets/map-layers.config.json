@@ -2003,6 +2003,12 @@
       },
       {
         "id": "ggro"
+      },
+      {
+        "id": "gsg4phs"
+      },
+      {
+        "id": "gsg4phsod"
       }
     ],
     "title": "Grootstedelijke gebieden, projecten en belangen",
@@ -5017,6 +5023,34 @@
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "zorg-en-welzijn"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "gsg4phs",
+    "layers": ["gsg4_phs"],
+    "title": "PHS regie Gemeente Amsterdam",
+    "type": "wms",
+    "url": "/maps/gebieden",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "gsg4phsod",
+    "layers": ["gsg4_phsod"],
+    "title": "PHS regie Omgevingsdienst",
+    "type": "wms",
+    "url": "/maps/gebieden",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
