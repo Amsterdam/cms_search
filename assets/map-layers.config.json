@@ -5101,6 +5101,10 @@
     "type": "wms",
     "url": "/maps/woningbouw",
     "imageRule": "strategischeruimtes",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "woningbouwplannen/strategischeruimtes"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
