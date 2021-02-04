@@ -5093,5 +5093,20 @@
       "thumbnail": null,
       "date": null
     }
+  },
+  {
+    "id": "strtr",
+    "layers": ["Strategischeruimtes"],
+    "title": "Strategische ruimtes",
+    "type": "wms",
+    "url": "/maps/woningbouw",
+    "imageRule": "strategischeruimtes",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
   }
 ]
