@@ -5082,6 +5082,10 @@
     "type": "wms",
     "url": "/maps/woningbouw",
     "imageRule": "Bag Pand sloop status",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "woningbouwplannen/bag_pand_sloop_status"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
