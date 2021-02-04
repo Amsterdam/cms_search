@@ -5063,6 +5063,10 @@
     "type": "wms",
     "url": "/maps/woningbouw",
     "imageRule": "Gebied bouwblok woningen",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "woningbouwplannen/gebied_bouwblok_woningen"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
