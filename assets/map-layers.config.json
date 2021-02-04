@@ -5074,5 +5074,20 @@
       "thumbnail": null,
       "date": null
     }
+  },
+  {
+    "id": "bps",
+    "layers": ["Bag Pand sloop status"],
+    "title": "BAG pand en sloopstatus",
+    "type": "wms",
+    "url": "/maps/woningbouw",
+    "imageRule": "Bag Pand sloop status",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
   }
 ]
