@@ -5134,6 +5134,10 @@
     ],
     "type": "wms",
     "url": "/maps/woningbouw",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "woningbouwplannen/woningbouwplan"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
