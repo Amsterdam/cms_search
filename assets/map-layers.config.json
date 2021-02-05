@@ -5112,5 +5112,34 @@
       "thumbnail": null,
       "date": null
     }
+  },
+  {
+    "id": "wngbpln",
+    "layers": ["Woningbouwplannen"],
+    "title": "Woningbouwplannen",
+    "legendItems": [
+      {
+        "title": "Verkenning"
+      },
+      {
+        "title": "Principebesluit genomen"
+      },
+      {
+        "title": "Investeringsbesluit genomen"
+      },
+      {
+        "title": "In aanbouw genomen (sinds 2014)",
+        "imageRule": "In aanbouw genomen"
+      }
+    ],
+    "type": "wms",
+    "url": "/maps/woningbouw",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
   }
 ]
