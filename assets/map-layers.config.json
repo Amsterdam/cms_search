@@ -3355,6 +3355,10 @@
     "type": "wms",
     "url": "/maps/overlastgebieden",
     "imageRule": "Algemeen overlastgebied",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "overlastgebieden/algemeenoverlast"
+    },
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "wonen"],
@@ -3370,6 +3374,10 @@
     "type": "wms",
     "url": "/maps/overlastgebieden",
     "imageRule": "Dealeroverlastgebied",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "overlastgebieden/dealeroverlast"
+    },
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "wonen"],
@@ -3385,6 +3393,10 @@
     "title": "Cameratoezichtgebieden",
     "type": "wms",
     "url": "/maps/overlastgebieden",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "overlastgebieden/cameratoezicht"
+    },
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "wonen"],
@@ -3400,6 +3412,10 @@
     "title": "Alcoholverbodsgebieden",
     "type": "wms",
     "url": "/maps/overlastgebieden",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "overlastgebieden/alcoholverbod"
+    },
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "wonen"],
@@ -3414,6 +3430,10 @@
     "title": "Rondleidingverbodsgebieden",
     "type": "wms",
     "url": "/maps/overlastgebieden",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "overlastgebieden/rondleidingverbod"
+    },
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "wonen"],
@@ -3429,6 +3449,10 @@
     "title": "Omgeving taxistandplaatsen",
     "type": "wms",
     "url": "/maps/overlastgebieden",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "overlastgebieden/taxistandplaats"
+    },
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "wonen", "verkeer"],
