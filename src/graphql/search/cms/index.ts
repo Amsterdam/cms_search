@@ -5,6 +5,7 @@ import getPageInfo from '../../utils/getPageInfo'
 import { CmsType } from './config'
 import getFormattedResults, { QueryCmsSearchArgs, ESFilters } from './normalize'
 import { getThemeFilters, getDateFilters, getSubTypeFilters } from './filters'
+import CustomError from '../../utils/CustomError'
 
 const cmsSearch = (type: string) => async (
   _: any,
@@ -34,7 +35,7 @@ const cmsSearch = (type: string) => async (
 
   const formattedResults = getFormattedResults(results)
 
-  const cmsThemeFilters: any = await loaders.cms.load(
+  const cmsThemeFilters = await loaders.cms.load(
     `${process.env.CMS_URL}/jsonapi/taxonomy_term/themes`,
   )
 
@@ -46,6 +47,10 @@ const cmsSearch = (type: string) => async (
     )
 
     subTypeFilters = getSubTypeFilters(cmsSubTypeFilters, filterCount?.subType)
+  }
+
+  if (cmsThemeFilters.status === 'rejected') {
+    throw new CustomError(cmsThemeFilters.reason, 'cms', 'CMS Theme Filters')
   }
 
   const themeFilters = getThemeFilters(cmsThemeFilters.value, filterCount?.theme)

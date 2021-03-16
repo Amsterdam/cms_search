@@ -1,12 +1,12 @@
 import { graphqlHTTP } from 'express-graphql'
+import fetch from 'node-fetch'
+import NodeCache from 'node-cache'
 import { makeExecutableSchema } from 'graphql-tools'
 import typeDefs from './graphql.schema'
 import resolvers from './search'
 import createDataLoader from './utils/createDataLoader'
 import DataLoader from 'dataloader'
 import { Covid19ResultItem } from '../generated/graphql'
-import NodeCache from 'node-cache'
-import fetch from 'node-fetch'
 
 const schema = `
   ${typeDefs}
@@ -18,8 +18,8 @@ export default graphqlHTTP((req) => ({
     typeDefs: schema,
     resolvers,
     resolverValidationOptions: {
-      requireResolversForResolveType: false,
-      requireResolversForArgs: false,
+      requireResolversForResolveType: 'ignore',
+      requireResolversForArgs: 'ignore',
     },
   }),
   context: {
@@ -28,6 +28,7 @@ export default graphqlHTTP((req) => ({
       cms: createDataLoader(''),
       data: createDataLoader(req.headers.authorization || ''),
       datasets: createDataLoader(''),
+      openAPI: createDataLoader(''),
       rivm: new DataLoader<[string, string[]], { result: Covid19ResultItem[] }>(
         async (args) => {
           const municipalityName = args[0][0]

@@ -372,132 +372,6 @@
     }
   },
   {
-    "id": "gbvv",
-    "url": "/maps/wkpb",
-    "layers": ["beperking-VV"],
-    "title": "(voorlopige) aanwijzing WVG",
-    "type": "wms",
-    "meta": {
-      "description": null,
-      "themes": ["ruimte-en-topografie", "wonen"],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
-    "id": "gbkw",
-    "url": "/maps/wkpb",
-    "layers": ["beperking-KW"],
-    "title": "Wet bodembescherming",
-    "type": "wms",
-    "meta": {
-      "description": null,
-      "themes": ["ruimte-en-topografie", "wonen", "duurzaamheid-en-milieu"],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
-    "id": "gbwu",
-    "url": "/maps/wkpb",
-    "layers": ["beperking-WU"],
-    "title": "Woningwet",
-    "type": "wms",
-    "meta": {
-      "description": null,
-      "themes": ["ruimte-en-topografie", "wonen"],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
-    "id": "gboh",
-    "url": "/maps/wkpb",
-    "layers": ["beperking-OH"],
-    "title": "WABO bestuursdwang / dwangsom",
-    "type": "wms",
-    "meta": {
-      "description": null,
-      "themes": ["ruimte-en-topografie", "wonen"],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
-    "id": "gbos",
-    "url": "/maps/wkpb",
-    "layers": ["beperking-OS"],
-    "title": "Sluiting o.b.v. Opiumwet",
-    "type": "wms",
-    "meta": {
-      "description": null,
-      "themes": ["ruimte-en-topografie", "wonen", "openbare-orde-en-veiligheid"],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
-    "id": "gbgs",
-    "url": "/maps/wkpb",
-    "layers": ["beperking-GS"],
-    "title": "Sluiting v. woning/lokaal/erf",
-    "type": "wms",
-    "meta": {
-      "description": null,
-      "themes": ["ruimte-en-topografie", "wonen"],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
-    "id": "gbgg",
-    "url": "/maps/wkpb",
-    "layers": ["beperking-GG"],
-    "title": "Gemeentelijk monument",
-    "type": "wms",
-    "meta": {
-      "description": null,
-      "themes": ["ruimte-en-topografie", "wonen", "cultuur-en-recreatie"],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
-    "id": "gbep",
-    "url": "/maps/wkpb",
-    "layers": ["beperking-EP"],
-    "title": "Exploitatieplan",
-    "type": "wms",
-    "meta": {
-      "description": null,
-      "themes": ["ruimte-en-topografie", "wonen"],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
-    "id": "gbhv",
-    "url": "/maps/wkpb",
-    "layers": ["beperking-HV"],
-    "title": "Vordering tot woonruimte",
-    "type": "wms",
-    "meta": {
-      "description": null,
-      "themes": ["ruimte-en-topografie", "wonen"],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
     "id": "buurt",
     "url": "/maps/gebieden",
     "layers": ["buurt", "buurt_label"],
@@ -2102,48 +1976,6 @@
     }
   },
   {
-    "id": "gembep",
-    "legendItems": [
-      {
-        "id": "gbvv"
-      },
-      {
-        "id": "gbkw"
-      },
-      {
-        "id": "gbwu"
-      },
-      {
-        "id": "gboh"
-      },
-      {
-        "id": "gbos"
-      },
-      {
-        "id": "gbgs"
-      },
-      {
-        "id": "gbgg"
-      },
-      {
-        "id": "gbep"
-      },
-      {
-        "id": "gbhv"
-      }
-    ],
-    "title": "Gemeentelijke beperkingen (WKPB)",
-    "type": "wms",
-    "minZoom": 13,
-    "meta": {
-      "description": null,
-      "themes": ["ruimte-en-topografie", "wonen"],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
     "id": "ggw",
     "legendItems": [
       {
@@ -2171,6 +2003,12 @@
       },
       {
         "id": "ggro"
+      },
+      {
+        "id": "gsg4phs"
+      },
+      {
+        "id": "gsg4phsod"
       }
     ],
     "title": "Grootstedelijke gebieden, projecten en belangen",
@@ -2896,6 +2734,10 @@
     "type": "wms",
     "url": "/maps/overlastgebieden",
     "imageRule": "Algemeen overlastgebied",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "overlastgebieden/algemeenoverlast"
+    },
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "wonen"],
@@ -2911,6 +2753,10 @@
     "type": "wms",
     "url": "/maps/overlastgebieden",
     "imageRule": "Dealeroverlastgebied",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "overlastgebieden/dealeroverlast"
+    },
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "wonen"],
@@ -2926,6 +2772,10 @@
     "title": "Cameratoezichtgebieden",
     "type": "wms",
     "url": "/maps/overlastgebieden",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "overlastgebieden/cameratoezicht"
+    },
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "wonen"],
@@ -2941,6 +2791,10 @@
     "title": "Alcoholverbodsgebieden",
     "type": "wms",
     "url": "/maps/overlastgebieden",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "overlastgebieden/alcoholverbod"
+    },
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "wonen"],
@@ -2955,6 +2809,10 @@
     "title": "Rondleidingverbodsgebieden",
     "type": "wms",
     "url": "/maps/overlastgebieden",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "overlastgebieden/rondleidingverbod"
+    },
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "wonen"],
@@ -2970,37 +2828,13 @@
     "title": "Omgeving taxistandplaatsen",
     "type": "wms",
     "url": "/maps/overlastgebieden",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "overlastgebieden/taxistandplaats"
+    },
     "meta": {
       "description": null,
       "themes": ["openbare-orde-en-veiligheid", "wonen", "verkeer"],
-      "datasetIds": [],
-      "thumbnail": null,
-      "date": null
-    }
-  },
-  {
-    "id": "vwrk",
-    "layers": ["vuurwerk"],
-    "legendItems": [
-      {
-        "title": "Parken",
-        "imageRule": "Vuurwerkvrije zone (Park)"
-      },
-      {
-        "title": "Omgeving ziekenhuizen",
-        "imageRule": "Vuurwerkvrije zone (Ziekenhuis)"
-      },
-      {
-        "title": "Omgeving dierenverblijven",
-        "imageRule": "Vuurwerkvrije zone (Dierinstelling)"
-      }
-    ],
-    "title": "Vuurwerkvrije zones",
-    "type": "wms",
-    "url": "/maps/vuurwerk",
-    "meta": {
-      "description": null,
-      "themes": ["openbare-orde-en-veiligheid", "wonen"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null
@@ -4373,6 +4207,27 @@
     }
   },
   {
+    "id": "pano2021bi",
+    "layers": ["panorama_new"],
+    "imageRule": "2021",
+    "minZoom": 11,
+    "title": "Panoramabeelden - 2021",
+    "type": "wms",
+    "url": "/maps/panorama",
+    "params": {
+      "mission_year": 2021,
+      "mission_type": "bi",
+      "scale": 800
+    },
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
     "id": "pano2020bi",
     "layers": ["panorama_new"],
     "imageRule": "2020",
@@ -4544,6 +4399,10 @@
     "id": "panobi",
     "layers": ["panorama_new"],
     "legendItems": [
+      {
+        "id": "pano2021bi",
+        "title": "2021"
+      },
       {
         "id": "pano2020bi",
         "title": "2020"
@@ -5194,19 +5053,118 @@
     }
   },
   {
-    "id": "cov19gebver",
-    "layers": ["gebiedsverbod"],
-    "title": "Gebiedsverbod",
-    "detailUrl": "geosearch/",
-    "detailParams": {
-      "datasets": "covid_19/gebiedsverbod"
-    },
-    "imageRule": "gebiedsverbod",
+    "id": "gsg4phs",
+    "layers": ["gsg4_phs"],
+    "title": "PHS regie Gemeente Amsterdam",
     "type": "wms",
-    "url": "/maps/covid19",
+    "url": "/maps/gebieden",
     "meta": {
       "description": null,
-      "themes": ["openbare-orde-en-veiligheid", "zorg-en-welzijn"],
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "gsg4phsod",
+    "layers": ["gsg4_phsod"],
+    "title": "PHS regie Omgevingsdienst",
+    "type": "wms",
+    "url": "/maps/gebieden",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "gbw",
+    "layers": ["Gebied bouwblok woningen"],
+    "title": "Gebied, bouwblok en woningen",
+    "type": "wms",
+    "url": "/maps/woningbouw",
+    "imageRule": "Gebied bouwblok woningen",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "woningbouwplannen/gebied_bouwblok_woningen"
+    },
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "bps",
+    "layers": ["Bag Pand sloop status"],
+    "title": "BAG pand en sloopstatus",
+    "type": "wms",
+    "url": "/maps/woningbouw",
+    "imageRule": "Bag Pand sloop status",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "woningbouwplannen/bag_pand_sloop_status"
+    },
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "strtr",
+    "layers": ["Strategischeruimtes"],
+    "title": "Strategische ruimtes",
+    "type": "wms",
+    "url": "/maps/woningbouw",
+    "imageRule": "strategischeruimtes",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "woningbouwplannen/strategischeruimtes"
+    },
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "wngbpln",
+    "layers": ["Woningbouwplannen"],
+    "title": "Woningbouwplannen",
+    "legendItems": [
+      {
+        "title": "Verkenning"
+      },
+      {
+        "title": "Principebesluit genomen"
+      },
+      {
+        "title": "Investeringsbesluit genomen"
+      },
+      {
+        "title": "In aanbouw genomen (sinds 2014)",
+        "imageRule": "In aanbouw genomen"
+      }
+    ],
+    "type": "wms",
+    "url": "/maps/woningbouw",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "woningbouwplannen/woningbouwplan"
+    },
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
       "datasetIds": [],
       "thumbnail": null,
       "date": null

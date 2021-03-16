@@ -1,8 +1,11 @@
 import fetchWithAbort from './fetchWithAbort'
 
 // A function returns a Promise that resolves to the values corresponding the keys
-async function loaderFunction(keys: readonly string[], token = ''): Promise<Array<Object>> {
-  const values = await Promise.allSettled(
+async function loaderFunction(
+  keys: readonly string[],
+  token = '',
+): Promise<Array<PromiseSettledResult<any>>> {
+  return Promise.allSettled(
     keys.map((key: string) =>
       fetchWithAbort(
         key,
@@ -14,7 +17,6 @@ async function loaderFunction(keys: readonly string[], token = ''): Promise<Arra
       ),
     ),
   )
-  return values
 }
 
 export default loaderFunction

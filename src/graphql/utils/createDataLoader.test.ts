@@ -1,6 +1,6 @@
 import { LRUMap } from 'lru_map'
-import createDataLoader, { MAX_CACHE_SIZE } from './createDataLoader'
 import DataLoader from 'dataloader'
+import createDataLoader, { MAX_CACHE_SIZE } from './createDataLoader'
 import * as loaderFunction from './loaderFunction'
 
 jest.mock('./loaderFunction')
@@ -14,7 +14,7 @@ describe('dataloader', () => {
   it('should return the cached dataloader when there is no token given', () => {
     const mockedLoaderFunction = jest
       .spyOn(loaderFunction, 'default')
-      .mockReturnValueOnce(Promise.resolve([Promise.resolve({})]))
+      .mockReturnValueOnce(Promise.resolve([{ value: Promise.resolve({}), status: 'fulfilled' }]))
 
     mockedDataLoader.mockImplementation((): any => true)
     mockedLRUMap.mockImplementation((): any => true)
