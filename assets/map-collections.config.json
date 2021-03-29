@@ -408,53 +408,34 @@
         "id": "wlorst"
       },
       {
-        "id": "wloppr"
+        "id": "lpfstndrest"
       },
       {
         "id": "wlogls"
       },
       {
-        "id": "wlopls"
+        "id": "lpfstndglas"
       },
       {
-        "id": "wlotxtl"
-      },
-      {
-        "id": "wlokca"
-      },
-      {
-        "id": "wlobrood"
-      },
-      {
-        "id": "wlopmd"
-      },
-      {
-        "id": "wlogrof"
-      }
-    ],
-    "meta": {
-      "description": null,
-      "themes": ["wonen", "duurzaamheid-en-milieu"],
-      "datasetIds": [],
-      "thumbnail": "sites/default/files/images/teaser-kaart-afvalcontainers.jpg",
-      "date": null
-    }
-  },
-  {
-    "id": "lpfstnd",
-    "title": "Loopafstand afvalcontainers",
-    "mapLayers": [
-      {
-        "id": "lpfstndrest"
-      },
-      {
-        "id": "lpfstndplastic"
+        "id": "wloppr"
       },
       {
         "id": "lpfstndpapier"
       },
       {
+        "id": "wlopls"
+      },
+      {
+        "id": "lpfstndplastic"
+      },
+      {
+        "id": "wlotxtl"
+      },
+      {
         "id": "lpfstndtextiel"
+      },
+      {
+        "id": "wlokca"
       }
     ],
     "meta": {
