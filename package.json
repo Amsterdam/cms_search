@@ -49,7 +49,7 @@
     "@graphql-codegen/typescript": "^1.21.1",
     "@graphql-codegen/typescript-resolvers": "^1.19.0",
     "@types/jest": "^26.0.22",
-    "concurrently": "^6.0.0",
+    "concurrently": "^6.0.1",
     "husky": "^6.0.0",
     "jest": "^25.5.4",
     "lint-staged": "^10.5.4",
