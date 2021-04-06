@@ -1531,11 +1531,11 @@
     }
   },
   {
-    "id": "lpfstnd__rest_1000",
+    "id": "lpfstnd__rest_gab",
     "url": "/maps/afval",
     "notSelectable": true,
     "layers": ["pand loopafstand rest"],
-    "title": "> 1000 m",
+    "title": "geen afstand bepaald",
     "type": "wms",
     "meta": {
       "description": null,
@@ -1569,7 +1569,7 @@
         "id": "lpfstnd__rest_210_1000"
       },
       {
-        "id": "lpfstnd__rest_1000"
+        "id": "lpfstnd__rest_gab"
       }
     ],
     "type": "wms",
@@ -1672,11 +1672,11 @@
     }
   },
   {
-    "id": "lpfstnd__glas_1000",
+    "id": "lpfstnd__glas_gab",
     "url": "/maps/afval",
     "notSelectable": true,
     "layers": ["pand loopafstand glas"],
-    "title": "> 1000 m",
+    "title": "geen afstand bepaald",
     "type": "wms",
     "meta": {
       "description": null,
@@ -1710,7 +1710,7 @@
         "id": "lpfstnd__glas_210_1000"
       },
       {
-        "id": "lpfstnd__glas_1000"
+        "id": "lpfstnd__glas_gab"
       }
     ],
     "type": "wms",
@@ -1813,11 +1813,11 @@
     }
   },
   {
-    "id": "lpfstnd__plastic_1000",
+    "id": "lpfstnd__plastic_gab",
     "url": "/maps/afval",
     "notSelectable": true,
     "layers": ["pand loopafstand plastic"],
-    "title": "> 1000 m",
+    "title": "geen afstand bepaald",
     "type": "wms",
     "meta": {
       "description": null,
@@ -1851,7 +1851,7 @@
         "id": "lpfstnd__plastic_210_1000"
       },
       {
-        "id": "lpfstnd__plastic_1000"
+        "id": "lpfstnd__plastic_gab"
       }
     ],
     "type": "wms",
@@ -1954,11 +1954,11 @@
     }
   },
   {
-    "id": "lpfstnd__papier_1000",
+    "id": "lpfstnd__papier_gab",
     "url": "/maps/afval",
     "notSelectable": true,
     "layers": ["pand loopafstand papier"],
-    "title": "> 1000 m",
+    "title": "geen afstand bepaald",
     "type": "wms",
     "meta": {
       "description": null,
@@ -1992,7 +1992,7 @@
         "id": "lpfstnd__papier_210_1000"
       },
       {
-        "id": "lpfstnd__papier_1000"
+        "id": "lpfstnd__papier_gab"
       }
     ],
     "type": "wms",
@@ -2095,11 +2095,11 @@
     }
   },
   {
-    "id": "lpfstnd__textiel_1000",
+    "id": "lpfstnd__textiel_gab",
     "url": "/maps/afval",
     "notSelectable": true,
     "layers": ["pand loopafstand textiel"],
-    "title": "> 1000 m",
+    "title": "geen afstand bepaald",
     "type": "wms",
     "meta": {
       "description": null,
@@ -2133,7 +2133,7 @@
         "id": "lpfstnd__textiel_480_1000"
       },
       {
-        "id": "lpfstnd__textiel_1000"
+        "id": "lpfstnd__textiel_gab"
       }
     ],
     "type": "wms",
