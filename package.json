@@ -57,7 +57,7 @@
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "quicktype": "^15.0.260",
-    "ts-jest": "^25.5.1",
+    "ts-jest": "^26.5.5",
     "ts-node": "^9.1.1"
   },
   "engines": {
