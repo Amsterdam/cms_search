@@ -4,6 +4,9 @@
   "author": "Datapunt Amsterdam",
   "version": "1.0.0",
   "main": "src/index.ts",
+  "engines": {
+    "node": "^16"
+  },
   "scripts": {
     "build": "tsc --build",
     "generate": "graphql-codegen --config ./src/codegen.yml && npm run generate-drupal-types && npm run generate-asset-types",
@@ -13,7 +16,7 @@
     "generate-map-collection-type": "quicktype ./assets/map-collections.config.json --lang ts --top-level RawMapCollection --out ./src/generated/map-collection.ts --just-types --no-enums",
     "generate-theme-type": "quicktype ./assets/themes.config.json --lang ts --top-level Theme --out ./src/generated/theme.ts --just-types --no-enums",
     "postinstall": "cp .env.development .env",
-    "test": "npx jest",
+    "test": "jest",
     "serve": "npm run generate-drupal-types && npm run build && node ./lib/",
     "start": "concurrently \"nodemon --transpile-only src/index.ts\" \"npm run generate -- --watch\""
   },
@@ -51,27 +54,10 @@
     "@graphql-codegen/typescript-resolvers": "^1.19.1",
     "@types/jest": "^26.0.22",
     "concurrently": "^6.0.2",
-    "husky": "^6.0.0",
     "jest": "^26.6.3",
-    "lint-staged": "^10.5.4",
     "nodemon": "^2.0.7",
-    "prettier": "^2.2.1",
     "quicktype": "^15.0.260",
     "ts-jest": "^26.5.5",
     "ts-node": "^9.1.1"
-  },
-  "engines": {
-    "node": "^16"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run test"
-    }
-  },
-  "lint-staged": {
-    "*.{ts,json,md}": [
-      "prettier --write"
-    ]
   }
 }
