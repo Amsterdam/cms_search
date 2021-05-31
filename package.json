@@ -21,7 +21,7 @@
     "start": "concurrently \"nodemon --transpile-only src/index.ts\" \"npm run generate -- --watch\""
   },
   "dependencies": {
-    "@elastic/elasticsearch": "^7.12.0",
+    "@elastic/elasticsearch": "^7.13.0",
     "@sentry/node": "^6.5.0",
     "@sentry/types": "^6.4.1",
     "@types/cors": "^2.8.10",
