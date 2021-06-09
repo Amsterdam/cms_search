@@ -5874,5 +5874,263 @@
       "thumbnail": null,
       "date": null
     }
+  },
+  {
+    "id": "ligplaatssegmenten_groot",
+    "title": "Groot (v.a. 16m)",
+    "type": "wms",
+    "layers": ["ligplaatssegmenten"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Groot:vanaf_16m",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "ligplaatssegmenten_middel",
+    "title": "Middel (10 t/m 16m)",
+    "type": "wms",
+    "layers": ["ligplaatssegmenten"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Middel:10_tm_15,99m",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "ligplaatssegmenten_klein",
+    "title": "Klein (<10m)",
+    "type": "wms",
+    "layers": ["ligplaatssegmenten"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Klein:<_10m",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "ligplaatssegmenten_onbemand",
+    "title": "Onbemand",
+    "type": "wms",
+    "layers": ["ligplaatssegmenten"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Onbemand",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "ligplaatssegmenten_waterfietsen",
+    "title": "Waterfietsen",
+    "type": "wms",
+    "layers": ["ligplaatssegmenten"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Waterfietsen",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "ligplaats_passagiersvaartuigen",
+    "layers": ["ligplaatssegmenten"],
+    "title": "Ligplaatsen passagiersvaartuigen",
+    "legendItems": [
+      {
+        "id": "ligplaatssegmenten_groot"
+      },
+      {
+        "id": "ligplaatssegmenten_middel"
+      },
+      {
+        "id": "ligplaatssegmenten_klein"
+      },
+      {
+        "id": "ligplaatssegmenten_onbemand"
+      },
+      {
+        "id": "ligplaatssegmenten_waterfietsen"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "op_afstaplocaties_passagiersvaart",
+    "title": "Openbare op- en afstapplaats passagiersvaart",
+    "type": "wms",
+    "layers": ["opafstapplaats"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Op&afstapplaats_passagiersvaart",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "op_afstaplocaties_passagiersvaart_laden_lossen",
+    "title": "Openbare op- en afstapplaats passagiersvaart + laden en lossen transport",
+    "type": "wms",
+    "layers": ["opafstapplaats"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Op&afstapplaats_passagiersvaart_en_laden&lossen",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "op_afstaplocaties_passagiersvaart_actie",
+    "title": "Openbare op- en afstapplaats passagiersvaart, actie benodigd",
+    "type": "wms",
+    "layers": ["opafstapplaats"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Op&afstapplaats_passagiersvaart_actie_benodigd",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "geen_op_afstapplaats",
+    "title": "Geen op- en afstapplaats",
+    "type": "wms",
+    "layers": ["opafstapplaats"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Geen_op&afstapplaats",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "wenslocatie",
+    "title": "Wenslocatie",
+    "type": "wms",
+    "layers": ["opafstapplaats"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Wenslocatie",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "laden_lossen_transport_over_water",
+    "title": "Laden en lossen transport over water",
+    "type": "wms",
+    "layers": ["opafstapplaats"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Op&afstaplocatie_passagiersvaart_exclusieve",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "exclusieve_op_afstaplocatie_passagiersvaart",
+    "title": "Exclusieve op- en afstaplocatie passagiersvaart",
+    "type": "wms",
+    "layers": ["opafstapplaats"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Laden&lossen_transport_over_water",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
+    "id": "op_afstaplocaties_beroepsvaart",
+    "layers": ["ligplaatssegmenten"],
+    "title": "Op- en afstaplocaties beroepsvaart",
+    "legendItems": [
+      {
+        "id": "op_afstaplocaties_passagiersvaart"
+      },
+      {
+        "id": "op_afstaplocaties_passagiersvaart_laden_lossen"
+      },
+      {
+        "id": "op_afstaplocaties_passagiersvaart_actie"
+      },
+      {
+        "id": "geen_op_afstapplaats"
+      },
+      {
+        "id": "wenslocatie"
+      },
+      {
+        "id": "laden_lossen_transport_over_water"
+      },
+      {
+        "id": "exclusieve_op_afstaplocatie_passagiersvaart"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
   }
 ]

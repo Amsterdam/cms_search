@@ -202,6 +202,25 @@
     }
   },
   {
+    "id": "water",
+    "title": "Water",
+    "mapLayers": [
+      {
+        "id": "ligplaats_passagiersvaartuigen"
+      },
+      {
+        "id": "op_afstaplocaties_beroepsvaart"
+      }
+    ],
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
     "id": "hist",
     "title": "Historische kaarten",
     "mapLayers": [
