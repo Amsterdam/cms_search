@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 COPY assets ./assets
 # Install project with a clean slate.
-RUN npm ci --only=production
+RUN npm ci --only=production --ignore-scripts
 
 # Bundle app source
 COPY . .
