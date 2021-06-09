@@ -5883,6 +5883,10 @@
     "notSelectable": true,
     "url": "/maps/varen",
     "imageRule": "Groot:vanaf_16m",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/ligplaats"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
@@ -5899,6 +5903,10 @@
     "notSelectable": true,
     "url": "/maps/varen",
     "imageRule": "Middel:10_tm_15,99m",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/ligplaats"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
@@ -5915,6 +5923,10 @@
     "notSelectable": true,
     "url": "/maps/varen",
     "imageRule": "Klein:<_10m",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/ligplaats"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
@@ -5931,6 +5943,10 @@
     "notSelectable": true,
     "url": "/maps/varen",
     "imageRule": "Onbemand",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/ligplaats"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
@@ -5947,6 +5963,10 @@
     "notSelectable": true,
     "url": "/maps/varen",
     "imageRule": "Waterfietsen",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/ligplaats"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
@@ -5993,6 +6013,10 @@
     "notSelectable": true,
     "url": "/maps/varen",
     "imageRule": "Op&afstapplaats_passagiersvaart",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/opafstapplaats"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
@@ -6009,6 +6033,10 @@
     "notSelectable": true,
     "url": "/maps/varen",
     "imageRule": "Op&afstapplaats_passagiersvaart_en_laden&lossen",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/opafstapplaats"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
@@ -6025,6 +6053,10 @@
     "notSelectable": true,
     "url": "/maps/varen",
     "imageRule": "Op&afstapplaats_passagiersvaart_actie_benodigd",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/opafstapplaats"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
@@ -6041,6 +6073,10 @@
     "notSelectable": true,
     "url": "/maps/varen",
     "imageRule": "Geen_op&afstapplaats",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/opafstapplaats"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
@@ -6057,6 +6093,10 @@
     "notSelectable": true,
     "url": "/maps/varen",
     "imageRule": "Wenslocatie",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/opafstapplaats"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
@@ -6073,6 +6113,10 @@
     "notSelectable": true,
     "url": "/maps/varen",
     "imageRule": "Op&afstaplocatie_passagiersvaart_exclusieve",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/opafstapplaats"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
@@ -6089,6 +6133,10 @@
     "notSelectable": true,
     "url": "/maps/varen",
     "imageRule": "Laden&lossen_transport_over_water",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/opafstapplaats"
+    },
     "meta": {
       "description": null,
       "themes": ["ruimte-en-topografie"],
