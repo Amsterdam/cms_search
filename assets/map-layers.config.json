@@ -3418,6 +3418,25 @@
     }
   },
   {
+    "id": "his_bodemonderzkn",
+    "layers": ["historische_onderzoeken"],
+    "title": "Historische bodemonderzoeken",
+    "type": "wms",
+    "url": "/maps/ondergrond",
+    "imageRule": "historische onderzoeken",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "ondergrond/historischeonderzoeken"
+    },
+    "meta": {
+      "description": null,
+      "themes": ["ruimte-en-topografie"],
+      "datasetIds": [],
+      "thumbnail": null,
+      "date": null
+    }
+  },
+  {
     "id": "mvw",
     "layers": ["risicozonesweg"],
     "imageRule": "Invloedsgebied wegen",
