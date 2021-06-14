@@ -13,6 +13,11 @@ const themes: Theme[] = require('../../assets/themes.config.json')
 
 const composedMapLayers = composeMapLayers(rawMapLayers, themes, rawMapCollections)
 const composedMapCollections = composeMapCollections(rawMapCollections, rawMapLayers, themes)
+const sortedComposedMapCollections = composedMapCollections.sort((a, b) => {
+  if(a.title < b.title) { return -1; }
+  if(a.title > b.title) { return 1; }
+  return 0;
+})
 
 const commonOptions = {
   shouldSort: true,
@@ -24,7 +29,7 @@ const commonOptions = {
  * Gets a list of all map collections, including it's related fields.
  */
 export function getAllMapCollections() {
-  return composedMapCollections
+  return sortedComposedMapCollections
 }
 
 /**
@@ -47,7 +52,7 @@ export function getAllThemes() {
  * @param keys The keys of the fields to match.
  */
 export function createMapCollectionsFuse(keys: string[]) {
-  return new Fuse(composedMapCollections, { ...commonOptions, keys })
+  return new Fuse(sortedComposedMapCollections, { ...commonOptions, keys })
 }
 
 /**
