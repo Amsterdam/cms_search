@@ -4,3 +4,10 @@ updates:
   directory: "/"
   schedule:
     interval: weekly
+  ignore:
+  - dependency-name: jest
+    versions:
+      - ">= 27"
+  - dependency-name: ts-jest
+    versions:
+      - ">= 27"
