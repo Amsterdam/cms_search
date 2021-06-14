@@ -4,8 +4,6 @@ import AbortController from 'abort-controller'
 jest.mock('node-fetch')
 jest.mock('abort-controller')
 
-jest.useFakeTimers()
-
 import fetchWithAbort, { MAX_REQUEST_TIME } from './fetchWithAbort'
 
 describe('fetchWithAbort', () => {
@@ -117,7 +115,7 @@ describe('fetchWithAbort', () => {
     try {
       await fetchWithAbort('url')
 
-      expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), MAX_REQUEST_TIME)
+      expect(setTimeout).toHaveBeenCalledWith(jasmine.any(Function), MAX_REQUEST_TIME)
       expect(mockedAbortController).toHaveBeenCalled()
     } catch (e) {
       expect(e.message).toBe('504 - Gateway Timeout') // The thrown error is the error message

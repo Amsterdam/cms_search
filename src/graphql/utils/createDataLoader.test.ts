@@ -26,10 +26,10 @@ describe('dataloader', () => {
 
     expect(mockedDataLoader).toHaveBeenCalledWith(mockedLoaderFunction, {
       cache: true,
-      cacheMap: expect.any(LRUMap),
+      cacheMap: jasmine.any(LRUMap),
     })
 
-    expect(output).toEqual(expect.any(DataLoader))
+    expect(output).toEqual(jasmine.any(DataLoader))
 
     mockedLRUMap.mockReset()
     mockedDataLoader.mockReset()
@@ -46,10 +46,10 @@ describe('dataloader', () => {
     expect(mockedLRUMap).not.toHaveBeenCalled()
 
     // TODO: Check if the spy on loaderFunction can be accepted as `anonymous` function here
-    expect(mockedDataLoader).toHaveBeenCalledWith(expect.any(Function), {
+    expect(mockedDataLoader).toHaveBeenCalledWith(jasmine.any(Function), {
       cache: false, // Make sure there's no cache when a token is given
     })
 
-    expect(output).toEqual(expect.any(DataLoader))
+    expect(output).toEqual(jasmine.any(DataLoader))
   })
 })
