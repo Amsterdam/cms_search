@@ -22,7 +22,7 @@ const queryResolvers: QueryResolvers = {
 const resolversMap: Resolvers = {
   Query: queryResolvers,
   // resolveType is used by GraphQL to handle inline fragments that determine which fields must be returned for this type
-  MapLayerLegendItem: {
+  MapGroupLegendItem: {
     // eslint-disable-next-line no-underscore-dangle
     __resolveType(obj) {
       // eslint-disable-next-line no-underscore-dangle
