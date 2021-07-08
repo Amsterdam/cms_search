@@ -7,62 +7,65 @@ import getFormattedResults, { QueryCmsSearchArgs, ESFilters } from './normalize'
 import { getThemeFilters, getDateFilters, getSubTypeFilters } from './filters'
 import CustomError from '../../utils/CustomError'
 
-const cmsSearch = (type: string) => async (
-  _: any,
-  { q, input }: QueryCmsSearchArgs,
-  { loaders }: Context,
-): Promise<CmsSearchResult> => {
-  let { page, limit, filters: filterInput, sort } = input || {}
+const cmsSearch =
+  (type: string) =>
+  async (
+    _: any,
+    { q, input }: QueryCmsSearchArgs,
+    { loaders }: Context,
+  ): Promise<CmsSearchResult> => {
+    // eslint-disable-next-line prefer-const
+    let { page, limit, filters: filterInput, sort } = input || {}
 
-  // Set the subType
-  const subType = type === CmsType.Special ? 'field_special_type' : ''
+    // Set the subType
+    const subType = type === CmsType.Special ? 'field_special_type' : ''
 
-  // Get the page and limit from the input, otherwise use the defaults
-  page = page || 1
-  limit = limit || DEFAULT_LIMIT
+    // Get the page and limit from the input, otherwise use the defaults
+    page = page || 1
+    limit = limit || DEFAULT_LIMIT
 
-  const from = (page - 1) * limit
+    const from = (page - 1) * limit
 
-  const { results, totalCount, filterCount } = await getCmsFromElasticSearch({
-    q,
-    limit,
-    from,
-    types: [type],
-    filters: filterInput,
-    sort,
-    subType,
-  })
-
-  const formattedResults = getFormattedResults(results)
-
-  const cmsThemeFilters = await loaders.cms.load(
-    `${process.env.CMS_URL}/jsonapi/taxonomy_term/themes`,
-  )
-
-  let subTypeFilters: Filter | null = null
-  if (type === CmsType.Special) {
-    const cmsSubTypeFilters: Array<ESFilters> = await getCmsSubTypesFromElasticSearch(
-      CmsType.Special,
+    const { results, totalCount, filterCount } = await getCmsFromElasticSearch({
+      q,
+      limit,
+      from,
+      types: [type],
+      filters: filterInput,
+      sort,
       subType,
+    })
+
+    const formattedResults = getFormattedResults(results)
+
+    const cmsThemeFilters = await loaders.cms.load(
+      `${process.env.CMS_URL ?? ''}/jsonapi/taxonomy_term/themes`,
     )
 
-    subTypeFilters = getSubTypeFilters(cmsSubTypeFilters, filterCount?.subType)
-  }
+    let subTypeFilters: Filter | null = null
+    if (type === CmsType.Special) {
+      const cmsSubTypeFilters: Array<ESFilters> = await getCmsSubTypesFromElasticSearch(
+        CmsType.Special,
+        subType,
+      )
 
-  if (cmsThemeFilters.status === 'rejected') {
-    throw new CustomError(cmsThemeFilters.reason, 'cms', 'CMS Theme Filters')
-  }
+      subTypeFilters = getSubTypeFilters(cmsSubTypeFilters, filterCount?.subType)
+    }
 
-  const themeFilters = getThemeFilters(cmsThemeFilters.value, filterCount?.theme)
-  const dateFilters = getDateFilters()
+    if (cmsThemeFilters.status === 'rejected') {
+      throw new CustomError(cmsThemeFilters.reason, 'cms', 'CMS Theme Filters')
+    }
 
-  return {
-    totalCount,
-    results: formattedResults.filter(({ type: resultType }) => type === resultType),
-    pageInfo: getPageInfo(totalCount, page, limit), // Get the page info details
-    filters: [...(subTypeFilters ? [subTypeFilters] : []), themeFilters, dateFilters],
+    const themeFilters = getThemeFilters(cmsThemeFilters.value, filterCount?.theme)
+    const dateFilters = getDateFilters()
+
+    return {
+      totalCount,
+      results: formattedResults.filter(({ type: resultType }) => type === resultType),
+      pageInfo: getPageInfo(totalCount, page, limit), // Get the page info details
+      filters: [...(subTypeFilters ? [subTypeFilters] : []), themeFilters, dateFilters],
+    }
   }
-}
 
 const articleSearch = cmsSearch(CmsType.Article)
 

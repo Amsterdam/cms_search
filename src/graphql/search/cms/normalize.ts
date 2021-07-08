@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import moment from 'moment'
 import { getValuesFromES, ThemeFilterCount, SubTypeFilterCount } from '../../../es/cms'
 import { DRUPAL_THEME_FILTER_IDS } from '../../../generated/drupal'
@@ -16,18 +17,18 @@ export type QueryCmsSearchArgs =
   | QueryPublicationSearchArgs
   | QuerySpecialSearchArgs
 
-export type JsonAPI = {
+export interface JsonAPI {
   data: Array<{
     attributes: Attributes
   }>
 }
 
-type Attributes = {
+interface Attributes {
   drupal_internal__tid: number
   name: string
 }
 
-export type ESFilters = {
+export interface ESFilters {
   key: string
   doc_count: number
 }
@@ -47,13 +48,12 @@ function getFormattedDate(date?: number | Date, year?: number, month?: number): 
    * Then we need to convert it to a locale date that only shows the year or year and month
    */
   if (!date && (year || month)) {
-    year = year || 0
     // Month (undefined or a string) - 1, check https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC
     const formattedMonth = typeof month === 'number' && month > 0 ? month - 1 : 0
-    localeDate = new Date(Date.UTC(year, formattedMonth, 1, 0, 0, 0))
+    localeDate = new Date(Date.UTC(year || 0, formattedMonth, 1, 0, 0, 0))
   }
 
-  const format = date ? 'D MMMM YYYY' : `${month ? 'MMMM ' : ''}${year ? 'YYYY' : ''}`
+  const format = date ? 'D MMMM YYYY' : `${month ? 'MMMM ' : ''}${year || 0 ? 'YYYY' : ''}`
   return moment(localeDate).format(format)
 }
 
@@ -77,7 +77,7 @@ function getFormattedResults(results: any): Array<CmsResult> {
       media_image_url,
       uuid,
       type,
-    } = getValuesFromES(result) as any
+    } = getValuesFromES(result)
 
     const dateLocale =
       field_publication_date === undefined &&
@@ -90,7 +90,7 @@ function getFormattedResults(results: any): Array<CmsResult> {
       id: uuid,
       label: field_short_title || title,
       slug: field_slug,
-      type: type,
+      type,
       body: processed,
       teaserImage: teaser_url,
       coverImage: media_image_url,
@@ -111,7 +111,7 @@ function getThemeFilterOptions(
 ): Array<FilterOption> {
   return result.data.map(({ attributes }) => {
     const id = attributes.drupal_internal__tid
-    const { count } = themeCount?.find((count) => count.key === id) || {}
+    const { count } = themeCount?.find(({ key }) => key === id) || {}
 
     const [key] = [...DRUPAL_THEME_FILTER_IDS].find(([, value]) => value === id) || []
 
@@ -120,7 +120,7 @@ function getThemeFilterOptions(
     }
 
     return {
-      id: `${FILTERS['THEME'].type}:${key}`,
+      id: `${FILTERS.THEME.type}:${key}`,
       label: attributes.name,
       count: count || 0,
     }
@@ -137,13 +137,13 @@ function getDateFilterOptions(): Array<FilterOption> {
     if (key === nrYears - 1) {
       year = currentYear - key + 1 // We need the previous year in the array
       return {
-        id: `${FILTERS['DATE'].type}:older-${year}`,
+        id: `${FILTERS.DATE.type}:older-${year}`,
         label: `Ouder dan ${year}`,
         count: 0,
       }
     }
     return {
-      id: `${FILTERS['DATE'].type}:${year}`,
+      id: `${FILTERS.DATE.type}:${year}`,
       label: `${year}`,
       count: 0,
     }
@@ -157,10 +157,10 @@ function getSubTypeFilterOptions(
   return filters
     .sort((a, b) => a.key.localeCompare(b.key)) // Alphabetically sort the options
     .map(({ key }) => {
-      const { count } = subTypeCount?.find((count) => count.key === key) || {}
+      const { count } = subTypeCount?.find(({ key: filterKey }) => filterKey === key) || {}
 
       return {
-        id: `${FILTERS['SUBTYPE'].type}:${key}`,
+        id: `${FILTERS.SUBTYPE.type}:${key}`,
         label: getCapitalizedString(key),
         count: count || 0,
       }
@@ -168,7 +168,7 @@ function getSubTypeFilterOptions(
 }
 
 function formatThemeFilters(themeTaxonomy: JsonAPI, themeCount?: Array<ThemeFilterCount>): Filter {
-  const { type, label, filterType } = FILTERS['THEME']
+  const { type, label, filterType } = FILTERS.THEME
 
   return {
     type,
@@ -179,7 +179,7 @@ function formatThemeFilters(themeTaxonomy: JsonAPI, themeCount?: Array<ThemeFilt
 }
 
 function formatDateFilters(): Filter {
-  const { type, label, filterType } = FILTERS['DATE']
+  const { type, label, filterType } = FILTERS.DATE
 
   return {
     type,
@@ -193,7 +193,7 @@ function formatSubTypeFilters(
   filters: Array<ESFilters>,
   subTypeCount?: Array<SubTypeFilterCount>,
 ): Filter {
-  const { type, label, filterType } = FILTERS['SUBTYPE']
+  const { type, label, filterType } = FILTERS.SUBTYPE
 
   return {
     type,

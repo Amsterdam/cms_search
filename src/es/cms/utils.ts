@@ -16,7 +16,7 @@ function getSearchQuery(q: string) {
    * 2) With one search term: each search term is used in the title OR in the intro
    * 3) With multiple search terms: all search terms are used in the title OR at least one search
    *    term is used in the title and at least one of the other search terms are used in the intro
-   **/
+   * */
   return [
     {
       bool: {
@@ -100,7 +100,7 @@ function getSearchQuery(q: string) {
 
 // Constructs the ES query to filter on theme
 function getThemeFilter(filters: Array<FilterInput>) {
-  const themeFilter = filters.find((filter) => filter.type === FILTERS['THEME'].type)
+  const themeFilter = filters.find((filter) => filter.type === FILTERS.THEME.type)
 
   if (!themeFilter) {
     return null
@@ -124,11 +124,11 @@ function getThemeFilter(filters: Array<FilterInput>) {
 
 // Constructs the ES query to filter on date
 function getDateFilter(types: Array<string> | null, filters: Array<FilterInput>) {
-  const dateFilter = filters.find((filter) => filter.type === FILTERS['DATE'].type)
+  const dateFilter = filters.find((filter) => filter.type === FILTERS.DATE.type)
 
   if (dateFilter && dateFilter.values) {
     return dateFilter.values.map((value: any) => {
-      let filterValue = value.split(':').pop()
+      const filterValue = value.split(':').pop()
 
       // Only publications have field_publication_date and can be filtered directly
       if (types && types.includes('publication')) {
@@ -180,12 +180,12 @@ function getDateFilter(types: Array<string> | null, filters: Array<FilterInput>)
 
 // Constructs the ES query to filter on subtype
 function getSubTypeFilter(filters: Array<FilterInput>) {
-  const subTypeFilter = filters.find((filter) => filter.type === FILTERS['SUBTYPE'].type)
+  const subTypeFilter = filters.find((filter) => filter.type === FILTERS.SUBTYPE.type)
 
   if (subTypeFilter && subTypeFilter.values) {
     return subTypeFilter.values
       .flatMap((value) => {
-        let filterValue = value.split(':').pop()
+        const filterValue = value.split(':').pop()
 
         if (filterValue) {
           return {

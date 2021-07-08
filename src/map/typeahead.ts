@@ -1,4 +1,4 @@
-import { createMapCollectionsFuse, createMapLayersFuse } from '../map/data'
+import { createMapCollectionsFuse, createMapLayersFuse } from './data'
 import { TypeAheadSuggestion, TypeAheadSuggestionContent } from '../typeahead'
 import { DEFAULT_LIMIT } from '../typeahead/config'
 import fromFuseResult from '../utils/from-fuse-result'
@@ -8,6 +8,7 @@ import { MapLayer, MapCollection } from '../generated/graphql'
 const mapCollectionsFuse = createMapCollectionsFuse(['title'])
 const mapLayersFuse = createMapLayersFuse(['title'])
 
+// eslint-disable-next-line @typescript-eslint/require-await
 export async function getMapLayerSuggestion(query: string): Promise<TypeAheadSuggestion> {
   const mapLayers = fromFuseResult(mapLayersFuse.search(query))
     .filter((layer) => !layer.notSelectable)
@@ -20,6 +21,7 @@ export async function getMapLayerSuggestion(query: string): Promise<TypeAheadSug
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/require-await
 export async function getMapCollectionSuggestion(query: string): Promise<TypeAheadSuggestion> {
   const mapCollections = fromFuseResult(mapCollectionsFuse.search(query, { limit: DEFAULT_LIMIT }))
 

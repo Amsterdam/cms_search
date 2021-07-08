@@ -11,6 +11,7 @@ export default async (
   context: Context,
 ): Promise<DatasetSearchResult> => {
   const { loaders } = context
+  // eslint-disable-next-line prefer-const
   let { page, limit, filters: filterInput } = input || {}
 
   // Get the page and limit from the input, otherwise use the defaults
@@ -23,9 +24,9 @@ export default async (
   const datasetsUrl = getDatasetsEndpoint(q, from, limit, filterInput || [])
 
   // Get the results from the DataLoader
-  let [datasets, openApiResults] = await Promise.all([
+  const [datasets, openApiResults] = await Promise.all([
     await loaders.datasets.load(datasetsUrl),
-    await loaders.openAPI.load(DCAT_ENDPOINTS['openapi']),
+    await loaders.openAPI.load(DCAT_ENDPOINTS.openapi),
   ])
 
   // If a status is rejected, delete the key from the cache and throw an error
@@ -36,7 +37,7 @@ export default async (
   }
 
   if (openApiResults.status === 'rejected') {
-    loaders.datasets.clear(DCAT_ENDPOINTS['openapi'])
+    loaders.datasets.clear(DCAT_ENDPOINTS.openapi)
 
     throw new CustomError(openApiResults.reason, 'openapi', 'OpenAPI')
   }

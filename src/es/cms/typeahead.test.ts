@@ -17,7 +17,9 @@ describe('typeahead', () => {
     expect(formatCmsResults([{ _source: MOCK_ES_VALUES }])).toEqual([
       {
         _display: MOCK_ES_VALUES.title[0],
-        uri: `${process.env.CMS_URL}/jsonapi/node/${MOCK_ES_VALUES.type[0]}/${MOCK_ES_VALUES.uuid[0]}`,
+        uri: `${process.env.CMS_URL ?? ''}/jsonapi/node/${MOCK_ES_VALUES.type[0]}/${
+          MOCK_ES_VALUES.uuid[0]
+        }`,
         type: MOCK_ES_VALUES.type[0],
       },
     ])
@@ -37,7 +39,9 @@ describe('typeahead', () => {
 
     const output = formatCmsResults([{ _source: MOCK_ES_VALUES }])[0]
 
+    // eslint-disable-next-line no-underscore-dangle
     expect(output._display).not.toBe(MOCK_ES_VALUES.title[0])
+    // eslint-disable-next-line no-underscore-dangle
     expect(output._display).toBe(MOCK_ES_VALUES.field_short_title[0])
   })
 
@@ -55,7 +59,9 @@ describe('typeahead', () => {
 
     const output = formatCmsResults([{ _source: MOCK_ES_VALUES }])[0]
 
+    // eslint-disable-next-line no-underscore-dangle
     expect(output._display).not.toBe(MOCK_ES_VALUES.title[0])
+    // eslint-disable-next-line no-underscore-dangle
     expect(output._display).toContain(MOCK_ES_VALUES.field_special_type[0])
   })
 })

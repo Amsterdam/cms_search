@@ -31,9 +31,9 @@ describe('datasetResolver', () => {
   }
 
   const DATASETS = {
-    ['dcat:dataset']: 'mockedDatasets',
-    ['void:documents']: 12,
-    ['ams:facet_info']: 'mockedFacetInfo',
+    'dcat:dataset': 'mockedDatasets',
+    'void:documents': 12,
+    'ams:facet_info': 'mockedFacetInfo',
   }
 
   const PAGE_INFO = {

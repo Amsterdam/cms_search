@@ -1,0 +1,6 @@
+/node_modules/
+**/__snapshots__/
+dist
+coverage
+src/generated
+lib

@@ -16,7 +16,7 @@ export interface TypeAheadSuggestionContent {
   uri?: string
 }
 
-export default async (req: Request, res: Response) => {
+const TypeAheadMiddleWare = async (req: Request, res: Response) => {
   const { q: query } = req.query
 
   if (typeof query !== 'string') {
@@ -35,6 +35,7 @@ export default async (req: Request, res: Response) => {
   results
     .filter((result): result is PromiseRejectedResult => result.status === 'rejected')
     .forEach((result) =>
+      // eslint-disable-next-line no-console
       console.error('Unable to retrieve typeahead result, reason:', result.reason),
     )
 
@@ -49,13 +50,14 @@ export default async (req: Request, res: Response) => {
 }
 
 function handleError(res: Response, error: Error, status?: number) {
-  status = status ?? 500
-
   if (isProduction) {
-    res.status(status)
+    res.status(status ?? 500)
   } else {
-    res.status(status).send(error)
+    res.status(status ?? 500).send(error)
   }
 
+  // eslint-disable-next-line no-console
   console.error(error)
 }
+
+export default TypeAheadMiddleWare

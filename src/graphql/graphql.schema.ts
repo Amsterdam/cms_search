@@ -243,6 +243,47 @@ const schema = gql`
 
   union MapLayerLegendItem = MapLayer | LegendItem
 
+  #    TODO: Refactor code according these types
+  #    type MapCollection {
+  #        id: ID!
+  #        title: String!
+  #        mapLayers: [MapLayer!]!
+  #        meta: Meta!
+  #        href: String!
+  #    }
+  #
+  #    union MapLayer = MapGroup | MapLegend
+  #
+  #    type MapGroup {
+  #        id: ID!
+  #        title: String!
+  #        category: String
+  #        legendItems: [MapLegend!]!
+  #    }
+  #
+  #    type MapLegend {
+  #        id: ID!
+  #        title: String!
+  #        type: String!
+  #        authScope: String
+  #        noDetail: Boolean!
+  #        minZoom: Int!
+  #        layers: [String!]
+  #        meta: Meta!
+  #        legendIconURI: String
+  #        url: String
+  #        params: String
+  #        detailUrl: String
+  #        detailParams: DetailParams
+  #        detailIsShape: Boolean
+  #        iconUrl: String
+  #        imageRule: String
+  #        notSelectable: Boolean!
+  #        external: Boolean
+  #        bounds: [[Float!]!]
+  #        href: String!
+  #    }
+
   type Theme {
     id: ID!
     title: String!

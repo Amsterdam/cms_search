@@ -6,10 +6,11 @@ import { combineFilters } from './utils'
 import CustomError from '../../utils/CustomError'
 import { formatFilters } from '../datasets/normalize'
 
+// eslint-disable-next-line no-empty-pattern
 export default async (_: any, {}, { loaders }: Context) => {
   // Get the drupal theme taxonomy from the DataLoader
   const cmsThemeTaxonomy = await loaders.cms.load(
-    `${process.env.CMS_URL}/jsonapi/taxonomy_term/themes`,
+    `${process.env.CMS_URL ?? ''}/jsonapi/taxonomy_term/themes`,
   )
 
   if (cmsThemeTaxonomy.status === 'rejected') {
@@ -19,7 +20,7 @@ export default async (_: any, {}, { loaders }: Context) => {
   const cmsThemeFilters = getThemeFilters(cmsThemeTaxonomy.value) // And construct the filters
 
   // Get the openapi taxonomy from the DataLoader
-  const openApiTaxonomy = await loaders.openAPI.load(DCAT_ENDPOINTS['openapi'])
+  const openApiTaxonomy = await loaders.openAPI.load(DCAT_ENDPOINTS.openapi)
 
   if (openApiTaxonomy.status === 'rejected') {
     throw new CustomError(openApiTaxonomy.reason, 'openapi', 'OpenAPI')
