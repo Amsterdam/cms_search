@@ -4,11 +4,10 @@ import typeDefs from './graphql.schema'
 import resolvers from './search'
 import createDataLoader from './utils/createDataLoader'
 
-const schema = `
-  ${typeDefs}
-`
+// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+const schema = `${typeDefs}`
 
-export default graphqlHTTP((req) => ({
+const GraphQLMiddleware = graphqlHTTP((req) => ({
   schema: makeExecutableSchema({
     typeDefs: schema,
     resolvers,
@@ -27,3 +26,5 @@ export default graphqlHTTP((req) => ({
     },
   },
 }))
+
+export default GraphQLMiddleware

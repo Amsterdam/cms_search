@@ -1,4 +1,4 @@
-export type DataSearchType = {
+export interface DataSearchType {
   endpoint: string
   type: string
   label: string

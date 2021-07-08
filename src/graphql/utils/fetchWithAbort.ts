@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import fetch, { RequestInit } from 'node-fetch'
 import AbortController from 'abort-controller'
 
 export const MAX_REQUEST_TIME = 1200
@@ -8,20 +8,21 @@ export interface ErrorResult {
   message: string
 }
 
-async function fetchWithAbort<T = Object>(
+async function fetchWithAbort<T = any>(
   endpoint: string,
-  options: Object = {},
+  options: RequestInit = {},
 ): Promise<T | ErrorResult> {
   const controller = new AbortController()
 
   // Abort the fetch request when it takes too long
   const timeout = setTimeout(() => {
     controller.abort()
+    // eslint-disable-next-line no-console
     console.warn('ABORTED', endpoint) // For logging in Sentry
   }, MAX_REQUEST_TIME)
 
   return await fetch(endpoint, { ...options, signal: controller.signal })
-    .then(res => {
+    .then((res) => {
       clearTimeout(timeout) // The data is on its way, so clear the timeout
 
       if (!res.ok) {

@@ -61,6 +61,7 @@ const index = async (
     endpoints.map(
       async ({ endpoint, type, searchParam, queryFormatter, params, label, labelSingular }) => {
         // Remove search parameter prefixes
+        // eslint-disable-next-line no-param-reassign
         q = queryFormatter ? q?.replace(queryFormatter, '') : q
 
         const query = queryString.stringify({ [searchParam]: q, page, ...(params || {}) })
@@ -92,7 +93,7 @@ const index = async (
           status: result.status,
           results:
             results.length > 0 && limit // TODO: Add test to see if the correct number of results is returned
-              ? results.slice(0, limit).map((result: Object) => normalizeResults(result, type))
+              ? results.slice(0, limit).map((res) => normalizeResults(res, type))
               : [],
         }
       },

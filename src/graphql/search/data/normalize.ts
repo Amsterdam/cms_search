@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { DataResult } from '../../../generated/graphql'
 import { NORMAL_VBO_STATUSSES, DataType } from './config'
 
-export type ConstructionFileFields = {
+export interface ConstructionFileFields {
   dossiernr?: string
   stadsdeel?: string
   datering?: string
   dossier_type?: string
 }
 
-export type DataFields = {
+export interface DataFields {
   _display: string
   type_adres?: string
   vbo_status?: string
@@ -28,14 +29,15 @@ export const composeLabel = (
   otherFields: DataFields & ConstructionFileFields,
 ) => {
   switch (type) {
-    case DataType.ConstructionFiles:
+    case DataType.ConstructionFiles: {
       const { dossiernr, stadsdeel, datering, dossier_type: dossierType } = otherFields
       const year = datering && new Date(datering).getFullYear()
 
       // Construct the label for ConstructionFiles
-      return `${stadsdeel}${dossiernr} ${year} ${dossierType}`
+      return `${stadsdeel ?? ''}${dossiernr ?? ''} ${year ?? ''} ${dossierType ?? ''}`
+    }
 
-    default:
+    default: {
       const { _display, type_adres, vbo_status } = otherFields
 
       let label = _display
@@ -56,6 +58,7 @@ export const composeLabel = (
       }
 
       return label
+    }
   }
 }
 
@@ -66,7 +69,7 @@ export const normalizeResults = (
   const label = composeLabel(type, subtype, otherFields)
 
   return {
-    id: _links && _links.self ? _links.self.href.match(/([^\/]*)\/*$/)[1] : null,
+    id: _links && _links.self ? _links.self.href.match(/([^/]*)\/*$/)[1] : null,
     label,
     type,
     subtype,

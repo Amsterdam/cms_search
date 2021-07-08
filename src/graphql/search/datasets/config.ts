@@ -1,13 +1,16 @@
 export type AggregationType = Array<{ name: string; count: number }>
 
-export type PropertyType = {
+export interface PropertyType {
   enum: Array<string>
   enumNames: Array<string>
 }
 
 export type FileFormatFilterType = Array<{ name: string; count: number }>
 
-export type CatalogFilterOptionsType = { id: string; label: string }
+export interface CatalogFilterOptionsType {
+  id: string
+  label: string
+}
 
 export const MAX_INTRO_LENGTH = 140
 

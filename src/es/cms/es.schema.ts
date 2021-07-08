@@ -30,12 +30,12 @@ export const getSubTypeValues = (type: string, field: string) => {
 }
 
 export default ({ q, limit, from, types = null, filters, sort, subType }: ElasticSearchArgs) => {
-  let shouldQuery: Array<object> = []
-  let dateFilter: Array<object> = []
-  let subTypeFilter: Array<object> = []
-  let sorting: Array<object | string> = ['_score'] // default sorting on score
+  let shouldQuery: Array<Record<string, unknown>> = []
+  let dateFilter: Array<Record<string, unknown>> = []
+  let subTypeFilter: Array<Record<string, unknown>> = []
+  let sorting: Array<Record<string, unknown> | string> = ['_score'] // default sorting on score
 
-  let themeFilter: Object | null = null
+  let themeFilter: Record<string, unknown> | null = null
 
   if (q && q.length > 0) {
     shouldQuery = getSearchQuery(q)

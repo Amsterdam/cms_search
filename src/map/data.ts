@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import Fuse from 'fuse.js'
 import querystring, { ParsedUrlQueryInput } from 'querystring'
 import { MapCollection, MapLayer, MapLayerLegendItem } from '../generated/graphql'
@@ -14,9 +15,13 @@ const themes: Theme[] = require('../../assets/themes.config.json')
 const composedMapLayers = composeMapLayers(rawMapLayers, themes, rawMapCollections)
 const composedMapCollections = composeMapCollections(rawMapCollections, rawMapLayers, themes)
 const sortedComposedMapCollections = composedMapCollections.sort((a, b) => {
-  if(a.title < b.title) { return -1; }
-  if(a.title > b.title) { return 1; }
-  return 0;
+  if (a.title < b.title) {
+    return -1
+  }
+  if (a.title > b.title) {
+    return 1
+  }
+  return 0
 })
 
 const commonOptions = {
@@ -66,7 +71,7 @@ export function createMapLayersFuse(keys: string[]) {
 
 function composeMapLayers(
   layers: RawMapLayer[],
-  themes: Theme[],
+  rawThemes: Theme[],
   collections: RawMapCollection[],
 ): MapLayer[] {
   return layers.map((layer) => {
@@ -81,14 +86,14 @@ function composeMapLayers(
       )
     }
 
-    return composeMapLayer(layer, layers, themes, collection.id)
+    return composeMapLayer(layer, layers, rawThemes, collection.id)
   })
 }
 
 export function composeMapLayer(
   layer: RawMapLayer,
   layers: RawMapLayer[],
-  themes: Theme[],
+  rawThemes: Theme[],
   collectionId: string,
 ): MapLayer {
   const params = layer.params
@@ -111,7 +116,7 @@ export function composeMapLayer(
     href: createMapLayerHref(layer, layers, collectionId),
     meta: {
       ...layer.meta,
-      themes: filterBy(themes, 'id', layer.meta.themes),
+      themes: filterBy(rawThemes, 'id', layer.meta.themes),
     },
   }
 }
@@ -131,13 +136,13 @@ function createMapLayerHref(layer: RawMapLayer, layers: RawMapLayer[], collectio
 function composeMapCollections(
   collections: RawMapCollection[],
   layers: RawMapLayer[],
-  themes: Theme[],
+  rawThemes: Theme[],
 ): MapCollection[] {
   return collections.map((collection) => {
     const collectionLayers: MapLayer[] = collection.mapLayers.map((collectionLayer) => {
       const mapLayer = findBy(layers, 'id', collectionLayer.id)
       return {
-        ...composeMapLayer(mapLayer, layers, themes, collection.id),
+        ...composeMapLayer(mapLayer, layers, rawThemes, collection.id),
         // Overwrite fields from layer with collection layer fields where applicable.
         imageRule: mapLayer.imageRule ?? mapLayer.title, // !important: the title is used as imageRule, if the title is overriden from the collection the title or imageRule from the maplayer must be used
         title: collectionLayer.title ?? mapLayer.title,
@@ -151,7 +156,7 @@ function composeMapCollections(
       href: createMapCollectionHref(collection, layers),
       meta: {
         ...collection.meta,
-        themes: filterBy(themes, 'id', collection.meta.themes),
+        themes: filterBy(rawThemes, 'id', collection.meta.themes),
       },
     }
   })
@@ -302,5 +307,5 @@ function buildMapUrl(layerIds: string[], enabledLayers = layerIds) {
     legenda: 'true',
   })
 
-  return '/data/?' + searchParams.toString()
+  return `/data/?${searchParams.toString()}`
 }

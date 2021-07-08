@@ -3,7 +3,7 @@ import { CmsType, CMS_TYPE_LABELS } from '../../graphql/search/cms/config'
 import { TypeAheadSuggestion, TypeAheadSuggestionContent } from '../../typeahead'
 import { DEFAULT_LIMIT } from '../../typeahead/config'
 
-type CmsSuggestion = {
+interface CmsSuggestion {
   title: string
   field_short_title?: string
   type: CmsType
@@ -21,16 +21,16 @@ export function formatCmsResults(results: any): Array<TypeAheadSuggestionContent
       field_special_type: subType,
     } = getValuesFromES(result) as CmsSuggestion
 
-    let _display = shortTitle || title
+    let display = shortTitle || title
 
     // When the field subType is present, it must be added to the display label
     if (subType) {
-      _display += ` (${subType})`
+      display += ` (${subType})`
     }
 
     return {
-      _display,
-      uri: `${process.env.CMS_URL}/jsonapi/node/${type}/${uuid}`,
+      _display: display,
+      uri: `${process.env.CMS_URL ?? ''}/jsonapi/node/${type}/${uuid}`,
       type,
     }
   })

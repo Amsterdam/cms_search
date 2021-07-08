@@ -62,7 +62,7 @@ export const THEME_FILTER: Filter = {
 
 export const mapCollectionSearch: ResolverFn<
   MapCollectionSearchResult,
-  {},
+  any,
   any,
   QueryMapCollectionSearchArgs
 > = (_, { q: query, input }): MapCollectionSearchResult => {
@@ -81,7 +81,7 @@ export const mapCollectionSearch: ResolverFn<
   }
 }
 
-export const mapLayerSearch: ResolverFn<MapLayerSearchResult, {}, any, QueryMapLayerSearchArgs> = (
+export const mapLayerSearch: ResolverFn<MapLayerSearchResult, any, any, QueryMapLayerSearchArgs> = (
   _,
   { q: query, input },
 ): MapLayerSearchResult => {
@@ -100,7 +100,7 @@ export const mapLayerSearch: ResolverFn<MapLayerSearchResult, {}, any, QueryMapL
   }
 }
 
-export const mapSearch: ResolverFn<MapSearchResult, {}, any, QueryMapSearchArgs> = (
+export const mapSearch: ResolverFn<MapSearchResult, any, any, QueryMapSearchArgs> = (
   _,
   { q: query, input },
 ) => {
@@ -140,21 +140,18 @@ function getCombinedResult(
 }
 
 function getResultsForType(type: MapType, query?: string | null) {
-  switch (type) {
-    case MapType.Layer:
-      return query ? fromFuseResult(mapLayersFuse.search(query)) : getAllMapLayers()
-    case MapType.Collection:
-      return query ? fromFuseResult(mapCollectionsFuse.search(query)) : getAllMapCollections()
+  if (type === MapType.Layer) {
+    return query ? fromFuseResult(mapLayersFuse.search(query)) : getAllMapLayers()
   }
+
+  return query ? fromFuseResult(mapCollectionsFuse.search(query)) : getAllMapCollections()
 }
 
 function getLabelForType(type: MapType) {
-  switch (type) {
-    case MapType.Layer:
-      return LABELS.MAP_LAYERS
-    case MapType.Collection:
-      return LABELS.MAP_COLLECTIONS
+  if (type === MapType.Layer) {
+    return LABELS.MAP_LAYERS
   }
+  return LABELS.MAP_COLLECTIONS
 }
 
 function parseInput(input?: MapSearchInput | null) {
@@ -175,9 +172,9 @@ function determineMapType(type: string) {
       return MapType.Layer
     case MapType.Collection:
       return MapType.Collection
+    default:
+      return null
   }
-
-  return null
 }
 
 interface Filterable {

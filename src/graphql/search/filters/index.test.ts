@@ -24,7 +24,7 @@ describe('filters', () => {
   let mockCombineFilters: jest.SpyInstance<any>
   let mockCMSDataloader = jest.fn()
   let mockDatasetsDataloader = jest.fn()
-  let mockOpenAPIDataloader = jest.fn()
+  const mockOpenAPIDataloader = jest.fn()
 
   const FILTER: Filter = {
     filterType: FilterType.Radio,

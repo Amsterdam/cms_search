@@ -14,6 +14,6 @@ export interface Meta {
     description: null;
     themes:      string[];
     datasetIds:  any[];
-    thumbnail:   string;
+    thumbnail:   null | string;
     date:        null;
 }

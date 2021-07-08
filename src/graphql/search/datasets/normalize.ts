@@ -56,6 +56,7 @@ function aggregateFileFormats(fileFormats: Array<string>): FileFormatFilterType 
 
   return result.sort((a, b) => {
     if (a.count === b.count) {
+      // eslint-disable-next-line no-nested-ternary
       return a.name && b.name ? a.name.localeCompare(b.name) : a.name ? -1 : 1
     }
     return b.count - a.count
@@ -144,19 +145,20 @@ function getProperties(openApiData: any) {
   }
 }
 
-function getFacetOptions(property: PropertyType, facets?: Object) {
+function getFacetOptions(property: PropertyType, facets?: Record<string, unknown>) {
   const options: Array<CatalogFilterOptionsType> = getOptionsFromProperty(property)
 
   return options.map(({ label, id }) => ({
     id,
-    label: label ? label : id,
+    label: label || id,
     count: facets
-      ? (Object.values(facets).reduce((acc, value: Object) => value[id] || acc, 0) as number)
+      ? // @ts-ignore
+        (Object.values(facets).reduce((acc, value) => value[id] || acc, 0) as number)
       : 0,
   }))
 }
 
-function formatFilters(openApiData: OpenAPI, facets?: Object): Array<Filter> {
+function formatFilters(openApiData: OpenAPI, facets?: any): Array<Filter> {
   const { dcatDocProperties, distributionProperties } = getProperties(openApiData)
 
   return [
@@ -204,19 +206,20 @@ function getDatasetsEndpoint(
   const query = Object.entries({
     q,
     offset: from,
-    limit: limit,
+    limit,
     ...queryFilters,
   }).reduce(
     (acc, [key, value]) => ({
       ...acc,
-      ...(typeof value !== 'undefined' ? { [key]: `${value}` } : {}),
+      ...(typeof value !== 'undefined' ? { [key]: `${value ?? ''}` } : {}),
     }),
     {},
   )
   const urlQuery = new URLSearchParams(query).toString()
 
   // We need to decode the urlQuery because API cannot handle encoded characters
-  return `${DCAT_ENDPOINTS['datasets']}?${decodeURIComponent(urlQuery)}`
+  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+  return `${DCAT_ENDPOINTS.datasets ?? ''}?${decodeURIComponent(urlQuery)}`
 }
 
 export {

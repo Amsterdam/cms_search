@@ -1,4 +1,5 @@
 import { LRUMap } from 'lru_map'
+// @ts-ignore
 import DataLoader from 'dataloader'
 import createDataLoader, { MAX_CACHE_SIZE } from './createDataLoader'
 import * as loaderFunction from './loaderFunction'

@@ -1,10 +1,12 @@
+/* eslint-disable import/first */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config()
 
 import * as Sentry from '@sentry/node'
-import { PORT, URL_PREFIX } from './config'
 import express from 'express'
 import expressPlayground from 'graphql-playground-middleware-express'
 import cors from 'cors'
+import { PORT, URL_PREFIX } from './config'
 import GraphQLMiddleware from './graphql'
 import TypeAheadMiddleWare from './typeahead'
 
@@ -25,10 +27,12 @@ app.get('/metrics', (req, res) => res.send('Working!')) // Internal
 app.get(`${URL_PREFIX}/health`, (req, res) => res.send('Working!')) // External
 
 // GraphQL
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 app.use(`${URL_PREFIX}/graphql`, GraphQLMiddleware)
 app.get(`${URL_PREFIX}/playground`, expressPlayground({ endpoint: `${URL_PREFIX}/graphql` }))
 
 // TypeAhead
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 app.get(`${URL_PREFIX}/typeahead`, TypeAheadMiddleWare)
 
 // The error handler must be before any other error middleware and after all controllers
@@ -36,4 +40,5 @@ app.use(Sentry.Handlers.errorHandler())
 
 app.listen(PORT)
 
+// eslint-disable-next-line no-console
 console.log(`Running a GraphQL API server at localhost:${PORT}`)

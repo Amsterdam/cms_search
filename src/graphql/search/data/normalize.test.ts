@@ -102,13 +102,14 @@ describe('normalize', () => {
       jest.spyOn(normalize, 'composeLabel').mockReturnValueOnce(MOCK_LABEL)
     })
 
+    // eslint-disable-next-line @typescript-eslint/naming-convention,no-underscore-dangle
     const _links = {
       self: {
         href: `https:///url.com/foo/${MOCK_ID}`,
       },
     }
 
-    let input = {
+    const input = {
       _display: 'display',
       type: 'type',
       type_adres: 'Hoofdadres',
