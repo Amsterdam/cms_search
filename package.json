@@ -9,8 +9,9 @@
   },
   "scripts": {
     "build": "tsc --build",
-    "generate": "npm run generate-asset-types && npm run generate-drupal-types && npm run generate-graphql-types",
+    "generate": "npm run generate-graphql-types && npm run generate-asset-types && npm run generate-drupal-types",
     "generate-graphql-types": "graphql-codegen --config ./src/codegen.yml",
+    "generate-graphql-types-watch": "graphql-codegen --config ./src/codegen.yml --watch \"src/**/*ts\"",
     "generate-drupal-types": "node scripts/generate-drupal-types.js",
     "generate-asset-types": "concurrently \"npm run generate-map-legend-type\"  \"npm run generate-map-group-type\" \"npm run generate-map-collection-type\" \"npm run generate-theme-type\"",
     "generate-map-group-type": "quicktype ./assets/map-groups.config.json --lang ts --top-level RawMapGroup --out ./src/generated/map-group.ts --just-types --no-enums",
@@ -21,7 +22,7 @@
     "postinstall": "cp .env.development .env",
     "test": "jest",
     "serve": "npm run generate-drupal-types && npm run build && node ./lib/",
-    "start": "concurrently \"nodemon --transpile-only src/index.ts\" \"npm run generate -- --watch\""
+    "start": "concurrently \"nodemon --transpile-only src/index.ts\" \"npm run generate-graphql-types-watch\""
   },
   "dependencies": {
     "@elastic/elasticsearch": "^7.13.0",
