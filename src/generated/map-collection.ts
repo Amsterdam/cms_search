@@ -11,9 +11,6 @@ export interface MapLayer {
 }
 
 export interface Meta {
-    description: null;
-    themes:      string[];
-    datasetIds:  any[];
-    thumbnail:   null | string;
-    date:        null;
+    themes:    string[];
+    thumbnail: null | string;
 }

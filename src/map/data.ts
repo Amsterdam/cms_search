@@ -1,19 +1,65 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import Fuse from 'fuse.js'
 import querystring, { ParsedUrlQueryInput } from 'querystring'
-import { MapCollection, MapLayer, MapLayerLegendItem } from '../generated/graphql'
+import { MapGroup, MapGroupLegendItem } from '../generated/graphql'
 import { RawMapCollection } from '../generated/map-collection'
-import { LegendItem as RawLegendItem, RawMapLayer } from '../generated/map-layer'
+import { LegendItem, RawMapGroup } from '../generated/map-group'
 import { Theme } from '../generated/theme'
+import { RawMapLegend } from '../generated/map-legend'
 
 const DEFAULT_MIN_ZOOM = 7
 
 const rawMapCollections: RawMapCollection[] = require('../../assets/map-collections.config.json')
-const rawMapLayers: RawMapLayer[] = require('../../assets/map-layers.config.json')
+const rawMapGroups: RawMapGroup[] = require('../../assets/map-groups.config.json')
+const rawLegends: RawMapLegend[] = require('../../assets/map-legends.config.json')
 const themes: Theme[] = require('../../assets/themes.config.json')
 
-const composedMapLayers = composeMapLayers(rawMapLayers, themes, rawMapCollections)
-const composedMapCollections = composeMapCollections(rawMapCollections, rawMapLayers, themes)
+const composedMapGroups = rawLegends.map((legend) => {
+  // Find group if legend has no children.
+  const parentLayer = findParentLayer(legend, rawMapGroups)
+  // Find the collection the layer belongs to.
+  const collection = findNearestCollection(parentLayer ?? legend, rawMapCollections)
+
+  if (!collection) {
+    throw new Error(
+      `Unable to find collection with for map layer with id ${(parentLayer ?? legend).id}.`,
+    )
+  }
+
+  return composeMapLegend(legend, collection.id)
+})
+
+const composedMapCollections = rawMapCollections.map((collection) => {
+  const collectionLayers: MapGroup[] = collection.mapLayers.map((collectionLayer) => {
+    const mapLegend = rawLegends.find(({ id }) => id === collectionLayer.id)
+    const mapGroup = rawMapGroups.find(({ id }) => id === collectionLayer.id)
+    let layers
+    if (mapGroup) {
+      layers = composeMapGroup(mapGroup, collection.id)
+    } else if (mapLegend) {
+      layers = composeMapLegend(mapLegend, collection.id)
+    } else {
+      throw Error(`id not found: ${collectionLayer.id}`)
+    }
+    return {
+      ...layers,
+      // Overwrite fields from layer with collection layer fields where applicable.
+      title: collectionLayer.title ?? mapGroup?.title ?? mapLegend?.title ?? '',
+      id: composeId(collection.id, mapGroup?.id ?? mapLegend?.id ?? ''),
+    }
+  })
+
+  return {
+    ...collection,
+    mapLayers: collectionLayers,
+    href: createMapCollectionHref(collection, [...rawMapGroups, ...rawLegends]),
+    meta: {
+      ...collection.meta,
+      themes: filterBy(themes, 'id', collection.meta.themes),
+    },
+  }
+})
+
 const sortedComposedMapCollections = composedMapCollections.sort((a, b) => {
   if (a.title < b.title) {
     return -1
@@ -41,7 +87,7 @@ export function getAllMapCollections() {
  * Gets a list of all map layers, including it's related fields.
  */
 export function getAllMapLayers() {
-  return composedMapLayers
+  return composedMapGroups
 }
 
 /**
@@ -66,62 +112,73 @@ export function createMapCollectionsFuse(keys: string[]) {
  * @param keys The keys of the fields to match.
  */
 export function createMapLayersFuse(keys: string[]) {
-  return new Fuse(composedMapLayers, { ...commonOptions, keys })
+  return new Fuse(composedMapGroups, { ...commonOptions, keys })
 }
 
-function composeMapLayers(
-  layers: RawMapLayer[],
-  rawThemes: Theme[],
-  collections: RawMapCollection[],
-): MapLayer[] {
-  return layers.map((layer) => {
-    // Find parent layer if layer has no children.
-    const parentLayer = findParentLayer(layer, layers)
-    // Find the collection the layer belongs to.
-    const collection = findNearestCollection(parentLayer ?? layer, collections)
-
-    if (!collection) {
-      throw new Error(
-        `Unable to find collection with for map layer with id ${(parentLayer ?? layer).id}.`,
-      )
-    }
-
-    return composeMapLayer(layer, layers, rawThemes, collection.id)
-  })
-}
-
-export function composeMapLayer(
-  layer: RawMapLayer,
-  layers: RawMapLayer[],
-  rawThemes: Theme[],
-  collectionId: string,
-): MapLayer {
-  const params = layer.params
-    ? querystring.stringify(layer.params as ParsedUrlQueryInput)
-    : undefined
+export function composeMapGroup(mapGroup: RawMapGroup, collectionId: string): MapGroup {
+  const params = mapGroup.params ? querystring.stringify(mapGroup.params as any) : undefined
 
   // Find parent layer if layer has no children.
-  const parentLayer = findParentLayer(layer, layers)
+  const parentLayer = findParentLayer(mapGroup, rawMapGroups)
 
   return {
-    ...layer,
-    title: parentLayer?.title ? `${parentLayer.title} - ${layer.title}` : layer.title,
-    legendItems: layer.legendItems
-      ? layer.legendItems.map((legendItem) => normalizeLegendItem(collectionId, legendItem, layers))
-      : undefined,
-    minZoom: layer.minZoom ?? DEFAULT_MIN_ZOOM,
-    noDetail: !layer.detailUrl,
-    notSelectable: layer.notSelectable || false,
+    ...mapGroup,
+    title: parentLayer?.title ? `${parentLayer.title} - ${mapGroup.title}` : mapGroup.title,
+    legendItems: mapGroup.legendItems?.map((legendItem) =>
+      normalizeLegendItem(collectionId, legendItem, mapGroup),
+    ),
+    minZoom: mapGroup.minZoom ?? DEFAULT_MIN_ZOOM,
+    noDetail: !mapGroup.detailUrl,
+    notSelectable: false,
     params,
-    href: createMapLayerHref(layer, layers, collectionId),
+    href: createMapLayerHref(mapGroup, rawMapGroups, collectionId),
     meta: {
-      ...layer.meta,
-      themes: filterBy(rawThemes, 'id', layer.meta.themes),
+      ...mapGroup.meta,
+      themes: filterBy(themes, 'id', mapGroup.meta.themes),
     },
+    legendIconURI:
+      // eslint-disable-next-line no-nested-ternary
+      'legendItems' in mapGroup && mapGroup?.legendItems?.length
+        ? undefined
+        : getLegendIcon(mapGroup?.layers?.[0] ?? '', mapGroup?.title ?? '', mapGroup.url ?? ''),
   }
 }
 
-function createMapLayerHref(layer: RawMapLayer, layers: RawMapLayer[], collectionId: string) {
+export function composeMapLegend(mapLegend: RawMapLegend, collectionId: string): MapGroup {
+  const params = mapLegend.params
+    ? querystring.stringify(mapLegend.params as ParsedUrlQueryInput)
+    : undefined
+
+  // Find parent layer if layer has no children.
+  const parentLayer = findParentLayer(mapLegend, rawMapGroups)
+
+  return {
+    ...mapLegend,
+    title: parentLayer?.title ? `${parentLayer.title} - ${mapLegend.title}` : mapLegend.title,
+    minZoom: mapLegend.minZoom ?? DEFAULT_MIN_ZOOM,
+    noDetail: !mapLegend.detailUrl,
+    notSelectable: mapLegend.notSelectable ?? false,
+    params,
+    href: createMapLayerHref(mapLegend, rawMapGroups, collectionId),
+    meta: {
+      ...mapLegend.meta,
+      themes: filterBy(themes, 'id', mapLegend.meta.themes),
+    },
+    legendIconURI: mapLegend.iconUrl
+      ? mapLegend?.iconUrl
+      : getLegendIcon(
+          mapLegend?.layers?.[0] ?? '',
+          mapLegend?.imageRule ?? mapLegend?.title ?? '',
+          mapLegend.url ?? '',
+        ),
+  }
+}
+
+function createMapLayerHref(
+  layer: RawMapGroup | RawMapLegend,
+  layers: Array<RawMapGroup | RawMapLegend>,
+  collectionId: string,
+) {
   // Find parent layer if layer has no children.
   const parentLayer = findParentLayer(layer, layers)
 
@@ -133,36 +190,10 @@ function createMapLayerHref(layer: RawMapLayer, layers: RawMapLayer[], collectio
   return buildMapUrl(layerIds, enabledLayers)
 }
 
-function composeMapCollections(
-  collections: RawMapCollection[],
-  layers: RawMapLayer[],
-  rawThemes: Theme[],
-): MapCollection[] {
-  return collections.map((collection) => {
-    const collectionLayers: MapLayer[] = collection.mapLayers.map((collectionLayer) => {
-      const mapLayer = findBy(layers, 'id', collectionLayer.id)
-      return {
-        ...composeMapLayer(mapLayer, layers, rawThemes, collection.id),
-        // Overwrite fields from layer with collection layer fields where applicable.
-        imageRule: mapLayer.imageRule ?? mapLayer.title, // !important: the title is used as imageRule, if the title is overriden from the collection the title or imageRule from the maplayer must be used
-        title: collectionLayer.title ?? mapLayer.title,
-        id: composeId(collection.id, mapLayer.id),
-      }
-    })
-
-    return {
-      ...collection,
-      mapLayers: collectionLayers,
-      href: createMapCollectionHref(collection, layers),
-      meta: {
-        ...collection.meta,
-        themes: filterBy(rawThemes, 'id', collection.meta.themes),
-      },
-    }
-  })
-}
-
-function createMapCollectionHref(collection: RawMapCollection, layers: RawMapLayer[]) {
+function createMapCollectionHref(
+  collection: RawMapCollection,
+  layers: Array<RawMapGroup | RawMapLegend>,
+) {
   const layerIds = collection.mapLayers
     .map((layer) => findBy(layers, 'id', layer.id))
     .map((layer) => buildSelectionIds(collection.id, layer))
@@ -171,37 +202,62 @@ function createMapCollectionHref(collection: RawMapCollection, layers: RawMapLay
   return buildMapUrl(layerIds)
 }
 
+function getLegendIcon(layer: string, imageRule: string, imageUrl: string) {
+  const searchParams = new URLSearchParams({
+    version: '1.3.0',
+    service: 'WMS',
+    request: 'GetLegendGraphic',
+    sld_version: '1.1.0',
+    layer,
+    format: 'image/svg+xml',
+    rule: imageRule,
+  })
+
+  return `${imageUrl}?${searchParams.toString()}`
+}
+
 function normalizeLegendItem(
   collectionId: string,
-  legendItem: RawLegendItem,
-  layers: RawMapLayer[],
-): MapLayerLegendItem {
-  const mapLayer = legendItem.id ? findBy(layers, 'id', legendItem.id) : null
+  groupLegend: LegendItem,
+  group: RawMapGroup,
+): MapGroupLegendItem & { legendIconURI?: string } {
+  const mapLegend = groupLegend.id ? findBy(rawLegends, 'id', groupLegend.id) : null
+
+  const layer = groupLegend.id ? mapLegend?.layers?.[0] ?? '' : group?.layers?.[0] ?? ''
+  const imageRule =
+    mapLegend?.imageRule || groupLegend.imageRule || mapLegend?.title || groupLegend.title || ''
+
+  const imageUrl = mapLegend?.url ?? group?.url ?? ''
+  const legendIconURI =
+    groupLegend.iconUrl || mapLegend?.iconUrl
+      ? groupLegend.iconUrl ?? mapLegend?.iconUrl
+      : getLegendIcon(layer, imageRule, imageUrl)
 
   // Return a MapLayer if an ID is specified
-  if (legendItem.id && mapLayer) {
-    const params = mapLayer.params
-      ? querystring.stringify(mapLayer.params as ParsedUrlQueryInput)
+  if (groupLegend.id && mapLegend) {
+    const params = mapLegend.params
+      ? querystring.stringify(mapLegend.params as ParsedUrlQueryInput)
       : undefined
 
     return {
-      __typename: 'MapLayer', // Set the typename to handle inline fragments for union type MapLayerLegendItem
+      __typename: 'MapGroup', // Set the typename to handle inline fragments for union type MapLayerLegendItem
       // Set these fields hardcoded to prevent type errors
-      type: mapLayer.type,
-      url: mapLayer.url,
-      layers: mapLayer.layers,
-      iconUrl: mapLayer.iconUrl,
-      notSelectable: legendItem.notSelectable || mapLayer.notSelectable || false,
+      type: mapLegend.type,
+      url: mapLegend.url,
+      layers: mapLegend.layers,
+      iconUrl: mapLegend.iconUrl,
+      notSelectable: groupLegend.notSelectable || mapLegend.notSelectable || false,
       // Overwrite fields from layer with legend fields where applicable.
-      imageRule: legendItem.imageRule ?? mapLayer.imageRule,
-      title: legendItem.title ?? mapLayer.title,
-      id: composeId(collectionId, legendItem.id),
-      minZoom: mapLayer.minZoom ?? DEFAULT_MIN_ZOOM,
-      noDetail: !mapLayer.detailUrl,
+      imageRule: groupLegend.imageRule ?? mapLegend.imageRule,
+      title: groupLegend.title ?? mapLegend.title,
+      id: composeId(collectionId, groupLegend.id),
+      minZoom: mapLegend.minZoom ?? DEFAULT_MIN_ZOOM,
+      noDetail: !mapLegend.detailUrl,
       params,
-      href: createMapLayerHref(mapLayer, layers, collectionId),
+      href: createMapLayerHref(mapLegend, rawLegends, collectionId),
+      legendIconURI,
       meta: {
-        themes: filterBy(themes, 'id', mapLayer.meta.themes),
+        themes: filterBy(themes, 'id', mapLegend.meta.themes),
       },
     }
   }
@@ -209,10 +265,11 @@ function normalizeLegendItem(
   // Otherwise return the plain legendItem
   return {
     __typename: 'LegendItem', // Set the typename to handle inline fragments for union type MapLayerLegendItem
-    title: legendItem?.title || '',
-    imageRule: legendItem.imageRule,
-    iconUrl: legendItem.iconUrl,
+    title: groupLegend?.title || '',
+    imageRule: groupLegend.imageRule,
+    iconUrl: groupLegend.iconUrl,
     notSelectable: true,
+    legendIconURI,
   }
 }
 
@@ -247,9 +304,12 @@ function composeId(parentId: string, childId: string) {
  * @param childLayer The layer to find the parent for.
  * @param mapLayers The layers to find the parent layer in.
  */
-function findParentLayer(childLayer: RawMapLayer, mapLayers: RawMapLayer[]) {
+function findParentLayer(
+  childLayer: RawMapGroup | RawMapLegend,
+  mapLayers: Array<RawMapGroup | RawMapLegend>,
+) {
   const match = mapLayers.find((layer) =>
-    (layer.legendItems ?? []).some(({ id }) => id === childLayer.id),
+    ('legendItems' in layer ? layer.legendItems ?? [] : []).some(({ id }) => id === childLayer.id),
   )
 
   return match ?? null
@@ -261,7 +321,10 @@ function findParentLayer(childLayer: RawMapLayer, mapLayers: RawMapLayer[]) {
  * @param layer The layer to find the collection for
  * @param mapCollections The collections to search.
  */
-function findNearestCollection(layer: RawMapLayer, mapCollections: RawMapCollection[]) {
+function findNearestCollection(
+  layer: RawMapGroup | RawMapLegend,
+  mapCollections: RawMapCollection[],
+) {
   const match = mapCollections.find((collection) =>
     collection.mapLayers.some(({ id }) => id === layer.id),
   )
@@ -279,11 +342,11 @@ function findNearestCollection(layer: RawMapLayer, mapCollections: RawMapCollect
  * Legend items are a reference to another layer if they have an 'id' field specified.
  * If a legend item has no 'id' but it does have a 'title' it's a standalone legend item which cannot be toggled.
  *
+ * @param collectionId The collection the layer corresponds to.
  * @param layer The layer of which to build the selection.
- * @param collection The collection the layer corresponds to.
  */
-function buildSelectionIds(collectionId: string, layer: RawMapLayer): string[] {
-  const legendIds = (layer.legendItems ?? [])
+function buildSelectionIds(collectionId: string, layer: RawMapGroup | RawMapLegend): string[] {
+  const legendIds = (('legendItems' in layer && layer.legendItems) || [])
     .map((item) => item.id)
     .filter((id): id is string => !!id)
     .map((id) => `${collectionId}-${id}`)

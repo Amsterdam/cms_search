@@ -9,17 +9,20 @@
   },
   "scripts": {
     "build": "tsc --build",
-    "generate": "graphql-codegen --config ./src/codegen.yml && npm run generate-drupal-types && npm run generate-asset-types",
+    "generate": "npm run generate-graphql-types && npm run generate-asset-types && npm run generate-drupal-types",
+    "generate-graphql-types": "graphql-codegen --config ./src/codegen.yml",
+    "generate-graphql-types-watch": "graphql-codegen --config ./src/codegen.yml --watch \"src/**/*ts\"",
     "generate-drupal-types": "node scripts/generate-drupal-types.js",
-    "generate-asset-types": "concurrently \"npm run generate-map-layer-type\" \"npm run generate-map-collection-type\" \"npm run generate-theme-type\"",
-    "generate-map-layer-type": "quicktype ./assets/map-layers.config.json --lang ts --top-level RawMapLayer --out ./src/generated/map-layer.ts --just-types --no-enums",
+    "generate-asset-types": "concurrently \"npm run generate-map-legend-type\"  \"npm run generate-map-group-type\" \"npm run generate-map-collection-type\" \"npm run generate-theme-type\"",
+    "generate-map-group-type": "quicktype ./assets/map-groups.config.json --lang ts --top-level RawMapGroup --out ./src/generated/map-group.ts --just-types --no-enums",
+    "generate-map-legend-type": "quicktype ./assets/map-legends.config.json --lang ts --top-level RawMapLegend --out ./src/generated/map-legend.ts --just-types --no-enums",
     "generate-map-collection-type": "quicktype ./assets/map-collections.config.json --lang ts --top-level RawMapCollection --out ./src/generated/map-collection.ts --just-types --no-enums",
     "generate-theme-type": "quicktype ./assets/themes.config.json --lang ts --top-level Theme --out ./src/generated/theme.ts --just-types --no-enums",
     "lint": "eslint ./ --ext ts,tsx",
     "postinstall": "cp .env.development .env",
     "test": "jest",
     "serve": "npm run generate-drupal-types && npm run build && node ./lib/",
-    "start": "concurrently \"nodemon --transpile-only src/index.ts\" \"npm run generate -- --watch\""
+    "start": "concurrently \"nodemon --transpile-only src/index.ts\" \"npm run generate-graphql-types-watch\""
   },
   "dependencies": {
     "@elastic/elasticsearch": "^7.13.0",

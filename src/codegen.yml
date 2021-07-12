@@ -1,6 +1,10 @@
 overwrite: true
 schema: "http://localhost:8080/cms_search/graphql"
 documents: null
+watchConfig:
+  usePolling: true
+  #  Give it an arbitrary 3 seconds for nodemon to restart te server after a change
+  interval: 3000
 generates:
   src/generated/graphql.ts:
     plugins:

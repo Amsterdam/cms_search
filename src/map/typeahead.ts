@@ -3,7 +3,7 @@ import { TypeAheadSuggestion, TypeAheadSuggestionContent } from '../typeahead'
 import { DEFAULT_LIMIT } from '../typeahead/config'
 import fromFuseResult from '../utils/from-fuse-result'
 import { LABELS, MapType } from './config'
-import { MapLayer, MapCollection } from '../generated/graphql'
+import { MapGroup, MapCollection } from '../generated/graphql'
 
 const mapCollectionsFuse = createMapCollectionsFuse(['title'])
 const mapLayersFuse = createMapLayersFuse(['title'])
@@ -40,7 +40,7 @@ function mapCollectionToContent(collection: MapCollection): TypeAheadSuggestionC
   }
 }
 
-function mapLayerToContent(layer: MapLayer): TypeAheadSuggestionContent {
+function mapLayerToContent(layer: MapGroup): TypeAheadSuggestionContent {
   return {
     _display: layer.title,
     type: MapType.Layer,

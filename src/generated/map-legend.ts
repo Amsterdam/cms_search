@@ -1,8 +1,8 @@
-export interface RawMapLayer {
+export interface RawMapLegend {
     id:             string;
     title:          string;
     type:           string;
-    layers?:        string[];
+    layers:         string[];
     url?:           string;
     meta:           Meta;
     detailUrl?:     string;
@@ -13,11 +13,9 @@ export interface RawMapLayer {
     imageRule?:     string;
     minZoom?:       number;
     notSelectable?: boolean;
-    legendItems?:   LegendItem[];
     external?:      boolean;
     bounds?:        Array<number[]>;
     authScope?:     string;
-    category?:      string;
 }
 
 export interface DetailParams {
@@ -25,20 +23,8 @@ export interface DetailParams {
     datasets?: string;
 }
 
-export interface LegendItem {
-    id?:            string;
-    iconUrl?:       string;
-    title?:         string;
-    notSelectable?: boolean;
-    imageRule?:     string;
-}
-
 export interface Meta {
-    description: null;
-    themes:      string[];
-    datasetIds:  any[];
-    thumbnail:   null;
-    date:        null;
+    themes: string[];
 }
 
 export interface Params {

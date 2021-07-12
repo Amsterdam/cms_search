@@ -6,7 +6,7 @@ const schema = gql`
       DatasetResult
     | CMSResult
     | CombinedDataResult
-    | MapLayer
+    | MapGroup
     | MapCollection
     | CombinedMapResult
 
@@ -83,7 +83,7 @@ const schema = gql`
 
   type MapLayerSearchResult implements SearchResult {
     totalCount: Int!
-    results: [MapLayer!]!
+    results: [MapGroup!]!
     filters: [Filter!]
     pageInfo: PageInfo!
   }
@@ -136,11 +136,11 @@ const schema = gql`
     link: CMSLink
   }
 
-  # MapResult is a combination of MapLayer and MapCollection
+  # MapResult is a combination of MapGroups and MapCollection
   type MapResult {
     id: ID!
     title: String!
-    mapLayers: [MapLayer!]
+    mapLayers: [MapGroup!]
     meta: Meta!
     href: String!
     type: String
@@ -212,12 +212,12 @@ const schema = gql`
   type MapCollection {
     id: ID!
     title: String!
-    mapLayers: [MapLayer!]!
+    mapLayers: [MapGroup!]!
     meta: Meta!
     href: String!
   }
 
-  type MapLayer {
+  type MapGroup {
     id: ID!
     title: String!
     type: String!
@@ -236,53 +236,13 @@ const schema = gql`
     bounds: [[Float!]!]
     authScope: String
     category: String
-    legendItems: [MapLayerLegendItem!]
+    legendItems: [MapGroupLegendItem!]
     meta: Meta!
     href: String!
+    legendIconURI: String
   }
 
-  union MapLayerLegendItem = MapLayer | LegendItem
-
-  #    TODO: Refactor code according these types
-  #    type MapCollection {
-  #        id: ID!
-  #        title: String!
-  #        mapLayers: [MapLayer!]!
-  #        meta: Meta!
-  #        href: String!
-  #    }
-  #
-  #    union MapLayer = MapGroup | MapLegend
-  #
-  #    type MapGroup {
-  #        id: ID!
-  #        title: String!
-  #        category: String
-  #        legendItems: [MapLegend!]!
-  #    }
-  #
-  #    type MapLegend {
-  #        id: ID!
-  #        title: String!
-  #        type: String!
-  #        authScope: String
-  #        noDetail: Boolean!
-  #        minZoom: Int!
-  #        layers: [String!]
-  #        meta: Meta!
-  #        legendIconURI: String
-  #        url: String
-  #        params: String
-  #        detailUrl: String
-  #        detailParams: DetailParams
-  #        detailIsShape: Boolean
-  #        iconUrl: String
-  #        imageRule: String
-  #        notSelectable: Boolean!
-  #        external: Boolean
-  #        bounds: [[Float!]!]
-  #        href: String!
-  #    }
+  union MapGroupLegendItem = MapGroup | LegendItem
 
   type Theme {
     id: ID!
@@ -290,11 +250,8 @@ const schema = gql`
   }
 
   type Meta {
-    description: String
     themes: [Theme!]!
-    datasetIds: [Int!]
     thumbnail: String
-    date: String
   }
 
   type DetailParams {
@@ -303,10 +260,14 @@ const schema = gql`
   }
 
   type LegendItem {
+    id: String
+    isVisible: Boolean
     title: String!
     iconUrl: String
     imageRule: String
+    url: String
     notSelectable: Boolean!
+    legendIconURI: String
   }
 
   type Query {

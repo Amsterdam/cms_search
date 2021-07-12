@@ -43,11 +43,8 @@ Now that we added an `id` to the collection, we have to add the layer. Open [map
     }
   ],
   "meta": {
-    "description": null,
     "themes": ["foo", "bar"],
-    "datasetIds": [],
-    "thumbnail": null,
-    "date": null
+    "thumbnail": null
   }
 }
 ```
@@ -81,11 +78,8 @@ When the map layer comes with an instance API, the configuration must be extende
   },
   "detailIsShape": true,
   "meta": {
-    "description": null,
     "themes": ["foo", "bar"],
-    "datasetIds": [],
-    "thumbnail": null,
-    "date": null
+    "thumbnail": null
   }
 }
 ```

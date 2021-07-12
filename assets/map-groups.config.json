@@ -1,0 +1,2062 @@
+[
+  {
+    "id": "lpfstndrest",
+    "url": "/maps/afval",
+    "title": "Loopafstand tot restafvalcontainer",
+    "legendItems": [
+      {
+        "id": "lpfstnd__rest_0_30"
+      },
+      {
+        "id": "lpfstnd__rest_30_90"
+      },
+      {
+        "id": "lpfstnd__rest_90_120"
+      },
+      {
+        "id": "lpfstnd__rest_120_150"
+      },
+      {
+        "id": "lpfstnd__rest_150_210"
+      },
+      {
+        "id": "lpfstnd__rest_210_1000"
+      },
+      {
+        "id": "lpfstnd__rest_gab"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "themes": ["wonen", "duurzaamheid-en-milieu"]
+    }
+  },
+  {
+    "id": "lpfstndglas",
+    "url": "/maps/afval",
+    "title": "Loopafstand tot glascontainer",
+    "legendItems": [
+      {
+        "id": "lpfstnd__glas_0_30"
+      },
+      {
+        "id": "lpfstnd__glas_30_90"
+      },
+      {
+        "id": "lpfstnd__glas_90_120"
+      },
+      {
+        "id": "lpfstnd__glas_120_150"
+      },
+      {
+        "id": "lpfstnd__glas_150_210"
+      },
+      {
+        "id": "lpfstnd__glas_210_1000"
+      },
+      {
+        "id": "lpfstnd__glas_gab"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "themes": ["wonen", "duurzaamheid-en-milieu"]
+    }
+  },
+  {
+    "id": "lpfstndplastic",
+    "url": "/maps/afval",
+    "title": "Loopafstand tot plasticcontainer",
+    "legendItems": [
+      {
+        "id": "lpfstnd__plastic_0_30"
+      },
+      {
+        "id": "lpfstnd__plastic_30_90"
+      },
+      {
+        "id": "lpfstnd__plastic_90_120"
+      },
+      {
+        "id": "lpfstnd__plastic_120_150"
+      },
+      {
+        "id": "lpfstnd__plastic_150_210"
+      },
+      {
+        "id": "lpfstnd__plastic_210_1000"
+      },
+      {
+        "id": "lpfstnd__plastic_gab"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "themes": ["wonen", "duurzaamheid-en-milieu"]
+    }
+  },
+  {
+    "id": "lpfstndpapier",
+    "url": "/maps/afval",
+    "title": "Loopafstand tot papiercontainer",
+    "legendItems": [
+      {
+        "id": "lpfstnd__papier_0_30"
+      },
+      {
+        "id": "lpfstnd__papier_30_90"
+      },
+      {
+        "id": "lpfstnd__papier_90_120"
+      },
+      {
+        "id": "lpfstnd__papier_120_150"
+      },
+      {
+        "id": "lpfstnd__papier_150_210"
+      },
+      {
+        "id": "lpfstnd__papier_210_1000"
+      },
+      {
+        "id": "lpfstnd__papier_gab"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "themes": ["wonen", "duurzaamheid-en-milieu"]
+    }
+  },
+  {
+    "id": "lpfstndtextiel",
+    "url": "/maps/afval",
+    "title": "Loopafstand tot textielcontainer",
+    "legendItems": [
+      {
+        "id": "lpfstnd__textiel_0_90"
+      },
+      {
+        "id": "lpfstnd__textiel_90_180"
+      },
+      {
+        "id": "lpfstnd__textiel_180_350"
+      },
+      {
+        "id": "lpfstnd__textiel_350_370"
+      },
+      {
+        "id": "lpfstnd__textiel_370_480"
+      },
+      {
+        "id": "lpfstnd__textiel_480_1000"
+      },
+      {
+        "id": "lpfstnd__textiel_gab"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "themes": ["wonen", "duurzaamheid-en-milieu"]
+    }
+  },
+  {
+    "id": "kdstrl",
+    "legendItems": [
+      {
+        "id": "bgem"
+      },
+      {
+        "id": "kgem"
+      },
+      {
+        "id": "ksec"
+      },
+      {
+        "id": "kot"
+      }
+    ],
+    "title": "Kadastrale perceelsgrenzen",
+    "type": "wms",
+    "meta": {
+      "themes": ["ruimte-en-topografie", "wonen"]
+    }
+  },
+  {
+    "id": "kdsteg",
+    "legendItems": [
+      {
+        "id": "egga"
+      },
+      {
+        "id": "egog"
+      },
+      {
+        "id": "egst"
+      },
+      {
+        "id": "egpr"
+      },
+      {
+        "id": "egwa"
+      },
+      {
+        "id": "egwo"
+      },
+      {
+        "id": "egve"
+      },
+      {
+        "id": "egsp"
+      },
+      {
+        "id": "egnnp"
+      },
+      {
+        "id": "egnp"
+      }
+    ],
+    "title": "Kadastrale eigenaren",
+    "type": "wms",
+    "meta": {
+      "themes": ["ruimte-en-topografie", "wonen"]
+    }
+  },
+  {
+    "id": "kdsterf",
+    "legendItems": [
+      {
+        "id": "efga"
+      },
+      {
+        "id": "efov"
+      }
+    ],
+    "title": "Kadastrale erfpachtuitgevers",
+    "type": "wms",
+    "meta": {
+      "themes": ["ruimte-en-topografie", "wonen"]
+    }
+  },
+  {
+    "id": "gemeig",
+    "legendItems": [
+      {
+        "id": "vge"
+      },
+      {
+        "id": "vga"
+      }
+    ],
+    "title": "Gemeentelijk eigendom",
+    "type": "wms",
+    "meta": {
+      "themes": ["ruimte-en-topografie", "wonen"]
+    }
+  },
+  {
+    "id": "ggw",
+    "legendItems": [
+      {
+        "id": "ggwg"
+      },
+      {
+        "id": "ggwpg"
+      }
+    ],
+    "title": "Gebiedsgericht werken",
+    "type": "wms",
+    "meta": {
+      "themes": ["ruimte-en-topografie", "wonen"]
+    }
+  },
+  {
+    "id": "ggr",
+    "legendItems": [
+      {
+        "id": "ggra"
+      },
+      {
+        "id": "ggro"
+      },
+      {
+        "id": "gsg4phs"
+      },
+      {
+        "id": "gsg4phsod"
+      }
+    ],
+    "title": "Grootstedelijke gebieden, projecten en belangen",
+    "type": "wms",
+    "meta": {
+      "themes": ["ruimte-en-topografie", "wonen"]
+    }
+  },
+  {
+    "id": "dtm",
+    "layers": ["ahn3_05m_dtm"],
+    "legendItems": [
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-minus-10.svg",
+        "title": "-10 m tot -5 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-minus-5.svg",
+        "title": "-5 m tot -2 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-minus-2.svg",
+        "title": "-2 m tot -1 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-minus-1.svg",
+        "title": "-1 m tot 0 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-plus-0.svg",
+        "title": "0 m tot 1 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-plus-1.svg",
+        "title": "1 m tot 2 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-plus-2.svg",
+        "title": "2 m tot 5 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-plus-5.svg",
+        "title": "5 m tot 10 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-plus-10.svg",
+        "title": "10 m tot 20 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-plus-20.svg",
+        "title": "20 m tot 30 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-plus-30.svg",
+        "title": "hoger dan 30 m"
+      }
+    ],
+    "minZoom": 10,
+    "title": "Terreinmodel (DTM AHN)",
+    "type": "wms",
+    "url": "https://geodata.nationaalgeoregister.nl/ahn3/wms?",
+    "external": true,
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "dsm",
+    "layers": ["ahn3_05m_dsm"],
+    "legendItems": [
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-minus-10.svg",
+        "title": "-10 m tot -5 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-minus-5.svg",
+        "title": "-5 m tot -2 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-minus-2.svg",
+        "title": "-2 m tot -1 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-minus-1.svg",
+        "title": "-1 m tot 0 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-plus-0.svg",
+        "title": "0 m tot 1 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-plus-1.svg",
+        "title": "1 m tot 2 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-plus-2.svg",
+        "title": "2 m tot 5 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-plus-5.svg",
+        "title": "5 m tot 10 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-plus-10.svg",
+        "title": "10 m tot 20 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-plus-20.svg",
+        "title": "20 m tot 30 m"
+      },
+      {
+        "iconUrl": "/assets/images/map-legend/icon-ahn-plus-30.svg",
+        "title": "hoger dan 30 m"
+      }
+    ],
+    "minZoom": 10,
+    "title": "Oppervlaktemodel (DSM AHN)",
+    "type": "wms",
+    "url": "https://geodata.nationaalgeoregister.nl/ahn3/wms?",
+    "external": true,
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "nap",
+    "layers": ["peilmerk_hoogte", "peilmerk_label"],
+    "legendItems": [
+      {
+        "title": "lager dan -1,5 m"
+      },
+      {
+        "title": "-1,5 m tot -0,5 m"
+      },
+      {
+        "title": "-0,5 m tot 0 m"
+      },
+      {
+        "title": "0 m tot 1 m"
+      },
+      {
+        "title": "1 m tot 1,5 m"
+      },
+      {
+        "title": "1,5 m tot 2 m"
+      },
+      {
+        "title": "2 m tot 3,5 m"
+      },
+      {
+        "title": "hoger dan 3,5 m"
+      }
+    ],
+    "minZoom": 10,
+    "title": "Normaal Amsterdams Peil (NAP)",
+    "type": "wms",
+    "url": "/maps/nap",
+    "detailUrl": "geosearch/search/",
+    "detailParams": {
+      "item": "peilmerk"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie", "duurzaamheid-en-milieu", "wonen"]
+    }
+  },
+  {
+    "id": "mbs",
+    "layers": ["meetbouten_status", "meetbouten_labels"],
+    "legendItems": [
+      {
+        "title": "Actueel"
+      },
+      {
+        "title": "Vervallen"
+      }
+    ],
+    "minZoom": 12,
+    "title": "Meetbouten - Status",
+    "type": "wms",
+    "url": "/maps/meetbouten",
+    "detailUrl": "geosearch/search/",
+    "detailParams": {
+      "item": "meetbout"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie", "wonen"]
+    }
+  },
+  {
+    "id": "mbz",
+    "layers": ["meetbout_zaksnelheid", "meetbouten_labels"],
+    "legendItems": [
+      {
+        "title": "minder dan -1 mm/jaar"
+      },
+      {
+        "title": "-1 tot 0 mm/jaar"
+      },
+      {
+        "title": "0 tot 1 mm/jaar"
+      },
+      {
+        "title": "1 tot 1,5 mm/jaar"
+      },
+      {
+        "title": "1,5 tot 2 mm/jaar"
+      },
+      {
+        "title": "2 tot 2,5 mm/jaar"
+      },
+      {
+        "title": "2,5 tot 3 mm/jaar"
+      },
+      {
+        "title": "3 tot 4 mm/jaar"
+      },
+      {
+        "title": "meer dan 4 mm/jaar"
+      }
+    ],
+    "minZoom": 12,
+    "title": "Meetbouten - Zaksnelheid",
+    "type": "wms",
+    "url": "/maps/meetbouten",
+    "detailUrl": "geosearch/search/",
+    "detailParams": {
+      "item": "meetbout"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie", "wonen"]
+    }
+  },
+  {
+    "id": "mbr",
+    "layers": ["referentiepunt"],
+    "legendItems": [
+      {
+        "title": "Referentiepunt"
+      }
+    ],
+    "minZoom": 12,
+    "title": "Meetbouten - Referentiepunten",
+    "type": "wms",
+    "url": "/maps/meetbouten",
+    "meta": {
+      "themes": ["ruimte-en-topografie", "wonen"]
+    }
+  },
+  {
+    "id": "sprln",
+    "legendItems": [
+      {
+        "id": "mtr"
+      },
+      {
+        "id": "trm"
+      }
+    ],
+    "title": "Spoorlijnen",
+    "type": "wms",
+    "meta": {
+      "themes": ["verkeer"]
+    }
+  },
+  {
+    "id": "oplsnl",
+    "legendItems": [
+      {
+        "id": "slpb"
+      },
+      {
+        "id": "slpnb"
+      }
+    ],
+    "title": "Snel laden (> 50 Kw)",
+    "type": "wms",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "verkeer"]
+    }
+  },
+  {
+    "id": "oplgwn",
+    "legendItems": [
+      {
+        "id": "nlpb"
+      },
+      {
+        "id": "nlpnb"
+      }
+    ],
+    "title": "Gewoon laden",
+    "type": "wms",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "verkeer"]
+    }
+  },
+  {
+    "id": "pv",
+    "layers": ["alle_parkeervakken", "parkeervakken_label", "parkeervakken_reservering"],
+    "legendItems": [
+      {
+        "title": "Fiscaal"
+      },
+      {
+        "title": "Niet fiscaal"
+      }
+    ],
+    "title": "Parkeervakken - Fiscale indelingen",
+    "type": "wms",
+    "url": "/maps/parkeervakken",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "parkeervakken/parkeervakken"
+    },
+    "detailIsShape": true,
+    "meta": {
+      "themes": ["verkeer", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "pvb",
+    "layers": ["parkeervakken_bord"],
+    "legendItems": [
+      {
+        "title": "Bord"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Parkeervakken - Speciale bestemmingen",
+    "type": "wms",
+    "url": "/maps/parkeervakken",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "parkeervakken/parkeervakken"
+    },
+    "detailIsShape": true,
+    "meta": {
+      "themes": ["verkeer", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "pvrgeb",
+    "legendItems": [
+      {
+        "id": "uitzpvg"
+      },
+      {
+        "id": "pvg"
+      }
+    ],
+    "title": "Parkeervergunninggebieden",
+    "type": "wms",
+    "meta": {
+      "themes": ["verkeer", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "rtstx",
+    "legendItems": [
+      {
+        "id": "bgt"
+      },
+      {
+        "id": "tar"
+      }
+    ],
+    "title": "Routes - Taxi",
+    "type": "wms",
+    "meta": {
+      "themes": ["verkeer", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "rtsvr",
+    "legendItems": [
+      {
+        "id": "rtsvr75"
+      },
+      {
+        "id": "rtsgs"
+      },
+      {
+        "id": "rtstgs"
+      },
+      {
+        "id": "rtsur"
+      }
+    ],
+    "title": "Routes - Vrachtauto",
+    "type": "wms",
+    "url": "/maps/hoofdroutes",
+    "meta": {
+      "themes": ["verkeer", "ruimte-en-topografie", "openbare-orde-en-veiligheid"]
+    }
+  },
+  {
+    "id": "mnmtn",
+    "legendItems": [
+      {
+        "id": "tcmnmt"
+      },
+      {
+        "id": "tcmnmtov"
+      }
+    ],
+    "title": "Monumenten",
+    "type": "wms",
+    "minZoom": 12,
+    "meta": {
+      "themes": ["cultuur-en-recreatie"]
+    }
+  },
+  {
+    "id": "unesco",
+    "layers": ["unesco", "unesco_label"],
+    "legendItems": [
+      {
+        "title": "Kernzone"
+      },
+      {
+        "title": "Bufferzone"
+      }
+    ],
+    "minZoom": 10,
+    "title": "Unesco werelderfgoedzones",
+    "type": "wms",
+    "url": "/maps/gebieden",
+    "detailUrl": "geosearch/search/",
+    "detailParams": {
+      "item": "unesco"
+    },
+    "meta": {
+      "themes": ["cultuur-en-recreatie", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "mbgm",
+    "layers": ["grondmonsters"],
+    "legendItems": [
+      {
+        "title": "Niet verontreinigd"
+      },
+      {
+        "title": "Licht verontreinigd"
+      },
+      {
+        "title": "Matig verontreinigd"
+      },
+      {
+        "title": "Sterk verontreinigd"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Grondmonsters",
+    "type": "wms",
+    "url": "/maps/bodem",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "mbgwm",
+    "layers": ["grondwatermonsters"],
+    "legendItems": [
+      {
+        "title": "Niet verontreinigd"
+      },
+      {
+        "title": "Licht verontreinigd"
+      },
+      {
+        "title": "Matig verontreinigd"
+      },
+      {
+        "title": "Sterk verontreinigd"
+      }
+    ],
+    "title": "Grondwatermonsters",
+    "type": "wms",
+    "url": "/maps/bodem",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "mbaig",
+    "layers": ["asbest"],
+    "legendItems": [
+      {
+        "title": "-10 - 0 mg/kg"
+      },
+      {
+        "title": "0,1 - 10 mg/kg"
+      },
+      {
+        "title": "10,1 - 100 mg/kg"
+      },
+      {
+        "title": "> 100,1 mg/kg"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Grondmonsters asbest",
+    "type": "wms",
+    "url": "/maps/bodem",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "exin",
+    "layers": ["inslagen"],
+    "legendItems": [
+      {
+        "title": "Blindganger"
+      },
+      {
+        "title": "Crashlocatie"
+      },
+      {
+        "title": "Gedetoneerde vernielingslading"
+      },
+      {
+        "title": "Geruimd explosief"
+      },
+      {
+        "title": "Niet gedetoneerde vernielingslading"
+      },
+      {
+        "title": "Vermoedelijke bominslag(en)"
+      }
+    ],
+    "title": "Explosieven - Inslagen",
+    "type": "wms",
+    "url": "/maps/bommenkaart",
+    "detailUrl": "geosearch/search/",
+    "detailParams": {
+      "item": "bominslag"
+    },
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "exvg",
+    "layers": ["verdachte_gebieden"],
+    "legendItems": [
+      {
+        "title": "Munities en granaten"
+      },
+      {
+        "title": "Landmijnen"
+      },
+      {
+        "title": "Vernielingsladingen"
+      },
+      {
+        "title": "Afwerpmunitie"
+      }
+    ],
+    "title": "Explosieven - Verdachte gebieden",
+    "type": "wms",
+    "url": "/maps/bommenkaart",
+    "detailUrl": "geosearch/search/",
+    "detailParams": {
+      "item": "verdachtgebied"
+    },
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "exuo",
+    "layers": ["uitgevoerde_CE_onderzoeken"],
+    "legendItems": [
+      {
+        "title": "Detectieonderzoek"
+      },
+      {
+        "title": "Projectgebonden risicoanalyse"
+      },
+      {
+        "title": "Vooronderzoek"
+      }
+    ],
+    "title": "Explosieven - Uitgevoerde CE-onderzoeken",
+    "type": "wms",
+    "url": "/maps/bommenkaart",
+    "detailUrl": "geosearch/search/",
+    "detailParams": {
+      "item": "uitgevoerdonderzoek"
+    },
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "lpgris",
+    "legendItems": [
+      {
+        "id": "mvlpgv105"
+      },
+      {
+        "id": "mvlpgv106"
+      },
+      {
+        "id": "mvlpgvgeb"
+      }
+    ],
+    "title": "LPG-vulpunten - Risicozones",
+    "type": "wms",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "lpgaf",
+    "legendItems": [
+      {
+        "id": "mvlpga"
+      },
+      {
+        "id": "mvlpgeb"
+      }
+    ],
+    "title": "LPG-afleverzuilen - Risicozones",
+    "type": "wms",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "lpgtank",
+    "legendItems": [
+      {
+        "id": "mvlpgt"
+      },
+      {
+        "id": "mvlpgtris"
+      },
+      {
+        "id": "mvlpgtgrp"
+      }
+    ],
+    "title": "LPG-tanks - Risicozones",
+    "type": "wms",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "lpgstat",
+    "legendItems": [
+      {
+        "id": "mvlpgs"
+      },
+      {
+        "id": "mvlpgst"
+      }
+    ],
+    "title": "LPG-stations - Risicozones",
+    "type": "wms",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "veilafs",
+    "legendItems": [
+      {
+        "id": "mvvo"
+      },
+      {
+        "id": "mvmo"
+      },
+      {
+        "id": "mvgms"
+      },
+      {
+        "id": "mvsls"
+      },
+      {
+        "id": "mvwp"
+      },
+      {
+        "id": "mvbs"
+      }
+    ],
+    "title": "Veiligheidsafstanden",
+    "type": "wms",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "economie-en-toerisme", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "bedrris",
+    "legendItems": [
+      {
+        "id": "mvbrgb"
+      },
+      {
+        "id": "mvbr"
+      }
+    ],
+    "title": "Bedrijven - Bronnen en risicozones",
+    "type": "wms",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "economie-en-toerisme", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "bedrter",
+    "legendItems": [
+      {
+        "id": "mvbdl"
+      },
+      {
+        "id": "mvbdc"
+      }
+    ],
+    "title": "Bedrijven - Terreingrenzen",
+    "type": "wms",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "economie-en-toerisme", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "mvabl",
+    "legendItems": [
+      {
+        "id": "aardgas"
+      },
+      {
+        "id": "aardgaspr106"
+      },
+      {
+        "id": "aardgas100let"
+      },
+      {
+        "id": "aardgas1let"
+      },
+      {
+        "id": "aardgasbel"
+      }
+    ],
+    "title": "Aardgasbuisleidingen - Risicozones",
+    "type": "wms",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "openbare-orde-en-veiligheid", "ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "gelind",
+    "legendItems": [
+      {
+        "id": "mgpindg"
+      },
+      {
+        "id": "mgpindgz"
+      }
+    ],
+    "title": "Industrie - Geluidszones",
+    "type": "wms",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "economie-en-toerisme"]
+    }
+  },
+  {
+    "id": "mgpsh",
+    "layers": ["geluidszoneschiphol"],
+    "legendItems": [
+      {
+        "title": "X LIB-4: Beperkingengebied geluidgevoelige gebouwen"
+      },
+      {
+        "title": "X LIB-5: Afwegingsgebied geluid en externe veiligheid (voorheen 20-Ke)"
+      }
+    ],
+    "title": "Schiphol - Ruimtelijke beperkingen",
+    "type": "wms",
+    "url": "/maps/planologischezonesschiphol",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "economie-en-toerisme"]
+    }
+  },
+  {
+    "id": "mgth",
+    "layers": ["maatgevendetoetshoogteschiphol"],
+    "legendItems": [
+      {
+        "title": "-10 - 0m NAP"
+      },
+      {
+        "title": "0 - 20m NAP"
+      },
+      {
+        "title": "20 - 40m NAP"
+      },
+      {
+        "title": "40 - 60m NAP"
+      },
+      {
+        "title": "60 - 80m NAP"
+      },
+      {
+        "title": "80 - 100m NAP"
+      },
+      {
+        "title": "100 - 140m NAP"
+      },
+      {
+        "title": "140m NAP"
+      },
+      {
+        "title": "Hoger dan 140m NAP"
+      }
+    ],
+    "title": "Schiphol - Maatgevende toetshoogte",
+    "type": "wms",
+    "url": "/maps/planologischezonesschiphol",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "verkeer"]
+    }
+  },
+  {
+    "id": "mthr",
+    "layers": ["toetshoogteradarschiphol"],
+    "legendItems": [
+      {
+        "title": "-10 - 0m NAP"
+      },
+      {
+        "title": "0 - 20m NAP"
+      },
+      {
+        "title": "20 - 40m NAP"
+      },
+      {
+        "title": "40 - 60m NAP"
+      },
+      {
+        "title": "60 - 80m NAP"
+      },
+      {
+        "title": "80 - 100m NAP"
+      },
+      {
+        "title": "100 - 140m NAP"
+      },
+      {
+        "title": "140m NAP"
+      },
+      {
+        "title": "Hoger dan 140m NAP"
+      }
+    ],
+    "title": "Schiphol - Toetshoogte i.v.m. radar",
+    "type": "wms",
+    "url": "/maps/planologischezonesschiphol",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "verkeer"]
+    }
+  },
+  {
+    "id": "recbel",
+    "legendItems": [
+      {
+        "id": "tariffA"
+      },
+      {
+        "id": "tariffB"
+      },
+      {
+        "id": "tariffC"
+      }
+    ],
+    "title": "Reclamebelastingtarieven",
+    "type": "wms",
+    "meta": {
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
+    }
+  },
+  {
+    "id": "winkgeb",
+    "layers": ["winkgeb"],
+    "legendItems": [
+      {
+        "title": "Kernwinkelgebied"
+      },
+      {
+        "title": "Stadsdeelcentra"
+      },
+      {
+        "title": "Wijkcentrum groot"
+      },
+      {
+        "title": "Wijkcentrum klein"
+      },
+      {
+        "title": "Buurtcentrum"
+      },
+      {
+        "title": "Locatie voor perifere winkels"
+      },
+      {
+        "title": "Trafficlocaties"
+      }
+    ],
+    "title": "Winkelgebieden",
+    "type": "wms",
+    "url": "/maps/winkgeb",
+    "detailUrl": "geosearch/winkgeb/",
+    "detailParams": {
+      "item": "winkgeb"
+    },
+    "detailIsShape": true,
+    "meta": {
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
+    }
+  },
+  {
+    "authScope": "HR/R",
+    "id": "bouw",
+    "layers": ["bouw", "bouw_label"],
+    "legendItems": [
+      {
+        "title": "Afwerking van gebouwen"
+      },
+      {
+        "title": "Bouwinstallatie"
+      },
+      {
+        "title": "Bouw/utiliteitsbouw algemeen / klusbedrijf"
+      },
+      {
+        "title": "Dak- en overige gespecialiseerde bouw"
+      },
+      {
+        "title": "Grond, water, wegenbouw"
+      },
+      {
+        "title": "Overige bouw"
+      },
+      {
+        "title": "(Locatie geschat)"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Vestigingen - Bouw",
+    "type": "wms",
+    "url": "/maps/handelsregister",
+    "detailUrl": "handelsregister/geosearch/",
+    "detailParams": {
+      "item": "bouw"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
+    }
+  },
+  {
+    "authScope": "HR/R",
+    "id": "csr",
+    "layers": ["cultuur_sport_recreatie", "cultuur_sport_recreatie_label"],
+    "legendItems": [
+      {
+        "title": "Kunst"
+      },
+      {
+        "title": "Musea, bibliotheken, kunstuitleen"
+      },
+      {
+        "title": "Recreatie"
+      },
+      {
+        "title": "Sport"
+      },
+      {
+        "title": "(Locatie geschat)"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Vestigingen - Cultuur, sport, recreatie",
+    "type": "wms",
+    "url": "/maps/handelsregister",
+    "detailUrl": "handelsregister/geosearch/",
+    "detailParams": {
+      "item": "cultuur_sport_recreatie"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
+    }
+  },
+  {
+    "authScope": "HR/R",
+    "id": "fdvrog",
+    "layers": ["financiele_dienstverlening_verhuur", "financiele_dienstverlening_verhuur_label"],
+    "legendItems": [
+      {
+        "title": "Financiële dienstverlening en verzekeringen"
+      },
+      {
+        "title": "Holdings"
+      },
+      {
+        "title": "Verhuur van- en beheer/handel in onroerend goed"
+      },
+      {
+        "title": "Verhuur van roerende goederen"
+      },
+      {
+        "title": "(Locatie geschat)"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Vestigingen - Financiële dienstv., verhuur van (on)roerend goed",
+    "type": "wms",
+    "url": "/maps/handelsregister",
+    "detailUrl": "handelsregister/geosearch/",
+    "detailParams": {
+      "item": "financiele_dienstverlening_verhuur"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
+    }
+  },
+  {
+    "authScope": "HR/R",
+    "id": "hvo",
+    "layers": ["handel_vervoer_opslag", "handel_vervoer_opslag_label"],
+    "legendItems": [
+      {
+        "title": "Detailhandel (verkoop aan consumenten, niet zelf vervaardigd)"
+      },
+      {
+        "title": "Dienstverlening vervoer"
+      },
+      {
+        "title": "Groothandel (verkoop aan andere ondernemingen, niet zelf vervaardigd)"
+      },
+      {
+        "title": "Handel en reparatie van auto's"
+      },
+      {
+        "title": "Handelsbemiddeling (tussenpersoon, verkoopt niet zelf)"
+      },
+      {
+        "title": "Opslag"
+      },
+      {
+        "title": "Vervoer"
+      },
+      {
+        "title": "(Locatie geschat)"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Vestigingen - Handel, vervoer, opslag",
+    "type": "wms",
+    "url": "/maps/handelsregister",
+    "detailUrl": "handelsregister/geosearch/",
+    "detailParams": {
+      "item": "handel_vervoer_opslag"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
+    }
+  },
+  {
+    "authScope": "HR/R",
+    "id": "hrc",
+    "layers": ["horeca", "horeca_label"],
+    "legendItems": [
+      {
+        "title": "Café"
+      },
+      {
+        "title": "Cafetaria, snackbar, ijssalon"
+      },
+      {
+        "title": "Hotel, pension"
+      },
+      {
+        "title": "Hotel-restaurant"
+      },
+      {
+        "title": "Kantine, catering"
+      },
+      {
+        "title": "Restaurant, café-restaurant"
+      },
+      {
+        "title": "Overige horeca"
+      },
+      {
+        "title": "(Locatie geschat)"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Vestigingen - Horeca",
+    "type": "wms",
+    "url": "/maps/handelsregister",
+    "detailUrl": "handelsregister/geosearch/",
+    "detailParams": {
+      "item": "horeca"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
+    }
+  },
+  {
+    "authScope": "HR/R",
+    "id": "itc",
+    "layers": ["telecommunicatie", "telecommunicatie_label"],
+    "legendItems": [
+      {
+        "title": "Activiteiten op gebied van film, tv, radio, audio"
+      },
+      {
+        "title": "Activiteiten op het gebied van ict"
+      },
+      {
+        "title": "Telecommunicatie"
+      },
+      {
+        "title": "Uitgeverijen"
+      },
+      {
+        "title": "(Locatie geschat)"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Vestigingen - Informatie, telecommunicatie",
+    "type": "wms",
+    "url": "/maps/handelsregister",
+    "detailUrl": "handelsregister/geosearch/",
+    "detailParams": {
+      "item": "informatie_telecommunicatie"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
+    }
+  },
+  {
+    "authScope": "HR/R",
+    "id": "lb",
+    "layers": ["landbouw", "landbouw_label"],
+    "legendItems": [
+      {
+        "title": "Dienstverlening voor de land/tuinbouw"
+      },
+      {
+        "title": "Fokken, houden dieren"
+      },
+      {
+        "title": "Gemengd bedrijf"
+      },
+      {
+        "title": "Teelt eenjarige gewassen"
+      },
+      {
+        "title": "Teelt meerjarige gewassen"
+      },
+      {
+        "title": "Teelt sierplanten"
+      },
+      {
+        "title": "(Locatie geschat)"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Vestigingen - Landbouw",
+    "type": "wms",
+    "url": "/maps/handelsregister",
+    "detailUrl": "handelsregister/geosearch/",
+    "detailParams": {
+      "item": "landbouw"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
+    }
+  },
+  {
+    "authScope": "HR/R",
+    "id": "ooz",
+    "layers": ["overheid_onderwijs_zorg", "overheid_onderwijs_zorg_label"],
+    "legendItems": [
+      {
+        "title": "Gezondheids- en welzijnszorg"
+      },
+      {
+        "title": "Onderwijs"
+      },
+      {
+        "title": "Overheid"
+      },
+      {
+        "title": "(Locatie geschat)"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Vestigingen - Overheid, onderwijs, zorg",
+    "type": "wms",
+    "url": "/maps/handelsregister",
+    "detailUrl": "handelsregister/geosearch/",
+    "detailParams": {
+      "item": "overheid_onderwijs_zorg"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
+    }
+  },
+  {
+    "authScope": "HR/R",
+    "category": "ECONOMY_HARBOR",
+    "id": "pd",
+    "layers": ["persoonlijke_dienstverlening", "persoonlijke_dienstverlening_label"],
+    "legendItems": [
+      {
+        "title": "Kappers"
+      },
+      {
+        "title": "Sauna, solaria"
+      },
+      {
+        "title": "Schoonheidsverzorging"
+      },
+      {
+        "title": "Uitvaart, crematoria"
+      },
+      {
+        "title": "Overige dienstverlening"
+      },
+      {
+        "title": "(Locatie geschat)"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Vestigingen - Persoonlijke dienstverlening",
+    "type": "wms",
+    "url": "/maps/handelsregister",
+    "detailUrl": "handelsregister/geosearch/",
+    "detailParams": {
+      "item": "persoonlijke_dienstverlening"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
+    }
+  },
+  {
+    "authScope": "HR/R",
+    "category": "ECONOMY_HARBOR",
+    "id": "pir",
+    "layers": ["productie_installatie_reparatie", "productie_installatie_reparatie_label"],
+    "legendItems": [
+      {
+        "title": "Installatie (geen bouw)"
+      },
+      {
+        "title": "Productie"
+      },
+      {
+        "title": "Reparatie (geen bouw)"
+      },
+      {
+        "title": "(Locatie geschat)"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Vestigingen - Productie, installatie, reparatie",
+    "type": "wms",
+    "url": "/maps/handelsregister",
+    "detailUrl": "handelsregister/geosearch/",
+    "detailParams": {
+      "item": "productie_installatie_reparatie"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
+    }
+  },
+  {
+    "authScope": "HR/R",
+    "category": "ECONOMY_HARBOR",
+    "id": "zd",
+    "layers": ["zakelijke_dienstverlening"],
+    "legendItems": [
+      {
+        "title": "Accountancy, administratie"
+      },
+      {
+        "title": "Advocaten rechtskundige diensten, notarissen"
+      },
+      {
+        "title": "Arbeidsbemiddeling, uitzendbureaus, uitleenbureaus"
+      },
+      {
+        "title": "Architecten"
+      },
+      {
+        "title": "Design"
+      },
+      {
+        "title": "Interieurarchitecten"
+      },
+      {
+        "title": "Managementadvies, economisch advies"
+      },
+      {
+        "title": "Public relationsbureaus"
+      },
+      {
+        "title": "Reclame en Marktonderzoek"
+      },
+      {
+        "title": "Technisch ontwerp, advies, keuring/research"
+      },
+      {
+        "title": "Overige zakelijke dienstverlening"
+      },
+      {
+        "title": "(Locatie geschat)"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Vestigingen - Zakelijke dienstverlening",
+    "type": "wms",
+    "url": "/maps/handelsregister",
+    "detailUrl": "handelsregister/geosearch/",
+    "detailParams": {
+      "item": "zakelijke_dienstverlening"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
+    }
+  },
+  {
+    "authScope": "HR/R",
+    "id": "ovrg",
+    "layers": ["overige", "overige_label"],
+    "legendItems": [
+      {
+        "title": "Belangenorganisaties"
+      },
+      {
+        "title": "Hobbyclubs"
+      },
+      {
+        "title": "Ideële organisaties"
+      },
+      {
+        "title": "Overige"
+      },
+      {
+        "title": "(Locatie geschat)"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Vestigingen - Overige",
+    "type": "wms",
+    "url": "/maps/handelsregister",
+    "detailUrl": "handelsregister/geosearch/",
+    "detailParams": {
+      "item": "overige"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
+    }
+  },
+  {
+    "id": "panobi",
+    "layers": ["panorama_new"],
+    "legendItems": [
+      {
+        "id": "pano2021bi",
+        "title": "2021"
+      },
+      {
+        "id": "pano2020bi",
+        "title": "2020"
+      },
+      {
+        "id": "pano2019bi",
+        "title": "2019"
+      },
+      {
+        "id": "pano2018bi",
+        "title": "2018"
+      },
+      {
+        "id": "pano2017bi",
+        "title": "2017"
+      },
+      {
+        "id": "pano2016bi",
+        "title": "2016"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Panoramabeelden",
+    "type": "wms",
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "panowoz",
+    "layers": ["panorama_new"],
+    "legendItems": [
+      {
+        "id": "pano2020woz",
+        "title": "2020 WOZ"
+      },
+      {
+        "id": "pano2019woz",
+        "title": "2019 WOZ"
+      },
+      {
+        "id": "pano2018woz",
+        "title": "2018 WOZ"
+      },
+      {
+        "id": "pano2017woz",
+        "title": "2017 WOZ"
+      }
+    ],
+    "minZoom": 11,
+    "title": "Panoramabeelden - WOZ",
+    "type": "wms",
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "aardgasvrij",
+    "layers": ["buurten", "buurtinitiatieven", "buurten_kookgas"],
+    "legendItems": [
+      {
+        "id": "buurtinitiatieven",
+        "title": "Initiatief gestart",
+        "notSelectable": true
+      },
+      {
+        "title": "All Electric"
+      },
+      {
+        "title": "Duurzaam gasnet"
+      },
+      {
+        "title": "Warmtenet, al aangesloten"
+      },
+      {
+        "title": "Bronnet"
+      },
+      {
+        "title": "Bronnet, 2020-2032"
+      },
+      {
+        "title": "Warmtenet, 2020-2030"
+      },
+      {
+        "title": "Warmtenet, 2022-2032"
+      },
+      {
+        "title": "Warmtenet, vanaf 2030"
+      },
+      {
+        "title": "Nieuwbouw & transformatie"
+      },
+      {
+        "title": "Onbebouwd"
+      },
+      {
+        "id": "buurten_kookgas",
+        "title": "Kookgas",
+        "notSelectable": true
+      }
+    ],
+    "title": "Aardgasvrij",
+    "url": "/maps/aardgasvrij",
+    "type": "wms",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "wonen"]
+    }
+  },
+  {
+    "id": "lood",
+    "layers": ["lood"],
+    "legendItems": [
+      {
+        "imageRule": "< 1960",
+        "title": "Ouder dan 1960"
+      }
+    ],
+    "params": {
+      "categorie": "ouder"
+    },
+    "title": "Panden ouder dan 1960",
+    "type": "wms",
+    "url": "/maps/lood",
+    "meta": {
+      "themes": ["ruimte-en-topografie", "wonen"]
+    }
+  },
+  {
+    "id": "bwjr",
+    "layers": ["bouwjaar"],
+    "legendItems": [
+      {
+        "title": "Onbekend"
+      },
+      {
+        "imageRule": "< 1800",
+        "title": "Ouder dan 1800"
+      },
+      {
+        "title": "1800-1850"
+      },
+      {
+        "title": "1850-1900"
+      },
+      {
+        "title": "1900-1930"
+      },
+      {
+        "title": "1930-1945"
+      },
+      {
+        "title": "1945-1960"
+      },
+      {
+        "title": "1960-1975"
+      },
+      {
+        "title": "1975-1985"
+      },
+      {
+        "title": "1985-1995"
+      },
+      {
+        "title": "1995-2005"
+      },
+      {
+        "imageRule": ">= 2005",
+        "title": "2005 of nieuwer"
+      }
+    ],
+    "title": "Panden naar bouwjaar",
+    "type": "wms",
+    "url": "/maps/bag",
+    "meta": {
+      "themes": ["ruimte-en-topografie", "wonen"]
+    }
+  },
+  {
+    "id": "grex",
+    "layers": ["grex"],
+    "legendItems": [
+      {
+        "imageRule": "actueel",
+        "title": "Planstatus actueel"
+      },
+      {
+        "imageRule": "toekomstig",
+        "title": "Planstatus toekomstig"
+      }
+    ],
+    "title": "Grondexploitaties - Projecten",
+    "type": "wms",
+    "url": "/maps/grex",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "grex/projecten"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie", "wonen"]
+    }
+  },
+  {
+    "id": "vergkvh",
+    "layers": ["omzettingen_quotum"],
+    "title": "Vergunningen kamerverhuur",
+    "type": "wms",
+    "url": "/maps/omzettingen_quotum",
+    "legendItems": [
+      {
+        "title": "Niet beschikbaar"
+      },
+      {
+        "title": "Beperkt beschikbaar"
+      },
+      {
+        "title": "Beschikbaar"
+      }
+    ],
+    "meta": {
+      "themes": ["bestuur", "wonen"]
+    }
+  },
+  {
+    "id": "vergbnb",
+    "layers": ["bb_quotum"],
+    "title": "Vergunningen Bed & Breakfast",
+    "type": "wms",
+    "url": "/maps/bb_quotum",
+    "legendItems": [
+      {
+        "title": "Niet beschikbaar"
+      },
+      {
+        "title": "Beperkt beschikbaar"
+      },
+      {
+        "title": "Beschikbaar"
+      }
+    ],
+    "meta": {
+      "themes": ["bestuur", "wonen"]
+    }
+  },
+  {
+    "id": "precarw",
+    "title": "Precario woonschepen",
+    "type": "wms",
+    "legendItems": [
+      {
+        "id": "precarwa"
+      },
+      {
+        "id": "precarwb"
+      }
+    ],
+    "meta": {
+      "themes": ["ruimte-en-topografie", "verkeer", "openbare-orde-en-veiligheid"]
+    }
+  },
+  {
+    "id": "precarbv",
+    "title": "Precario bedrijfsvaartuigen",
+    "type": "wms",
+    "legendItems": [
+      {
+        "id": "precarbva"
+      }
+    ],
+    "meta": {
+      "themes": ["ruimte-en-topografie", "verkeer", "openbare-orde-en-veiligheid"]
+    }
+  },
+  {
+    "id": "precarpv",
+    "title": "Precario passagiersvaartuigen",
+    "type": "wms",
+    "legendItems": [
+      {
+        "id": "precarpv1"
+      },
+      {
+        "id": "precarpv2"
+      }
+    ],
+    "meta": {
+      "themes": ["ruimte-en-topografie", "verkeer", "openbare-orde-en-veiligheid"]
+    }
+  },
+  {
+    "id": "precart",
+    "title": "Precario terrassen",
+    "layers": ["precariobelastinggebieden_terrassen"],
+    "type": "wms",
+    "url": "/maps/precariobelastingen",
+    "legendItems": [
+      {
+        "id": "precarta"
+      },
+      {
+        "id": "precartb"
+      },
+      {
+        "id": "precartc"
+      }
+    ],
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "precariobelasting/terrassen"
+    },
+    "detailIsShape": true,
+    "meta": {
+      "themes": ["ruimte-en-topografie", "verkeer", "openbare-orde-en-veiligheid"]
+    }
+  },
+  {
+    "id": "wngbpln",
+    "layers": ["Woningbouwplannen"],
+    "title": "Woningbouwplannen",
+    "legendItems": [
+      {
+        "title": "Verkenning"
+      },
+      {
+        "title": "Principebesluit genomen"
+      },
+      {
+        "title": "Investeringsbesluit genomen"
+      },
+      {
+        "title": "In aanbouw genomen (sinds 2014)",
+        "imageRule": "In aanbouw genomen"
+      }
+    ],
+    "type": "wms",
+    "url": "/maps/woningbouw",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "woningbouwplannen/woningbouwplan"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "ligplaats_passagiersvaartuigen",
+    "layers": ["ligplaatssegmenten"],
+    "title": "Ligplaatsen passagiersvaartuigen",
+    "legendItems": [
+      {
+        "id": "ligplaatssegmenten_groot"
+      },
+      {
+        "id": "ligplaatssegmenten_middel"
+      },
+      {
+        "id": "ligplaatssegmenten_klein"
+      },
+      {
+        "id": "ligplaatssegmenten_onbemand"
+      },
+      {
+        "id": "ligplaatssegmenten_waterfietsen"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "op_afstaplocaties_beroepsvaart",
+    "layers": ["ligplaatssegmenten"],
+    "title": "Op- en afstaplocaties beroepsvaart",
+    "legendItems": [
+      {
+        "id": "op_afstaplocaties_passagiersvaart"
+      },
+      {
+        "id": "op_afstaplocaties_passagiersvaart_laden_lossen"
+      },
+      {
+        "id": "op_afstaplocaties_passagiersvaart_actie"
+      },
+      {
+        "id": "geen_op_afstapplaats"
+      },
+      {
+        "id": "wenslocatie"
+      },
+      {
+        "id": "laden_lossen_transport_over_water"
+      },
+      {
+        "id": "exclusieve_op_afstaplocatie_passagiersvaart"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  }
+]
