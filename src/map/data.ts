@@ -224,8 +224,9 @@ function normalizeLegendItem(
   const mapLegend = groupLegend.id ? findBy(rawLegends, 'id', groupLegend.id) : null
 
   const layer = groupLegend.id ? mapLegend?.layers?.[0] ?? '' : group?.layers?.[0] ?? ''
+  // Todo: legacy code. Remove this logic when map groups and legends are restructured in JSON files
   const imageRule =
-    mapLegend?.imageRule || groupLegend.imageRule || mapLegend?.title || groupLegend.title || ''
+    mapLegend?.imageRule || groupLegend.imageRule || groupLegend.title || mapLegend?.title || ''
 
   const imageUrl = mapLegend?.url ?? group?.url ?? ''
   const legendIconURI =
