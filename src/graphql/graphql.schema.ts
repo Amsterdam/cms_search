@@ -260,7 +260,7 @@ const schema = gql`
   }
 
   type LegendItem {
-    id: String
+    id: ID!
     isVisible: Boolean
     title: String!
     iconUrl: String

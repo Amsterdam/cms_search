@@ -267,6 +267,7 @@ function normalizeLegendItem(
   return {
     __typename: 'LegendItem', // Set the typename to handle inline fragments for union type MapLayerLegendItem
     title: groupLegend?.title || '',
+    id: composeId(collectionId, groupLegend?.title ?? ''),
     imageRule: groupLegend.imageRule,
     iconUrl: groupLegend.iconUrl,
     notSelectable: true,
