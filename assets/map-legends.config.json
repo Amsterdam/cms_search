@@ -2196,9 +2196,9 @@
     "title": "Explosieven - Gevrijwaarde gebieden",
     "type": "wms",
     "url": "/maps/bommenkaart",
-    "detailUrl": "geosearch/search/",
+    "detailUrl": "geosearch/",
     "detailParams": {
-      "item": "gevrijwaardgebied"
+      "datasets": "explosieven/gevrijwaardgebied"
     },
     "meta": {
       "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]

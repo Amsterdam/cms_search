@@ -818,9 +818,9 @@
     "title": "Explosieven - Inslagen",
     "type": "wms",
     "url": "/maps/bommenkaart",
-    "detailUrl": "geosearch/search/",
+    "detailUrl": "geosearch/",
     "detailParams": {
-      "item": "bominslag"
+      "datasets": "explosieven/bominslag"
     },
     "meta": {
       "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]
@@ -846,9 +846,9 @@
     "title": "Explosieven - Verdachte gebieden",
     "type": "wms",
     "url": "/maps/bommenkaart",
-    "detailUrl": "geosearch/search/",
+    "detailUrl": "geosearch/",
     "detailParams": {
-      "item": "verdachtgebied"
+      "datasets": "explosieven/verdachtgebied"
     },
     "meta": {
       "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]
@@ -871,9 +871,9 @@
     "title": "Explosieven - Uitgevoerde CE-onderzoeken",
     "type": "wms",
     "url": "/maps/bommenkaart",
-    "detailUrl": "geosearch/search/",
+    "detailUrl": "geosearch/",
     "detailParams": {
-      "item": "uitgevoerdonderzoek"
+      "datasets": "explosieven/uitgevoerdonderzoek"
     },
     "meta": {
       "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]
