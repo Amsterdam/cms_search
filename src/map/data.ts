@@ -247,6 +247,9 @@ function normalizeLegendItem(
       url: mapLegend.url,
       layers: mapLegend.layers,
       iconUrl: mapLegend.iconUrl,
+      detailUrl: mapLegend.detailUrl,
+      detailParams: mapLegend.detailParams,
+      detailIsShape: mapLegend.detailIsShape,
       notSelectable: groupLegend.notSelectable || mapLegend.notSelectable || false,
       // Overwrite fields from layer with legend fields where applicable.
       imageRule: groupLegend.imageRule ?? mapLegend.imageRule,
