@@ -175,7 +175,13 @@
         "id": "aardgasvrij"
       },
       {
-        "id": "bouwstrm"
+        "id": "stroompunten_markt"
+      },
+      {
+        "id": "stroompunten_evenement"
+      },
+      {
+        "id": "stroompunten_bouw"
       }
     ],
     "meta": {

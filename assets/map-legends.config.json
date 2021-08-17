@@ -2697,9 +2697,162 @@
     }
   },
   {
-    "id": "bouwstrm",
-    "title": "Bouwstroompunten",
-    "layers": ["bouwstroompunten"],
+    "id": "lt3x80A_markt",
+    "title": "Groter of gelijk aan 3 x 80 A",
+    "layers": ["Markt: groter of gelijk aan 3 x 80 A"],
+    "type": "wms",
+    "url": "/maps/energie",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "bouwstroompunten/bouwstroompunten"
+    },
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "wonen"]
+    }
+  },
+  {
+    "id": "3x40Atot3x63A_markt",
+    "title": "3 x 40 A tot 3 x 63 A",
+    "layers": ["Markt: 3 x 40 A tot 3 x 63 A"],
+    "type": "wms",
+    "url": "/maps/energie",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "bouwstroompunten/bouwstroompunten"
+    },
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "wonen"]
+    }
+  },
+  {
+    "id": "3x25Atot3x40A_markt",
+    "title": "3 x 25 A tot 3 x 40 A",
+    "layers": ["Markt: 3 x 25 A tot 3 x 40 A"],
+    "type": "wms",
+    "url": "/maps/energie",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "bouwstroompunten/bouwstroompunten"
+    },
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "wonen"]
+    }
+  },
+  {
+    "id": "tot3x25A_markt",
+    "title": "tot 3 x 25 A",
+    "layers": ["Markt: tot 3 x 25 A"],
+    "type": "wms",
+    "url": "/maps/energie",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "bouwstroompunten/bouwstroompunten"
+    },
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "wonen"]
+    }
+  },
+  {
+    "id": "lt3x80A_evenement",
+    "title": "Groter of gelijk aan 3 x 80 A",
+    "layers": ["Evenement: groter of gelijk aan 3 x 80 A"],
+    "type": "wms",
+    "url": "/maps/energie",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "bouwstroompunten/bouwstroompunten"
+    },
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "wonen"]
+    }
+  },
+  {
+    "id": "3x40Atot3x63A_evenement",
+    "title": "3 x 40 A tot 3 x 63 A",
+    "layers": ["Evenement: 3 x 40 A tot 3 x 63 A"],
+    "type": "wms",
+    "url": "/maps/energie",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "bouwstroompunten/bouwstroompunten"
+    },
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "wonen"]
+    }
+  },
+  {
+    "id": "3x25Atot3x40A_evenement",
+    "title": "3 x 25 A tot 3 x 40 A",
+    "layers": ["Evenement: 3 x 25 A tot 3 x 40 A"],
+    "type": "wms",
+    "url": "/maps/energie",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "bouwstroompunten/bouwstroompunten"
+    },
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "wonen"]
+    }
+  },
+  {
+    "id": "tot3x25A_evenement",
+    "title": "tot 3 x 25 A",
+    "layers": ["Evenement: tot 3 x 25 A"],
+    "type": "wms",
+    "url": "/maps/energie",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "bouwstroompunten/bouwstroompunten"
+    },
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "wonen"]
+    }
+  },{
+    "id": "lt3x80A_bouw",
+    "title": "Groter of gelijk aan 3 x 80 A",
+    "layers": ["Bouwstroompunt: groter of gelijk aan 3 x 80 A"],
+    "type": "wms",
+    "url": "/maps/energie",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "bouwstroompunten/bouwstroompunten"
+    },
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "wonen"]
+    }
+  },
+  {
+    "id": "3x40Atot3x63A_bouw",
+    "title": "3 x 40 A tot 3 x 63 A",
+    "layers": ["Bouwstroompunt: 3 x 40 A tot 3 x 63 A"],
+    "type": "wms",
+    "url": "/maps/energie",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "bouwstroompunten/bouwstroompunten"
+    },
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "wonen"]
+    }
+  },
+  {
+    "id": "3x25Atot3x40A_bouw",
+    "title": "3 x 25 A tot 3 x 40 A",
+    "layers": ["Bouwstroompunt: 3 x 25 A tot 3 x 40 A"],
+    "type": "wms",
+    "url": "/maps/energie",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "bouwstroompunten/bouwstroompunten"
+    },
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "wonen"]
+    }
+  },
+  {
+    "id": "tot3x25A_bouw",
+    "title": "tot 3 x 25 A",
+    "layers": ["Bouwstroompunt: tot 3 x 25 A"],
     "type": "wms",
     "url": "/maps/energie",
     "detailUrl": "geosearch/",
