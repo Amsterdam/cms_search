@@ -18,7 +18,7 @@ export enum DataType {
   Buildings = 'panden',
   Regions = 'gebieden',
   Branches = 'vestigingen',
-  SocialActivity = 'maatschappelijke_activiteit',
+  SocialActivity = 'maatschappelijkeactiviteit',
   CadastralProperties = 'kadastrale_objecten',
   CadastralSubject = 'kadastrale_subjecten',
   MeasuringBolt = 'meetbouten',
