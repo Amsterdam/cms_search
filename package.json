@@ -33,7 +33,7 @@
     "@types/express": "^4.17.12",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.6.1",
-    "@types/node-fetch": "^2.5.10",
+    "@types/node-fetch": "^2.5.12",
     "@types/remove-markdown": "^0.3.1",
     "@types/ws": "^7.4.5",
     "abort-controller": "^3.0.0",
