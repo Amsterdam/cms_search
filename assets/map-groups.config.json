@@ -2058,5 +2058,71 @@
     "meta": {
       "themes": ["ruimte-en-topografie"]
     }
+  },
+  {
+    "id": "stroompunten_markt",
+    "title": "Marktstroompunten",
+    "legendItems": [
+      {
+        "id": "tot3x25A_markt"
+      },
+      {
+        "id": "3x25Atot3x40A_markt"
+      },
+      {
+        "id": "3x40Atot3x63A_markt"
+      },
+      {
+        "id": "lt3x80A_markt"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "wonen"]
+    }
+  },
+  {
+    "id": "stroompunten_evenement",
+    "title": "Evenementstroompunten",
+    "legendItems": [
+      {
+        "id": "tot3x25A_evenement"
+      },
+      {
+        "id": "3x25Atot3x40A_evenement"
+      },
+      {
+        "id": "3x40Atot3x63A_evenement"
+      },
+      {
+        "id": "lt3x80A_evenement"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "wonen"]
+    }
+  },
+  {
+    "id": "stroompunten_bouw",
+    "title": "Bouwstroompunten",
+    "legendItems": [
+      {
+        "id": "tot3x25A_bouw"
+      },
+      {
+        "id": "3x25Atot3x40A_bouw"
+      },
+      {
+        "id": "3x40Atot3x63A_bouw"
+      },
+      {
+        "id": "lt3x80A_bouw"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "themes": ["duurzaamheid-en-milieu", "wonen"]
+    }
   }
 ]
