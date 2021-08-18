@@ -64,38 +64,6 @@
     }
   },
   {
-    "id": "lpfstndplastic",
-    "url": "/maps/afval",
-    "title": "Loopafstand tot plasticcontainer",
-    "legendItems": [
-      {
-        "id": "lpfstnd__plastic_0_30"
-      },
-      {
-        "id": "lpfstnd__plastic_30_90"
-      },
-      {
-        "id": "lpfstnd__plastic_90_120"
-      },
-      {
-        "id": "lpfstnd__plastic_120_150"
-      },
-      {
-        "id": "lpfstnd__plastic_150_210"
-      },
-      {
-        "id": "lpfstnd__plastic_210_1000"
-      },
-      {
-        "id": "lpfstnd__plastic_gab"
-      }
-    ],
-    "type": "wms",
-    "meta": {
-      "themes": ["wonen", "duurzaamheid-en-milieu"]
-    }
-  },
-  {
     "id": "lpfstndpapier",
     "url": "/maps/afval",
     "title": "Loopafstand tot papiercontainer",
