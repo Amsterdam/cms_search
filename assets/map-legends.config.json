@@ -1108,21 +1108,6 @@
     }
   },
   {
-    "id": "wlopls",
-    "url": "/maps/afval",
-    "layers": ["plastic_coordinaten"],
-    "title": "Plastic",
-    "type": "wms",
-    "imageRule": "Plasticcontainer",
-    "params": {
-      "width": 30,
-      "height": 30
-    },
-    "meta": {
-      "themes": ["wonen", "duurzaamheid-en-milieu"]
-    }
-  },
-  {
     "id": "wlotxtl",
     "url": "/maps/afval",
     "layers": ["textiel_coordinaten"],
