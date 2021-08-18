@@ -146,6 +146,10 @@ export const DATA_SEARCH_ENDPOINTS: Array<DataSearchType> = [
 
 export const DATA_INDEX_ENDPOINTS: Array<DataIndexType> = [
   {
+    endpoint: INDEX_ENDPOINTS[DataType.ConstructionFiles],
+    type: DataType.ConstructionFiles,
+  },
+  {
     endpoint: INDEX_ENDPOINTS[DataType.Branches],
     type: DataType.Branches,
   },

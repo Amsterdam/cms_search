@@ -32,16 +32,18 @@ const index = async (
 
   let endpoints: Array<DataSearchType> = DATA_SEARCH_ENDPOINTS
 
-  // Only endpoints that expect a query in this format should be used
-  endpoints = endpoints.filter(({ queryMatcher, ...endpoint }) => {
-    if (queryMatcher) {
-      return !!q?.match(queryMatcher) && endpoint.endpoint
-    }
-
-    // Since the endpoints are stored in env's (check config.ts), the endpoint theoretically might not exist.
-    // This will make sure undefined endpoints will be filtered out.
-    return endpoint.endpoint
-  })
+  if (q) {
+    // Only endpoints that expect a query in this format should be used
+    endpoints = endpoints.filter(({ queryMatcher, ...endpoint }) => {
+      if (queryMatcher) {
+        return !!q?.match(queryMatcher) && endpoint.endpoint
+      }
+  
+      // Since the endpoints are stored in env's (check config.ts), the endpoint theoretically might not exist.
+      // This will make sure undefined endpoints will be filtered out.
+      return endpoint.endpoint
+    })
+  }
 
   // If there are filters in the request, not all endpoints should be called from DataLoader
   if (filterInput && filterInput.length > 0) {
