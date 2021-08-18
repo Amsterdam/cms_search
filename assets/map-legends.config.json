@@ -1141,7 +1141,7 @@
     "id": "wlokca",
     "url": "/maps/afval",
     "layers": ["gfe_coordinaten"],
-    "title": "GFE",
+    "title": "GFT",
     "type": "wms",
     "imageRule": "Gfecontainer",
     "params": {
@@ -1306,84 +1306,6 @@
       "themes": ["wonen", "duurzaamheid-en-milieu"]
     }
   },
-  {
-    "id": "lpfstnd__plastic_0_30",
-    "url": "/maps/afval",
-    "notSelectable": true,
-    "layers": ["pand loopafstand plastic"],
-    "title": "<= 30 m",
-    "type": "wms",
-    "meta": {
-      "themes": ["wonen", "duurzaamheid-en-milieu"]
-    }
-  },
-  {
-    "id": "lpfstnd__plastic_30_90",
-    "url": "/maps/afval",
-    "notSelectable": true,
-    "layers": ["pand loopafstand plastic"],
-    "title": "30 - 90 m",
-    "type": "wms",
-    "meta": {
-      "themes": ["wonen", "duurzaamheid-en-milieu"]
-    }
-  },
-  {
-    "id": "lpfstnd__plastic_90_120",
-    "url": "/maps/afval",
-    "notSelectable": true,
-    "layers": ["pand loopafstand plastic"],
-    "title": "90 - 120 m",
-    "type": "wms",
-    "meta": {
-      "themes": ["wonen", "duurzaamheid-en-milieu"]
-    }
-  },
-  {
-    "id": "lpfstnd__plastic_120_150",
-    "url": "/maps/afval",
-    "notSelectable": true,
-    "layers": ["pand loopafstand plastic"],
-    "title": "120 - 150 m",
-    "type": "wms",
-    "meta": {
-      "themes": ["wonen", "duurzaamheid-en-milieu"]
-    }
-  },
-  {
-    "id": "lpfstnd__plastic_150_210",
-    "url": "/maps/afval",
-    "notSelectable": true,
-    "layers": ["pand loopafstand plastic"],
-    "title": "150 - 210 m",
-    "type": "wms",
-    "meta": {
-      "themes": ["wonen", "duurzaamheid-en-milieu"]
-    }
-  },
-  {
-    "id": "lpfstnd__plastic_210_1000",
-    "url": "/maps/afval",
-    "notSelectable": true,
-    "layers": ["pand loopafstand plastic"],
-    "title": "210 - 1000 m",
-    "type": "wms",
-    "meta": {
-      "themes": ["wonen", "duurzaamheid-en-milieu"]
-    }
-  },
-  {
-    "id": "lpfstnd__plastic_gab",
-    "url": "/maps/afval",
-    "notSelectable": true,
-    "layers": ["pand loopafstand plastic"],
-    "title": "geen afstand bepaald",
-    "type": "wms",
-    "meta": {
-      "themes": ["wonen", "duurzaamheid-en-milieu"]
-    }
-  },
-
   {
     "id": "lpfstnd__papier_0_30",
     "url": "/maps/afval",

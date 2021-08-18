@@ -246,7 +246,7 @@
     "mapLayers": [
       {
         "id": "mzb",
-        "title": "Bestelauto"
+        "title": "Bestelauto / personenauto"
       },
       {
         "id": "mzbs",
@@ -410,9 +410,6 @@
       },
       {
         "id": "wlopls"
-      },
-      {
-        "id": "lpfstndplastic"
       },
       {
         "id": "wlotxtl"
