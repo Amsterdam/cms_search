@@ -2,22 +2,27 @@ import { CombinedDataResult, Filter, FilterOption } from '../../../generated/gra
 import { FilterType } from '../../config'
 import { DataSearchType, DATA_SEARCH_ENDPOINTS, DATA_SEARCH_FILTER } from './config'
 
-export default (results: CombinedDataResult[]): Array<Filter> => [
-  {
-    type: DATA_SEARCH_FILTER.type,
-    label: DATA_SEARCH_FILTER.label,
-    filterType: FilterType.Radio,
-    options: DATA_SEARCH_ENDPOINTS.map(
-      // Return all the available data types as filter options
-      (result: DataSearchType): FilterOption => {
-        const { count = 0 } = results.find(({ type }) => type === result.type) || {}
+export default (results: CombinedDataResult[]): Array<Filter> => {
+  const options: Array<FilterOption> = []
 
-        return {
-          id: result.type,
-          label: result.label,
-          count,
-        }
-      },
-    ),
-  },
-]
+  DATA_SEARCH_ENDPOINTS.forEach((result: DataSearchType) => {
+    if (!options.find(({ id }) => result.type === id)) {
+      const { count = 0 } = results.find(({ type }) => type === result.type) || {}
+
+      options.push({
+        id: result.type,
+        label: result.label,
+        count,
+      })
+    }
+  })
+
+  return [
+    {
+      type: DATA_SEARCH_FILTER.type,
+      label: DATA_SEARCH_FILTER.label,
+      filterType: FilterType.Radio,
+      options,
+    },
+  ]
+}
