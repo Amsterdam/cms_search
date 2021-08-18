@@ -12,6 +12,7 @@ import {
   DATA_SEARCH_FILTER,
   DATA_SEARCH_LIMIT,
   DATA_SEARCH_MAX_RESULTS,
+  DATA_INDEX_ENDPOINTS,
 } from './config'
 import getFilters from './filters'
 import { normalizeResults } from './normalize'
@@ -66,7 +67,19 @@ const index = async (
 
         const query = queryString.stringify({ [searchParam]: q, page, ...(params || {}) })
 
-        const key = `${endpoint}/?${query}`
+        let key = `${endpoint}/?${query}`
+
+        // If there is no query present then we need to use a non-search API endpoint otherwise we will get no results
+        if (!q) {
+          const newEndpoint = DATA_INDEX_ENDPOINTS.find(
+            (indexEndpoint) => type === indexEndpoint.type,
+          )
+
+          if (newEndpoint) {
+            key = `${newEndpoint.endpoint}/?${query}`
+          }
+        }
+
         const result = await loaders.data.load(key)
 
         // If an error is thrown, delete the key from the cache and throw an error
