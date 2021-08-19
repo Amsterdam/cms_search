@@ -33,6 +33,11 @@ const index = async (
 
   // Only endpoints that expect a query in this format should be used
   endpoints = endpoints.filter(({ queryMatcher, ...endpoint }) => {
+    // If the endpoint type is requested as a filter, don't remove the endpoint from the request to prevent errors
+    if (filterInput?.find((filter) => filter.values.indexOf(endpoint.type) > -1)) {
+      return endpoint.endpoint
+    }
+
     if (queryMatcher) {
       return !!q?.match(queryMatcher) && endpoint.endpoint
     }
