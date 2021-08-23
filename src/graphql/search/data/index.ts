@@ -6,14 +6,8 @@ import {
 } from '../../../generated/graphql'
 import { Context } from '../../config'
 import getPageInfo from '../../utils/getPageInfo'
-import {
-  DataSearchType,
-  DATA_SEARCH_ENDPOINTS,
-  DATA_SEARCH_FILTER,
-  DATA_SEARCH_LIMIT,
-  DATA_SEARCH_MAX_RESULTS,
-  DATA_INDEX_ENDPOINTS,
-} from './config'
+import { DATA_SEARCH_FILTER, DATA_SEARCH_LIMIT, DATA_SEARCH_MAX_RESULTS } from './config'
+import getEndpoints from './endpoints'
 import getFilters from './filters'
 import { normalizeResults } from './normalize'
 
@@ -30,46 +24,7 @@ const index = async (
   limit = page || !limit ? DATA_SEARCH_LIMIT : limit
   page = page || 1 // Get the page from the input, otherwise use the default
 
-  let endpoints: Array<DataSearchType> = []
-
-  // TODO separate into function?
-  // TODO check/write test
-  if (q) {
-    // Only endpoints that expect a query in this format should be used
-    endpoints = DATA_SEARCH_ENDPOINTS.filter(({ queryMatcher, ...endpoint }) => {
-      // If the endpoint type is requested as a filter, don't remove the endpoint from the request to prevent errors
-      if (filterInput?.find((filter) => filter.values.indexOf(endpoint.type) > -1)) {
-        return endpoint.endpoint
-      }
-
-      if (queryMatcher) {
-        return !!q?.match(queryMatcher) && endpoint.endpoint
-      }
-
-      // Since the endpoints are stored in env's (check config.ts), the endpoint theoretically might not exist.
-      // This will make sure undefined endpoints will be filtered out.
-      return endpoint.endpoint
-    })
-  } else {
-    // Prevent duplicate endpoints when there is no query
-    DATA_SEARCH_ENDPOINTS.forEach((endpoint) => {
-      if (!endpoints.find(({ type }) => endpoint.type === type)) {
-        // If there is no query present then we need to use a non-search API endpoint otherwise we will get no results
-        const newEndpoint = DATA_INDEX_ENDPOINTS.find(
-          (indexEndpoint) => endpoint.type === indexEndpoint.type,
-        )
-
-        if (newEndpoint) {
-          endpoints.push({
-            ...endpoint,
-            endpoint: newEndpoint.endpoint,
-          })
-        } else {
-          endpoints.push(endpoint)
-        }
-      }
-    })
-  }
+  let endpoints = getEndpoints(q, filterInput)
 
   // If there are filters in the request, not all endpoints should be called from DataLoader
   if (filterInput && filterInput.length > 0) {
