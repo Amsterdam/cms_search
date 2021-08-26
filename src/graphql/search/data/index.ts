@@ -6,13 +6,8 @@ import {
 } from '../../../generated/graphql'
 import { Context } from '../../config'
 import getPageInfo from '../../utils/getPageInfo'
-import {
-  DataSearchType,
-  DATA_SEARCH_ENDPOINTS,
-  DATA_SEARCH_FILTER,
-  DATA_SEARCH_LIMIT,
-  DATA_SEARCH_MAX_RESULTS,
-} from './config'
+import { DATA_SEARCH_FILTER, DATA_SEARCH_LIMIT, DATA_SEARCH_MAX_RESULTS } from './config'
+import getEndpoints from './endpoints'
 import getFilters from './filters'
 import { normalizeResults } from './normalize'
 
@@ -29,18 +24,7 @@ const index = async (
   limit = page || !limit ? DATA_SEARCH_LIMIT : limit
   page = page || 1 // Get the page from the input, otherwise use the default
 
-  let endpoints: Array<DataSearchType> = DATA_SEARCH_ENDPOINTS
-
-  // Only endpoints that expect a query in this format should be used
-  endpoints = endpoints.filter(({ queryMatcher, ...endpoint }) => {
-    if (queryMatcher) {
-      return !!q?.match(queryMatcher) && endpoint.endpoint
-    }
-
-    // Since the endpoints are stored in env's (check config.ts), the endpoint theoretically might not exist.
-    // This will make sure undefined endpoints will be filtered out.
-    return endpoint.endpoint
-  })
+  let endpoints = getEndpoints(q, filterInput)
 
   // If there are filters in the request, not all endpoints should be called from DataLoader
   if (filterInput && filterInput.length > 0) {

@@ -11,6 +11,11 @@ export interface DataSearchType {
   }
 }
 
+export interface DataIndexType {
+  endpoint: string
+  type: string
+}
+
 export enum DataType {
   Address = 'adressen',
   Streets = 'straatnamen',
@@ -30,6 +35,10 @@ export enum DataType {
 // using OpenStack. Therefore extra quotes are added that we need to strip out manually here
 export const SEARCH_ENDPOINTS = process.env.DATA_SEARCH_ENDPOINTS
   ? JSON.parse(process.env.DATA_SEARCH_ENDPOINTS.replace(/'/gm, ''))
+  : {}
+
+export const INDEX_ENDPOINTS = process.env.DATA_INDEX_ENDPOINTS
+  ? JSON.parse(process.env.DATA_INDEX_ENDPOINTS.replace(/'/gm, ''))
   : {}
 
 export const DATA_SEARCH_ENDPOINTS: Array<DataSearchType> = [
@@ -132,6 +141,25 @@ export const DATA_SEARCH_ENDPOINTS: Array<DataSearchType> = [
     searchParam: 'olo_liaan_nummer',
     queryMatcher: /^OLO\d/,
     queryFormatter: /^OLO/,
+  },
+]
+
+export const DATA_INDEX_ENDPOINTS: Array<DataIndexType> = [
+  {
+    endpoint: INDEX_ENDPOINTS[DataType.ConstructionFiles],
+    type: DataType.ConstructionFiles,
+  },
+  {
+    endpoint: INDEX_ENDPOINTS[DataType.Branches],
+    type: DataType.Branches,
+  },
+  {
+    endpoint: INDEX_ENDPOINTS[DataType.MeasuringBolt],
+    type: DataType.MeasuringBolt,
+  },
+  {
+    endpoint: INDEX_ENDPOINTS[DataType.SocialActivity],
+    type: DataType.SocialActivity,
   },
 ]
 
