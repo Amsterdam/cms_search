@@ -2618,9 +2618,9 @@
     }
   },
   {
-    "id": "3x40Atot3x63A_markt",
-    "title": "3 x 40 A tot 3 x 63 A",
-    "layers": ["Markt: 3 x 40 A tot 3 x 63 A"],
+    "id": "tot3x63A_markt",
+    "title": "tot 3 x 63 A",
+    "layers": ["Markt: tot 3 x 63 A"],
     "type": "wms",
     "url": "/maps/energie",
     "detailUrl": "geosearch/",
@@ -2632,9 +2632,9 @@
     }
   },
   {
-    "id": "3x25Atot3x40A_markt",
-    "title": "3 x 25 A tot 3 x 40 A",
-    "layers": ["Markt: 3 x 25 A tot 3 x 40 A"],
+    "id": "tot3x40A_markt",
+    "title": "tot 3 x 40 A",
+    "layers": ["Markt: tot 3 x 40 A"],
     "type": "wms",
     "url": "/maps/energie",
     "detailUrl": "geosearch/",
@@ -2674,9 +2674,9 @@
     }
   },
   {
-    "id": "3x40Atot3x63A_evenement",
-    "title": "3 x 40 A tot 3 x 63 A",
-    "layers": ["Evenement: 3 x 40 A tot 3 x 63 A"],
+    "id": "tot3x63A_evenement",
+    "title": "tot 3 x 63 A",
+    "layers": ["Evenement: tot 3 x 63 A"],
     "type": "wms",
     "url": "/maps/energie",
     "detailUrl": "geosearch/",
@@ -2688,9 +2688,9 @@
     }
   },
   {
-    "id": "3x25Atot3x40A_evenement",
-    "title": "3 x 25 A tot 3 x 40 A",
-    "layers": ["Evenement: 3 x 25 A tot 3 x 40 A"],
+    "id": "tot3x40A_evenement",
+    "title": "tot 3 x 40 A",
+    "layers": ["Evenement: tot 3 x 40 A"],
     "type": "wms",
     "url": "/maps/energie",
     "detailUrl": "geosearch/",
@@ -2729,9 +2729,9 @@
     }
   },
   {
-    "id": "3x40Atot3x63A_bouw",
-    "title": "3 x 40 A tot 3 x 63 A",
-    "layers": ["Bouwstroompunt: 3 x 40 A tot 3 x 63 A"],
+    "id": "tot3x63A_bouw",
+    "title": "tot 3 x 63 A",
+    "layers": ["Bouwstroompunt: tot 3 x 63 A"],
     "type": "wms",
     "url": "/maps/energie",
     "detailUrl": "geosearch/",
@@ -2743,9 +2743,9 @@
     }
   },
   {
-    "id": "3x25Atot3x40A_bouw",
-    "title": "3 x 25 A tot 3 x 40 A",
-    "layers": ["Bouwstroompunt: 3 x 25 A tot 3 x 40 A"],
+    "id": "tot3x40A_bouw",
+    "title": "tot 3 x 40 A",
+    "layers": ["Bouwstroompunt: tot 3 x 40 A"],
     "type": "wms",
     "url": "/maps/energie",
     "detailUrl": "geosearch/",

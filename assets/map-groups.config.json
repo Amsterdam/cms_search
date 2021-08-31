@@ -2035,10 +2035,10 @@
         "id": "tot3x25A_markt"
       },
       {
-        "id": "3x25Atot3x40A_markt"
+        "id": "tot3x40A_markt"
       },
       {
-        "id": "3x40Atot3x63A_markt"
+        "id": "tot3x63A_markt"
       },
       {
         "id": "lt3x80A_markt"
@@ -2057,10 +2057,10 @@
         "id": "tot3x25A_evenement"
       },
       {
-        "id": "3x25Atot3x40A_evenement"
+        "id": "tot3x40A_evenement"
       },
       {
-        "id": "3x40Atot3x63A_evenement"
+        "id": "tot3x63A_evenement"
       },
       {
         "id": "lt3x80A_evenement"
@@ -2079,10 +2079,10 @@
         "id": "tot3x25A_bouw"
       },
       {
-        "id": "3x25Atot3x40A_bouw"
+        "id": "tot3x40A_bouw"
       },
       {
-        "id": "3x40Atot3x63A_bouw"
+        "id": "tot3x63A_bouw"
       },
       {
         "id": "lt3x80A_bouw"
