@@ -45,5 +45,6 @@
         "@typescript-eslint/no-floating-promises": "off"
       }
     }
-  ]
+  ],
+  "plugins": ["import"]
 }
