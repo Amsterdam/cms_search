@@ -472,25 +472,6 @@
     }
   },
   {
-    "id": "pvrts",
-    "layers": ["parkeervakken_reservering"],
-    "title": "Taxistandplaats",
-    "type": "wms",
-    "params": {
-      "categorie": "taxistandplaats"
-    },
-    "url": "/maps/parkeervakken",
-    "minZoom": 11,
-    "detailUrl": "geosearch/",
-    "detailParams": {
-      "datasets": "parkeervakken/parkeervakken"
-    },
-    "detailIsShape": true,
-    "meta": {
-      "themes": ["verkeer", "ruimte-en-topografie"]
-    }
-  },
-  {
     "id": "pvrll",
     "layers": ["parkeervakken_reservering"],
     "title": "Laden en lossen",
@@ -2068,6 +2049,22 @@
     },
     "meta": {
       "themes": ["openbare-orde-en-veiligheid", "wonen", "verkeer"]
+    }
+  },
+  {
+    "id": "oovmvg",
+    "title": "Messenverbodgebieden",
+    "type": "wms",
+    "layers": ["messenverbodgebieden"],
+    "notSelectable": true,
+    "url": "/maps/overlastgebieden",
+    "imageRule": "messenverbodgebieden",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "overlastgebieden/messenverbodgebieden"
+    },
+    "meta": {
+      "themes": []
     }
   },
   {

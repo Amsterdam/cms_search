@@ -108,9 +108,6 @@
         "title": "Speciale bestemmingen"
       },
       {
-        "id": "pvrts"
-      },
-      {
         "id": "pvrll"
       },
       {
@@ -444,6 +441,9 @@
       },
       {
         "id": "oovtig"
+      },
+      {
+        "id": "oovmvg"
       }
     ],
     "meta": {
@@ -566,9 +566,6 @@
       },
       {
         "id": "tar"
-      },
-      {
-        "id": "pvrts"
       },
       {
         "id": "mzt"
