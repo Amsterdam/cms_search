@@ -21,6 +21,7 @@ async function fetchWithAbort<T = any>(
     console.warn('ABORTED', endpoint) // For logging in Sentry
   }, MAX_REQUEST_TIME)
 
+  // eslint-disable-next-line @typescript-eslint/return-await
   return await fetch(endpoint, { ...options, signal: controller.signal })
     .then((res) => {
       clearTimeout(timeout) // The data is on its way, so clear the timeout
