@@ -2068,6 +2068,22 @@
     }
   },
   {
+    "id": "oovgfvg",
+    "title": "Groepsfietsverbodgebieden",
+    "type": "wms",
+    "layers": ["groepsfietsverbodgebieden"],
+    "notSelectable": true,
+    "url": "/maps/overlastgebieden",
+    "imageRule": "groepsfietsverbodgebieden",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "overlastgebieden/groepsfietsverbodgebieden"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
     "id": "tcevt",
     "layers": ["evenementen"],
     "title": "Evenementen",
