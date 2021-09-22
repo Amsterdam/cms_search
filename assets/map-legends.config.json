@@ -472,6 +472,25 @@
     }
   },
   {
+    "id": "pvrts",
+    "layers": ["parkeervakken_reservering"],
+    "title": "Taxistandplaats",
+    "type": "wms",
+    "params": {
+      "categorie": "taxistandplaats"
+    },
+    "url": "/maps/parkeervakken",
+    "minZoom": 11,
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "parkeervakken/parkeervakken"
+    },
+    "detailIsShape": true,
+    "meta": {
+      "themes": ["verkeer", "ruimte-en-topografie"]
+    }
+  },
+  {
     "id": "pvrll",
     "layers": ["parkeervakken_reservering"],
     "title": "Laden en lossen",
@@ -2034,21 +2053,6 @@
     },
     "meta": {
       "themes": ["openbare-orde-en-veiligheid", "wonen"]
-    }
-  },
-  {
-    "id": "oovtig",
-    "layers": ["taxi-standplaatsgebied", "taxi-standplaatsgebied_label"],
-    "imageRule": "Taxi-standplaatsgebied",
-    "title": "Omgeving taxistandplaatsen",
-    "type": "wms",
-    "url": "/maps/overlastgebieden",
-    "detailUrl": "geosearch/",
-    "detailParams": {
-      "datasets": "overlastgebieden/taxistandplaats"
-    },
-    "meta": {
-      "themes": ["openbare-orde-en-veiligheid", "wonen", "verkeer"]
     }
   },
   {
