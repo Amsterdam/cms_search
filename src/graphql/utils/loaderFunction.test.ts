@@ -1,6 +1,10 @@
 import loaderFunction from './loaderFunction'
 import * as fetchWithAbort from './fetchWithAbort'
 
+jest.mock('node-fetch', () => ({
+  __esModule: true,
+}))
+
 describe('loaderFunction', () => {
   describe('Returns a Promise that resolves to the values corresponding the keys', () => {
     it('when no keys are given', async () => {

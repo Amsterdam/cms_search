@@ -4,6 +4,10 @@ import fetchWithAbort, { MAX_REQUEST_TIME } from './fetchWithAbort'
 
 jest.mock('node-fetch')
 jest.mock('abort-controller')
+jest.mock('node-fetch', () => ({
+  __esModule: true,
+  default: jest.fn(),
+}))
 
 describe('fetchWithAbort', () => {
   describe('Returns data when the request returns result', () => {

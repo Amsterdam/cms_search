@@ -1,4 +1,5 @@
-import fetch, { RequestInit } from 'node-fetch'
+import fetch from 'node-fetch'
+import type { RequestInit, Response } from 'node-fetch'
 import AbortController from 'abort-controller'
 
 export const MAX_REQUEST_TIME = 1200
@@ -8,10 +9,10 @@ export interface ErrorResult {
   message: string
 }
 
-async function fetchWithAbort<T = any>(
+async function fetchWithAbort(
   endpoint: string,
   options: RequestInit = {},
-): Promise<T | ErrorResult> {
+): Promise<unknown | ErrorResult> {
   const controller = new AbortController()
 
   // Abort the fetch request when it takes too long
@@ -23,7 +24,7 @@ async function fetchWithAbort<T = any>(
 
   // eslint-disable-next-line @typescript-eslint/return-await
   return await fetch(endpoint, { ...options, signal: controller.signal })
-    .then((res) => {
+    .then((res: Response) => {
       clearTimeout(timeout) // The data is on its way, so clear the timeout
 
       if (!res.ok) {

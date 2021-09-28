@@ -7,6 +7,9 @@ import * as loaderFunction from './loaderFunction'
 jest.mock('./loaderFunction')
 jest.mock('dataloader')
 jest.mock('lru_map')
+jest.mock('node-fetch', () => ({
+  __esModule: true,
+}))
 
 describe('dataloader', () => {
   const mockedDataLoader = <jest.Mock<typeof DataLoader, any>>(<unknown>DataLoader)
