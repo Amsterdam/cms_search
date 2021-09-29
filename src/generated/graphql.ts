@@ -229,7 +229,6 @@ export type MapLayerSearchResult = SearchResult & {
   pageInfo: PageInfo;
 };
 
-/** MapResult is a combination of MapGroups and MapCollection */
 export type MapResult = {
   __typename?: 'MapResult';
   id: Scalars['ID'];
@@ -355,7 +354,6 @@ export type Results = DatasetResult | CmsResult | CombinedDataResult | MapGroup 
 
 export type SearchResult = {
   totalCount: Scalars['Int'];
-  /** TODO: See if results can be made required. */
   results?: Maybe<Array<Results>>;
   filters?: Maybe<Array<Filter>>;
   pageInfo: PageInfo;

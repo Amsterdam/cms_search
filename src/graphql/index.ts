@@ -1,5 +1,5 @@
 import { graphqlHTTP } from 'express-graphql'
-import { makeExecutableSchema } from 'graphql-tools'
+import { makeExecutableSchema } from '@graphql-tools/schema'
 import typeDefs from './graphql.schema'
 import resolvers from './search'
 import createDataLoader from './utils/createDataLoader'
