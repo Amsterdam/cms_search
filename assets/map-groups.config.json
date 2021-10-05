@@ -1970,64 +1970,6 @@
     }
   },
   {
-    "id": "ligplaats_passagiersvaartuigen",
-    "layers": ["ligplaatssegmenten"],
-    "title": "Ligplaatsen passagiersvaartuigen",
-    "legendItems": [
-      {
-        "id": "ligplaatssegmenten_groot"
-      },
-      {
-        "id": "ligplaatssegmenten_middel"
-      },
-      {
-        "id": "ligplaatssegmenten_klein"
-      },
-      {
-        "id": "ligplaatssegmenten_onbemand"
-      },
-      {
-        "id": "ligplaatssegmenten_waterfietsen"
-      }
-    ],
-    "type": "wms",
-    "meta": {
-      "themes": ["ruimte-en-topografie"]
-    }
-  },
-  {
-    "id": "op_afstaplocaties_beroepsvaart",
-    "layers": ["ligplaatssegmenten"],
-    "title": "Op- en afstaplocaties beroepsvaart",
-    "legendItems": [
-      {
-        "id": "op_afstaplocaties_passagiersvaart"
-      },
-      {
-        "id": "op_afstaplocaties_passagiersvaart_laden_lossen"
-      },
-      {
-        "id": "op_afstaplocaties_passagiersvaart_actie"
-      },
-      {
-        "id": "geen_op_afstapplaats"
-      },
-      {
-        "id": "wenslocatie"
-      },
-      {
-        "id": "laden_lossen_transport_over_water"
-      },
-      {
-        "id": "exclusieve_op_afstaplocatie_passagiersvaart"
-      }
-    ],
-    "type": "wms",
-    "meta": {
-      "themes": ["ruimte-en-topografie"]
-    }
-  },
-  {
     "id": "stroompunten_markt",
     "title": "Marktstroompunten",
     "legendItems": [
