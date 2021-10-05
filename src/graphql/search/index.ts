@@ -1,4 +1,4 @@
-import { IResolvers } from 'graphql-tools'
+import type { IResolvers } from '@graphql-tools/utils'
 import { QueryResolvers, Resolvers } from '../../generated/graphql'
 import { mapCollectionSearch, mapLayerSearch, mapSearch } from '../../map/graphql'
 import { articleSearch, collectionSearch, publicationSearch, specialSearch } from './cms'
