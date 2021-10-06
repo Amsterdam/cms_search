@@ -57,7 +57,7 @@
     "@graphql-codegen/cli": "^2.0.1",
     "@graphql-codegen/introspection": "^2.0.0",
     "@graphql-codegen/typescript": "^2.2.2",
-    "@graphql-codegen/typescript-resolvers": "^1.19.4",
+    "@graphql-codegen/typescript-resolvers": "^2.3.0",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
     "concurrently": "^6.2.1",
