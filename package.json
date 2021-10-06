@@ -27,7 +27,7 @@
   "dependencies": {
     "@elastic/elasticsearch": "^7.13.0",
     "@graphql-tools/schema": "^8.2.0",
-    "@graphql-tools/utils": "^8.2.3",
+    "@graphql-tools/utils": "^8.2.4",
     "@sentry/node": "^6.12.0",
     "@sentry/types": "^6.8.0",
     "@types/cors": "^2.8.10",
@@ -57,7 +57,7 @@
     "@graphql-codegen/cli": "^2.0.1",
     "@graphql-codegen/introspection": "^2.0.0",
     "@graphql-codegen/typescript": "^2.2.2",
-    "@graphql-codegen/typescript-resolvers": "^1.19.4",
+    "@graphql-codegen/typescript-resolvers": "^2.3.0",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
     "concurrently": "^6.2.1",
