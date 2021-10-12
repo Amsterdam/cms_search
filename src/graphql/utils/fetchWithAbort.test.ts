@@ -65,7 +65,7 @@ describe('fetchWithAbort', () => {
       try {
         await fetchWithAbort('url')
       } catch (e) {
-        expect(e.message).toBe(`${STATUS} - ${STATUS_TEXT}`) // The thrown error is the status code and statusText combined
+        expect(e).toStrictEqual(new Error(`${STATUS} - ${STATUS_TEXT}`)) // The thrown error is the status code and statusText combined
       }
 
       mockFetch.mockReset()
@@ -85,7 +85,11 @@ describe('fetchWithAbort', () => {
       try {
         await fetchWithAbort('url')
       } catch (e) {
-        expect(e.message).toBe(MESSAGE) // The thrown error is the error message
+        // expect(e).toStrictEqual(new Error(MESSAGE)) // The thrown error is the error message
+        expect(e).toEqual({
+          name: 'Error',
+          message: MESSAGE,
+        }) // The thrown error is the error message
       }
 
       mockFetch.mockReset()
@@ -114,7 +118,7 @@ describe('fetchWithAbort', () => {
       expect(setTimeout).toHaveBeenCalledWith(jasmine.any(Function), MAX_REQUEST_TIME)
       expect(mockedAbortController).toHaveBeenCalled()
     } catch (e) {
-      expect(e.message).toBe('504 - Gateway Timeout') // The thrown error is the error message
+      expect(e).toStrictEqual(new Error('504 - Gateway Timeout')) // The thrown error is the error message
     }
 
     mockFetch.mockReset()
