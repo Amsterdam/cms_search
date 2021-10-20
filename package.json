@@ -27,7 +27,7 @@
   "dependencies": {
     "@elastic/elasticsearch": "^7.15.0",
     "@graphql-tools/schema": "^8.3.0",
-    "@graphql-tools/utils": "^8.2.5",
+    "@graphql-tools/utils": "^8.4.0",
     "@sentry/node": "^6.13.3",
     "@sentry/types": "^6.8.0",
     "@types/cors": "^2.8.10",
