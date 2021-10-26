@@ -34,7 +34,7 @@
     "@types/elasticsearch": "^5.0.37",
     "@types/express": "^4.17.12",
     "@types/jest": "^27.0.2",
-    "@types/node": "^16.11.4",
+    "@types/node": "^16.11.6",
     "@types/node-fetch": "^2.5.10",
     "@types/remove-markdown": "^0.3.1",
     "@types/ws": "^8.2.0",
