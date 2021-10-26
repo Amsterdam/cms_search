@@ -2321,7 +2321,7 @@
       {
         "kind": "OBJECT",
         "name": "MapResult",
-        "description": null,
+        "description": "MapResult is a combination of MapGroups and MapCollection",
         "fields": [
           {
             "name": "id",
@@ -3335,7 +3335,7 @@
           },
           {
             "name": "results",
-            "description": null,
+            "description": "TODO: See if results can be made required.",
             "args": [],
             "type": {
               "kind": "LIST",

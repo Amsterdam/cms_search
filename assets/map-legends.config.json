@@ -2881,5 +2881,149 @@
     "meta": {
       "themes": ["ruimte-en-topografie"]
     }
+  },
+  {
+    "id": "ligplaatssegmenten_groot",
+    "title": "Groot (v.a. 16m)",
+    "type": "wms",
+    "layers": ["ligplaatssegmenten"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Groot:vanaf_16m",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/ligplaats"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "ligplaatssegmenten_middel",
+    "title": "Middel (10 t/m 16m)",
+    "type": "wms",
+    "layers": ["ligplaatssegmenten"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Middel:10_tm_15,99m",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/ligplaats"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "ligplaatssegmenten_klein",
+    "title": "Klein (<10m)",
+    "type": "wms",
+    "layers": ["ligplaatssegmenten"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Klein:<_10m",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/ligplaats"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "ligplaatssegmenten_onbemand",
+    "title": "Onbemand",
+    "type": "wms",
+    "layers": ["ligplaatssegmenten"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Onbemand",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/ligplaats"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "ligplaatssegmenten_waterfietsen",
+    "title": "Waterfietsen",
+    "type": "wms",
+    "layers": ["ligplaatssegmenten"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Waterfietsen",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/ligplaats"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "op_afstaplocaties_passagiersvaart",
+    "title": "Openbare op- en afstapplaats passagiersvaart",
+    "type": "wms",
+    "layers": ["opafstapplaats"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Op&afstapplaats_passagiersvaart",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/opafstapplaats"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "op_afstaplocaties_passagiersvaart_laden_lossen",
+    "title": "Openbare op- en afstapplaats passagiersvaart + laden en lossen transport",
+    "type": "wms",
+    "layers": ["opafstapplaats"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Op&afstapplaats_passagiersvaart_en_laden&lossen",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/opafstapplaats"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "laden_lossen_transport_over_water",
+    "title": "Laden en lossen transport over water",
+    "type": "wms",
+    "layers": ["opafstapplaats"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Op&afstaplocatie_passagiersvaart_exclusieve",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/opafstapplaats"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "exclusieve_op_afstaplocatie_passagiersvaart",
+    "title": "Exclusieve op- en afstaplocatie passagiersvaart",
+    "type": "wms",
+    "layers": ["opafstapplaats"],
+    "notSelectable": true,
+    "url": "/maps/varen",
+    "imageRule": "Laden&lossen_transport_over_water",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "varen/opafstapplaats"
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
   }
 ]
