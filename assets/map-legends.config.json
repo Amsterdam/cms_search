@@ -2995,54 +2995,6 @@
     }
   },
   {
-    "id": "op_afstaplocaties_passagiersvaart_actie",
-    "title": "Openbare op- en afstapplaats passagiersvaart, actie benodigd",
-    "type": "wms",
-    "layers": ["opafstapplaats"],
-    "notSelectable": true,
-    "url": "/maps/varen",
-    "imageRule": "Op&afstapplaats_passagiersvaart_actie_benodigd",
-    "detailUrl": "geosearch/",
-    "detailParams": {
-      "datasets": "varen/opafstapplaats"
-    },
-    "meta": {
-      "themes": ["ruimte-en-topografie"]
-    }
-  },
-  {
-    "id": "geen_op_afstapplaats",
-    "title": "Geen op- en afstapplaats",
-    "type": "wms",
-    "layers": ["opafstapplaats"],
-    "notSelectable": true,
-    "url": "/maps/varen",
-    "imageRule": "Geen_op&afstapplaats",
-    "detailUrl": "geosearch/",
-    "detailParams": {
-      "datasets": "varen/opafstapplaats"
-    },
-    "meta": {
-      "themes": ["ruimte-en-topografie"]
-    }
-  },
-  {
-    "id": "wenslocatie",
-    "title": "Wenslocatie",
-    "type": "wms",
-    "layers": ["opafstapplaats"],
-    "notSelectable": true,
-    "url": "/maps/varen",
-    "imageRule": "Wenslocatie",
-    "detailUrl": "geosearch/",
-    "detailParams": {
-      "datasets": "varen/opafstapplaats"
-    },
-    "meta": {
-      "themes": ["ruimte-en-topografie"]
-    }
-  },
-  {
     "id": "laden_lossen_transport_over_water",
     "title": "Laden en lossen transport over water",
     "type": "wms",
