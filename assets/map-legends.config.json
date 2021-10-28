@@ -3001,7 +3001,7 @@
     "layers": ["opafstapplaats"],
     "notSelectable": true,
     "url": "/maps/varen",
-    "imageRule": "Op&afstaplocatie_passagiersvaart_exclusieve",
+    "imageRule": "Laden&lossen_transport_over_water",
     "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "varen/opafstapplaats"
@@ -3017,7 +3017,7 @@
     "layers": ["opafstapplaats"],
     "notSelectable": true,
     "url": "/maps/varen",
-    "imageRule": "Laden&lossen_transport_over_water",
+    "imageRule": "Op&afstaplocatie_passagiersvaart_exclusieve",
     "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "varen/opafstapplaats"
