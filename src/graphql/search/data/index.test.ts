@@ -45,7 +45,6 @@ describe('dataResolver', () => {
 
   const CONTEXT: any = {
     loaders: {
-      cms: { load: jest.fn, clear: jest.fn() },
       data: { load: jest.fn, clear: jest.fn() },
       datasets: { load: jest.fn, clear: jest.fn() },
       openAPI: { load: jest.fn, clear: jest.fn() },

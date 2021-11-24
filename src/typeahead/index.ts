@@ -1,6 +1,4 @@
 import { Request, Response } from 'express'
-import { getCmsSuggestion } from '../es/cms/typeahead'
-import { CmsType } from '../graphql/search/cms/config'
 import { getMapCollectionSuggestion, getMapLayerSuggestion } from '../map/typeahead'
 import { isProduction } from '../utils/environment'
 
@@ -26,10 +24,6 @@ const TypeAheadMiddleWare = async (req: Request, res: Response) => {
   const results = await Promise.allSettled([
     getMapLayerSuggestion(query),
     getMapCollectionSuggestion(query),
-    getCmsSuggestion(CmsType.Special, query),
-    getCmsSuggestion(CmsType.Article, query),
-    getCmsSuggestion(CmsType.Publication, query),
-    getCmsSuggestion(CmsType.Collection, query),
   ])
 
   results

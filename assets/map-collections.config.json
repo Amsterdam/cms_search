@@ -32,8 +32,7 @@
       }
     ],
     "meta": {
-      "themes": ["ruimte-en-topografie", "wonen"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-onroerende-zaken.jpg"
+      "themes": ["ruimte-en-topografie", "wonen"]
     }
   },
   {
@@ -63,8 +62,7 @@
       }
     ],
     "meta": {
-      "themes": ["ruimte-en-topografie", "bestuur"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-gebiedsindeling.jpg"
+      "themes": ["ruimte-en-topografie", "bestuur"]
     }
   },
   {
@@ -91,8 +89,7 @@
       }
     ],
     "meta": {
-      "themes": ["ruimte-en-topografie"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-hoogte.jpg"
+      "themes": ["ruimte-en-topografie"]
     }
   },
   {
@@ -144,8 +141,7 @@
       }
     ],
     "meta": {
-      "themes": ["verkeer", "ruimte-en-topografie"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-parkeren.jpg"
+      "themes": ["verkeer", "ruimte-en-topografie"]
     }
   },
   {
@@ -160,8 +156,7 @@
       }
     ],
     "meta": {
-      "themes": ["openbare-orde-en-veiligheid", "zorg-en-welzijn"],
-      "thumbnail": "sites/default/files/images/thumbnail-kaarten.jpg"
+      "themes": ["openbare-orde-en-veiligheid", "zorg-en-welzijn"]
     }
   },
   {
@@ -182,8 +177,7 @@
       }
     ],
     "meta": {
-      "themes": ["duurzaamheid-en-milieu"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-aardgas.jpg"
+      "themes": ["duurzaamheid-en-milieu"]
     }
   },
   {
@@ -198,8 +192,7 @@
       }
     ],
     "meta": {
-      "themes": ["ruimte-en-topografie"],
-      "thumbnail": null
+      "themes": ["ruimte-en-topografie"]
     }
   },
   {
@@ -220,8 +213,7 @@
       }
     ],
     "meta": {
-      "themes": ["ruimte-en-topografie"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-historisch.jpg"
+      "themes": ["ruimte-en-topografie"]
     }
   },
   {
@@ -233,8 +225,7 @@
       }
     ],
     "meta": {
-      "themes": ["verkeer"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-ov-net.jpg"
+      "themes": ["verkeer"]
     }
   },
   {
@@ -263,8 +254,7 @@
       }
     ],
     "meta": {
-      "themes": ["duurzaamheid-en-milieu", "verkeer"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-milieuzones-verkeer.jpg"
+      "themes": ["duurzaamheid-en-milieu", "verkeer"]
     }
   },
   {
@@ -281,8 +271,7 @@
       }
     ],
     "meta": {
-      "themes": ["duurzaamheid-en-milieu", "verkeer"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-oplaadpunten.jpg"
+      "themes": ["duurzaamheid-en-milieu", "verkeer"]
     }
   },
   {
@@ -309,8 +298,7 @@
       }
     ],
     "meta": {
-      "themes": ["verkeer", "ruimte-en-topografie", "openbare-orde-en-veiligheid"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-verkeer-routes.jpg"
+      "themes": ["verkeer", "ruimte-en-topografie", "openbare-orde-en-veiligheid"]
     }
   },
   {
@@ -379,8 +367,7 @@
       }
     ],
     "meta": {
-      "themes": ["bestuur", "economie-en-toerisme", "wonen"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-bekendmakingen.jpg"
+      "themes": ["bestuur", "economie-en-toerisme", "wonen"]
     }
   },
   {
@@ -416,8 +403,7 @@
       }
     ],
     "meta": {
-      "themes": ["wonen", "duurzaamheid-en-milieu"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-afvalcontainers.jpg"
+      "themes": ["wonen", "duurzaamheid-en-milieu"]
     }
   },
   {
@@ -447,8 +433,7 @@
       }
     ],
     "meta": {
-      "themes": ["openbare-orde-en-veiligheid", "wonen"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-veiligheid-overlast.jpg"
+      "themes": ["openbare-orde-en-veiligheid", "wonen"]
     }
   },
   {
@@ -463,8 +448,7 @@
       }
     ],
     "meta": {
-      "themes": ["cultuur-en-recreatie", "ruimte-en-topografie"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-cultureel-erfgoed.jpg"
+      "themes": ["cultuur-en-recreatie", "ruimte-en-topografie"]
     }
   },
   {
@@ -476,8 +460,7 @@
       }
     ],
     "meta": {
-      "themes": ["cultuur-en-recreatie"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-evenementen.jpg"
+      "themes": ["cultuur-en-recreatie"]
     }
   },
   {
@@ -495,8 +478,7 @@
       }
     ],
     "meta": {
-      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-winkelgebieden.jpg"
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
     }
   },
   {
@@ -553,8 +535,7 @@
       }
     ],
     "meta": {
-      "themes": ["economie-en-toerisme"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-vestigingen.jpg"
+      "themes": ["economie-en-toerisme"]
     }
   },
   {
@@ -586,8 +567,7 @@
       }
     ],
     "meta": {
-      "themes": ["verkeer"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-taxi.jpg"
+      "themes": ["verkeer"]
     }
   },
   {
@@ -615,8 +595,7 @@
       }
     ],
     "meta": {
-      "themes": ["verkeer"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-logistiek.jpg"
+      "themes": ["verkeer"]
     }
   },
   {
@@ -676,8 +655,7 @@
       }
     ],
     "meta": {
-      "themes": ["duurzaamheid-en-milieu", "openbare-orde-en-veiligheid", "ruimte-en-topografie"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-ondergrond.jpg"
+      "themes": ["duurzaamheid-en-milieu", "openbare-orde-en-veiligheid", "ruimte-en-topografie"]
     }
   },
   {
@@ -698,8 +676,7 @@
       }
     ],
     "meta": {
-      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-bodemkwaliteit.jpg"
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]
     }
   },
   {
@@ -724,8 +701,7 @@
       }
     ],
     "meta": {
-      "themes": ["duurzaamheid-en-milieu", "openbare-orde-en-veiligheid", "ruimte-en-topografie"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-explosieven.jpg"
+      "themes": ["duurzaamheid-en-milieu", "openbare-orde-en-veiligheid", "ruimte-en-topografie"]
     }
   },
   {
@@ -749,8 +725,7 @@
       }
     ],
     "meta": {
-      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-geluidszones.jpg"
+      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]
     }
   },
   {
@@ -775,8 +750,7 @@
       }
     ],
     "meta": {
-      "themes": ["duurzaamheid-en-milieu", "verkeer"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-schiphol.jpg"
+      "themes": ["duurzaamheid-en-milieu", "verkeer"]
     }
   },
   {
@@ -838,8 +812,7 @@
       }
     ],
     "meta": {
-      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-risicozones.jpg"
+      "themes": ["duurzaamheid-en-milieu", "verkeer", "ruimte-en-topografie"]
     }
   },
   {
@@ -854,8 +827,7 @@
       }
     ],
     "meta": {
-      "themes": ["ruimte-en-topografie"],
-      "thumbnail": "sites/default/files/images/teaser-kaart-panorama.jpg"
+      "themes": ["ruimte-en-topografie"]
     }
   },
   {
@@ -868,8 +840,7 @@
       }
     ],
     "meta": {
-      "themes": ["ruimte-en-topografie", "wonen"],
-      "thumbnail": "sites/default/files/images/thumbnail-kaarten.jpg"
+      "themes": ["ruimte-en-topografie", "wonen"]
     }
   },
   {
@@ -884,8 +855,7 @@
       }
     ],
     "meta": {
-      "themes": ["bestuur", "wonen"],
-      "thumbnail": "sites/default/files/images/thumbnail-kaarten.jpg"
+      "themes": ["bestuur", "wonen"]
     }
   },
   {
@@ -909,8 +879,7 @@
       }
     ],
     "meta": {
-      "themes": ["ruimte-en-topografie", "economie-en-toerisme"],
-      "thumbnail": "sites/default/files/images/thumbnail-kaarten.jpg"
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
     }
   }
 ]

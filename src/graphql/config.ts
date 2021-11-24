@@ -1,10 +1,8 @@
 import DataLoader from 'dataloader'
-import { JsonAPI } from './search/cms/normalize'
 import { RootObject as OpenAPI } from '../fixtures/openapi/types'
 
 export interface Context {
   loaders: {
-    cms: DataLoader<string, PromiseSettledResult<JsonAPI>, string>
     data: DataLoader<
       string,
       PromiseSettledResult<{ count: number; results: Record<string, unknown>[] }>,

@@ -14,7 +14,7 @@ import {
 } from '../generated/graphql'
 import { Theme } from '../generated/theme'
 import { DEFAULT_LIMIT, FilterType } from '../graphql/config'
-import { FILTERS } from '../graphql/search/cms/config'
+import { FILTERS } from '../graphql/search/filters/config'
 import getPageInfo from '../graphql/utils/getPageInfo'
 import fromFuseResult from '../utils/from-fuse-result'
 import paginate from '../utils/paginate'

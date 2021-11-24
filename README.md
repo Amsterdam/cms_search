@@ -1,7 +1,4 @@
-# Elasticsearch functionality for Drupal CMS
-
-This project makes the Elastic Search for the Drupal CMS that is indexed by the Drupal plugin for Elastic Search
-available as typeahead or search.
+## A normalization layer for Data Verkenner
 
 ## Local test
 
@@ -43,8 +40,7 @@ Now that we added an `id` to the collection, we have to add the layer. Open [map
     }
   ],
   "meta": {
-    "themes": ["foo", "bar"],
-    "thumbnail": null
+    "themes": ["foo", "bar"]
   }
 }
 ```
@@ -78,8 +74,7 @@ When the map layer comes with an instance API, the configuration must be extende
   },
   "detailIsShape": true,
   "meta": {
-    "themes": ["foo", "bar"],
-    "thumbnail": null
+    "themes": ["foo", "bar"]
   }
 }
 ```
@@ -105,7 +100,6 @@ Open [map-collections.config.json](./assets/map-collections.config.json) and add
     "description": null,
     "themes": ["foo", "bar"],
     "datasetIds": [],
-    "thumbnail": "sites/default/files/images/thumbnail-kaarten.jpg",
     "date": null
   }
 }
@@ -115,4 +109,3 @@ Open [map-collections.config.json](./assets/map-collections.config.json) and add
 - _title_ - the title of the collection that will be displayed in the front-end
 - _mapLayers_ - an array of objects containing the `id` that should correnspond to the `id` of the map layer added in [map-layers.config.json](./assets/map-layers.config.json)`
 - _meta.themes_ - these should contain the id's of [themes.config.json](./assets/themes.config.json).
-- _meta.thumbnail_ - this is the absolute path from [the cms](https://cms.data.amsterdam.nl) where the image of the collection is uploaded. This will be displayed in the front-end in the search results.

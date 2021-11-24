@@ -19,7 +19,6 @@ const GraphQLMiddleware = graphqlHTTP((req) => ({
   context: {
     // Create a context for holding contextual data
     loaders: {
-      cms: createDataLoader(''),
       data: createDataLoader(req.headers.authorization || ''),
       datasets: createDataLoader(''),
       openAPI: createDataLoader(''),
