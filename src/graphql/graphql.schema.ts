@@ -2,13 +2,7 @@
 const gql = (input: any) => input
 
 const schema = gql`
-  union Results =
-      DatasetResult
-    | CMSResult
-    | CombinedDataResult
-    | MapGroup
-    | MapCollection
-    | CombinedMapResult
+  union Results = DatasetResult | CombinedDataResult | MapGroup | MapCollection | CombinedMapResult
 
   interface SearchResult {
     totalCount: Int!
@@ -28,19 +22,6 @@ const schema = gql`
     limit: Int
     page: Int
     filters: [FilterInput!]
-  }
-
-  input CMSSortInput {
-    field: String!
-    order: String!
-  }
-
-  input CMSSearchInput {
-    limit: Int
-    page: Int
-    types: [String!]
-    filters: [FilterInput!]
-    sort: CMSSortInput
   }
 
   input DatasetSearchInput {
@@ -70,13 +51,6 @@ const schema = gql`
   type DatasetSearchResult implements SearchResult {
     totalCount: Int!
     results: [DatasetResult!]
-    filters: [Filter!]
-    pageInfo: PageInfo!
-  }
-
-  type CMSSearchResult implements SearchResult {
-    totalCount: Int!
-    results: [CMSResult!]
     filters: [Filter!]
     pageInfo: PageInfo!
   }
@@ -113,27 +87,6 @@ const schema = gql`
     id: String!
     label: String!
     count: Int
-  }
-
-  type CMSLink {
-    uri: String!
-  }
-
-  type CMSResult {
-    id: ID
-    type: String!
-    label: String
-    slug: String
-    teaserImage: String
-    coverImage: String
-    specialType: String
-    file: String
-    date: String
-    body: String
-    intro: String
-    teaser: String
-    dateLocale: String
-    link: CMSLink
   }
 
   # MapResult is a combination of MapGroups and MapCollection
@@ -251,7 +204,6 @@ const schema = gql`
 
   type Meta {
     themes: [Theme!]!
-    thumbnail: String
   }
 
   type DetailParams {
@@ -271,12 +223,8 @@ const schema = gql`
   }
 
   type Query {
-    articleSearch(q: String, input: CMSSearchInput): CMSSearchResult
     dataSearch(q: String, input: DataSearchInput): DataSearchResult
     datasetSearch(q: String, input: DatasetSearchInput): DatasetSearchResult
-    publicationSearch(q: String, input: CMSSearchInput): CMSSearchResult
-    specialSearch(q: String, input: CMSSearchInput): CMSSearchResult
-    collectionSearch(q: String, input: CMSSearchInput): CMSSearchResult
     mapCollectionSearch(q: String, input: MapSearchInput): MapCollectionSearchResult!
     mapLayerSearch(q: String, input: MapSearchInput): MapLayerSearchResult!
     mapSearch(q: String, input: MapSearchInput): MapSearchResult!

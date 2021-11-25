@@ -1,18 +1,13 @@
 import type { IResolvers } from '@graphql-tools/utils'
 import { QueryResolvers, Resolvers } from '../../generated/graphql'
 import { mapCollectionSearch, mapLayerSearch, mapSearch } from '../../map/graphql'
-import { articleSearch, collectionSearch, publicationSearch, specialSearch } from './cms'
 import dataSearch from './data'
 import datasetSearch from './datasets'
 import filters from './filters'
 
 const queryResolvers: QueryResolvers = {
-  articleSearch,
   dataSearch,
   datasetSearch,
-  publicationSearch,
-  specialSearch,
-  collectionSearch,
   mapCollectionSearch,
   mapLayerSearch,
   mapSearch,
