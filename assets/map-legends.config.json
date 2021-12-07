@@ -2793,7 +2793,7 @@
     "title": "Straatartiestverbod",
     "detailUrl": "geosearch/",
     "detailParams": {
-      "datasets": "covid_19/straatartiestverbod"
+      "datasets": "covid19/straatartiestverbod"
     },
     "imageRule": "straatartiestenverbod",
     "type": "wms",
@@ -2808,7 +2808,7 @@
     "title": "Alcoholverkoopverbod",
     "detailUrl": "geosearch/",
     "detailParams": {
-      "datasets": "covid_19/alcoholverkoopverbod"
+      "datasets": "covid19/alcoholverkoopverbod"
     },
     "imageRule": "alcoholverkoopverbod",
     "type": "wms",
