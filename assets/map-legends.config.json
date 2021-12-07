@@ -3025,5 +3025,89 @@
     "meta": {
       "themes": ["ruimte-en-topografie"]
     }
+  },
+  {
+    "id": "onbelast_eigendom",
+    "title": "Onbelast met recht van eigendom",
+    "type": "wms",
+    "layers": ["onbelast"],
+    "notSelectable": true,
+    "url": "/maps/beheerkaart",
+    "imageRule": "van Eigendom",
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "onbelast_erfpacht",
+    "title": "Onbelast met recht van erfpacht",
+    "type": "wms",
+    "layers": ["onbelast"],
+    "notSelectable": true,
+    "url": "/maps/beheerkaart",
+    "imageRule": "van Erfpacht",
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "onbelast_opstal",
+    "title": "Onbelast met recht van opstal",
+    "type": "wms",
+    "layers": ["onbelast"],
+    "notSelectable": true,
+    "url": "/maps/beheerkaart",
+    "imageRule": "van Opstal",
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "onbelast_opstal_erfpacht",
+    "title": "Onbelast met recht van erfpacht & opstal",
+    "type": "wms",
+    "layers": ["onbelast"],
+    "notSelectable": true,
+    "url": "/maps/beheerkaart",
+    "imageRule": "van Erfpacht & Opstal",
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "belast_erfpacht",
+    "title": "Belast met recht van erfpacht",
+    "type": "wms",
+    "layers": ["belast"],
+    "notSelectable": true,
+    "url": "/maps/beheerkaart",
+    "imageRule": "met Erfpacht",
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "belast_opstal",
+    "title": "Belast met recht van opstal",
+    "type": "wms",
+    "layers": ["belast"],
+    "notSelectable": true,
+    "url": "/maps/beheerkaart",
+    "imageRule": "met Opstal",
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "belast_opstal_erfpacht",
+    "title": "Belast met recht van erfpacht & opstal",
+    "type": "wms",
+    "layers": ["belast"],
+    "notSelectable": true,
+    "url": "/maps/beheerkaart",
+    "imageRule": "met Erfpacht & Opstal",
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
   }
 ]

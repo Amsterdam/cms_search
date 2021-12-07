@@ -2083,5 +2083,46 @@
     "meta": {
       "themes": ["duurzaamheid-en-milieu", "wonen"]
     }
+  },
+  {
+    "id": "onbelast_obj",
+    "title": "Onbelaste objecten Gemeente Amsterdam",
+    "legendItems": [
+      {
+        "id": "onbelast_eigendom"
+      },
+      {
+        "id": "onbelast_erfpacht"
+      },
+      {
+        "id": "onbelast_opstal"
+      },
+      {
+        "id": "onbelast_opstal_erfpacht"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
+    "id": "belast_obj",
+    "title": "Belaste objecten Gemeente Amsterdam",
+    "legendItems": [
+      {
+        "id": "belast_erfpacht"
+      },
+      {
+        "id": "belast_opstal"
+      },
+      {
+        "id": "belast_opstal_erfpacht"
+      }
+    ],
+    "type": "wms",
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
   }
 ]

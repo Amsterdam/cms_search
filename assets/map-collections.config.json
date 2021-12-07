@@ -881,5 +881,19 @@
     "meta": {
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
     }
+  },
+  {
+    "id": "beheerkaart_publieke_ruimte",
+    "title": "Beheerkaart publieke ruimte",
+    "mapLayers": [
+      {
+        "id": "onbelast_obj"
+      },{
+        "id": "belast_obj"
+      }
+    ],
+    "meta": {
+      "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
+    }
   }
 ]
