@@ -2086,24 +2086,24 @@
   },
   {
     "id": "onbelast_obj",
-    "title": "Onbelaste objecten Gemeente Amsterdam",
+    "title": "Onbelaste objecten",
     "url": "/maps/beheerkaart",
     "layers": ["onbelast"],
     "legendItems": [
       {
-        "title": "Onbelast met recht van eigendom",
+        "title": "met recht van eigendom",
         "imageRule": "van Eigendom"
       },
       {
-        "title": "Onbelast met recht van erfpacht",
+        "title": "met recht van erfpacht",
         "imageRule": "van Erfpacht"
       },
       {
-        "title": "Onbelast met recht van opstal",
+        "title": "met recht van opstal",
         "imageRule": "van Opstal"
       },
       {
-        "title": "Onbelast met recht van erfpacht & opstal",
+        "title": "met recht van erfpacht & opstal",
         "imageRule": "van Erfpacht & Opstal"
       }
     ],
@@ -2114,20 +2114,20 @@
   },
   {
     "id": "belast_obj",
-    "title": "Belaste objecten Gemeente Amsterdam",
+    "title": "Belaste objecten",
     "url": "/maps/beheerkaart",
     "layers": ["belast"],
     "legendItems": [
       {
-        "title": "Belast met recht van erfpacht",
+        "title": "met recht van erfpacht",
         "imageRule": "met Erfpacht"
       },
       {
-        "title": "Belast met recht van opstal",
+        "title": "met recht van opstal",
         "imageRule": "met Opstal"
       },
       {
-        "title": "Belast met recht van erfpacht & opstal",
+        "title": "met recht van erfpacht & opstal",
         "imageRule": "met Erfpacht & Opstal"
       }
     ],
