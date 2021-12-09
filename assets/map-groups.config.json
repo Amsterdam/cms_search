@@ -2086,7 +2086,7 @@
   },
   {
     "id": "onbelast_obj",
-    "title": "Onbelaste objecten",
+    "title": "Onbelaste percelen Gemeente Amsterdam",
     "url": "/maps/beheerkaart",
     "layers": ["onbelast"],
     "legendItems": [
@@ -2114,7 +2114,7 @@
   },
   {
     "id": "belast_obj",
-    "title": "Belaste objecten",
+    "title": "Belaste percelen Gemeente Amsterdam",
     "url": "/maps/beheerkaart",
     "layers": ["belast"],
     "legendItems": [
