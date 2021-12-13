@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@graphql-tools/schema": "^8.3.1",
-    "@graphql-tools/utils": "^8.5.0",
+    "@graphql-tools/utils": "^8.5.4",
     "@sentry/node": "^6.13.3",
     "@sentry/types": "^6.15.0",
     "@types/cors": "^2.8.10",
