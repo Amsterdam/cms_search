@@ -2089,6 +2089,10 @@
     "title": "Onbelaste percelen Gemeente Amsterdam",
     "url": "/maps/beheerkaart",
     "layers": ["onbelast"],
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "beheerkaart_basis/kaart"
+    },
     "legendItems": [
       {
         "title": "met recht van eigendom",
@@ -2117,6 +2121,10 @@
     "title": "Belaste percelen Gemeente Amsterdam",
     "url": "/maps/beheerkaart",
     "layers": ["belast"],
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "beheerkaart_basis/kaart"
+    },
     "legendItems": [
       {
         "title": "met recht van erfpacht",
