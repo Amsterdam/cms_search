@@ -895,5 +895,17 @@
     "meta": {
       "themes": ["ruimte-en-topografie", "economie-en-toerisme"]
     }
+  },
+  {
+    "id": "brandveiligheid",
+    "title": "Brandveiligheid",
+    "mapLayers": [
+      {
+        "id": "brandkranen"
+      }
+    ],
+    "meta": {
+      "themes": ["openbare-orde-en-veiligheid"]
+    }
   }
 ]
