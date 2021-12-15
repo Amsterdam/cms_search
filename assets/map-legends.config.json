@@ -3035,7 +3035,7 @@
     "url": "/maps/brandkranen",
     "imageRule": "Brandkraan",
     "meta": {
-      "themes": ["ruimte-en-topografie"]
+      "themes": ["openbare-orde-en-veiligheid"]
     }
   }
 ]
