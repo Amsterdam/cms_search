@@ -3028,6 +3028,7 @@
   },
   {
     "id": "brandkranen",
+    "authScope": "HR/R",
     "title": "Brandkranen",
     "type": "wms",
     "layers": ["brandkranen_coordinaten"],
