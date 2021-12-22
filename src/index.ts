@@ -3,6 +3,7 @@
 require('dotenv').config()
 
 import * as Sentry from '@sentry/node'
+import { isDevelopment } from './utils/environment'
 import express from 'express'
 import expressPlayground from 'graphql-playground-middleware-express'
 import cors from 'cors'
@@ -17,10 +18,25 @@ Sentry.init({
 
 const app = express()
 
+const allowedDomains = ['https://acc.data.amsterdam.nl', 'https://data.amsterdam.nl']
+
+// Far from perfect but it will do the trick for now.
+// Data-verkenner is usually running on port 3000
+// Need to refactor if cms_search will be merged in the data-verkenner repo
+if (isDevelopment) {
+  allowedDomains.push('http://localhost:3000')
+}
+
 // The request handler must be the first middleware on the app
 app.use(Sentry.Handlers.requestHandler())
 
-app.use(cors())
+app.use(
+  cors((req, callback) => {
+    const originHeader = req?.header('Origin')
+
+    callback(null, { origin: originHeader && allowedDomains.indexOf(originHeader) !== -1 })
+  }),
+)
 
 // Health check
 app.get('/metrics', (req, res) => res.send('Working!')) // Internal
