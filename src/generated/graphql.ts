@@ -1,5 +1,6 @@
 import { GraphQLResolveInfo } from 'graphql';
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -49,9 +50,9 @@ export type DataResult = {
 };
 
 export type DataSearchInput = {
-  filters?: Maybe<Array<FilterInput>>;
-  limit?: Maybe<Scalars['Int']>;
-  page?: Maybe<Scalars['Int']>;
+  filters?: InputMaybe<Array<FilterInput>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
 };
 
 export type DataSearchResult = SearchResult & {
@@ -81,9 +82,9 @@ export type DatasetResult = {
 };
 
 export type DatasetSearchInput = {
-  filters?: Maybe<Array<FilterInput>>;
-  limit?: Maybe<Scalars['Int']>;
-  page?: Maybe<Scalars['Int']>;
+  filters?: InputMaybe<Array<FilterInput>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
 };
 
 export type DatasetSearchResult = SearchResult & {
@@ -212,9 +213,9 @@ export type MapResult = {
 };
 
 export type MapSearchInput = {
-  filters?: Maybe<Array<FilterInput>>;
-  limit?: Maybe<Scalars['Int']>;
-  page?: Maybe<Scalars['Int']>;
+  filters?: InputMaybe<Array<FilterInput>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
 };
 
 export type MapSearchResult = SearchResult & {
@@ -249,32 +250,32 @@ export type Query = {
 
 
 export type QueryDataSearchArgs = {
-  input?: Maybe<DataSearchInput>;
-  q?: Maybe<Scalars['String']>;
+  input?: InputMaybe<DataSearchInput>;
+  q?: InputMaybe<Scalars['String']>;
 };
 
 
 export type QueryDatasetSearchArgs = {
-  input?: Maybe<DatasetSearchInput>;
-  q?: Maybe<Scalars['String']>;
+  input?: InputMaybe<DatasetSearchInput>;
+  q?: InputMaybe<Scalars['String']>;
 };
 
 
 export type QueryMapCollectionSearchArgs = {
-  input?: Maybe<MapSearchInput>;
-  q?: Maybe<Scalars['String']>;
+  input?: InputMaybe<MapSearchInput>;
+  q?: InputMaybe<Scalars['String']>;
 };
 
 
 export type QueryMapLayerSearchArgs = {
-  input?: Maybe<MapSearchInput>;
-  q?: Maybe<Scalars['String']>;
+  input?: InputMaybe<MapSearchInput>;
+  q?: InputMaybe<Scalars['String']>;
 };
 
 
 export type QueryMapSearchArgs = {
-  input?: Maybe<MapSearchInput>;
-  q?: Maybe<Scalars['String']>;
+  input?: InputMaybe<MapSearchInput>;
+  q?: InputMaybe<Scalars['String']>;
 };
 
 export type Results = CombinedDataResult | CombinedMapResult | DatasetResult | MapCollection | MapGroup;
