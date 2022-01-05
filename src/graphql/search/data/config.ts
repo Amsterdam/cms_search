@@ -62,7 +62,7 @@ export const DATA_SEARCH_ENDPOINTS: Array<DataSearchType> = [
   {
     endpoint: SEARCH_ENDPOINTS[DataType.PublicSpace],
     type: DataType.PublicSpace,
-    label: 'Openbare ruimtes',
+    label: 'Openbare ruimten',
     labelSingular: 'Openbare ruimte',
     searchParam: 'q',
     params: {
