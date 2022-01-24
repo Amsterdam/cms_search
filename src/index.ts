@@ -47,7 +47,7 @@ app.get(`${URL_PREFIX}/health`, (req, res) => res.send('Working!')) // External
 app.use(`${URL_PREFIX}/graphql`, GraphQLMiddleware)
 
 // graphql-playground-middleware-express uses a CDN - jsdelivr.com to serve its assets so don't serve on production
-if (process.env.SENTRY_ENVIRONMENT === 'development') {
+if (process.env.SENTRY_ENVIRONMENT !== 'production') {
   app.get(`${URL_PREFIX}/playground`, expressPlayground({ endpoint: `${URL_PREFIX}/graphql` }))
 }
 
