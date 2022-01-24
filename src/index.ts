@@ -3,7 +3,7 @@
 require('dotenv').config()
 
 import * as Sentry from '@sentry/node'
-import { isDevelopment, isProduction } from './utils/environment'
+import { isDevelopment } from './utils/environment'
 import express from 'express'
 import expressPlayground from 'graphql-playground-middleware-express'
 import cors from 'cors'
@@ -47,7 +47,7 @@ app.get(`${URL_PREFIX}/health`, (req, res) => res.send('Working!')) // External
 app.use(`${URL_PREFIX}/graphql`, GraphQLMiddleware)
 
 // graphql-playground-middleware-express uses a CDN - jsdelivr.com to serve its assets so don't serve on production
-if (!isProduction) {
+if (process.env.SENTRY_ENVIRONMENT === 'development') {
   app.get(`${URL_PREFIX}/playground`, expressPlayground({ endpoint: `${URL_PREFIX}/graphql` }))
 }
 
