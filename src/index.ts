@@ -3,7 +3,7 @@
 require('dotenv').config()
 
 import * as Sentry from '@sentry/node'
-import { isDevelopment } from './utils/environment'
+import { isDevelopment, isProduction } from './utils/environment'
 import express from 'express'
 import expressPlayground from 'graphql-playground-middleware-express'
 import cors from 'cors'
