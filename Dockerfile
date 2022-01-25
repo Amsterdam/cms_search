@@ -19,7 +19,7 @@ CMD ["npm", "run", "serve"]
 ################################
 # Deploy
 ################################
-FROM nginx:1.20.2-alpine as nginx
+FROM nginx:stable-alpine as nginx
 
 COPY ./internals/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./internals/nginx/default.conf /etc/nginx/conf.d/
