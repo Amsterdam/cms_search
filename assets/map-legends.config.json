@@ -754,23 +754,6 @@
     }
   },
   {
-    "id": "drahor",
-    "title": "Drank- en horecavergunning",
-    "type": "wms",
-    "params": {
-      "onderwerp": "drank_en_horecavergunning"
-    },
-    "layers": ["bekendmakingen"],
-    "url": "/maps/bekendmakingen",
-    "detailUrl": "geosearch/search/",
-    "detailParams": {
-      "item": "bekendmakingen"
-    },
-    "meta": {
-      "themes": ["bestuur", "economie-en-toerisme"]
-    }
-  },
-  {
     "id": "evever",
     "title": "Evenementenvergunning",
     "type": "wms",
@@ -840,40 +823,6 @@
     }
   },
   {
-    "id": "ligpla",
-    "title": "Ligplaatsvergunning",
-    "type": "wms",
-    "params": {
-      "onderwerp": "ligplaatsvergunning"
-    },
-    "layers": ["bekendmakingen"],
-    "url": "/maps/bekendmakingen",
-    "detailUrl": "geosearch/search/",
-    "detailParams": {
-      "item": "bekendmakingen"
-    },
-    "meta": {
-      "themes": ["bestuur", "economie-en-toerisme", "wonen"]
-    }
-  },
-  {
-    "id": "medede",
-    "title": "Mededelingen",
-    "type": "wms",
-    "params": {
-      "onderwerp": "mededelingen"
-    },
-    "layers": ["bekendmakingen"],
-    "url": "/maps/bekendmakingen",
-    "detailUrl": "geosearch/search/",
-    "detailParams": {
-      "item": "bekendmakingen"
-    },
-    "meta": {
-      "themes": ["bestuur", "economie-en-toerisme", "wonen"]
-    }
-  },
-  {
     "id": "meldin",
     "title": "Meldingen",
     "type": "wms",
@@ -896,109 +845,6 @@
     "type": "wms",
     "params": {
       "onderwerp": "omgevingsvergunning"
-    },
-    "layers": ["bekendmakingen"],
-    "url": "/maps/bekendmakingen",
-    "detailUrl": "geosearch/search/",
-    "detailParams": {
-      "item": "bekendmakingen"
-    },
-    "meta": {
-      "themes": ["bestuur", "economie-en-toerisme", "wonen"]
-    }
-  },
-  {
-    "id": "onttre",
-    "title": "Onttrekkingsvergunning",
-    "type": "wms",
-    "params": {
-      "onderwerp": "onttrekkingsvergunning"
-    },
-    "layers": ["bekendmakingen"],
-    "url": "/maps/bekendmakingen",
-    "detailUrl": "geosearch/search/",
-    "detailParams": {
-      "item": "bekendmakingen"
-    },
-    "meta": {
-      "themes": ["bestuur", "economie-en-toerisme", "wonen"]
-    }
-  },
-  {
-    "id": "optijd",
-    "title": "Openingstijden",
-    "type": "wms",
-    "params": {
-      "onderwerp": "openingstijden"
-    },
-    "layers": ["bekendmakingen"],
-    "url": "/maps/bekendmakingen",
-    "detailUrl": "geosearch/search/",
-    "detailParams": {
-      "item": "bekendmakingen"
-    },
-    "meta": {
-      "themes": ["bestuur", "economie-en-toerisme", "wonen"]
-    }
-  },
-  {
-    "id": "rectif",
-    "title": "Gemeentelijke bekendmakingen - Rectificatie",
-    "imageRule": "Rectificatie",
-    "type": "wms",
-    "params": {
-      "onderwerp": "rectificatie"
-    },
-    "layers": ["bekendmakingen"],
-    "url": "/maps/bekendmakingen",
-    "detailUrl": "geosearch/search/",
-    "detailParams": {
-      "item": "bekendmakingen"
-    },
-    "meta": {
-      "themes": ["bestuur", "economie-en-toerisme", "wonen"]
-    }
-  },
-  {
-    "id": "speela",
-    "title": "Speelautomatenvergunning",
-    "type": "wms",
-    "params": {
-      "onderwerp": "speelautomatenvergunning"
-    },
-    "layers": ["bekendmakingen"],
-    "url": "/maps/bekendmakingen",
-    "detailUrl": "geosearch/search/",
-    "detailParams": {
-      "item": "bekendmakingen"
-    },
-    "meta": {
-      "themes": ["bestuur", "economie-en-toerisme", "wonen"]
-    }
-  },
-  {
-    "id": "splits",
-    "title": "Splitsingsvergunning",
-    "type": "wms",
-    "params": {
-      "onderwerp": "splitsingsvergunning"
-    },
-    "layers": ["bekendmakingen"],
-    "url": "/maps/bekendmakingen",
-    "detailUrl": "geosearch/search/",
-    "detailParams": {
-      "item": "bekendmakingen"
-    },
-    "meta": {
-      "themes": ["bestuur", "economie-en-toerisme", "wonen"]
-    }
-  },
-  {
-    "id": "terras",
-    "title": "Terrasvergunning",
-    "type": "wms",
-    "params": {
-      "onderwerp": "terrasvergunning"
     },
     "layers": ["bekendmakingen"],
     "url": "/maps/bekendmakingen",
