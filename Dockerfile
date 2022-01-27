@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:16 as nodejs
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -15,3 +15,11 @@ COPY . .
 
 EXPOSE 8080
 CMD ["npm", "run", "serve"]
+
+################################
+# Deploy
+################################
+FROM nginx:stable as nginx
+
+COPY ./internals/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./internals/nginx/default.conf /etc/nginx/conf.d/

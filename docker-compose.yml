@@ -1,14 +1,26 @@
 version: '3.8'
 
 services:
-  cms_search:
+  nodejs:
     stdin_open: true # docker run -i
     tty: true        # docker run -t
-    build: .
+    build:
+      context: .
+      target: nodejs
     ports:
-      - '8080:8080'
+      - "80:80"
     volumes:
       - ./data:/app/data
     environment:
       - DATAPUNT_API_URL=${DATAPUNT_API_URL:-https://api.data.amsterdam.nl/}
     env_file: .env.development
+
+  nginx:
+    restart: always
+    depends_on:
+      - nodejs
+    build:
+      context: .
+      target: nginx
+    ports:
+      - "8080:8080"
