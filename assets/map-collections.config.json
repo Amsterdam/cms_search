@@ -150,9 +150,6 @@
     "mapLayers": [
       {
         "id": "cov19alcvrkp"
-      },
-      {
-        "id": "cov19strtart"
       }
     ],
     "meta": {
@@ -383,25 +380,28 @@
     "title": "Veiligheid en overlast",
     "mapLayers": [
       {
-        "id": "oovoalg"
+        "id": "oovoalco"
       },
       {
-        "id": "oovodlrs"
+        "id": "oovoalg"
       },
       {
         "id": "oovctg"
       },
       {
-        "id": "oovoalco"
+        "id": "oovodlrs"
       },
       {
-        "id": "oovorlv"
+        "id": "oovgfvg"
       },
       {
         "id": "oovmvg"
       },
       {
-        "id": "oovgfvg"
+        "id": "oovorlv"
+      },
+      {
+        "id": "cov19strtart"
       }
     ],
     "meta": {
