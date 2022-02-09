@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { DatasetSearchResult, QueryDatasetSearchArgs } from '../../../generated/graphql'
 import { formatFilters, getDatasetsEndpoint, normalizeDatasets } from './normalize'
 import getPageInfo from '../../utils/getPageInfo'

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import removeMd from 'remove-markdown'
 import { Filter, FilterInput } from '../../../generated/graphql'
 import { FilterType } from '../../config'
