@@ -66,6 +66,7 @@ export const normalizeResults = (
   { _links, subtype, ...otherFields }: any,
   type: string,
 ): DataResult => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const label = composeLabel(type, subtype, otherFields)
 
   return {

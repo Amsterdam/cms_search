@@ -116,6 +116,7 @@ export function createMapLayersFuse(keys: string[]) {
 }
 
 export function composeMapGroup(mapGroup: RawMapGroup, collectionId: string): MapGroup {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const params = mapGroup.params ? querystring.stringify(mapGroup.params as any) : undefined
 
   // Find parent layer if layer has no children.
