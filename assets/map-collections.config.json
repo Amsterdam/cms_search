@@ -299,47 +299,6 @@
     }
   },
   {
-    "id": "gembek",
-    "title": "Gemeentelijke bekendmakingen",
-    "mapLayers": [
-      {
-        "id": "bespla"
-      },
-      {
-        "id": "evever"
-      },
-      {
-        "id": "exploi"
-      },
-      {
-        "id": "inspra",
-        "title": "Inspraak"
-      },
-      {
-        "id": "kapver"
-      },
-      {
-        "id": "meldin"
-      },
-      {
-        "id": "omgver"
-      },
-      {
-        "id": "verbes"
-      },
-      {
-        "id": "verreg"
-      },
-      {
-        "id": "overig",
-        "title": "Overig"
-      }
-    ],
-    "meta": {
-      "themes": ["bestuur", "economie-en-toerisme", "wonen"]
-    }
-  },
-  {
     "id": "afvlc",
     "title": "Afvalcontainers",
     "mapLayers": [
