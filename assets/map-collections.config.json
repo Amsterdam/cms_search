@@ -284,6 +284,10 @@
         "title": "Vrachtauto"
       },
       {
+        "id": "zzvbow",
+        "title": "ZZV breed opgezette wegen"
+      },
+      {
         "id": "vezips"
       },
       {
@@ -506,7 +510,7 @@
     "title": "Logistiek",
     "mapLayers": [
       {
-        "id": "rtsvr"
+        "id": "zzvbow"
       },
       {
         "id": "pvrll"
@@ -733,10 +737,10 @@
         "title": "Aardgasbuisleidingen"
       },
       {
-        "id": "rtsgs"
+        "id": "zzvbowgs"
       },
       {
-        "id": "rtstgs"
+        "id": "zzvbowtgs"
       },
       {
         "id": "rtsur"
