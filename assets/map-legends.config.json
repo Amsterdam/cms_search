@@ -1572,21 +1572,10 @@
     }
   },
   {
-    "id": "rtsvr75",
-    "imageRule": "Vrachtroutes",
-    "layers": ["vrachtroutes"],
-    "title": "Vrachtauto 7,5t-route",
-    "type": "wms",
-    "url": "/maps/hoofdroutes",
-    "meta": {
-      "themes": ["verkeer"]
-    }
-  },
-  {
-    "id": "rtsgs",
-    "imageRule": "Gevaarlijke stoffen",
-    "layers": ["gevaarlijke_stoffen"],
-    "title": "Routes gevaarlijke stoffen",
+    "id": "rtsur",
+    "imageRule": "U routes",
+    "layers": ["u_routes"],
+    "title": "U-routes",
     "type": "wms",
     "url": "/maps/hoofdroutes",
     "meta": {
@@ -1594,12 +1583,67 @@
     }
   },
   {
-    "id": "rtstgs",
-    "imageRule": "Tunnels gevaarlijke stoffen",
-    "layers": ["tunnels"],
+    "id": "zzvbowbi",
+    "imageRule": "binnen",
+    "layers": ["binnen"],
+    "title": "Binnen",
+    "type": "wms",
+    "url": "/maps/wegenbestand",
+    "meta": {
+      "themes": ["verkeer"]
+    }
+  },
+  {
+    "id": "zzvbowbbow",
+    "imageRule": "binnen-breed-opgezette-wegen",
+    "layers": ["binnen-breed-opgezette-wegen"],
+    "title": "Binnen breed opgezette wegen",
+    "type": "wms",
+    "url": "/maps/wegenbestand",
+    "meta": {
+      "themes": ["verkeer"]
+    }
+  },
+  {
+    "id": "zzvbowbwkd4",
+    "imageRule": "buiten-wegfunctie-kleiner-dan-4",
+    "layers": ["buiten"],
+    "title": "Buiten < 4t",
+    "type": "wms",
+    "url": "/maps/wegenbestand",
+    "meta": {
+      "themes": ["verkeer"]
+    }
+  },
+  {
+    "id": "zzvbowbw4og",
+    "imageRule": "buiten-wegfunctie-4-of-groter",
+    "layers": ["buiten"],
+    "title": "Buiten > 4t",
+    "type": "wms",
+    "url": "/maps/wegenbestand",
+    "meta": {
+      "themes": ["verkeer"]
+    }
+  },
+  {
+    "id": "zzvbowgs",
+    "imageRule": "routes-gevaarlijke-stoffen",
+    "layers": ["routes-gevaarlijke-stoffen"],
+    "title": "Routes gevaarlijke stoffen",
+    "type": "wms",
+    "url": "/maps/wegenbestand",
+    "meta": {
+      "themes": ["verkeer", "ruimte-en-topografie", "openbare-orde-en-veiligheid"]
+    }
+  },
+  {
+    "id": "zzvbowtgs",
+    "imageRule": "tunnels-gevaarlijke-stoffen",
+    "layers": ["tunnels-gevaarlijke-stoffen"],
     "title": "Tunnels gevaarlijke stoffen",
     "type": "wms",
-    "url": "/maps/hoofdroutes",
+    "url": "/maps/wegenbestand",
     "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "hoofdroutes/tunnels_gevaarlijke_stoffen"

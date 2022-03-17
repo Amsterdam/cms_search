@@ -627,21 +627,41 @@
     "id": "rtsvr",
     "legendItems": [
       {
-        "id": "rtsvr75"
-      },
-      {
-        "id": "rtsgs"
-      },
-      {
-        "id": "rtstgs"
-      },
-      {
         "id": "rtsur"
       }
     ],
     "title": "Routes - Vrachtauto",
     "type": "wms",
     "url": "/maps/hoofdroutes",
+    "meta": {
+      "themes": ["verkeer", "ruimte-en-topografie", "openbare-orde-en-veiligheid"]
+    }
+  },
+  {
+    "id": "zzvbow",
+    "legendItems": [
+      {
+        "id": "zzvbowbi"
+      },
+      {
+        "id": "zzvbowbbow"
+      },
+      {
+        "id": "zzvbowbwkd4"
+      },
+      {
+        "id": "zzvbowbw4og"
+      },
+      {
+        "id": "zzvbowgs"
+      },
+      {
+        "id": "zzvbowtgs"
+      }
+    ],
+    "title": "ZZV breed opgezette wegen",
+    "type": "wms",
+    "url": "/maps/wegenbestand",
     "meta": {
       "themes": ["verkeer", "ruimte-en-topografie", "openbare-orde-en-veiligheid"]
     }
