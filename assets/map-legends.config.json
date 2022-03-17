@@ -2479,16 +2479,16 @@
     }
   },
   {
-    "id": "cov19strtart",
-    "layers": ["straatartiestenverbod"],
+    "id": "oovgstrtart",
+    "layers": ["straatartiestverbod"],
     "title": "Straatartiestverbod",
     "detailUrl": "geosearch/",
     "detailParams": {
-      "datasets": "covid19/straatartiestverbod"
+      "datasets": "overlastgebieden/straatartiestverbod"
     },
-    "imageRule": "straatartiestenverbod",
+    "imageRule": "Straatartiestverbod",
     "type": "wms",
-    "url": "/maps/covid19",
+    "url": "/maps/overlastgebieden",
     "meta": {
       "themes": ["openbare-orde-en-veiligheid", "zorg-en-welzijn"]
     }
