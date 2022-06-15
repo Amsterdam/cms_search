@@ -1762,20 +1762,6 @@
     }
   },
   {
-    "id": "tcevt",
-    "layers": ["evenementen"],
-    "title": "Evenementen",
-    "type": "wms",
-    "url": "/maps/evenementen",
-    "detailUrl": "geosearch/evenementen/",
-    "detailParams": {
-      "item": "evenementen"
-    },
-    "meta": {
-      "themes": ["cultuur-en-recreatie"]
-    }
-  },
-  {
     "id": "bros",
     "layers": ["cpt"],
     "iconUrl": "/assets/images/map-legend/icon-bro-sondering.png",
