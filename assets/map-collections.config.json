@@ -383,18 +383,6 @@
     }
   },
   {
-    "id": "evnmt",
-    "title": "Evenementen",
-    "mapLayers": [
-      {
-        "id": "tcevt"
-      }
-    ],
-    "meta": {
-      "themes": ["cultuur-en-recreatie"]
-    }
-  },
-  {
     "id": "wnklgeb",
     "title": "Winkelgebieden",
     "mapLayers": [
