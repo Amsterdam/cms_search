@@ -549,13 +549,7 @@
         "id": "exin"
       },
       {
-        "id": "mbgm"
-      },
-      {
         "id": "mbaig"
-      },
-      {
-        "id": "mbgwm"
       },
       {
         "id": "mbz"
@@ -581,12 +575,6 @@
     "id": "bdmkw",
     "title": "Bodemkwaliteit",
     "mapLayers": [
-      {
-        "id": "mbgm"
-      },
-      {
-        "id": "mbgwm"
-      },
       {
         "id": "mbaig"
       },
