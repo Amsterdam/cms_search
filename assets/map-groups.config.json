@@ -687,55 +687,6 @@
     }
   },
   {
-    "id": "mbgm",
-    "layers": ["grondmonsters"],
-    "legendItems": [
-      {
-        "title": "Niet verontreinigd"
-      },
-      {
-        "title": "Licht verontreinigd"
-      },
-      {
-        "title": "Matig verontreinigd"
-      },
-      {
-        "title": "Sterk verontreinigd"
-      }
-    ],
-    "minZoom": 11,
-    "title": "Grondmonsters",
-    "type": "wms",
-    "url": "/maps/bodem",
-    "meta": {
-      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]
-    }
-  },
-  {
-    "id": "mbgwm",
-    "layers": ["grondwatermonsters"],
-    "legendItems": [
-      {
-        "title": "Niet verontreinigd"
-      },
-      {
-        "title": "Licht verontreinigd"
-      },
-      {
-        "title": "Matig verontreinigd"
-      },
-      {
-        "title": "Sterk verontreinigd"
-      }
-    ],
-    "title": "Grondwatermonsters",
-    "type": "wms",
-    "url": "/maps/bodem",
-    "meta": {
-      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]
-    }
-  },
-  {
     "id": "mbaig",
     "layers": ["asbest"],
     "legendItems": [
