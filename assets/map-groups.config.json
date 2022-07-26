@@ -1574,6 +1574,10 @@
     "layers": ["panorama_new"],
     "legendItems": [
       {
+        "id": "pano2022bi",
+        "title": "2022"
+      },
+      {
         "id": "pano2021bi",
         "title": "2021"
       },

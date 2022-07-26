@@ -1959,6 +1959,23 @@
     }
   },
   {
+    "id": "pano2022bi",
+    "layers": ["panorama_new"],
+    "imageRule": "2022",
+    "minZoom": 11,
+    "title": "Panoramabeelden - 2022",
+    "type": "wms",
+    "url": "/maps/panorama",
+    "params": {
+      "mission_year": 2022,
+      "mission_type": "bi",
+      "scale": 800
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
     "id": "pano2021bi",
     "layers": ["panorama_new"],
     "imageRule": "2021",
