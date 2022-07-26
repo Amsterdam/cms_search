@@ -1925,6 +1925,23 @@
     }
   },
   {
+    "id": "pano2022woz",
+    "layers": ["panorama_new"],
+    "minZoom": 11,
+    "title": "Panoramabeelden - 2022 WOZ",
+    "type": "wms",
+    "imageRule": "2022",
+    "url": "/maps/panorama",
+    "params": {
+      "mission_year": 2022,
+      "mission_type": "woz",
+      "scale": 800
+    },
+    "meta": {
+      "themes": ["ruimte-en-topografie"]
+    }
+  },
+  {
     "id": "pano2021woz",
     "layers": ["panorama_new"],
     "minZoom": 11,

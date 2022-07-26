@@ -5,7 +5,6 @@ export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K]
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -640,12 +639,12 @@ export type PageInfoResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  dataSearch?: Resolver<Maybe<ResolversTypes['DataSearchResult']>, ParentType, ContextType, RequireFields<QueryDataSearchArgs, never>>;
-  datasetSearch?: Resolver<Maybe<ResolversTypes['DatasetSearchResult']>, ParentType, ContextType, RequireFields<QueryDatasetSearchArgs, never>>;
+  dataSearch?: Resolver<Maybe<ResolversTypes['DataSearchResult']>, ParentType, ContextType, Partial<QueryDataSearchArgs>>;
+  datasetSearch?: Resolver<Maybe<ResolversTypes['DatasetSearchResult']>, ParentType, ContextType, Partial<QueryDatasetSearchArgs>>;
   filters?: Resolver<Maybe<Array<Maybe<ResolversTypes['Filter']>>>, ParentType, ContextType>;
-  mapCollectionSearch?: Resolver<ResolversTypes['MapCollectionSearchResult'], ParentType, ContextType, RequireFields<QueryMapCollectionSearchArgs, never>>;
-  mapLayerSearch?: Resolver<ResolversTypes['MapLayerSearchResult'], ParentType, ContextType, RequireFields<QueryMapLayerSearchArgs, never>>;
-  mapSearch?: Resolver<ResolversTypes['MapSearchResult'], ParentType, ContextType, RequireFields<QueryMapSearchArgs, never>>;
+  mapCollectionSearch?: Resolver<ResolversTypes['MapCollectionSearchResult'], ParentType, ContextType, Partial<QueryMapCollectionSearchArgs>>;
+  mapLayerSearch?: Resolver<ResolversTypes['MapLayerSearchResult'], ParentType, ContextType, Partial<QueryMapLayerSearchArgs>>;
+  mapSearch?: Resolver<ResolversTypes['MapSearchResult'], ParentType, ContextType, Partial<QueryMapSearchArgs>>;
 };
 
 export type ResultsResolvers<ContextType = any, ParentType extends ResolversParentTypes['Results'] = ResolversParentTypes['Results']> = {

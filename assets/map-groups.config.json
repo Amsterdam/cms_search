@@ -1610,6 +1610,10 @@
     "layers": ["panorama_new"],
     "legendItems": [
       {
+        "id": "pano2022woz",
+        "title": "2022 WOZ"
+      },
+      {
         "id": "pano2021woz",
         "title": "2021 WOZ"
       },
