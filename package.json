@@ -24,7 +24,7 @@
     "start": "concurrently \"nodemon --transpile-only src/index.ts\" \"npm run generate-graphql-types-watch\""
   },
   "dependencies": {
-    "@graphql-tools/schema": "^8.3.14",
+    "@graphql-tools/schema": "^8.5.1",
     "@graphql-tools/utils": "^8.6.13",
     "@sentry/node": "^6.17.9",
     "@sentry/types": "^6.16.1",
