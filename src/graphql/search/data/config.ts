@@ -18,7 +18,7 @@ export interface DataIndexType {
 
 export enum DataType {
   Address = 'adressen',
-  Streets = 'straatnamen',
+  Streets = 'straten',
   PublicSpace = 'openbareruimte',
   Buildings = 'panden',
   Regions = 'gebieden',
@@ -45,11 +45,21 @@ export const DATA_SEARCH_ENDPOINTS: Array<DataSearchType> = [
   {
     endpoint: SEARCH_ENDPOINTS[DataType.PublicSpace],
     type: DataType.Streets,
-    label: 'Straatnamen',
-    labelSingular: 'Straatnaam',
+    label: 'Straten',
+    labelSingular: 'Straat',
     searchParam: 'q',
     params: {
       subtype: 'weg',
+    },
+  },
+  {
+    endpoint: SEARCH_ENDPOINTS[DataType.PublicSpace],
+    type: DataType.PublicSpace,
+    label: 'Andere openbare ruimten',
+    labelSingular: 'Andere openbare ruimte',
+    searchParam: 'q',
+    params: {
+      subtype: 'not_weg',
     },
   },
   {
@@ -58,16 +68,6 @@ export const DATA_SEARCH_ENDPOINTS: Array<DataSearchType> = [
     labelSingular: 'Adres',
     label: 'Adressen',
     searchParam: 'q',
-  },
-  {
-    endpoint: SEARCH_ENDPOINTS[DataType.PublicSpace],
-    type: DataType.PublicSpace,
-    label: 'Openbare ruimten',
-    labelSingular: 'Openbare ruimte',
-    searchParam: 'q',
-    params: {
-      subtype: 'not_weg',
-    },
   },
   {
     endpoint: SEARCH_ENDPOINTS[DataType.Buildings],
