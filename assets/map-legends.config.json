@@ -2545,21 +2545,6 @@
     }
   },
   {
-    "id": "strtr",
-    "layers": ["Strategischeruimtes"],
-    "title": "Strategische ruimtes",
-    "type": "wms",
-    "url": "/maps/woningbouw",
-    "imageRule": "strategischeruimtes",
-    "detailUrl": "geosearch/",
-    "detailParams": {
-      "datasets": "woningbouwplannen/strategischeruimtes"
-    },
-    "meta": {
-      "themes": ["ruimte-en-topografie"]
-    }
-  },
-  {
     "id": "ligplaatssegmenten_groot",
     "title": "Groot (v.a. 16m)",
     "type": "wms",
