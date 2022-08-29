@@ -512,6 +512,60 @@
     }
   },
   {
+    "id": "klic",
+    "title": "Kabels en leidingen",
+    "mapLayers": [
+      {
+        "id": "klic_dt"
+      },
+      {
+        "id": "klic_ghd"
+      },
+      {
+        "id": "klic_gld"
+      },
+      {
+        "id": "klic_bgi"
+      },
+      {
+        "id": "klic_lhsn"
+      },
+      {
+        "id": "klic_hs"
+      },
+      {
+        "id": "klic_ms"
+      },
+      {
+        "id": "klic_ls"
+      },
+      {
+        "id": "klic_pc"
+      },
+      {
+        "id": "klic_rv"
+      },
+      {
+        "id": "klic_rooo"
+      },
+      {
+        "id": "klic_warmte"
+      },
+      {
+        "id": "klic_water"
+      },
+      {
+        "id": "klic_wees"
+      },
+      {
+        "id": "klic_overig"
+      }
+    ],
+    "meta": {
+      "themes": []
+    }
+  },
+  {
     "id": "ondrgd",
     "title": "Ondergrond",
     "mapLayers": [
