@@ -3423,5 +3423,19 @@
     "meta": {
       "themes": []
     }
+  },
+  {
+    "id": "waternrk",
+    "title": "Waternet Rioolknopen",
+    "type": "wms",
+    "layers": ["rioolknopen"],
+    "url": "/maps/ondergrond",
+    "imageRule": "rioolknopen",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/rioolknopen"
+    },
+    "meta": {
+      "themes": []
+    }
   }
 ]
