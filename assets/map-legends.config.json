@@ -2720,6 +2720,7 @@
   },
   {
     "id": "klic_dt",
+    "authScope": "HR/R",
     "title": "Data Transport",
     "type": "wms",
     "layers": ["kabels_en_leidingen_datatransport"],
@@ -2727,7 +2728,7 @@
     "minZoom": 12,
     "imageRule": "Datatransport",
     "detailParams": {
-      "datasets": "varen/opafstapplaats"
+      "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
     "meta": {
       "themes": []
@@ -2735,6 +2736,7 @@
   },
   {
     "id": "klic_ghd",
+    "authScope": "HR/R",
     "title": "Gas hoge druk",
     "type": "wms",
     "layers": ["kabels_en_leidingen_gas_hoge_druk"],
@@ -2742,7 +2744,7 @@
     "minZoom": 12,
     "imageRule": "Gas hoge druk",
     "detailParams": {
-      "datasets": "varen/opafstapplaats"
+      "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
     "meta": {
       "themes": []
@@ -2750,6 +2752,7 @@
   },
   {
     "id": "klic_gld",
+    "authScope": "HR/R",
     "title": "Gas lage druk",
     "type": "wms",
     "layers": ["kabels_en_leidingen_gas_lage_druk"],
@@ -2757,7 +2760,7 @@
     "minZoom": 12,
     "imageRule": "Gas lage druk",
     "detailParams": {
-      "datasets": "varen/opafstapplaats"
+      "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
     "meta": {
       "themes": []
@@ -2765,6 +2768,7 @@
   },
   {
     "id": "klic_bgi",
+    "authScope": "HR/R",
     "title": "Buisleiding gevaarlijke inhoud",
     "type": "wms",
     "layers": ["kabels_en_leidingen_buisleiding_gevaarlijke_inhoud"],
@@ -2772,7 +2776,7 @@
     "minZoom": 10,
     "imageRule": "Buisleiding gevaarlijke inhoud",
     "detailParams": {
-      "datasets": "varen/opafstapplaats"
+      "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
     "meta": {
       "themes": []
@@ -2780,6 +2784,7 @@
   },
   {
     "id": "klic_lhsn",
+    "authScope": "HR/R",
     "title": "Landelijk hoogspanningsnet",
     "type": "wms",
     "layers": ["kabels_en_leidingen_landelijk_hoogspanningsnet"],
@@ -2787,7 +2792,7 @@
     "minZoom": 12,
     "imageRule": "Landelijk hoogspanningsnet",
     "detailParams": {
-      "datasets": "varen/opafstapplaats"
+      "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
     "meta": {
       "themes": []
@@ -2795,6 +2800,7 @@
   },
   {
     "id": "klic_hs",
+    "authScope": "HR/R",
     "title": "Hoogspanning",
     "type": "wms",
     "layers": ["kabels_en_leidingen_hoogspanning"],
@@ -2802,7 +2808,7 @@
     "minZoom": 12,
     "imageRule": "Hoogspanning",
     "detailParams": {
-      "datasets": "varen/opafstapplaats"
+      "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
     "meta": {
       "themes": []
@@ -2810,6 +2816,7 @@
   },
   {
     "id": "klic_ms",
+    "authScope": "HR/R",
     "title": "Middenspanning",
     "type": "wms",
     "layers": ["kabels_en_leidingen_middenspanning"],
@@ -2817,7 +2824,7 @@
     "minZoom": 12,
     "imageRule": "Middenspanning",
     "detailParams": {
-      "datasets": "varen/opafstapplaats"
+      "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
     "meta": {
       "themes": []
@@ -2825,6 +2832,7 @@
   },
   {
     "id": "klic_ls",
+    "authScope": "HR/R",
     "title": "Laagspanning",
     "type": "wms",
     "layers": ["kabels_en_leidingen_laagspanning"],
@@ -2832,7 +2840,7 @@
     "minZoom": 10,
     "imageRule": "Laagspanning",
     "detailParams": {
-      "datasets": "varen/opafstapplaats"
+      "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
     "meta": {
       "themes": []
@@ -2840,6 +2848,7 @@
   },
   {
     "id": "klic_pc",
+    "authScope": "HR/R",
     "title": "(Petro)chemie",
     "type": "wms",
     "layers": ["kabels_en_leidingen_chemie"],
@@ -2847,7 +2856,7 @@
     "minZoom": 10,
     "imageRule": "(petro)chemie",
     "detailParams": {
-      "datasets": "varen/opafstapplaats"
+      "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
     "meta": {
       "themes": []
@@ -2855,6 +2864,7 @@
   },
   {
     "id": "klic_rv",
+    "authScope": "HR/R",
     "title": "Riool vrijverval",
     "type": "wms",
     "layers": ["kabels_en_leidingen_riool_vrijverval"],
@@ -2862,7 +2872,7 @@
     "minZoom": 10,
     "imageRule": "Riool vrijverval",
     "detailParams": {
-      "datasets": "varen/opafstapplaats"
+      "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
     "meta": {
       "themes": []
@@ -2870,6 +2880,7 @@
   },
   {
     "id": "klic_rooo",
+    "authScope": "HR/R",
     "title": "Riool onder over- of onderdruk",
     "type": "wms",
     "layers": ["kabels_en_leidingen_riool_over_of_onderdruk"],
@@ -2877,7 +2888,7 @@
     "minZoom": 10,
     "imageRule": "riool onder over- of onderdruk",
     "detailParams": {
-      "datasets": "varen/opafstapplaats"
+      "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
     "meta": {
       "themes": []
@@ -2885,6 +2896,7 @@
   },
   {
     "id": "klic_warmte",
+    "authScope": "HR/R",
     "title": "Warmte",
     "type": "wms",
     "layers": ["kabels_en_leidingen_warmte"],
@@ -2892,7 +2904,7 @@
     "minZoom": 10,
     "imageRule": "warmte",
     "detailParams": {
-      "datasets": "varen/opafstapplaats"
+      "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
     "meta": {
       "themes": []
@@ -2900,6 +2912,7 @@
   },
   {
     "id": "klic_water",
+    "authScope": "HR/R",
     "title": "Water",
     "type": "wms",
     "layers": ["kabels_en_leidingen_water"],
@@ -2907,7 +2920,7 @@
     "minZoom": 10,
     "imageRule": "water",
     "detailParams": {
-      "datasets": "varen/opafstapplaats"
+      "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
     "meta": {
       "themes": []
@@ -2915,14 +2928,15 @@
   },
   {
     "id": "klic_wees",
+    "authScope": "HR/R",
     "title": "Wees",
     "type": "wms",
     "layers": ["kabels_en_leidingen_wees"],
     "url": "/maps/ondergrond",
-    "minZoom": 10,
+    "minZoom": 13,
     "imageRule": "wees",
     "detailParams": {
-      "datasets": "varen/opafstapplaats"
+      "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
     "meta": {
       "themes": []
@@ -2930,6 +2944,7 @@
   },
   {
     "id": "klic_overig",
+    "authScope": "HR/R",
     "title": "Overig",
     "type": "wms",
     "layers": ["kabels_en_leidingen_overig"],
@@ -2937,7 +2952,473 @@
     "minZoom": 10,
     "imageRule": "overig",
     "detailParams": {
-      "datasets": "varen/opafstapplaats"
+      "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "obka_dt",
+    "authScope": "HR/R",
+    "title": "Data Transport",
+    "type": "wms",
+    "layers": ["objecten_datatransport"],
+    "url": "/maps/ondergrond",
+    "imageRule": "Datatransport",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_puntobjecten"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "obka_ghd",
+    "authScope": "HR/R",
+    "title": "Gas hoge druk",
+    "type": "wms",
+    "layers": ["objecten_gas_hoge_druk"],
+    "url": "/maps/ondergrond",
+    "imageRule": "Gas hoge druk",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_puntobjecten"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "obka_gld",
+    "authScope": "HR/R",
+    "title": "Gas lage druk",
+    "type": "wms",
+    "layers": ["objecten_gas_lage_druk"],
+    "url": "/maps/ondergrond",
+    "imageRule": "Gas lage druk",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_puntobjecten"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "obka_bgi",
+    "authScope": "HR/R",
+    "title": "Buisleiding gevaarlijke inhoud",
+    "type": "wms",
+    "layers": ["objecten_buisleiding_gevaarlijke_inhoud"],
+    "url": "/maps/ondergrond",
+    "minZoom": 10,
+    "imageRule": "Buisleiding gevaarlijke inhoud",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_puntobjecten"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "obka_lhsn",
+    "authScope": "HR/R",
+    "title": "Landelijk hoogspanningsnet",
+    "type": "wms",
+    "layers": ["objecten_landelijk_hoogspanningsnet"],
+    "url": "/maps/ondergrond",
+    "minZoom": 10,
+    "imageRule": "Landelijk hoogspanningsnet",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_puntobjecten"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "obka_hs",
+    "authScope": "HR/R",
+    "title": "Hoogspanning",
+    "type": "wms",
+    "layers": ["objecten_hoogspanning"],
+    "url": "/maps/ondergrond",
+    "minZoom": 10,
+    "imageRule": "Hoogspanning",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_puntobjecten"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "obka_ms",
+    "authScope": "HR/R",
+    "title": "Middenspanning",
+    "type": "wms",
+    "layers": ["objecten_middenspanning"],
+    "url": "/maps/ondergrond",
+    "minZoom": 10,
+    "imageRule": "Middenspanning",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_puntobjecten"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "obka_ls",
+    "authScope": "HR/R",
+    "title": "Laagspanning",
+    "type": "wms",
+    "layers": ["objecten_laagspanning"],
+    "url": "/maps/ondergrond",
+    "minZoom": 10,
+    "imageRule": "Laagspanning",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_puntobjecten"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "obka_pc",
+    "authScope": "HR/R",
+    "title": "(Petro)chemie",
+    "type": "wms",
+    "layers": ["objecten_chemie"],
+    "url": "/maps/ondergrond",
+    "minZoom": 10,
+    "imageRule": "(petro)chemie",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_puntobjecten"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "obka_rv",
+    "authScope": "HR/R",
+    "title": "Riool vrijverval",
+    "type": "wms",
+    "layers": ["objecten_riool_vrijverval"],
+    "url": "/maps/ondergrond",
+    "minZoom": 10,
+    "imageRule": "Riool vrijverval",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_puntobjecten"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "obka_rooo",
+    "authScope": "HR/R",
+    "title": "Riool onder over- of onderdruk",
+    "type": "wms",
+    "layers": ["objecten_riool_over_of_onderdruk"],
+    "url": "/maps/ondergrond",
+    "minZoom": 10,
+    "imageRule": "riool onder over- of onderdruk",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_puntobjecten"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "obka_warmte",
+    "authScope": "HR/R",
+    "title": "Warmte",
+    "type": "wms",
+    "layers": ["objecten_warmte"],
+    "url": "/maps/ondergrond",
+    "minZoom": 10,
+    "imageRule": "warmte",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_puntobjecten"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "obka_water",
+    "authScope": "HR/R",
+    "title": "Water",
+    "type": "wms",
+    "layers": ["objecten_water"],
+    "url": "/maps/ondergrond",
+    "minZoom": 10,
+    "imageRule": "water",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_puntobjecten"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "obka_wees",
+    "authScope": "HR/R",
+    "title": "Wees",
+    "type": "wms",
+    "layers": ["objecten_wees"],
+    "url": "/maps/ondergrond",
+    "minZoom": 13,
+    "imageRule": "wees",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_puntobjecten"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "obka_overig",
+    "authScope": "HR/R",
+    "title": "Overig",
+    "type": "wms",
+    "layers": ["objecten_overig"],
+    "url": "/maps/ondergrond",
+    "minZoom": 10,
+    "imageRule": "overig",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_puntobjecten"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "ogevzmrk_dt",
+    "authScope": "HR/R",
+    "title": "Data Transport",
+    "type": "wms",
+    "layers": ["eisvoorzorgsmaatregelen_datatransport"],
+    "url": "/maps/ondergrond",
+    "imageRule": "Datatransport",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "ogevzmrk_ghd",
+    "authScope": "HR/R",
+    "title": "Gas hoge druk",
+    "type": "wms",
+    "layers": ["eisvoorzorgsmaatregelen_gas_hoge_druk"],
+    "url": "/maps/ondergrond",
+    "minZoom": 12,
+    "imageRule": "Gas hoge druk",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "ogevzmrk_gld",
+    "authScope": "HR/R",
+    "title": "Gas lage druk",
+    "type": "wms",
+    "layers": ["eisvoorzorgsmaatregelen_gas_lage_druk"],
+    "url": "/maps/ondergrond",
+    "minZoom": 12,
+    "imageRule": "Gas lage druk",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "ogevzmrk_bgi",
+    "authScope": "HR/R",
+    "title": "Buisleiding gevaarlijke inhoud",
+    "type": "wms",
+    "layers": ["eisvoorzorgsmaatregelen_buisleiding_gevaarlijke_inhoud"],
+    "url": "/maps/ondergrond",
+    "imageRule": "Buisleiding gevaarlijke inhoud",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "ogevzmrk_lhsn",
+    "authScope": "HR/R",
+    "title": "Landelijk hoogspanningsnet",
+    "type": "wms",
+    "layers": ["eisvoorzorgsmaatregelen_landelijk_hoogspanningsnet"],
+    "url": "/maps/ondergrond",
+    "imageRule": "Landelijk hoogspanningsnet",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "ogevzmrk_hs",
+    "authScope": "HR/R",
+    "title": "Hoogspanning",
+    "type": "wms",
+    "layers": ["eisvoorzorgsmaatregelen_hoogspanning"],
+    "url": "/maps/ondergrond",
+    "imageRule": "Hoogspanning",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "ogevzmrk_ms",
+    "authScope": "HR/R",
+    "title": "Middenspanning",
+    "type": "wms",
+    "layers": ["eisvoorzorgsmaatregelen_middenspanning"],
+    "url": "/maps/ondergrond",
+    "imageRule": "Middenspanning",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "ogevzmrk_ls",
+    "authScope": "HR/R",
+    "title": "Laagspanning",
+    "type": "wms",
+    "layers": ["eisvoorzorgsmaatregelen_laagspanning"],
+    "url": "/maps/ondergrond",
+    "minZoom": 10,
+    "imageRule": "Laagspanning",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "ogevzmrk_pc",
+    "authScope": "HR/R",
+    "title": "(Petro)chemie",
+    "type": "wms",
+    "layers": ["eisvoorzorgsmaatregelen_chemie"],
+    "url": "/maps/ondergrond",
+    "imageRule": "(petro)chemie",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "ogevzmrk_rv",
+    "authScope": "HR/R",
+    "title": "Riool vrijverval",
+    "type": "wms",
+    "layers": ["eisvoorzorgsmaatregelen_riool_vrijverval"],
+    "url": "/maps/ondergrond",
+    "minZoom": 10,
+    "imageRule": "Riool vrijverval",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "ogevzmrk_rooo",
+    "authScope": "HR/R",
+    "title": "Riool onder over- of onderdruk",
+    "type": "wms",
+    "layers": ["eisvoorzorgsmaatregelen_riool_over_of_onderdruk"],
+    "url": "/maps/ondergrond",
+    "imageRule": "riool onder over- of onderdruk",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "ogevzmrk_warmte",
+    "authScope": "HR/R",
+    "title": "Warmte",
+    "type": "wms",
+    "layers": ["eisvoorzorgsmaatregelen_warmte"],
+    "url": "/maps/ondergrond",
+    "imageRule": "warmte",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "ogevzmrk_water",
+    "authScope": "HR/R",
+    "title": "Water",
+    "type": "wms",
+    "layers": ["eisvoorzorgsmaatregelen_water"],
+    "url": "/maps/ondergrond",
+    "imageRule": "water",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "ogevzmrk_wees",
+    "authScope": "HR/R",
+    "title": "Wees",
+    "type": "wms",
+    "layers": ["eisvoorzorgsmaatregelen_wees"],
+    "url": "/maps/ondergrond",
+    "imageRule": "wees",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "ogevzmrk_overig",
+    "authScope": "HR/R",
+    "title": "Overig",
+    "type": "wms",
+    "layers": ["eisvoorzorgsmaatregelen_overig"],
+    "url": "/maps/ondergrond",
+    "imageRule": "overig",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
     },
     "meta": {
       "themes": []
