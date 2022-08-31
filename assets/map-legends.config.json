@@ -2727,6 +2727,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 12,
     "imageRule": "Datatransport",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
@@ -2743,6 +2744,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 12,
     "imageRule": "Gas hoge druk",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
@@ -2759,6 +2761,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 12,
     "imageRule": "Gas lage druk",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
@@ -2775,6 +2778,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "Buisleiding gevaarlijke inhoud",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
@@ -2791,6 +2795,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 12,
     "imageRule": "Landelijk hoogspanningsnet",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
@@ -2807,6 +2812,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 12,
     "imageRule": "Hoogspanning",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
@@ -2823,6 +2829,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 12,
     "imageRule": "Middenspanning",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
@@ -2839,6 +2846,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "Laagspanning",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
@@ -2855,6 +2863,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "(petro)chemie",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
@@ -2871,6 +2880,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "Riool vrijverval",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
@@ -2887,6 +2897,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "riool onder over- of onderdruk",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
@@ -2903,6 +2914,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "warmte",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
@@ -2919,6 +2931,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "water",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
@@ -2935,6 +2948,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 13,
     "imageRule": "wees",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
@@ -2951,6 +2965,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "overig",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_kabels_en_leidingen"
     },
@@ -2966,6 +2981,7 @@
     "layers": ["objecten_datatransport"],
     "url": "/maps/ondergrond",
     "imageRule": "Datatransport",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_puntobjecten"
     },
@@ -2981,6 +2997,7 @@
     "layers": ["objecten_gas_hoge_druk"],
     "url": "/maps/ondergrond",
     "imageRule": "Gas hoge druk",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_puntobjecten"
     },
@@ -2996,6 +3013,7 @@
     "layers": ["objecten_gas_lage_druk"],
     "url": "/maps/ondergrond",
     "imageRule": "Gas lage druk",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_puntobjecten"
     },
@@ -3012,6 +3030,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "Buisleiding gevaarlijke inhoud",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_puntobjecten"
     },
@@ -3028,6 +3047,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "Landelijk hoogspanningsnet",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_puntobjecten"
     },
@@ -3044,6 +3064,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "Hoogspanning",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_puntobjecten"
     },
@@ -3060,6 +3081,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "Middenspanning",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_puntobjecten"
     },
@@ -3076,6 +3098,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "Laagspanning",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_puntobjecten"
     },
@@ -3092,6 +3115,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "(petro)chemie",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_puntobjecten"
     },
@@ -3108,6 +3132,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "Riool vrijverval",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_puntobjecten"
     },
@@ -3124,6 +3149,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "riool onder over- of onderdruk",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_puntobjecten"
     },
@@ -3140,6 +3166,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "warmte",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_puntobjecten"
     },
@@ -3156,6 +3183,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "water",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_puntobjecten"
     },
@@ -3172,6 +3200,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 13,
     "imageRule": "wees",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_puntobjecten"
     },
@@ -3188,6 +3217,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "overig",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_puntobjecten"
     },
@@ -3203,6 +3233,7 @@
     "layers": ["eisvoorzorgsmaatregelen_datatransport"],
     "url": "/maps/ondergrond",
     "imageRule": "Datatransport",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
     },
@@ -3219,6 +3250,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 12,
     "imageRule": "Gas hoge druk",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
     },
@@ -3235,6 +3267,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 12,
     "imageRule": "Gas lage druk",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
     },
@@ -3250,6 +3283,7 @@
     "layers": ["eisvoorzorgsmaatregelen_buisleiding_gevaarlijke_inhoud"],
     "url": "/maps/ondergrond",
     "imageRule": "Buisleiding gevaarlijke inhoud",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
     },
@@ -3265,6 +3299,7 @@
     "layers": ["eisvoorzorgsmaatregelen_landelijk_hoogspanningsnet"],
     "url": "/maps/ondergrond",
     "imageRule": "Landelijk hoogspanningsnet",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
     },
@@ -3280,6 +3315,7 @@
     "layers": ["eisvoorzorgsmaatregelen_hoogspanning"],
     "url": "/maps/ondergrond",
     "imageRule": "Hoogspanning",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
     },
@@ -3295,6 +3331,7 @@
     "layers": ["eisvoorzorgsmaatregelen_middenspanning"],
     "url": "/maps/ondergrond",
     "imageRule": "Middenspanning",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
     },
@@ -3311,6 +3348,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "Laagspanning",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
     },
@@ -3326,6 +3364,7 @@
     "layers": ["eisvoorzorgsmaatregelen_chemie"],
     "url": "/maps/ondergrond",
     "imageRule": "(petro)chemie",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
     },
@@ -3342,6 +3381,7 @@
     "url": "/maps/ondergrond",
     "minZoom": 10,
     "imageRule": "Riool vrijverval",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
     },
@@ -3357,6 +3397,7 @@
     "layers": ["eisvoorzorgsmaatregelen_riool_over_of_onderdruk"],
     "url": "/maps/ondergrond",
     "imageRule": "riool onder over- of onderdruk",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
     },
@@ -3372,6 +3413,7 @@
     "layers": ["eisvoorzorgsmaatregelen_warmte"],
     "url": "/maps/ondergrond",
     "imageRule": "warmte",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
     },
@@ -3387,6 +3429,7 @@
     "layers": ["eisvoorzorgsmaatregelen_water"],
     "url": "/maps/ondergrond",
     "imageRule": "water",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
     },
@@ -3402,6 +3445,7 @@
     "layers": ["eisvoorzorgsmaatregelen_wees"],
     "url": "/maps/ondergrond",
     "imageRule": "wees",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
     },
@@ -3417,6 +3461,7 @@
     "layers": ["eisvoorzorgsmaatregelen_overig"],
     "url": "/maps/ondergrond",
     "imageRule": "overig",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/klic_eisvoorzorgsmaatregelen"
     },
@@ -3431,6 +3476,7 @@
     "layers": ["rioolknopen"],
     "url": "/maps/ondergrond",
     "imageRule": "rioolknopen",
+    "detailUrl": "geosearch/",
     "detailParams": {
       "datasets": "leidingeninfrastructuur/rioolknopen"
     },
