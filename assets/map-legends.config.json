@@ -358,20 +358,6 @@
     }
   },
   {
-    "id": "ggwpg",
-    "layers": [
-      "gebiedsgerichtwerkenpraktijkgebieden",
-      "gebiedsgerichtwerkenpraktijkgebieden_label"
-    ],
-    "title": "Gebiedsgerichtwerken-praktijkgebied",
-    "type": "wms",
-    "minZoom": 6,
-    "url": "/maps/gebieden",
-    "meta": {
-      "themes": ["ruimte-en-topografie", "bestuur"]
-    }
-  },
-  {
     "id": "ggra",
     "url": "/maps/gebieden",
     "layers": ["grootstedelijk_regio_amsterdam"],
