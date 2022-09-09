@@ -3478,7 +3478,97 @@
     "imageRule": "rioolknopen",
     "detailUrl": "geosearch/",
     "detailParams": {
-      "datasets": "leidingeninfrastructuur/rioolknopen"
+      "datasets": "leidingeninfrastructuur/waternet_rioolknopen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "waternrlg",
+    "title": "Gemengd",
+    "type": "wms",
+    "layers": ["rioolleidingen_gemengd"],
+    "url": "/maps/ondergrond",
+    "imageRule": "Gemengd",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/waternet_rioolleidingen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "waternrlhws",
+    "title": "Hemelwaterstelsel",
+    "type": "wms",
+    "layers": ["rioolleidingen_hemelwaterstelsel"],
+    "url": "/maps/ondergrond",
+    "imageRule": "Hemelwaterstelsel",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/waternet_rioolleidingen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "waternrlprs",
+    "title": "Polderrioolstelsel",
+    "type": "wms",
+    "layers": ["rioolleidingen_polderrioolstelsel"],
+    "url": "/maps/ondergrond",
+    "imageRule": "Polderrioolstelsel",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/waternet_rioolleidingen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "waternrlvgm",
+    "title": "Verb. gemengd",
+    "type": "wms",
+    "layers": ["rioolleidingen_verb_gemengd"],
+    "url": "/maps/ondergrond",
+    "imageRule": "Verb. gemengd",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/waternet_rioolleidingen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "waternrlvgs",
+    "title": "Verb. gescheiden",
+    "type": "wms",
+    "layers": ["rioolleidingen_verb_gescheiden"],
+    "url": "/maps/ondergrond",
+    "imageRule": "Verb. gescheiden",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/waternet_rioolleidingen"
+    },
+    "meta": {
+      "themes": []
+    }
+  },
+  {
+    "id": "waternrlvws",
+    "title": "Vuilwaterstelsel",
+    "type": "wms",
+    "layers": ["rioolleidingen_vuilwaterstelsel"],
+    "url": "/maps/ondergrond",
+    "imageRule": "Vuilwaterstelsel",
+    "detailUrl": "geosearch/",
+    "detailParams": {
+      "datasets": "leidingeninfrastructuur/waternet_rioolleidingen"
     },
     "meta": {
       "themes": []
