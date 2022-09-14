@@ -1000,7 +1000,7 @@
         "id": "klic_overig"
       }
     ],
-    "title": "Kabels en leidingen KLIC",
+    "title": "KLIC Kabels en leidingen",
     "type": "wms",
     "meta": {
       "themes": []
@@ -1056,7 +1056,7 @@
         "id": "obka_overig"
       }
     ],
-    "title": "Objecten KLIC",
+    "title": "KLIC Objecten",
     "type": "wms",
     "meta": {
       "themes": []
@@ -1112,7 +1112,7 @@
         "id": "ogevzmrk_overig"
       }
     ],
-    "title": "Eisvoorzorgsmaatregelen KLIC",
+    "title": "KLIC Eisvoorzorgsmaatregelen",
     "type": "wms",
     "meta": {
       "themes": []
