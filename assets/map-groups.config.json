@@ -469,7 +469,7 @@
       }
     ],
     "minZoom": 12,
-    "title": "Meetbouten - Zaksnelheid",
+    "title": "Meetbouten - Zakkingssnelheid",
     "type": "wms",
     "url": "/maps/meetbouten",
     "detailUrl": "geosearch/search/",
