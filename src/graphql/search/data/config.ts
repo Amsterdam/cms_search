@@ -25,7 +25,6 @@ export enum DataType {
   Branches = 'vestigingen',
   SocialActivity = 'maatschappelijkeactiviteit',
   CadastralProperties = 'kadastrale_objecten',
-  CadastralSubject = 'kadastrale_subjecten',
   MeasuringBolt = 'meetbouten',
   Monument = 'monumenten',
   ConstructionFiles = 'bouwdossiers',
@@ -102,13 +101,6 @@ export const DATA_SEARCH_ENDPOINTS: Array<DataSearchType> = [
     type: DataType.CadastralProperties,
     labelSingular: 'Kadastraal object',
     label: 'Kadastrale objecten',
-    searchParam: 'q',
-  },
-  {
-    endpoint: SEARCH_ENDPOINTS[DataType.CadastralSubject],
-    type: DataType.CadastralSubject,
-    labelSingular: 'Kadastraal subject',
-    label: 'Kadastrale subjecten',
     searchParam: 'q',
   },
   {
