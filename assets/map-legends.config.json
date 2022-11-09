@@ -1738,18 +1738,6 @@
     }
   },
   {
-    "id": "bros",
-    "layers": ["cpt"],
-    "iconUrl": "/assets/images/map-legend/icon-bro-sondering.png",
-    "title": "Geotechnische sonderingen (CPT BRO)",
-    "type": "wms",
-    "url": "https://geodata.nationaalgeoregister.nl/brocpt/wms?",
-    "external": true,
-    "meta": {
-      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]
-    }
-  },
-  {
     "id": "exgg",
     "layers": ["gevrijwaarde_gebieden"],
     "imageRule": "Gevrijwaarde gebieden",

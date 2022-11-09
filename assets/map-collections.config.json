@@ -525,9 +525,6 @@
         "id": "exvg"
       },
       {
-        "id": "mbaig"
-      },
-      {
         "id": "his_bodemonderzkn"
       },
       {
@@ -569,21 +566,6 @@
     ],
     "meta": {
       "themes": ["duurzaamheid-en-milieu", "openbare-orde-en-veiligheid", "ruimte-en-topografie"]
-    }
-  },
-  {
-    "id": "bdmkw",
-    "title": "Bodemkwaliteit",
-    "mapLayers": [
-      {
-        "id": "mbaig"
-      },
-      {
-        "id": "bros"
-      }
-    ],
-    "meta": {
-      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]
     }
   },
   {

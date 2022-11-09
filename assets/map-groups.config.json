@@ -684,31 +684,6 @@
     }
   },
   {
-    "id": "mbaig",
-    "layers": ["asbest"],
-    "legendItems": [
-      {
-        "title": "-10 - 0 mg/kg"
-      },
-      {
-        "title": "0,1 - 10 mg/kg"
-      },
-      {
-        "title": "10,1 - 100 mg/kg"
-      },
-      {
-        "title": "> 100,1 mg/kg"
-      }
-    ],
-    "minZoom": 11,
-    "title": "Grondmonsters asbest",
-    "type": "wms",
-    "url": "/maps/bodem",
-    "meta": {
-      "themes": ["duurzaamheid-en-milieu", "ruimte-en-topografie"]
-    }
-  },
-  {
     "id": "exin",
     "layers": ["inslagen"],
     "legendItems": [
