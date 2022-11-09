@@ -1606,16 +1606,6 @@
     }
   },
   {
-    "id": "vezips",
-    "layers": ["vezips"],
-    "title": "Verzinkbare palen",
-    "type": "wms",
-    "url": "/maps/vezips",
-    "meta": {
-      "themes": ["verkeer", "ruimte-en-topografie"]
-    }
-  },
-  {
     "id": "his_bodemonderzkn",
     "layers": ["historische_onderzoeken"],
     "title": "Historische bodemonderzoeken",
